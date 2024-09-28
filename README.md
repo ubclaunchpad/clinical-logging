@@ -1,5 +1,17 @@
 # clinical-logging
-Clinical logging platform to scan, digitize and store information from handwritten case records.
+Clinical logging platform to scan, digitize and store information from handwritten case records from [Flowleaflets](https://flowleaflets.org/) clinical logbooks.
+
+Our app will have the following components:
+- Frontend
+    - Pages:
+        - Login
+        - Signup
+        - Home
+        - Logs
+        - Add photo
+- Backend
+- Database
+- Transcription
 
 # Setup
 - Install Node.js and npm
