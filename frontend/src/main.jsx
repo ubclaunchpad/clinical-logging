@@ -1,8 +1,10 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ProtectedRoutes } from './utils/ProtectedRoutes.jsx'
 import App from './App.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import NotFound from './pages/NotFound.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -10,7 +12,11 @@ createRoot(document.getElementById('root')).render(
     <Routes>
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route index element={<App />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route index element={<App />} />
+        <Route path='/dashboard' element={<App />} />
+      </Route>
+      <Route path='*' element={<NotFound />} />
     </Routes>
   </BrowserRouter>,
 )
