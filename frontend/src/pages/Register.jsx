@@ -15,7 +15,7 @@ export default function Register() {
       return;
 		}
 
-		//TODO register asccount function
+		//TODO register account function
 	}
 
   return (
