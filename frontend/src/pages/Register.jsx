@@ -10,7 +10,6 @@ export default function Register() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [loading, setLoading] = useState(false);
-
 	const navigate = useNavigate();
   //Auth Context
 	const { currentUser, register } = useAuth();
