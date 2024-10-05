@@ -13,7 +13,7 @@ export default function Login() {
   //Auth Context
 	const { currentUser, login } = useAuth();
 
-    //redirect to homepage when already authenticated
+  //redirect to homepage when already authenticated
 	useEffect(() => {
     if (currentUser) {
       //set to homepage
