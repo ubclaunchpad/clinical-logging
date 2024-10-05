@@ -2,10 +2,18 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	async function handleSubmit (e) {
+		e.preventDefault();
+		//TODO login account function
+	}
+
   return (
     <div>
       <h2>Login to Your Account</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email Address:</label>
         <input 
           id="email" 
