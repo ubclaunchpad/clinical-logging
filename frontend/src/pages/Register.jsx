@@ -43,6 +43,7 @@ export default function Register() {
     setLoading(false);
 	}
 
+	
   return (
     <div>
     	<h2>Register your account</h2>
