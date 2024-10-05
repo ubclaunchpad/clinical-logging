@@ -1,21 +1,47 @@
-import React from 'react'
-import { Link } from "react-router-dom"
-import { useState } from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [loading, setLoading] = useState(false);
+
+	const navigate = useNavigate();
+  //Auth Context
+	const { currentUser, register } = useAuth();
+
+  //redirect to homepage when already authenticated
+	useEffect(() => {
+    if (currentUser) {
+      //set to homepage
+      navigate("/");
+    }
+	}, [currentUser]);
 
 	async function handleSubmit (e) {
 		e.preventDefault();
 		// Validate passwords
     if (password !== confirmPassword) {
-      //TODO function for incorrectPassword
-      return;
+      //TODO manage error
+      return alert("Passwords do not match");
 		}
 
-		//TODO register account function
+    try {
+      //disable submit button
+      setLoading(true);
+      await register(email, password);
+      //TODO dashboard page protected routes
+      navigate("/dashboard");
+    } catch (e) {
+      //TODO catch error
+      alert("Failed to register");
+    }
+    setLoading(false);
 	}
 
   return (
@@ -50,7 +76,7 @@ export default function Register() {
 					onChange={(e) => setConfirmPassword(e.target.value)}  
 					required
 				/>
-				<button type='submit'>Register Account</button>
+				<button type='submit' disabled={loading}>Register Account</button>
 			</form>
 			<Link to="/login">Already have an account? Login</Link>
     </div> 

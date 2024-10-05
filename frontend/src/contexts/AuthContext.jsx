@@ -26,7 +26,7 @@ export function AuthProvider({ children }){
     return signInWithEmailAndPassword(auth, email, password);
   }
   
-  //set listener to notify when user is signed in
+  //set listener to notify when firebase detects authentication status
   //children only renders when loading is finished
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
