@@ -22,6 +22,12 @@ Our app will have the following components:
 2. 'npm install' to install dependencies
 3. 'npm run dev' to run local development server
 
+## Transcription - Flask
+1. 'cd backend' to change directory to backend folder
+2. 'python -m venv .venv' to create virtual environment
+2. 'pip install -r requirements.txt' to install dependencies
+3. 'flask run' to run local development server
+
 ## Frontend - React + Vite
 1. 'cd frontend' to change directory to frontend folder
 2. 'npm install' to install dependencies
