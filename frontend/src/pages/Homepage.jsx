@@ -45,7 +45,7 @@ function Logo() {
   return (
     <div className="logo-text-container">
       <span style={{ color: mainColour }} className="logo-text-bold">
-        Flow Leaflets <br />
+        FlowLeaflets <br />
           <span className="logo-text-small">Clinical Logbooks</span>
         </span>
     </div>
@@ -73,7 +73,7 @@ function CTASection() {
     <div className="cta-section">
       <h1>
         Welcome to <br />
-        <span style={{ color: mainColour }}> Flow Leaflets</span>
+        <span style={{ color: mainColour }}> FlowLeaflets</span>
       </h1>
       <p className="cta-paragraph">
         Detailed caselogs for patients you see, vital care for those in need, globally
