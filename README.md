@@ -13,6 +13,34 @@ Our app will have the following components:
 - Database
 - Transcription
 
+### Project Structure
+├── backend                  
+│   ├── routes             # most of the backend code for API routes should be here
+│   ├── ├── ...
+│   ├── index.js           # Code for running the server and some basic routes
+│   ├── package.json             
+│   ├── package_lock.json          
+│   └── .gitignore             
+└──
+├── frontend             
+│   ├── src
+│   ├── ├── assets
+│   ├── ├── ├── ...
+│   ├── ├── pages #frontend code for each page should go here
+│   ├── ├── ├── ...
+│   ├── ├── utils #put util or helper functions that are shared across multiple files here (eg: protectedRoutes)
+│   ├── ├── ├── ...
+│   ├── ├── App.jsx #Main component of the app, likely do not need to modify this
+│   ├── ├── App.css #Styles for App.jsx, likely do not need to modify this
+│   ├── ├── index.css #global css styles go here
+│   ├── ├── main.jsx #root layout of app, wrap all pages inside it
+│   ├── public #put any assets (logos, images) that need to be easily accessed in the app here
+│   ├── ├── ...
+│   ├── package.json             
+│   ├── package_lock.json
+│   ├── other config files
+│   └── .gitignore  
+└──
 # Setup
 - Install Node.js and npm
 - Clone the repository
