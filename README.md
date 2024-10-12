@@ -14,6 +14,7 @@ Our app will have the following components:
 - Transcription
 
 ### Project Structure
+```
 ├── backend                  
 │   ├── routes             # most of the backend code for API routes should be here
 │   ├── ├── ...
@@ -41,6 +42,7 @@ Our app will have the following components:
 │   ├── other config files
 │   └── .gitignore  
 └──
+```
 # Setup
 - Install Node.js and npm
 - Clone the repository
