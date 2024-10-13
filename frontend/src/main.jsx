@@ -4,12 +4,16 @@ import { ProtectedRoutes } from './utils/ProtectedRoutes.jsx'
 import App from './App.jsx'
 import Login from './pages/Login.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Home from './pages/Homepage.jsx'
+import SignUp from './pages/SignUp.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route path='/login' element={<Login />} />
+      <Route path='/homepage' element={<Home />} />
+      <Route path='/signup' element={<SignUp />} />
       <Route element={<ProtectedRoutes />}>
         <Route index element={<App />} />
         <Route path='/dashboard' element={<App />} />
