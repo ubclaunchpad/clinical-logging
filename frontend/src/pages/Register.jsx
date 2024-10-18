@@ -12,15 +12,15 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   //Auth Context
-  const { currentUser, register } = useAuth();
+  const { session, register } = useAuth();
 
   //redirect to homepage when already authenticated
   useEffect(() => {
-    if (currentUser) {
+    if (session) {
       //set to homepage
       navigate("/");
     }
-  }, [currentUser]);
+  }, [session]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function Register() {
       await register(email, password);
       //TODO dashboard page protected routes
       navigate("/dashboard");
-    } catch (e) {
+    } catch (error) {
       //TODO catch error
       alert("Failed to register");
     }
