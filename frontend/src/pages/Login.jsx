@@ -11,15 +11,15 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   //Auth Context
-  const { currentUser, login } = useAuth();
+  const { session, login } = useAuth();
 
   //redirect to homepage when already authenticated
   useEffect(() => {
-    if (currentUser) {
+    if (session) {
       //set to homepage
       navigate("/");
     }
-  }, [currentUser]);
+  }, [session]);
 
   async function handleSubmit(e) {
     e.preventDefault();
