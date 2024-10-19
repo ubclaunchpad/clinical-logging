@@ -3,84 +3,78 @@ import supabase from "../config/supabase";
 
 const AuthContext = createContext();
 
-
 export function useAuth() {
-  return useContext(AuthContext);
+	return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }){
-  const [session, setSession] = useState();
-  const [loading, setLoading] = useState(true);
+export function AuthProvider({ children }) {
+	const [session, setSession] = useState();
+	const [loading, setLoading] = useState(true);
 
-  async function register(email, password) {
-    const { user, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
-    // throw error otherwise return user
-    if (error) {
-      throw new Error(error.message);
-    }
+	async function register(email, password) {
+		const { user, error } = await supabase.auth.signUp({
+			email: email,
+			password: password,
+		});
 
-    return user;
-  }
-  
-  async function login(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
+		if (error) {
+			throw new Error(error.message);
+		}
 
-    // throw error otherwise return data
-    if (error) {
-      throw new Error(error.message);
-    }
+		return user;
+	}
 
-    return data;
-  }
-  
-  //children only renders when loading is finished
-  useEffect(() => {
+	async function login(email, password) {
+		const { data, error } = await supabase.auth.signInWithPassword({
+			email: email,
+			password: password,
+		});
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (event === 'SIGNED_OUT') {
-          setSession(null);
-        } else if (session) {
-          setSession(session);
-        }
-        // Set loading to false for auth state changes
-        setLoading(false);
-      }
-    );
+		if (error) {
+			throw new Error(error.message);
+		}
 
-    // Check initial session
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) {
-        setSession(data.session); // Initialize session if it exists
-      }
-      setLoading(false); // Set loading to false after initial session check
-    });
+		return data;
+	}
 
+	//children only renders when loading is finished
+	useEffect(() => {
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((event, session) => {
+			if (event === "SIGNED_OUT") {
+				setSession(null);
+			} else if (session) {
+				setSession(session);
+			}
 
-    return () => {
-      subscription.unsubscribe()
-    };
-  }, []);
+			// Set loading to false for auth state changes
+			setLoading(false);
+		});
 
-  //pass login, register functions and currentUser to children using context
-  const value = {
-    session,
-    login,
-    register,
-  };
-  
+		// Check initial session
+		supabase.auth.getSession().then(({ data }) => {
+			if (data.session) {
+				setSession(data.session); // Initialize session if it exists
+			}
+			setLoading(false); // Set loading to false after initial session check
+		});
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-      {/* {children} */}
-    </AuthContext.Provider>
-  )
+		return () => {
+			subscription.unsubscribe();
+		};
+	}, []);
+
+	//pass login, register functions and currentUser to children using context
+	const value = {
+		session,
+		login,
+		register,
+	};
+
+	return (
+		<AuthContext.Provider value={value}>
+			{!loading && children}
+		</AuthContext.Provider>
+	);
 }
-
