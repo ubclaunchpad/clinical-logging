@@ -6,6 +6,7 @@ import App from './App.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Home from './pages/Homepage.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login />} />
+        <Route path='/homepage' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
