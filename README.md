@@ -15,6 +15,7 @@ Our app will have the following components:
 
 ### Project Structure
 ```
+├── assets
 ├── backend                  
 │   ├── routes             # most of the backend code for API routes should be here
 │   ├── ├── ...
