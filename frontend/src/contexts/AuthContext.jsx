@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
 		});
 
 		if (error) {
-			throw new Error(error.message);
+			throw error;
 		}
 
 		return user;
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
 		});
 
 		if (error) {
-			throw new Error(error.message);
+			throw error;
 		}
 
 		return data;
@@ -46,6 +46,7 @@ export function AuthProvider({ children }) {
 				setSession(null);
 			} else if (session) {
 				setSession(session);
+        console.log('This is the session:', session)
 			}
 
 			// Set loading to false for auth state changes

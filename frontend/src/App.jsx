@@ -3,15 +3,40 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from "axios"
+import { useAuth } from "./contexts/AuthContext";
+
 
 function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState("Test Message")
+  const { session } = useAuth()
+  const [authorized, setAuthorized] = useState("Test Authorization"); 
 
   const fetchAPI = async () => {
     const response = await axios.get("http://localhost:8080/api")
     setMessage(response.data.message)
     console.log(response)
+  }
+
+  const checkPost = async () => {
+    const token = session.access_token;
+    const data = {
+      content: "This is from the client"
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8080/check", data, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      console.log(response);
+      setAuthorized(response.data.message);
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   return (
@@ -35,6 +60,17 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+
+      {session ? (
+        <div>
+          <h1>Logged In</h1>
+          <button onClick={checkPost}>Check Authorization</button>
+          <p>{authorized}</p>
+        </div>
+        ) : <h1>Logged Out</h1>}
+
+      
+
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
