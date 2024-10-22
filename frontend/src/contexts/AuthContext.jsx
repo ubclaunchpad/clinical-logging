@@ -37,7 +37,15 @@ export function AuthProvider({ children }) {
 		return data;
 	}
 
-	//children only renders when loading is finished
+	async function logout() {
+		const { error } = await supabase.auth.signOut();
+
+		if (error) {
+			console.log(error);
+			throw error;
+		}
+	}
+
 	useEffect(() => {
 		const {
 			data: { subscription },
@@ -46,19 +54,17 @@ export function AuthProvider({ children }) {
 				setSession(null);
 			} else if (session) {
 				setSession(session);
-        console.log('This is the session:', session)
+				console.log("This is the session:", session);
 			}
 
-			// Set loading to false for auth state changes
 			setLoading(false);
 		});
 
-		// Check initial session
 		supabase.auth.getSession().then(({ data }) => {
 			if (data.session) {
-				setSession(data.session); // Initialize session if it exists
+				setSession(data.session);
 			}
-			setLoading(false); // Set loading to false after initial session check
+			setLoading(false);
 		});
 
 		return () => {
@@ -66,10 +72,10 @@ export function AuthProvider({ children }) {
 		};
 	}, []);
 
-	//pass login, register functions and currentUser to children using context
 	const value = {
 		session,
 		login,
+		logout,
 		register,
 	};
 

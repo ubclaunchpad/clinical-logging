@@ -11,18 +11,15 @@ const auth = async (req, res, next) => {
 			res.status(401).json({ msg: "No token: Authentication Denied" });
 		}
 
-    next();
+		next();
 	} catch (err) {
-		return res
-			.status(400)
-			.json({ 
-        msg: {
-          token: req.header("Authorization")?.split(" ")[1],
-          other: "hi",
-          secret: process.env.SUPABASE_JWT_SECRET
-        },
-        error: "Invalid token, authentication denied." 
-      });
+		return res.status(400).json({
+			msg: {
+				token: req.header("Authorization")?.split(" ")[1],
+				secret: process.env.SUPABASE_JWT_SECRET,
+			},
+			error: "Invalid token, authentication denied.",
+		});
 	}
 };
 
