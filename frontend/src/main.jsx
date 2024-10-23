@@ -9,7 +9,7 @@ import SignUp from './pages/SignUp.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import NewLog from './pages/NewLog.jsx'
 import LogHistory from './pages/LogHistory.jsx'
-import UploadPhoto from './pages/UploadPhoto.jsx'
+import UploadPhotos from './pages/UploadPhoto.jsx'
 import ManualEdit from './pages/ManualEdit.jsx'
 import './index.css'
 
@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/newLog' element={<NewLog />} />
       <Route path='/logHistory' element={<LogHistory />} />
-      <Route path='/uploadPhoto' element={<UploadPhoto />} />
+      <Route path='/uploadPhotos' element={<UploadPhotos />} />
       <Route path='/manualEdit' element={<ManualEdit />} />
       <Route element={<ProtectedRoutes />}>
         <Route index element={<App />} />
