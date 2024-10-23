@@ -21,7 +21,10 @@ export default function SignUp() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		if (password !== confirmPassword) {
+
+		if (!checkValidEmailDomain(email)) {
+			return alert("Please enter a valid email");
+		} else if (password !== confirmPassword) {
 			return alert("Passwords do not match");
 		}
 
@@ -30,7 +33,9 @@ export default function SignUp() {
 			await register(email, password);
 			navigate("/dashboard");
 		} catch (error) {
-			alert("Failed to register");
+			alert(
+				error.message
+			);
 		}
 		setLoading(false);
 	}
@@ -74,4 +79,18 @@ export default function SignUp() {
 			<Link to="/login">Already have an account? Login</Link>
 		</div>
 	);
+}
+
+function checkValidEmailDomain(email) {
+	const allowedDomain = [
+		"gmail.com",
+		"hotmail.com",
+		"yahoo.com",
+		"outlook.com",
+		"student.ubc.ca",
+	];
+
+	const domain = email.split("@")[1];
+
+	return allowedDomain.includes(domain);
 }
