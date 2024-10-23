@@ -224,6 +224,7 @@ button:focus-visible {
   width: 100vw; 
   box-sizing: border-box;
   padding-left: 20px; 
+  margin-top: -30px;
 }
 
 .upload-box {
