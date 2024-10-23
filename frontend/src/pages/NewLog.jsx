@@ -16,7 +16,7 @@ function CTASection() {
   const navigate = useNavigate(); 
   
   const handleUploadPhoto = () => {
-    navigate("/uploadPhoto"); 
+    navigate("/uploadPhotos"); 
   };
 
   const handleEnterManually = () => {
