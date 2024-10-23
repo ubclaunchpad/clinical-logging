@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import axios from "axios"
 import { useAuth } from "./contexts/AuthContext";
+import { useNavigate } from 'react-router-dom'
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
   const [message, setMessage] = useState("Test Message")
   const { session } = useAuth()
   const [authorized, setAuthorized] = useState("Test Authorization"); 
+  const navigate = useNavigate();
+
 
   const fetchAPI = async () => {
     const response = await axios.get("http://localhost:8080/api")
@@ -37,6 +40,10 @@ function App() {
     } catch (err) {
       console.log(err.message)
     }
+  }
+
+  const handleClickLogout = () => {
+    navigate("/logout");
   }
 
   return (
@@ -66,6 +73,7 @@ function App() {
           <h1>Logged In</h1>
           <button onClick={checkPost}>Check Authorization</button>
           <p>{authorized}</p>
+          <button onClick={handleClickLogout}>Log out</button>
         </div>
         ) : <h1>Logged Out</h1>}
 
