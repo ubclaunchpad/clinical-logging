@@ -26,7 +26,7 @@ export default function Login() {
 			await login(email, password);
 			navigate("/dashboard");
 		} catch (e) {
-			alert("Failed to login");
+			alert("Failed to login: Email or Password Incorrect");
 		}
 		setLoading(false);
 	}

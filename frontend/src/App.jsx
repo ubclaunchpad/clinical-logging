@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState("Test Message")
-  const { session } = useAuth()
+  const { logout, session } = useAuth()
   const [authorized, setAuthorized] = useState("Test Authorization"); 
   const navigate = useNavigate();
 
@@ -42,8 +42,13 @@ function App() {
     }
   }
 
-  const handleClickLogout = () => {
-    navigate("/logout");
+  const handleClickLogout = async () => {
+    try {
+			await logout();
+			navigate("/homepage");
+		} catch (e) {
+			console.log("Failed to logout");
+		}
   }
 
   return (
