@@ -4,7 +4,6 @@ import { ProtectedRoutes } from './utils/ProtectedRoutes.jsx'
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import App from './App.jsx'
 import Login from './pages/Login.jsx'
-import Logout from './pages/Logout.jsx'
 import SignUp from './pages/SignUp.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Home from './pages/Homepage.jsx'
@@ -17,7 +16,6 @@ createRoot(document.getElementById('root')).render(
         <Route path='/login' element={<Login />} />
         <Route path='/homepage' element={<Home />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/logout' element={<Logout />} />
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
           <Route path='/dashboard' element={<App />} />
