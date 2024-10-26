@@ -33,7 +33,19 @@ export default function SignUp() {
 			await register(email, password);
 			navigate("/dashboard");
 		} catch (error) {
-			alert(error.message);
+
+			if (error.code === "weak_password") {
+				alert(
+					"Password must contain:\n" +
+						"- At least 8 characters\n" +
+						"- At least one uppercase letter\n" +
+						"- At least one lowercase letter\n" +
+						"- At least one number\n" +
+						"- At least one special character (e.g., !@#$%^&*()_+-=[]{};:'\"|<>?,./`~)"
+				);
+			} else {
+				alert(error.message);
+			}
 		}
 		setLoading(false);
 	}
