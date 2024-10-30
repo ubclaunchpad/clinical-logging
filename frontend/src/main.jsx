@@ -21,7 +21,6 @@ createRoot(document.getElementById("root")).render(
       <Route path="/signup" element={<SignUp />} />
       <Route element={<ProtectedRoutes />}>
         <Route index element={<App />} />
-        <Route path="/dashboard" element={<App />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/newLog" element={<NewLog />} />
         <Route path="/logHistory" element={<LogHistory />} />

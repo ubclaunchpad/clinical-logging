@@ -157,3 +157,13 @@ button:focus-visible {
   margin-bottom: 50px;
   min-width: 0;
 }
+
+.log-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 80%;
+}
