@@ -22,13 +22,13 @@ createRoot(document.getElementById("root")).render(
       <Route element={<ProtectedRoutes />}>
         <Route index element={<App />} />
         <Route path="/dashboard" element={<App />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/newLog" element={<NewLog />} />
+        <Route path="/logHistory" element={<LogHistory />} />
+        <Route path="/uploadPhotos" element={<UploadPhotos />} />
+        <Route path="/manualEdit" element={<ManualEdit />} />
       </Route>
       <Route path="*" element={<NotFound />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/newLog" element={<NewLog />} />
-      <Route path="/logHistory" element={<LogHistory />} />
-      <Route path="/uploadPhotos" element={<UploadPhotos />} />
-      <Route path="/manualEdit" element={<ManualEdit />} />
     </Routes>
   </BrowserRouter>
 );
