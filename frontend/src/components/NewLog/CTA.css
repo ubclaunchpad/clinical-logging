@@ -1,0 +1,19 @@
+.cta-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 64px;
+    margin-right: 64px;
+    margin-top: 200px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-icon {
+    margin-right: 9px;
+    vertical-align: -6px;
+}

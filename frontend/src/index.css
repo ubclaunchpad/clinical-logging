@@ -20,6 +20,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -40,9 +41,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -53,69 +56,14 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  width: 100vw; 
-  background-color: #242424;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.logo-text-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-}
-
-.logo-text-bold {
-  color:#646cff;
-  font-weight: bold;
-  font-size: 1.7rem; 
-  line-height: 1;
-}
-
-.logo-text-small {
-  font-weight: 600;
-  font-size: 1rem; 
-  line-height: 1.1; 
-  color: white; 
-}
-
-/* CTA Section */
-.cta-section {
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  margin-left: 64px; 
-  margin-right: 64px;
-  margin-top: 200px; 
-}
-
-.cta-paragraph {
-  text-align: center; 
-  font-size: 1.1rem; 
-  color: #64748b; 
-  width: 450px;
-  margin-top: -1rem;
-}
-
-.sign-up-button-container {
-  display: flex;
-  gap: 8px;
 }
 
 .sign-in-button-container {
@@ -123,87 +71,39 @@ button:focus-visible {
   gap: 9px;
 }
 
-.nav-buttons-container {
-  display: flex;
-  gap: 8px; 
-  margin-top: 10px;
-  margin-right: 30px;
-}
-
 .login-icon {
   margin-left: 8px;
-  font-size: 1.2rem; 
-  vertical-align:middle;
+  font-size: 1.2rem;
+  vertical-align: middle;
 }
 
 .sidebar {
   width: 20%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   height: 100vh;
-  border-right: 1px solid #e5e7eb; /* light gray border */
-}
-
-.sidebar-logo-container {
-  align-items: center;
-  margin-top: 300px;
-  margin-left: -150px;
-}
-
-.sidebar-logo-text-small {
-  color: #ffffff;
-  gap: 0.25rem;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-.sidebar-logo-text-bold {
-  color: #646cff;
-  font-weight: bold;
-  font-size: 2.5rem;
-  text-align: center;
+  border-right: 1px solid #e5e7eb;
+  /* light gray border */
 }
 
 .page-container {
   display: flex;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
+  /* Full viewport height */
 }
 
 .main-content {
-  flex-grow: 1; /* Take the remaining space */
+  flex-grow: 1;
+  /* Take the remaining space */
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  text-align: center; /* Center text inside the div */
-}
-
-.main-content-text {
-  font-size: 20px;
-  font-weight: 800;
-  margin-top: -100px;
-}
-
-.buttons-container {
-  display: flex;
-  flex-direction: column; /* Stacks buttons vertically */
-  gap: 10px; /* Adds spacing between buttons */
-}
-
-.main-content-buttons {
-  font-size: 17px;
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
+  /* Center horizontally */
   align-items: center;
-  margin-top: 30px;
-  gap: 10px;
-}
-
-.add-icon {
-  margin-right: 9px;
-  vertical-align: -6px;
+  /* Center vertically */
+  text-align: center;
+  /* Center text inside the div */
 }
 
 .nav-icon-left {
@@ -221,17 +121,17 @@ button:focus-visible {
 .upload-photos-container {
   display: flex;
   height: 100vh;
-  width: 100vw; 
+  width: 100vw;
   box-sizing: border-box;
-  padding-left: 20px; 
+  padding-left: 20px;
   margin-top: -40px;
 }
 
 .upload-box {
-  flex: 1; 
+  flex: 1;
   max-width: 55vw;
   padding: 40px;
-  border-right: 1px solid #555; 
+  border-right: 1px solid #555;
   display: flex;
   flex-direction: column;
 }
@@ -243,22 +143,6 @@ button:focus-visible {
   font-size: 1.2rem;
 }
 
-.upload-area {
-  border: 2px dashed #646cff;
-  background-color: #1d1d1d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 20px;
-  height: 450px;
-  width: 80%; 
-  border-radius: 8px; 
-  margin-left: auto;
-  margin-right: auto; 
-  cursor: pointer;
-}
-
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
@@ -268,75 +152,8 @@ button:focus-visible {
   font-size: 1.1rem;
 }
 
-.preview-section {
-  flex-basis: 36%; 
-  max-width: 31vw; 
-  transition: right 0.5s ease;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  background-color: #333; 
-  overflow-y: auto; 
-}
-
-.preview-item {
-  display: flex;
-  align-items: center;
-  margin-top: -10px;
-  padding: 10px;
-  border-radius: 5px;
-  height: 90vh; 
-}
-
-.preview-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; 
-  overflow-y: auto; 
-}
-
 .preview-content {
   flex-grow: 1;
   margin-bottom: 50px;
-  min-width: 0; 
-}
-
-.edit-mode-toggle {
-  margin-bottom: 20px;
-}
-
-.edit-button {
-  padding: 10px 20px;
-  margin-left: 330px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: border-color 0.25s;
-}
-.edit-button:hover {
-  border-color: #646cff;
-}
-.edit-button:focus,
-.edit-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.remove-button {
-  font-weight: 600;
-  margin-top: 10px;
-  padding: 10px 10px;
-  color: white;
-  border: 1px solid transparent;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: border-color 0.25s;
-}
-.remove-button:hover {
-  border-color: #646cff;
-}
-.remove-button:focus,
-.remove-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  min-width: 0;
 }

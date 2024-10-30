@@ -1,0 +1,40 @@
+.sidebar-logo-container {
+    align-items: center;
+    margin-top: 300px;
+    margin-left: -150px;
+}
+
+.sidebar-logo-text-small {
+    color: #ffffff;
+    gap: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sidebar-logo-text-bold {
+    color: #646cff;
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.logo-text-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.logo-text-bold {
+    color: #646cff;
+    font-weight: bold;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+.logo-text-small {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.1;
+    color: white;
+}
