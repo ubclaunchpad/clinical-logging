@@ -1,0 +1,25 @@
+.main-content-text {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: -100px;
+}
+
+.main-content-buttons {
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-icon {
+    margin-right: 9px;
+    vertical-align: -6px;
+}

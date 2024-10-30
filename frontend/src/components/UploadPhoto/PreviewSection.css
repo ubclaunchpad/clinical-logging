@@ -1,0 +1,70 @@
+.preview-section {
+    flex-basis: 36%;
+    max-width: 31vw;
+    transition: right 0.5s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: #333;
+    overflow-y: auto;
+}
+
+.edit-mode-toggle {
+    margin-bottom: 20px;
+}
+
+.edit-button {
+    padding: 10px 20px;
+    margin-left: 330px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: border-color 0.25s;
+}
+
+.edit-button:hover {
+    border-color: #646cff;
+}
+
+.edit-button:focus,
+.edit-button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.remove-button {
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 10px 10px;
+    color: white;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: border-color 0.25s;
+}
+
+.remove-button:hover {
+    border-color: #646cff;
+}
+
+.remove-button:focus,
+.remove-button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    margin-top: -10px;
+    padding: 10px;
+    border-radius: 5px;
+    height: 90vh;
+}
+
+.preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
