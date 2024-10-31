@@ -14,3 +14,14 @@ Include if making changes to frontend components. This can be in one of two form
 
 ### Link to Notion ticket
 Go to the tasks page in the notion and click on the `...` on the relevant task, copy link, and paste it here
+
+## What not to commit
+**Before making any commits, please ensure the following are not being committed**:
+Although most of these items are included in the .gitignore files, it's good to double check:
+- `node_modules`
+- Anything in the root-level `assets` folder
+- Any Flowleaflets provided files, for example the logbook pages
+- Python virtual environment folders
+- Any `.env` files
+
+Additionally, ensure that in any files that are to be committed, please do not include sensitive info such as API keys, patient information, or user credentials.
