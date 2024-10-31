@@ -5,7 +5,7 @@ def trocr():
 
     # load image from the IAM database
     #open from kkl.jpg in assets folder instead
-    url = 'assets/kkl4.jpg'
+    url = '../assets/kkl.jpg'
     image = Image.open(url).convert("RGB")
 
     processor = TrOCRProcessor.from_pretrained('microsoft/trocr-base-handwritten')
@@ -33,7 +33,7 @@ def florence():
 
     prompt = "<OCR>"
 
-    url = "assets/kkl.jpg"
+    url = "../assets/kkl.jpg"
     image = Image.open(url).convert("RGB")
 
     inputs = processor(text=prompt, images=image, return_tensors="pt").to(device, torch_dtype)
