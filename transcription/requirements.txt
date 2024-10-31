@@ -1,0 +1,7 @@
+Pillow==11.0.0
+Requests==2.32.3
+supervision==0.24.0
+torch==2.5.1
+transformers==4.46.1
+einops
+timm
