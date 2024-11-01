@@ -35,4 +35,14 @@ export default [
       ],
     },
   },
+  {
+    overrides: [
+      {
+        files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
+        env: {
+          jest: true
+        }
+      }
+    ]
+  },
 ]

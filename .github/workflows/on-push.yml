@@ -1,0 +1,41 @@
+# This workflow will run for pushes to all branches
+
+name: build-test-on-push
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install frontend dependecies
+    - run: |
+        cd frontend
+        npm ci
+    
+    - name: Build frontend
+    - run: |
+        cd frontend 
+        npm run build --if-present
+    
+    # - name: Test frontend
+    # - run: |
+    #     cd frontend
+    #     npm test -- --coverage
