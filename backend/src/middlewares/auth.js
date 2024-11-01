@@ -4,7 +4,6 @@ const auth = async (req, res, next) => {
 	try {
 		const token = req.header("Authorization")?.split(" ")[1];
 		const supabaseSecret = process.env.SUPABASE_JWT_SECRET;
-
 		if (token) {
 			jwt.verify(token, supabaseSecret);
 		} else {
