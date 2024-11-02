@@ -28,7 +28,7 @@ function App() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/check", data, {
+      const response = await axios.post("http://localhost:8080/api/auth/check", data, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
