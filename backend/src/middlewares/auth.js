@@ -9,7 +9,6 @@ const auth = async (req, res, next) => {
 		} else {
 			res.status(401).json({ msg: "No token: Authentication Denied" });
 		}
-
 		next();
 	} catch (err) {
 		return res.status(400).json({
@@ -23,3 +22,4 @@ const auth = async (req, res, next) => {
 };
 
 export default auth;
+
