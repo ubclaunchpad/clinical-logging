@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import jest from 'eslint-plugin-jest'
 import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -33,16 +34,19 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'react/prop-types': 0
     },
   },
   {
-    overrides: [
-      {
-        files: ['**/__tests__/**/*test.{js,jsx,ts,tsx}'],
-        env: {
-          jest: true
-        }
-      }
-    ]
-  },
+    files: ['**/__tests__/**/*.test.{js,jsx,ts,tsx}'],
+    plugins: {
+      jest,
+    },
+    languageOptions: {
+      globals: jest.environments.globals.globals
+    },
+    rules: {
+      ...jest.configs.recommended.rules,
+    }
+  }
 ]
