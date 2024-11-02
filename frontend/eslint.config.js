@@ -38,7 +38,7 @@ export default [
   {
     overrides: [
       {
-        files: ['**/__tests__/**/*.{js,jsx,ts,tsx}'],
+        files: ['**/__tests__/**/*test.{js,jsx,ts,tsx}'],
         env: {
           jest: true
         }

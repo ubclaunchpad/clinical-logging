@@ -45,7 +45,7 @@ function App() {
   const handleClickLogout = async () => {
     try {
 			await logout();
-			navigate("/homepage");
+			navigate("/home");
 		} catch (e) {
 			console.log("Failed to logout");
 		}
