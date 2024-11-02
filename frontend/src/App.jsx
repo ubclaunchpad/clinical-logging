@@ -47,7 +47,7 @@ function App() {
       await logout();
       navigate("/home");
     } catch (e) {
-      console.log("Failed to logout");
+      console.log("Failed to logout: " + e.message);
     }
   }
 

@@ -38,7 +38,7 @@ function Buttons() {
     try {
 			await logout();
 		} catch (e) {
-			console.log("Failed to logout");
+			console.log("Failed to logout: " + e.message);
 		}
   };
 
