@@ -11,7 +11,8 @@ function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState("Test Message")
   const { logout, session } = useAuth()
-  const [authorized, setAuthorized] = useState("Test Authorization"); 
+  const [authorized, setAuthorized] = useState("Test Authorization");
+  const [databaseTest, setDatabaseTest] = useState("Test Database"); 
   const navigate = useNavigate();
 
 
@@ -19,6 +20,35 @@ function App() {
     const response = await axios.get("http://localhost:8080/api")
     setMessage(response.data.message)
     console.log(response)
+  }
+
+  const testDB = async () => {
+    const token = session.access_token;
+    const data = {
+      case_no: "1234", 
+      patient_id: "Jomari Francisco",
+      type: "men", 
+      surgeon: "Dr. Stove", 
+      or_date: "02/11/2024", 
+      age: "22", 
+      sex: "male", 
+      reason: "too cool for school", 
+      hpi: "high heartrate", 
+      social: "@jomarifrancisco",
+    }
+    try {
+      const response = await axios.post("http://localhost:8080/api/log/cardiacSurgeryAdultService", data, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      console.log(response);
+      setDatabaseTest(response.data.message);
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   const checkPost = async () => {
@@ -77,7 +107,9 @@ function App() {
         <div>
           <h1>Logged In</h1>
           <button onClick={checkPost}>Check Authorization</button>
+          <button onClick={testDB}>Test Database</button>
           <p>{authorized}</p>
+          <p>{databaseTest}</p>
           <button onClick={handleClickLogout}>Log out</button>
         </div>
         ) : <h1>Logged Out</h1>}
