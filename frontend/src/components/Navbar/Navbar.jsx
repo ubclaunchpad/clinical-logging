@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import LoginIcon from "@mui/icons-material/Login";
+import HomeButton from "../Buttons/HomeButton";
+import CreateNewLogButton from "../Buttons/CreateNewLogButton";
+import LogHistoryButton from "../Buttons/LogHistoryButton";
 import "./Navbar.css";
 
 export default function Navbar({ variant }) {
@@ -23,18 +26,6 @@ function NavbarComponent({ variant }) {
 function NavButtons({ variant }) {
   const navigate = useNavigate();
 
-  const handleHomeClick = () => {
-    navigate("/dashboard");
-  };
-
-  const handleNewLog = () => {
-    navigate("/newLog");
-  };
-
-  const handleLogHistory = () => {
-    navigate("/logHistory");
-  };
-
   const handleSignInClick = () => {
     navigate("/login");
   };
@@ -48,9 +39,9 @@ function NavButtons({ variant }) {
         </button>
       ) : (
         <>
-          <button onClick={handleHomeClick}>Home</button>
-          <button onClick={handleNewLog}>New Log</button>
-          <button onClick={handleLogHistory}>Log History</button>
+          <HomeButton />
+          <CreateNewLogButton variant="navbar" />
+          <LogHistoryButton variant="navbar" />
         </>
       )}
     </div>

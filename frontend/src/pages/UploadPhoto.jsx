@@ -5,6 +5,7 @@ import UploadArea from "../components/UploadPhoto/UploadArea";
 import PreviewSection from "../components/UploadPhoto/PreviewSection";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import "./styles/UploadPhoto.css";
 
 export default function UploadPhotos() {
   const [imageFiles, setImageFiles] = useState([]);
