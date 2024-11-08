@@ -1,0 +1,120 @@
+.nav-icon-left {
+    margin-right: 3px;
+    margin-left: -2px;
+    vertical-align: -6px;
+}
+  
+.nav-icon-right {
+    vertical-align: -6px;
+    margin-left: 10px;
+    margin-right: -10px;
+}
+  
+.upload-photos-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    padding-left: 20px;
+    margin-top: -40px;
+}
+  
+.upload-box {
+    flex: 1;
+    max-width: 55vw;
+    padding: 40px;
+    border-right: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+}
+  
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+}
+  
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    margin-left: 80px;
+    margin-right: 80px;
+    font-size: 1.1rem;
+}
+
+.sidebar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100vh;
+    border-right: 1px solid #e5e7eb;
+}
+  
+.page-container {
+    display: flex;
+    height: 100vh;
+}
+  
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+  
+.nav-icon-left {
+    margin-right: 3px;
+    margin-left: -2px;
+    vertical-align: -6px;
+}
+  
+.nav-icon-right {
+    vertical-align: -6px;
+    margin-left: 10px;
+    margin-right: -10px;
+}
+  
+.upload-photos-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    padding-left: 20px;
+    margin-top: -40px;
+}
+  
+.upload-box {
+    flex: 1;
+    max-width: 55vw;
+    padding: 40px;
+    border-right: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+}
+  
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+}
+  
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    margin-left: 80px;
+    margin-right: 80px;
+    font-size: 1.1rem;
+}
+  
+.preview-content {
+    flex-grow: 1;
+    margin-bottom: 50px;
+    min-width: 0;
+}
