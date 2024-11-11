@@ -107,7 +107,7 @@ function App() {
         <div>
           <h1>Logged In</h1>
           <button onClick={checkPost}>Check Authorization</button>
-          <button onClick={testDB}>Test Database</button>
+          <button onClick={testDB}>Do Test Database</button>
           <p>{authorized}</p>
           <p>{databaseTest}</p>
           <button onClick={handleClickLogout}>Log out</button>

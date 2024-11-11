@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { createClient } from "@supabase/supabase-js";
 
 const auth = async (req, res, next) => {
 	try {
@@ -6,6 +7,14 @@ const auth = async (req, res, next) => {
 		const supabaseSecret = process.env.SUPABASE_JWT_SECRET;
 		if (token) {
 			jwt.verify(token, supabaseSecret);
+			const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
+				global: {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				},
+			})
+			req.supabase = supabase;
 		} else {
 			res.status(401).json({ msg: "No token: Authentication Denied" });
 		}
