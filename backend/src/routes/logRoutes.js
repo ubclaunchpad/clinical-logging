@@ -6,10 +6,11 @@ const router = express.Router();
 
 router.post("/cardiacSurgeryAdultService", auth, async (req, res) => {
     try {
-        await insertTable(req, res);
-        res.json({ message: "log successful"});
+        const result = await insertTable(req, res);
+        res.json(result);
     } catch(error) {
-        res.json(error.message);
+        console.error("Caught Error:", error.message);
+        res.json({message: error.message});
     }
 })
 
