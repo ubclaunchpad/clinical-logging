@@ -2,9 +2,6 @@
 async function insertTable(req, res) {
     try{
         const supabase = req.supabase;
-        //get id
-        const { data: { user } } = await supabase.auth.getUser()
-        const id = user.id;
 
         const {
             case_no, 
@@ -16,11 +13,26 @@ async function insertTable(req, res) {
             sex, 
             reason, 
             hpi, 
-            social } = req.body;
+            social,
+            pmhx,
+            meds,
+            allergies,
+            exam,
+            veins,
+            allen_test,
+            pulses,
+            invx,
+            cxr,
+            ct,
+            cath,
+            surgical_plan,
+            operative_notes,
+            post_op_course,
+            learning_points
+            } = req.body;
 
         const error = await supabase.schema("user_info").from("cardiac_surgery_adult_log")
-            .upsert({
-                id: id, 
+            .insert({ 
                 case_no: case_no, 
                 patient_id: patient_id,
                 type: type, 
@@ -30,8 +42,22 @@ async function insertTable(req, res) {
                 sex: sex, 
                 reason: reason, 
                 hpi: hpi, 
-                social: social })
-            .select();
+                social: social,
+                pmhx: pmhx,
+                meds: meds,
+                allergies: allergies,
+                exam: exam,
+                veins: veins,
+                allen_test: allen_test,
+                pulses: pulses,
+                invx: invx,
+                cxr: cxr,
+                ct: ct,
+                cath: cath,
+                surgical_plan: surgical_plan,
+                operative_notes: operative_notes,
+                post_op_course: post_op_course,
+                learning_points: learning_points });
             
         if (error.error) {
                 console.log(error);
@@ -39,12 +65,10 @@ async function insertTable(req, res) {
                 throw new Error("Failed to insert data: " + error.error.message);
         }
 
-        res.message = "Log Successful"
-
         return {message: "Log Successful"};
     } catch (error) {
         console.error("Error in insertTable:", error.message);
-        throw new Error(error.message); // Propagate the error 
+        throw new Error(error.message);
     }
 }
 
