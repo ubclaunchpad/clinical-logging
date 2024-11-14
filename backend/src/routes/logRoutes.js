@@ -10,7 +10,7 @@ router.post("/cardiacSurgeryAdultService", auth, async (req, res) => {
         res.json(result);
     } catch(error) {
         console.error("Caught Error:", error.message);
-        res.json({message: error.message});
+        res.status(500).json({message: error.message});
     }
 })
 

@@ -11,8 +11,8 @@ function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState("Test Message")
   const { logout, session } = useAuth()
-  const [authorized, setAuthorized] = useState("Test Authorization");
-  const [databaseTest, setDatabaseTest] = useState("Test Database"); 
+  const [authorized, setAuthorized] = useState("");
+  const [databaseTest, setDatabaseTest] = useState(""); 
   const navigate = useNavigate();
 
 
@@ -26,15 +26,15 @@ function App() {
     const token = session.access_token;
     const data = {
       case_no: "1234", 
-      patient_id: "Jomari Francisco",
-      type: "men", 
-      surgeon: "Dr. Stove", 
+      patient_id: "John Smith",
+      type: "A", 
+      surgeon: "Dr. Smith", 
       or_date: "02/11/2024", 
       age: "22", 
       sex: "male", 
-      reason: "too cool for school", 
+      reason: "heart problem", 
       hpi: "high heartrate", 
-      social: "@jomarifrancisco",
+      social: "test",
     }
     try {
       const response = await axios.post("http://localhost:8080/api/log/cardiacSurgeryAdultService", data, {
@@ -43,11 +43,11 @@ function App() {
           'Content-Type': 'application/json',
         }
       });
-
       console.log(response);
       setDatabaseTest(response.data.message);
     } catch (err) {
-      console.log(err.message)
+      console.error(err.response.data.message);
+      setDatabaseTest(err.response.data.message);
     }
   }
 
@@ -68,7 +68,8 @@ function App() {
       console.log(response);
       setAuthorized(response.data.message);
     } catch (err) {
-      console.log(err.message)
+      console.error(err.response.data.message);
+      setAuthorized(err.response.data.message);
     }
   }
 
