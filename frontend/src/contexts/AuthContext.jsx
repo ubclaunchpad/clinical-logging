@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios"
 import supabase from "../config/supabase";
 
 const AuthContext = createContext();
@@ -11,16 +12,20 @@ export function AuthProvider({ children }) {
 	const [session, setSession] = useState();
 	const [loading, setLoading] = useState(true);
 
-	async function register(email, password) {
+	async function register(firstName, lastName, email, password) {
 		const { user, error } = await supabase.auth.signUp({
 			email: email,
 			password: password,
+			options: {
+				data: {
+					first_name: firstName,
+					last_name: lastName,
+				}
+			}
 		});
-
 		if (error) {
 			throw error;
 		}
-
 		return user;
 	}
 
@@ -29,17 +34,14 @@ export function AuthProvider({ children }) {
 			email: email,
 			password: password,
 		});
-
 		if (error) {
 			throw error;
 		}
-
 		return data;
 	}
 
 	async function logout() {
 		const { error } = await supabase.auth.signOut();
-
 		if (error) {
 			console.log(error);
 			throw error;
@@ -59,14 +61,12 @@ export function AuthProvider({ children }) {
 
 			setLoading(false);
 		});
-
 		supabase.auth.getSession().then(({ data }) => {
 			if (data.session) {
 				setSession(data.session);
 			}
 			setLoading(false);
 		});
-
 		return () => {
 			subscription.unsubscribe();
 		};
