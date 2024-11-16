@@ -1,4 +1,3 @@
-import React from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import "./UploadArea.css";
 
