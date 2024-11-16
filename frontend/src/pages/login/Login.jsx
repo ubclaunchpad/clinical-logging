@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +15,7 @@ export default function Login() {
 		if (session) {
 			navigate("/dashboard");
 		}
-	}, [session]);
+	}, [session, navigate]);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -25,7 +24,7 @@ export default function Login() {
 			setLoading(true);
 			await login(email, password);
 			navigate("/dashboard");
-		} catch (e) {
+		} catch {
 			alert("Failed to login: Email or Password Incorrect");
 		}
 		setLoading(false);
@@ -58,7 +57,7 @@ export default function Login() {
 					Login
 				</button>
 			</form>
-			<Link to="/signup">Don't have an Account? Register</Link>
+			<Link to="/signup">Don&apos;t have an Account? Register</Link>
 		</div>
 	);
 }
