@@ -1,7 +1,8 @@
-import express from "express";
 import cors from "cors";
-import auth from "./middleware/auth.js";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
+import express from "express";
+import authRoutes from "./src/routes/authRoutes.js";
+import logRoutes from "./src/routes/logRoutes.js";
 
 dotenv.config();
 
@@ -9,19 +10,16 @@ const corsOptions = {
     origin: ["http://localhost:5173"],
 };
 const app = express();
-
-app.use(cors(corsOptions));
-
 const PORT = process.env.PORT || 8080;
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
-});
+app.use(cors(corsOptions));
+app.use(express.json());
+
+//Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/log', logRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
 
-app.post("/check", auth, async (req, res) => {
-  res.json({ message: "Hello from server but logged in"});
-})

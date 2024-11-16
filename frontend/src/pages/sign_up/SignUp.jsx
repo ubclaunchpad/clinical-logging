@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,7 +31,7 @@ export default function SignUp() {
 
 		try {
 			setLoading(true);
-			await register(email, password);
+			await register(firstName, lastName, email, password);
 			navigate("/dashboard");
 		} catch (error) {
 
@@ -53,6 +55,26 @@ export default function SignUp() {
 		<div>
 			<h2>Register your account</h2>
 			<form onSubmit={handleSubmit}>
+				<label htmlFor="first-name">First Name:</label>
+				<input
+					id="first-name"
+					name="first-name"
+					type="text"
+					autoComplete="given-name"
+					placeholder="First Name"
+					onChange={(e) => setFirstName(e.target.value)}
+					required
+				/>
+				<label htmlFor="last-name">Last Name:</label>
+				<input
+					id="last-name"
+					name="last-name"
+					type="text"
+					autoComplete="family-name"
+					placeholder="Last Name"
+					onChange={(e) => setLastName(e.target.value)}
+					required
+				/>
 				<label htmlFor="email">Email Address:</label>
 				<input
 					id="email"
