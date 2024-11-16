@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.2",
     "@mui/material": "^6.1.2",
+    "@supabase/supabase-js": "^2.45.5",
     "axios": "^1.7.7",
     "pdfjs-dist": "^4.7.76",
     "react": "^18.3.1",

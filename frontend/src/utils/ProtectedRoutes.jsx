@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export const ProtectedRoutes = () => {
-  // TODO: implement authentication logic
-  const auth = { isTokenValid: true };
-  return auth.isTokenValid ? <Outlet /> : <Navigate to='/login' />;
+  const { session } = useAuth();
+  return session ? <Outlet /> : <Navigate to='/homepage' />;
 }
