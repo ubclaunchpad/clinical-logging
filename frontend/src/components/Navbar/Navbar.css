@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    width: 100vw;
+    height: 80px;
+    background-color: #242424;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-buttons-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    margin-right: 30px;
+}

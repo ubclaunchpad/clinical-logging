@@ -1,0 +1,10 @@
+.sign-in-button-container {
+    display: flex;
+    gap: 9px;
+  }
+  
+.login-icon {
+    margin-left: 8px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
