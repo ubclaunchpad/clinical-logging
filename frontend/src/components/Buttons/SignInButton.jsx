@@ -19,36 +19,3 @@ export default function SignInButton() {
     </div>
   );
 }
-
-// function Buttons() {
-//   const navigate = useNavigate();
-//   const { logout, session } = useAuth();
-
-//   const handleSignInClick = () => {
-//     navigate("/login");
-//   };
-
-//   const handleSignOutClick = async () => {
-//     try {
-//       await logout();
-//     } catch (e) {
-//       console.log("Failed to logout");
-//     }
-//   };
-
-//   return (
-//     <div className="nav-buttons-container">
-//       {session ? (
-//         <button onClick={handleSignOutClick}>
-//           Sign Out
-//           <LogoutIcon className="login-icon" />
-//         </button>
-//       ) : (
-//         <button onClick={handleSignInClick}>
-//           Sign In
-//           <LoginIcon className="login-icon" />
-//         </button>
-//       )}
-//     </div>
-//   );
-// }
