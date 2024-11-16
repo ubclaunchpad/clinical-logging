@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +18,7 @@ export default function SignUp() {
     if (session) {
       navigate("/dashboard");
     }
-  }, [session]);
+  }, [session, navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -113,6 +112,6 @@ export default function SignUp() {
 }
 
 function checkValidEmail(email) {
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   return emailRegex.test(email);
 }
