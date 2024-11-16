@@ -4,9 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "build": "echo 'No build step defined for backend yet'",
     "dev": "nodemon server",
     "lint": "eslint .",
+    "start": "node index.js",
     "test": "jest"
   },
   "author": "",
