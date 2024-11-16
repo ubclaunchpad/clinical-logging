@@ -1,4 +1,3 @@
-import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import "./CreateNewLogButton.css";

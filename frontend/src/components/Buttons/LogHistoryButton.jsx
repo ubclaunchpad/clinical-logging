@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import HistoryIcon from "@mui/icons-material/History";
 import "./LogHistoryButton.css";

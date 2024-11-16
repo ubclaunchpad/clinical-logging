@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./SearchFilterSort.css";
 
 const SearchFilterSort = ({
   search,
   setSearch,
-  filter,
-  setFilter,
   sort,
   setSort,
   startDate,

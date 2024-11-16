@@ -1,4 +1,3 @@
-import React from "react";
 import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalLogs, logsPerPage, onPageChange }) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./SignOutButton.css";
