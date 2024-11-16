@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../components/Logo/Logo";
 import CreateNewLogButton from "../components/Buttons/CreateNewLogButton";
 import LogHistoryButton from "../components/Buttons/LogHistoryButton";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import SearchFilterSort from "../components/LogHistory/SearchFilterSort";
 import LogTable from "../components/LogHistory/LogTable";

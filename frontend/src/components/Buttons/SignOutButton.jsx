@@ -8,7 +8,7 @@ export default function SignOutButton() {
   const handleSignOutClick = async () => {
     try {
       await logout();
-    } catch (e) {
+    } catch {
       console.log("Failed to logout");
     }
   };
