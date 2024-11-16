@@ -1,7 +1,7 @@
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const mainColour = "#646cff";
 
@@ -17,11 +17,11 @@ export default function Home() {
 function Navbar() {
   return (
     <>
-        <div className="navbar">
-      <Logo />
-      <Buttons />
-    </div>
-    <div className="divider-line"></div> {/* Divider line */}
+      <div className="navbar">
+        <Logo />
+        <Buttons />
+      </div>
+      <div className="divider-line"></div> {/* Divider line */}
     </>
   );
 }
@@ -38,7 +38,7 @@ function Buttons() {
     try {
 			await logout();
 		} catch (e) {
-			console.log("Failed to logout");
+			console.log("Failed to logout: " + e.message);
 		}
   };
 

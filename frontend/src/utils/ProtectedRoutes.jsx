@@ -3,5 +3,5 @@ import { useAuth } from '../contexts/AuthContext';
 
 export const ProtectedRoutes = () => {
   const { session } = useAuth();
-  return session ? <Outlet /> : <Navigate to='/homepage' />;
+  return session ? <Outlet /> : <Navigate to='/home' />;
 }
