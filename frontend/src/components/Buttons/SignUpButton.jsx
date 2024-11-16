@@ -5,7 +5,7 @@ export default function SignUpButton() {
   const navigate = useNavigate();
 
   const handleSignUpClick = () => {
-    navigate("/signup");
+    navigate("/sign-up");
   };
   return (
     <div className="sign-up-button-container">

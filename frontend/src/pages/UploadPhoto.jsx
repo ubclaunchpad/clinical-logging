@@ -37,7 +37,7 @@ export default function UploadPhotos() {
   };
 
   const handleBack = () => {
-    navigate("/newLog");
+    navigate("/new-log");
   };
 
   return (

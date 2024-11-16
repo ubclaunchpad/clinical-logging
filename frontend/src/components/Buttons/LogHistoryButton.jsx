@@ -6,7 +6,7 @@ export default function LogHistoryButton({ variant }) {
   const navigate = useNavigate();
 
   const handleViewHistory = () => {
-    navigate("/logHistory");
+    navigate("/log-history");
   };
 
   return (
