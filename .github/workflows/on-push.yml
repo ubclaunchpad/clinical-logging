@@ -1,6 +1,6 @@
-# This workflow will run for pushes to all branches
+# This workflow will run on pushes to all branches
 
-name: build-test-on-push
+name: on-push
 
 on:
   push:
