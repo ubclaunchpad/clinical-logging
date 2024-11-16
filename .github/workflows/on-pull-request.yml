@@ -1,6 +1,6 @@
-# This workflow will run on a pull request to 'main'
+# This workflow will run on all pull requests to 'main'
 
-name: build-test-on-pull-request
+name: on-pull-request
 
 on:
   pull_request:
