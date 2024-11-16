@@ -9,3 +9,4 @@ venv/
 *.pyd
 *.pyz
 *.pyw
+node_modules

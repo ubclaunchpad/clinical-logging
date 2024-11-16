@@ -1,0 +1,68 @@
+.search-filter-sort {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+    margin-top: 200px;
+    margin-bottom: -11em;
+}
+
+/* Styling for search input and sort dropdown */
+.search-filter-sort input[type="text"],
+.search-filter-sort select {
+    padding: 0.6rem;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+/* Filter button to open/close dropdown */
+.filter-button {
+    padding: 0.6rem;
+    background-color: #444;
+    color: #e0e0e0;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.filter-button:hover {
+    background-color: #555;
+}
+
+/* Dropdown Menu Styling */
+.filter-dropdown {
+    position: fixed;
+    padding: 1em;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    z-index: 1000;
+    font-weight: 600;
+    margin-left: 826px;
+    margin-top: 40px;
+}
+
+/* Dropdown content styles */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-size: 0.9em;
+    color: #e0e0e0;
+    margin-bottom: 0.25em;
+}
+
+input[type="date"] {
+    padding: 0.5rem;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
