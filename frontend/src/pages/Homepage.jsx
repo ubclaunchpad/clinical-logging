@@ -1,7 +1,3 @@
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
 import SignUpButton from "../components/Buttons/SignUpButton";
 import Navbar from "../components/Navbar/Navbar";
 

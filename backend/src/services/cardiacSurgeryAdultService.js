@@ -1,5 +1,5 @@
 
-async function insertTable(req, res) {
+async function insertTable(req) {
     try{
         const supabase = req.supabase;
 
