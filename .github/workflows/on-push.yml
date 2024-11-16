@@ -50,3 +50,13 @@ jobs:
       run: |
         cd backend
         npm ci
+
+    - name: Lint backend
+      run: |
+        cd backend
+        npm run lint
+    
+    - name: Run backend tests
+      run: |
+        cd backend
+        npm test

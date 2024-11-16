@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
 		}
 
 		next();
-	} catch (err) {
+	} catch {
 		return res.status(400).json({
 			msg: {
 				token: req.header("Authorization")?.split(" ")[1],
