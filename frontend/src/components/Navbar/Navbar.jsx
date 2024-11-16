@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import Logo from "../Logo/Logo";
-import LoginIcon from "@mui/icons-material/Login";
 import HomeButton from "../Buttons/HomeButton";
 import CreateNewLogButton from "../Buttons/CreateNewLogButton";
 import LogHistoryButton from "../Buttons/LogHistoryButton";
+import SignInButton from "../Buttons/SignInButton";
+import { useAuth } from "../../contexts/AuthContext";
 import "./Navbar.css";
+import SignOutButton from "../Buttons/SignOutButton";
 
 export default function Navbar({ variant }) {
   return (
@@ -24,19 +25,10 @@ function NavbarComponent({ variant }) {
 }
 
 function NavButtons({ variant }) {
-  const navigate = useNavigate();
-
-  const handleSignInClick = () => {
-    navigate("/login");
-  };
-
   return (
     <div className="nav-buttons-container">
       {variant === "homepage" ? (
-        <button onClick={handleSignInClick}>
-          Sign In
-          <LoginIcon className="login-icon" />
-        </button>
+        <Buttons />
       ) : (
         <>
           <HomeButton />
@@ -44,6 +36,16 @@ function NavButtons({ variant }) {
           <LogHistoryButton variant="navbar" />
         </>
       )}
+    </div>
+  );
+}
+
+function Buttons() {
+  const { session } = useAuth();
+
+  return (
+    <div className="nav-buttons-container">
+      {session ? <SignOutButton /> : <SignInButton />}
     </div>
   );
 }
