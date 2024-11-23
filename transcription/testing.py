@@ -33,7 +33,7 @@ def florence():
 
     prompt = "<OCR>"
 
-    url = "../assets/kkl.jpg"
+    url = "../assets/Filled_Logbook_page-0001.jpg"
     image = Image.open(url).convert("RGB")
 
     inputs = processor(text=prompt, images=image, return_tensors="pt").to(device, torch_dtype)
