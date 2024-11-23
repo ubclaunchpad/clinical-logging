@@ -6,8 +6,19 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { GeneralInfo } from './steps/GeneralInfo';
+import { PatientInfo } from './steps/PatientInfo';
+import { Investigations } from './steps/Investigations';
+import { CasePlannings } from './steps/CasePlannings';
+import { LearningPoints } from './steps/LearningPoints';
 
-const steps = ['Step 1', 'Step 2', 'Step 3'];
+const steps = [
+  'General Info',
+  'Patient Info',
+  'Investigations',
+  'Case Planning',
+  'Learning Points'
+];
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = useState(0);
@@ -28,7 +39,15 @@ export default function HorizontalLinearStepper() {
           const labelProps = {};
           return (
             <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <div style={{
+                padding: '7px',
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                borderColor: '#453FA6',
+                borderRadius: '20px'
+              }}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </div>
             </Step>
           );
         })}
@@ -45,6 +64,11 @@ export default function HorizontalLinearStepper() {
       ) : (
         <Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          {activeStep === 0 && <GeneralInfo />}
+          {activeStep === 1 && <PatientInfo />}
+          {activeStep === 2 && <Investigations />}
+          {activeStep === 3 && <CasePlannings />}
+          {activeStep === 4 && <LearningPoints />}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               backgroundColor="inherit"

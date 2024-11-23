@@ -6,7 +6,7 @@ export default function CreateNewLogButton({ variant }) {
   const navigate = useNavigate();
 
   const handleCreateNewLog = () => {
-    navigate("/newLog");
+    navigate("/new-log");
   };
 
   return (
