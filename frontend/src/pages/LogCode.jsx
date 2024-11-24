@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, InputAdornment } from "@mui/material";
 import { Article } from "@mui/icons-material";
@@ -6,7 +6,7 @@ import Logo from "../assets/images/logo.png";
 import "./styles/LogCode.css";
 
 const LogCode = () => {
-  const [logbookCode, setLogbookCode] = useState("");
+  const [setLogbookCode] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const LogCode = () => {
       setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       navigate("/");
-    } catch (error) {
+    } catch {
       alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -81,7 +81,7 @@ const LogCode = () => {
                 <span className="terms-text">
                   I have read and agree to{" "}
                   <a href="#" onClick={(e) => e.preventDefault()}>
-                    FlowLeaflet's Terms and Conditions
+                    FlowLeaflet&apos;s Terms and Conditions
                   </a>{" "}
                   and{" "}
                   <a href="#" onClick={(e) => e.preventDefault()}>
