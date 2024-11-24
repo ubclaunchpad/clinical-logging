@@ -4,7 +4,6 @@ import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import App from "./App.jsx";
 import Login from "./pages/login/Login.jsx";
-import SignUp from "./pages/sign_up/SignUp.jsx";
 import NotFound from "./pages/not_found/NotFound.jsx";
 import Home from "./pages/Homepage.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -13,6 +12,7 @@ import LogHistory from "./pages/LogHistory.jsx";
 import UploadPhotos from "./pages/UploadPhoto.jsx";
 import ManualEdit from "./pages/ManualEdit.jsx";
 import "./index.css";
+import LogCode from "./pages/LogCode.jsx";
 
 createRoot(document.getElementById("root")).render(
   <AuthProvider>
@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/homepage" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/logcode" element={<LogCode />} />
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
           <Route path="/dashboard" element={<Dashboard />} />

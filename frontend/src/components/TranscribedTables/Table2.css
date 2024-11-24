@@ -1,0 +1,180 @@
+.table-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+  
+  .header-row {
+    display: grid;
+    grid-template-columns: 1.7fr 1.6fr 1fr 1fr 1fr;
+    background: #2b3b56;
+    color: white;
+    text-align: center;
+  }
+  
+  .header-cell2 {
+    padding: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: white;
+    color: black;
+  }
+
+    .exam-cell {
+    padding: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    height: 34px;
+  }
+  
+  .info-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1.75fr 1fr 1fr 1fr;
+    text-align: center;
+    height: 80px;
+  }
+  
+  .info-cell {
+    padding: 12px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .investigations-section {
+    border-top: 1px solid #ddd;
+  }
+
+  .investigations-content .row {
+    display: grid;
+    grid-template-columns: 0.2fr 0.2fr 0.5fr;
+    width: 600px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .invx-row {
+    display: grid;
+    grid-template-columns: 0.201fr 0.2fr 0.5fr;
+    width: 600px;
+  }
+
+  .rows {
+    display: grid;
+    grid-template-columns: 0.29fr 1fr;
+    background-color: white;
+    border-bottom: 1px solid #ddd; 
+    border-top: 1px solid #ddd; 
+  }
+
+  .cath-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    background-color: #2B3B56;
+    border-bottom: 1px solid #ddd; 
+  }
+  
+  .investigations-content .cell {
+    padding: 12px;
+    text-align: left;
+    border-right: 1px solid #ddd;
+    color: black;
+  }
+
+  .cells {
+    padding: 12px;
+    text-align: left;
+    border-right: 1px solid #ddd;
+    color: black;
+    font-size: 15px;
+  }
+
+  .cath-cell {
+    padding: 12px;
+    text-align: left;
+    border-right: 1px solid #ddd;
+    color: white;
+    font-size: 19px;
+  }
+
+  .cath-section, .ct-section {
+    text-align: center;
+    padding: 12px;
+    width: 518px;
+    height: 500px;
+    border-right: 1px solid #ddd;
+  }
+
+  .physical-section {
+    display: flex; /* Use Flexbox to arrange the items in a row */
+    justify-content: space-between; /* Add space between the items */
+    align-items: center; /* Align vertically centered */
+    height: 0px;
+  }
+  
+  .physical-row {
+    display: flex; /* Arrange the cells side-by-side */
+    justify-content: space-between; /* Space between the cells */
+    align-items: center; /* Vertically align content */
+    padding: 1.3rem;
+    border: 1px solid #ddd; /* Subtle border for the row */
+    background: #fff; /* White background */
+    flex: 1; /* Take up remaining horizontal space next to the header */
+    margin-top: 49px; /* Remove the margin to avoid spacing issues */
+    width: 200px;
+  }
+  
+  .physical-cell {
+    font-size: 14px;
+    color: #2B3B56;
+    text-align: left; /* Align text to the left */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+  .investigations-header{
+    display: grid;
+    background-color: #2B3B56;
+    grid-template-columns: 1.1fr;
+    text-align: left;
+    height: 50px;
+    width: 539px;
+  }
+
+  .right-section-only {
+    grid-column: 3 / 6; /* Span from the 3rd to the last column */
+    text-align: center;
+    border-left: 1px solid #ddd;
+    color: black;
+    height: 80px;
+  }
+
+  .right-section-only-2 {
+    grid-column: 3 / 6; /* Span from the 3rd to the last column */
+    text-align: center;
+    color: black;
+    border-bottom: 1px solid #ddd;
+    height: 154px;
+  }
+
+  .right-section-only-3 {
+    grid-column: 3 / 6; /* Span from the 3rd to the last column */
+    text-align: center;
+    color: black;
+    border-bottom: 1px solid #ddd;
+    height: 95px;
+  }
+  
+  .left-placeholder {
+    grid-column: 1 / 3; /* Placeholder for left columns */
+    text-align: center;
+    color: black;
+    background-color: white; /* Optional background for distinction */
+  }
+  
+  .left-placeholder-2 {
+    grid-column: 1 / 3; /* Placeholder for left columns */
+    text-align: center;
+    color: white;
+    height: 55px;
+    background-color: #2B3B56; /* Optional background for distinction */
+  }
