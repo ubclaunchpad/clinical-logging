@@ -5,8 +5,8 @@ const mainColour = "#646cff";
 
 export default function Home() {
   return (
-    <div className="home-container">
-      <Navbar variant="homepage" />
+    <div>
+      <Navbar />
       <CTASection mainColour={mainColour} />
     </div>
   );

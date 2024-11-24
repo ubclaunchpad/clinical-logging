@@ -7,7 +7,7 @@ import "./styles/NewLog.css";
 export default function NewLog() {
   return (
     <div>
-      <Navbar variant="newLog" />
+      <Navbar />
       <CTASection />
     </div>
   );
