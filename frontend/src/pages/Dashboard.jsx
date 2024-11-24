@@ -1,14 +1,12 @@
-import Logo from "../components/Logo/Logo";
-import CreateNewLogButton from "../components/Buttons/CreateNewLogButton";
-import LogHistoryButton from "../components/Buttons/LogHistoryButton";
+import Navbar from "../components/Navbar/Navbar";
+import { CLButtonPrimary, CLButtonSecondary } from "../components/Buttons/CLButtons";
+import { useNavigate } from "react-router-dom";
 import "./styles/Dashboard.css";
 
 export default function Dashboard() {
   return (
     <div className="page-container">
-      <div className="sidebar">
-        <Logo variant="sidebar" />
-      </div>
+      <Navbar />
       <div className="main-content">
         <MainContent />
       </div>
@@ -31,10 +29,24 @@ function MainContent() {
 }
 
 function Buttons() {
+  const navigate = useNavigate();
+
+  const handleCreateNewLog = () => {
+    navigate("/newLog");
+  };
+
+  const handleViewHistory = () => {
+    navigate("/logHistory");
+  };
+
   return (
     <div className="buttons-container">
-      <CreateNewLogButton />
-      <LogHistoryButton />
+      <CLButtonPrimary onClick={handleCreateNewLog} width={"332px"}>
+        Create New Log
+      </CLButtonPrimary>
+      <CLButtonSecondary onClick={handleViewHistory} width={"332px"}>
+        View Log History
+      </CLButtonSecondary>
     </div>
   );
 }
