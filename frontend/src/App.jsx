@@ -25,16 +25,14 @@ function App() {
   const testDB = async () => {
     const token = session.access_token;
     const data = {
-      case_no: "1234", 
-      patient_id: "John Smith",
-      type: "A", 
-      surgeon: "Dr. Smith", 
+      case_no: "1234",
+      surgeon: "Dr. Smith",
+      type: "A",
       or_date: "02/11/2024", 
+      patient_id: "John Smith",
       age: "22", 
-      sex: "male", 
-      reason: "heart problem", 
+      gender: "male", 
       hpi: "high heartrate", 
-      social: "test",
     }
     try {
       const response = await axios.post("http://localhost:8080/api/log/cardiacSurgeryAdultService", data, {
