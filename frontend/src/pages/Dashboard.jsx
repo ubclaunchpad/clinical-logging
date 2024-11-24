@@ -16,11 +16,11 @@ export default function Dashboard() {
 
 function MainContent() {
   return (
-    <div className="main-content-text">
-      <span>
+    <div>
+      <p>
         Convert handwritten clinical logs to a <br />
         standardized Excel template with just a click of a button!
-      </span>
+      </p>
       <div className="main-content-buttons">
         <Buttons />
       </div>
