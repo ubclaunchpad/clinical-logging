@@ -1,34 +1,15 @@
-import js from '@eslint/js'
-import jest from 'eslint-plugin-jest'
-import globals from 'globals'
+import globals from "globals";
+import pluginJs from "@eslint/js";
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
-  { ignores: ['dist'] },
-  {
-    files: ['**/*.{js,ts}'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      globals: globals.node,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
+    { languageOptions: { globals: globals.node } },
+    pluginJs.configs.recommended,
+    {
+        rules: {
+            camelcase: ["warn", { properties: "never", ignoreDestructuring: false }],
+            "max-len": ["warn", { code: 140 }],
+            "no-console": "warn",   
+        },
     },
-    rules: {
-      ...js.configs.recommended.rules,
-    },
-  },
-  {
-    files: ['**/__tests__/**/*.test.{js,ts}'],
-    plugins: {
-      jest,
-    },
-    languageOptions: {
-      globals: jest.environments.globals.globals
-    },
-    rules: {
-      ...jest.configs.recommended.rules,
-    }
-  }
-]
+];
