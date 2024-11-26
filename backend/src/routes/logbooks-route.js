@@ -4,12 +4,12 @@ import { createLogbook, getUserLogbooks, getLogbook, createLog, getLogbookLogs, 
 
 const router = express.Router();
 
-router.post("/", auth, async (req, res) => {
+router.post("", auth, async (req, res) => {
     const logbook = await createLogbook(req);
     res.status(201).json({ data: logbook });
 });
 
-router.get("/", auth, async (req, res) => {
+router.get("", auth, async (req, res) => {
     const userLogbooks = await getUserLogbooks(req);
     res.status(200).json({ data: userLogbooks });
 });
@@ -24,7 +24,7 @@ router.post("/:logbookID/logs", auth, async (req, res) => {
     res.status(201).json({ data: log });
 });
 
-router.get("/:logbookID/logs/", auth, async (req, res) => {
+router.get("/:logbookID/logs", auth, async (req, res) => {
     const logbookLogs = await getLogbookLogs(req);
     res.status(200).json({ data: logbookLogs });
 });
