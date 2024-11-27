@@ -1,7 +1,3 @@
-// import HomeButton from "../Buttons/HomeButton";
-// import SignInButton from "../Buttons/SignInButton";
-// import SignOutButton from "../Buttons/SignOutButton";
-// import { useAuth } from "../../contexts/AuthContext";
 import { NavLink } from 'react-router-dom';
 import {
   HomeIcon,
