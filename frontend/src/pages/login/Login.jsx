@@ -77,7 +77,7 @@ const Login = () => {
     try {
       setLoading(true);
       await login(email, password);
-      navigate("/dashboard");
+      navigate("/home");
     } catch {
       alert("Failed to login: Email or Password Incorrect");
     } finally {

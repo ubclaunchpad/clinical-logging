@@ -16,7 +16,7 @@
     "@heroicons/react": "^2.2.0",
     "@mui/icons-material": "^6.1.2",
     "@mui/material": "^6.1.2",
-    "@supabase/supabase-js": "^2.45.5",
+    "@supabase/supabase-js": "^2.46.1",
     "axios": "^1.7.7",
     "dependencies": "^0.0.1",
     "pdfjs-dist": "^4.7.76",

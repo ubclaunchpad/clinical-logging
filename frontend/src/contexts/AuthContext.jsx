@@ -40,9 +40,16 @@ export function AuthProvider({ children }) {
   }
 
   async function logout() {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.log(error);
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      setSession(null);
+    } catch (error) {
+      if (error.message === "Auth session missing!") {
+        setSession(null);
+        return;
+      }
+      console.error("Logout error:", error);
       throw error;
     }
   }
