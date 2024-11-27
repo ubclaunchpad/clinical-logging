@@ -3,7 +3,7 @@ import { CLButtonPrimary, CLButtonSecondary } from "../components/Buttons/CLButt
 import { useNavigate } from "react-router-dom";
 import "./styles/Homepage.css";
 
-export default function Homepage() {
+export default function Home() {
   return (
     <NavContentWrapper>
       <MainContent />
