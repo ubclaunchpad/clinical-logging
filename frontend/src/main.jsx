@@ -6,7 +6,6 @@ import App from "./App.jsx";
 import Login from "./pages/login/Login.jsx";
 import SignUp from "./pages/sign_up/SignUp.jsx";
 import NotFound from "./pages/not_found/NotFound.jsx";
-import Home from "./pages/Homepage.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import NewLog from "./pages/NewLog.jsx";
 import LogHistory from "./pages/LogHistory.jsx";
@@ -19,7 +18,6 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/homepage" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
