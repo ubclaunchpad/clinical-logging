@@ -41,20 +41,14 @@
     background-color: #CDD8F0;
 }
 
-.nav-button-icon-container-selected {
-    height: 60px;
-    width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-    color: #F7FAFF;
+.nav-button.active .nav-button-icon-container {
+    color: #F7FAFF; 
     background-color: #244B94;
 }
 
 .nav-button-icon-container:hover {
+    color: #F7FAFF;
     background-color: #244B94;
-    color: white;
 }
 
 .nav-button-text {
@@ -62,8 +56,7 @@
     color: #666B6F;
 }
 
-.nav-button-text-selected {
-    margin-top: 4px;
+.nav-button.active .nav-button-text {
     color: #244B94;
     font-weight: bold;
 }

@@ -16,10 +16,10 @@ export const Navbar = () => {
     <nav className="nav-bar">
       <div className="nav-button-container">
         <NavLink className="nav-button" to="/dashboard">
-          <div className="nav-button-icon-container-selected">
+          <div className="nav-button-icon-container">
             <HomeIcon className="nav-icon"/>
           </div>
-          <p className="nav-button-text-selected">Home</p>
+          <p className="nav-button-text">Home</p>
         </NavLink>
         <NavLink className="nav-button" to="/newLog">
           <div className="nav-button-icon-container">
