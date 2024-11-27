@@ -1,4 +1,4 @@
-import Logo from "../../assets/flow-leaflets-logo.svg";
+import Logo from "../../../../assets/flow-leaflets-logo.svg";
 import {
   AdjustmentsHorizontalIcon,
   BellIcon,

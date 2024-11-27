@@ -42,13 +42,13 @@ function Buttons() {
 
   return (
     <div className="buttons-container">
-      <CLButtonPrimary onClick={handleCreateNewLog} width={"332px"}>
+      <CLButtonPrimary onClick={handleCreateNewLog} width={"330px"}>
         Create New Log
       </CLButtonPrimary>
-      <CLButtonSecondary onClick={handleAddLogbook} width={"332px"}>
+      <CLButtonSecondary onClick={handleAddLogbook} width={"330px"}>
         Add Logbook
       </CLButtonSecondary>
-      <CLButtonSecondary onClick={handleViewHistory} width={"332px"}>
+      <CLButtonSecondary onClick={handleViewHistory} width={"330px"}>
         View Log History
       </CLButtonSecondary>
     </div>
