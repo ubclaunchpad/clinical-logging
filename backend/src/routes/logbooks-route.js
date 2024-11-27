@@ -26,12 +26,20 @@ router.post("/:logbookID/logs", auth, async (req, res) => {
 
 router.get("/:logbookID/logs", auth, async (req, res) => {
     const logbookLogs = await getLogbookLogs(req);
-    res.status(200).json({ data: logbookLogs });
+    if (logbookLogs.error) {
+        res.status(500).json({ error: logbookLogs.error });
+    } else {
+        res.status(200).json({ data: logbookLogs });
+    }
 });
 
 router.get("/:logbookID/logs/:logID", auth, async (req, res) => {
     const log = await getLog(req);
-    res.status(200).json({ data: log });
+    if (log.error) {
+        res.status(500).json({ error: log.error });
+    } else {
+        res.status(200).json({ data: log });
+    }
 });
 
 export default router;
