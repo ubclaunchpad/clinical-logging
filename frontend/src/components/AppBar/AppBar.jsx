@@ -13,7 +13,7 @@ export const AppBar = () => {
         <img src={Logo} className="logo" />
         <div className="search-filter-container">
           <input type="text" className="search-input" name="search" placeholder="Search..." />
-          <button className="filter-button">
+          <button className="app-bar-filter-button">
             <AdjustmentsHorizontalIcon className="app-bar-icon" />
             <p>Filter</p>
           </button>
