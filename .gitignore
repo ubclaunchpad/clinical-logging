@@ -10,4 +10,4 @@ venv/
 *.pyz
 *.pyw
 node_modules
-frontend/src/assets/images/*
+frontend/src/assets/images/
