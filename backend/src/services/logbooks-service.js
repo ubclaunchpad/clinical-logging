@@ -212,7 +212,8 @@ export async function getLogbookLogs(req) {
         }
         return data;
     } catch (error) {
-        throw new Error(error.message);
+        console.error(error.message);
+        return {error: error.message}
     }
 }
 
@@ -227,6 +228,7 @@ export async function getLog(req) {
         }
         return data[0];
     } catch (error) {
-        throw new Error(error.message);
+        console.error(error.message);
+        return {error: error.message}
     }
 }
