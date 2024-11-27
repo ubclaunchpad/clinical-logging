@@ -51,6 +51,7 @@ export const CLButtonSecondary = ({
   width = DEFAULT_WIDTH,
   onClick = DEFAULT_ON_CLICK
 }) => {
+  
   return (
     <button 
       onClick={onClick}

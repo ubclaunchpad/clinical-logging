@@ -1,14 +1,18 @@
-import Navbar from "../components/Navbar/Navbar";
+import { AppBar } from "../components/AppBar/AppBar"
+import { Navbar } from "../components/Navbar/Navbar";
 import { CLButtonPrimary, CLButtonSecondary } from "../components/Buttons/CLButtons";
 import { useNavigate } from "react-router-dom";
 import "./styles/Dashboard.css";
 
 export default function Dashboard() {
   return (
-    <div className="page-container">
+    <div>
+      <AppBar />
       <Navbar />
-      <div className="main-content">
-        <MainContent />
+      <div className="page-container">
+        <div className="main-content">
+          <MainContent />
+        </div>
       </div>
     </div>
   );
