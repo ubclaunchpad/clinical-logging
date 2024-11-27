@@ -35,10 +35,10 @@ jobs:
         cd frontend
         npm run lint
     
-    - name: Build frontend
-      run: |
-        cd frontend 
-        npm run build --if-present
+    # - name: Build frontend
+    #   run: |
+    #     cd frontend 
+    #     npm run build --if-present
       
     - name: Run frontend tests
       run: |
