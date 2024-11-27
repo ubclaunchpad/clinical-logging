@@ -28,11 +28,11 @@ function CTASection() {
     <div className="cta-section">
       <h2>How would you like to create a new log?</h2>
       <div className="buttons-container">
-        <CLButtonPrimary onClick={handleUploadPhoto} width={"240px"}>
+        <CLButtonPrimary onClick={handleUploadPhoto} width={"330px"}>
           <ImageIcon className="add-icon" />
           Upload Photo
         </CLButtonPrimary>
-        <CLButtonSecondary onClick={handleEnterManually}  width={"240px"}>
+        <CLButtonSecondary onClick={handleEnterManually}  width={"330px"}>
           <ModeIcon className="add-icon" />
           Enter Manually
         </CLButtonSecondary>
