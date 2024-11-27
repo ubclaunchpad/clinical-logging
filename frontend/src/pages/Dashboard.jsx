@@ -39,6 +39,10 @@ function Buttons() {
     navigate("/newLog");
   };
 
+  const handleAddLogbook = () => {
+    navigate("uploadPhotos")
+  }
+
   const handleViewHistory = () => {
     navigate("/logHistory");
   };
@@ -48,6 +52,9 @@ function Buttons() {
       <CLButtonPrimary onClick={handleCreateNewLog} width={"332px"}>
         Create New Log
       </CLButtonPrimary>
+      <CLButtonSecondary onClick={handleAddLogbook} width={"332px"}>
+        Add Logbook
+      </CLButtonSecondary>
       <CLButtonSecondary onClick={handleViewHistory} width={"332px"}>
         View Log History
       </CLButtonSecondary>
