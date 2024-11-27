@@ -3,11 +3,11 @@ const DEFAULT_WIDTH = "fit-content"
 const DEFAULT_BORDER_RADIUS = "20px"
 const DEFAULT_ON_CLICK = () => {}
 
-// PRIMARY specific styles
+// PRIMARY variant specific styles
 const PRIMARY_COLOR = "#F7FAFF"
 const PRIMARY_BACKGROUND_COLOR = "#244B94"
 
-// SECONDARY specific styles
+// SECONDARY variant specific styles
 const SECONDARY_COLOR = "#4F607E"
 const SECONDARY_BACKGROUND_COLOR = "#F7FAFF"
 const SECONDARY_BORDER = "1px solid #9AB0E1"
