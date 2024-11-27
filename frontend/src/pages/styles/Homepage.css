@@ -1,16 +1,504 @@
-.cta-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 64px;
-    margin-right: 64px;
-    margin-top: 200px;
+body, html {
+  background: #F7FAFF;
 }
 
-.cta-paragraph {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #64748b;
-    width: 450px;
-    margin-top: -1rem;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  width: 40px;
+  height: 40px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: 200px;
+  margin-left: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-logo {
+  width: 70px;
+  height: 70px;
+}
+
+.logo-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1rem;
+  position: absolute;
+  top: 2rem;
+  right: 10%;
+}
+
+/* Style the notification button */
+.notification-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 10px #e3e8f2;
+  backdrop-filter: blur(8px);
+  background: white;
+  width: 50px;
+  height: 40px;
+}
+
+/* Style the profile button */
+.profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+  color: black;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 10px #e3e8f2;
+  backdrop-filter: blur(8px);
+  background: white;
+  width: 50px;
+  height: 40px;
+}
+
+.notification-btn:hover,
+.profile-btn:hover {
+  background: #E5E7EB;
+}
+
+/* Style the icons */
+.notification-btn svg,
+.profile-btn svg {
+  width: 30px;
+  height: 18px;
+}
+
+/* Style the filter button */
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+  background: white;
+  color: #2F3C50;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 10px #e3e8f2;
+  backdrop-filter: blur(8px);
+  height: 40px;
+}
+
+.filter-btn:hover {
+  background: #F3F4F6;
+}
+
+.MuiTextField-root {
+  width: 300px !important;
+  height: 40px !important;
+  background: #F3F4F6;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px #e3e8f2;
+  backdrop-filter: blur(8px);
+}
+
+.MuiTextField-root .MuiInputBase-root {
+  height: 50px !important;
+  padding: 0 8px !important;
+  background: white;
+}
+
+.MuiTextField-root .MuiInputBase-input {
+  padding: 8px 4px !important;
+  font-size: 13px !important;
+}
+
+.MuiTextField-root .MuiInputAdornment-root {
+  height: 40px !important;
+  margin-right: 4px !important;
+}
+
+.MuiTextField-root .MuiInputAdornment-root .icon {
+  width: 18px !important;
+  height: 18px !important;
+  color: #2F3C50;
+}
+
+.filter-btn .icon,
+.notification-btn .icon,
+.profile-btn .icon,
+.search-input .icon {
+  width: 20px;
+  height: 20px;
+  color: #2F3C50;
+}
+
+.dashboard-container {
+  padding: 16px;
+  margin-left: 65px;
+  max-width: 1400px;
+}
+
+.welcome-section {
+  position: absolute;
+  left: 230px;
+  top: 15%;
+  display: flex;
+  align-items: center;
+}
+
+.welcome-text {
+  font-weight: 300;
+  font-size: 25px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  margin-top: 11%;
+  height: auto;
+}
+
+.logbooks-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  height: 500px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.get-started-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px 50px;
+  height: 280px;
+  width: 95%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.get-started-card p {
+  color: #3c4049;
+  font-weight: 400;
+  margin-top: 13px;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.get-started-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color:#2F3C50;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  margin-left: 30px;
+  color:#2F3C50;
+}
+
+h2 {
+  font-size: 20px;
+  text-align: left;
+  color:#2F3C50;
+}
+
+/* Button stack container */
+.button-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: auto 0; /* This will push the button stack to the vertical center */
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Individual buttons */
+.secondary-button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  color: #1a1a1a;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Primary button (Create New Log) */
+.primary-button {
+  width: 10%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #35478C;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.secondary-button:hover {
+  background: #f5f5f5;
+}
+
+.view-more-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #9AB0E1;
+  background: #F7FAFF;
+  color: #4F607E;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.progress-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto; 
+  gap: 16px;
+  width: 80%;
+}
+
+.progress-item {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: transparent; /* Default transparent background */
+}
+
+.progress-item:hover {
+  background-color: #E7EDF8;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #E7EDF8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #244B94;
+  border-radius: 4px;
+}
+
+.progress-item:hover .progress-bar {
+  background: #FBFCFE;
+}
+
+.logbooks-image {
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto;
+  display: block;
+}
+
+/* Bottom section container */
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 10px;
+  width: 95%;
+  grid-column: 1;
+  height: calc(500px - 280px - 24px); 
+}
+
+/* Shop Log Books card */
+.shop-books-card {
+  background: linear-gradient(232.43deg, #6C8BD3 9.4%, #244B94 90.17%);
+  border-radius: 30px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  overflow: hidden; /* Important for containing the gradient and images */
+  height: calc(500px - 280px - 24px); 
+  transition: transform 0.2s ease;
+}
+
+.shop-books-card:hover {
+  transform: translateY(-2px);  /* Slight lift effect on hover */
+}
+
+.shop-books-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at bottom,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  pointer-events: none;
+}
+
+.shop-books-card .chevron-icon {
+  width: 20px; /* Reduced from 20px */
+  height: 20px;
+  color: white; /* Adjust color as needed */
+  margin-top: 4px;
+}
+
+.shop-books-content h3 {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.shop-books-image {
+  position: absolute;
+  top: 40%;
+  right: 1px;
+  left: 1px;
+  width: 250px;   /* Adjust size as needed */
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* Recent Activity card */
+.recent-activity-card {
+  background: white;
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: calc(500px - 280px - 24px); 
+  transition: transform 0.2s ease;
+}
+
+.recent-activity-card:hover {
+  transform: translateY(-2px);
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-header .chevron-icon {
+  width: 20px; /* Reduced from 20px */
+  height: 20px;
+  color: black; /* Adjust color as needed */
+}
+
+.activity-header h3 {
+  font-weight: 600;
+  font-size: 17px;
+  color:#2F3C50;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-top: 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-info {
+  display: flex;
+  gap: 3px;
+  color: #666;
+  font-size: 10px;
+}
+
+.activity-info h2 {
+  font-weight: 500;
+  font-size: 10px;
+  color:#2F3C50;
+  opacity: 0.7;
+}
+
+.activity-info h3 {
+  font-weight: 700;
+  font-size: 10px;
+  color:#2E4A8F;
+}
+
+.activity-time {
+  margin-left: 17px;
+}
+
+.activity-time h3 {
+  font-weight: 400;
+  font-size: 10px;
+  color: #A1B4DE;
+}
+
+.time-icon {
+  color: #92a4cb;
+  width: 12px;
+  height: 12px;
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment, Tooltip } from "@mui/material";
 import { Article } from "@mui/icons-material";
 import Logo from "../assets/images/logo.png";
 import "./styles/LogCode.css";
@@ -17,9 +17,7 @@ const LogCode = () => {
       return alert("Please accept the terms and conditions");
     }
     try {
-      setLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      navigate("/");
+      navigate("/home");
     } catch {
       alert("Something went wrong. Please try again.");
     } finally {
@@ -59,15 +57,15 @@ const LogCode = () => {
             </div>
 
             <div className="help-text">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Located inside your logbook.");
-                }}
+              <Tooltip
+                title="Located inside your logbook"
+                arrow
+                placement="top"
               >
-                Where is my code?
-              </a>
+                <a href="#" onClick={(e) => e.preventDefault()}>
+                  Where is my code?
+                </a>
+              </Tooltip>
             </div>
 
             <div className="terms-group">

@@ -19,12 +19,13 @@ const Login = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   const { session, login, register } = useAuth();
 
   useEffect(() => {
     if (session) {
-      navigate("/dashboard");
+      navigate("/home");
     }
   }, [session, navigate]);
 
@@ -41,6 +42,10 @@ const Login = () => {
 
     if (!checkValidEmail(email)) {
       return alert("Please enter a valid email");
+    }
+
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match");
     }
 
     const { firstName, lastName } = getFirstAndLastName(name);
@@ -147,6 +152,37 @@ const Login = () => {
                 fullWidth
                 placeholder="Enter password"
                 onChange={(e) => setPassword(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                required
+              />
+            </div>
+
+            <div className="confirm-password-group">
+              <label htmlFor="confirm-password">Confirm Password</label>
+              <TextField
+                id="confirm-password"
+                type={showPassword ? "text" : "password"}
+                variant="outlined"
+                fullWidth
+                placeholder="Confirm password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

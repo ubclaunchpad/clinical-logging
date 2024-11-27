@@ -107,6 +107,10 @@ input {
 	transition: all 0.7s ease-in-out;
 }
 
+.form-container h2 {
+	color: #244B94;
+}
+
 .sign-in-container {
 	left: 50%;
 	width: 50%;
@@ -232,11 +236,6 @@ input {
 .username-group .MuiTextField-root {
     width: 400px !important;
 }
-  .password-group {
-	margin-top: 2rem;
-	display: flex;
-	flex-direction: column;
-  }
   
   label {
 	font-size: 0.9rem;
@@ -295,7 +294,12 @@ input {
 
 .sign-up-container .password-group {
 	margin-top: 1.2rem;
-	margin-bottom: 4rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.password-group {
+	margin-top: 1.2rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -305,6 +309,10 @@ input {
 	display: flex;
 	flex-direction: column;
 	width: 400px;
+}
+
+.email-group .MuiTextField-root {
+    width: 400px !important;
 }
 
 .logo-container {
@@ -358,6 +366,17 @@ input {
 .MuiTextField-root .MuiInputAdornment-root .MuiSvgIcon-root {
     color: #9CA3AF;
 	font-size: 1.4rem;;
+}
+
+.confirm-password-group {
+	margin-top: 1.2rem;
+	margin-bottom: 3rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.confirm-password-group .MuiTextField-root {
+    width: 400px !important;
 }
 
 /* Label Styling */
