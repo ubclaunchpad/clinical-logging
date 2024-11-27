@@ -1,5 +1,5 @@
 import SignUpButton from "../components/Buttons/SignUpButton";
-import Navbar from "../components/Navbar/Navbar";
+import { Navbar } from "../components/Navbar/Navbar";
 
 const mainColour = "#646cff";
 

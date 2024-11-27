@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import ImageIcon from "@mui/icons-material/Image";
 import ModeIcon from "@mui/icons-material/Mode";
-import Navbar from "../components/Navbar/Navbar";
+import { Navbar } from "../components/Navbar/Navbar";
 import "./styles/NewLog.css";
 
 export default function NewLog() {
