@@ -33,7 +33,7 @@ function Buttons() {
   };
 
   const handleAddLogbook = () => {
-    navigate("uploadPhotos")
+    navigate("/uploadPhotos")
   }
 
   const handleViewHistory = () => {

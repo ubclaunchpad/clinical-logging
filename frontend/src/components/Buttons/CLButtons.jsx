@@ -1,16 +1,8 @@
+import "./CLButtons.css"
+
 const DEFAULT_HEIGHT = "54px"
 const DEFAULT_WIDTH = "fit-content"
-const DEFAULT_BORDER_RADIUS = "20px"
 const DEFAULT_ON_CLICK = () => {}
-
-// PRIMARY variant specific styles
-const PRIMARY_COLOR = "#F7FAFF"
-const PRIMARY_BACKGROUND_COLOR = "#244B94"
-
-// SECONDARY variant specific styles
-const SECONDARY_COLOR = "#4F607E"
-const SECONDARY_BACKGROUND_COLOR = "#F7FAFF"
-const SECONDARY_BORDER = "1px solid #9AB0E1"
 
 /**
  * PRIMARY variant of the clinical logging button.
@@ -26,13 +18,11 @@ export const CLButtonPrimary = ({
 
   return (
     <button 
+      className="primary-variant-button"
       onClick={onClick}
       style={{
         height: height,
-        width: width,
-        color: PRIMARY_COLOR,
-        backgroundColor: PRIMARY_BACKGROUND_COLOR,
-        borderRadius: DEFAULT_BORDER_RADIUS
+        width: width
       }}
     >
       {children}
@@ -54,14 +44,11 @@ export const CLButtonSecondary = ({
   
   return (
     <button 
+      className="secondary-variant-button"
       onClick={onClick}
       style={{
         height: height,
-        width: width,
-        color: SECONDARY_COLOR,
-        backgroundColor: SECONDARY_BACKGROUND_COLOR,
-        border: SECONDARY_BORDER,
-        borderRadius: DEFAULT_BORDER_RADIUS
+        width: width
       }}
     >
       {children}
