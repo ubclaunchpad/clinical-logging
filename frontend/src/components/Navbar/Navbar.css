@@ -1,13 +1,15 @@
 .nav-bar {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 24%;
     left: 32px;
     height: 540px;
     width: 100px;
     justify-content: space-between;
     align-items: center;
+    overflow: auto;
+    z-index: 500;
 }
 
 .nav-button-container {
@@ -78,6 +80,6 @@
 }
 
 .nav-icon {
-    height: 34px !important;
-    width: 34px !important;
+    height: 34px;
+    width: 34px;
 }

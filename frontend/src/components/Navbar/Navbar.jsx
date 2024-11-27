@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useAuth } from "../../contexts/AuthContext";
 import {
   HomeIcon,
   BookOpenIcon,
@@ -8,10 +9,20 @@ import {
 import "./Navbar.css";
 
 export const Navbar = () => {
+  const { logout } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await logout();
+    } catch {
+      console.log("Failed to logout");
+    }
+  };
+
   return (
     <nav className="nav-bar">
       <div className="nav-button-container">
-        <NavLink className="nav-button" to="/dashboard">
+        <NavLink className="nav-button" to="/homepage">
           <div className="nav-button-icon-container">
             <HomeIcon className="nav-icon"/>
           </div>
@@ -30,7 +41,7 @@ export const Navbar = () => {
           <p className="nav-button-text">History</p>
         </NavLink>
       </div>
-      <button className="logout-button">
+      <button className="logout-button" onClick={handleSignOut}>
         <ArrowLeftStartOnRectangleIcon className="nav-icon"/>
       </button>
     </nav>

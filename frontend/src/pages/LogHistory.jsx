@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navbar } from "../components/Navbar/Navbar";
+import { NavContentWrapper } from "../components/NavContentWrapper/NavContentWrapper";
 import SearchFilterSort from "../components/LogHistory/SearchFilterSort";
 import LogTable from "../components/LogHistory/LogTable";
 import Pagination from "../components/LogHistory/Pagination";
@@ -131,10 +131,9 @@ const LogHistory = () => {
   );
 
   return (
-    <div className="log-history-container">
-      <Navbar />
-      <div className="container">
-        <div>
+    <NavContentWrapper>
+      <div className="log-history-container">
+        <div className="container">
           <SearchFilterSort
             search={search}
             setSearch={setSearch}
@@ -158,7 +157,7 @@ const LogHistory = () => {
           />
         </div>
       </div>
-    </div>
+    </NavContentWrapper>
   );
 };
 

@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import Login from "./pages/login/Login.jsx";
 import SignUp from "./pages/sign_up/SignUp.jsx";
 import NotFound from "./pages/not_found/NotFound.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import Home from "./pages/Homepage.jsx";
 import NewLog from "./pages/NewLog.jsx";
 import LogHistory from "./pages/LogHistory.jsx";
 import UploadPhotos from "./pages/UploadPhoto.jsx";
@@ -21,8 +21,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/signup" element={<SignUp />} />
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/newLog" element={<NewLog />} />
+          <Route path="/homepage" element={<Home />} />
           <Route path="/logHistory" element={<LogHistory />} />
           <Route path="/uploadPhotos" element={<UploadPhotos />} />
           <Route path="/manualEdit" element={<ManualEdit />} />
