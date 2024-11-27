@@ -1,8 +1,7 @@
 .app-bar {
   display: flex;
-  flex-direction: row;
   box-sizing: border-box;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   height: 120px;
@@ -10,6 +9,8 @@
   padding: 1rem 3rem 1rem 2rem;
   justify-content: space-between;
   align-items: center;
+  background-color: #F7FAFF;
+  z-index: 1000;
 }
 
 .logo {

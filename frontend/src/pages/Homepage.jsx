@@ -1,26 +1,19 @@
-import { AppBar } from "../components/AppBar/AppBar"
-import { Navbar } from "../components/Navbar/Navbar";
+import { NavContentWrapper } from "../components/NavContentWrapper/NavContentWrapper";
 import { CLButtonPrimary, CLButtonSecondary } from "../components/Buttons/CLButtons";
 import { useNavigate } from "react-router-dom";
-import "./styles/Dashboard.css";
+import "./styles/Homepage.css";
 
-export default function Dashboard() {
+export default function Homepage() {
   return (
-    <div>
-      <AppBar />
-      <Navbar />
-      <div className="page-container">
-        <div className="main-content">
-          <MainContent />
-        </div>
-      </div>
-    </div>
+    <NavContentWrapper>
+      <MainContent />
+    </NavContentWrapper>
   );
 }
 
 function MainContent() {
   return (
-    <div>
+    <div className="main-content">
       <p>
         Convert handwritten clinical logs to a <br />
         standardized Excel template with just a click of a button!
