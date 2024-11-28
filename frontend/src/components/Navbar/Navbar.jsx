@@ -1,5 +1,5 @@
 "use state";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import {

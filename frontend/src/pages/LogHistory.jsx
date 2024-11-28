@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import TopNav from "../components/TopNav/TopNav";
 import Navbar from "../components/Navbar/Navbar";
@@ -199,10 +199,6 @@ export default function LogHistory() {
                   type="checkbox"
                   onChange={handleSelectAll}
                   checked={currentLogs.every((log) => selectedLogs.has(log.id))}
-                  indeterminate={
-                    currentLogs.some((log) => selectedLogs.has(log.id)) &&
-                    !currentLogs.every((log) => selectedLogs.has(log.id))
-                  }
                 />
               </th>
               <th className="log-title-column">

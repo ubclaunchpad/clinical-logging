@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { PlusIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import "./ContentHeader.css";
