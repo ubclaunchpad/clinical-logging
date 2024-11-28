@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from PIL import Image
 from transformers import AutoProcessor, AutoModelForCausalLM
 import torch
 
 app = Flask(__name__)
+CORS(app)
 
 # load model and processor once during init
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -37,4 +39,4 @@ def transcribe():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000)
