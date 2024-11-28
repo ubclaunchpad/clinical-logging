@@ -10,8 +10,8 @@
 .search-filter-sort input[type="text"],
 .search-filter-sort select {
     padding: 0.6rem;
-    background-color: #2c2c2c;
-    color: #e0e0e0;
+    background-color: #F7FAFF;
+    color: #666B6F;
     border: 1px solid #444;
     border-radius: 4px;
 }
@@ -19,8 +19,8 @@
 /* Filter button to open/close dropdown */
 .filter-button {
     padding: 0.6rem;
-    background-color: #444;
-    color: #e0e0e0;
+    background-color: #e0e0e0;
+    color: #444;
     border: none;
     cursor: pointer;
     border-radius: 4px;
