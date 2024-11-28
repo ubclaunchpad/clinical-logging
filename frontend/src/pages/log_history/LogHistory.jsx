@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { NavContentWrapper } from "../components/NavContentWrapper/NavContentWrapper";
-import SearchFilterSort from "../components/LogHistory/SearchFilterSort";
-import LogTable from "../components/LogHistory/LogTable";
-import Pagination from "../components/LogHistory/Pagination";
-import "./styles/LogHistory.css";
+import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
+import SearchFilterSort from "../../components/LogHistory/SearchFilterSort";
+import LogTable from "../../components/LogHistory/LogTable";
+import Pagination from "../../components/LogHistory/Pagination";
+import "./LogHistory.css";
 
 const LogHistory = () => {
   const initialLogs = [
