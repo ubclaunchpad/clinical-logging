@@ -1,5 +1,6 @@
 import { AppBar } from "../AppBar/AppBar"
 import { Navbar } from "../Navbar/Navbar"
+import "./NavContentWrapper.css"
 
 /**
  * Wraps the child component in the side navigation bar and the top application bar.
