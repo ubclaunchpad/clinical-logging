@@ -1,0 +1,71 @@
+.content-header {
+    position: absolute;
+    left: 230px;
+    top: 18%;
+    display: flex;
+    width: calc(100% - 395px);
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px; /* Add padding to create space above border */
+    border-bottom: 1px solid #9AB0E1;
+}
+
+.content-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E1E1E;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;  /* Space between buttons */
+    align-items: center;
+}
+
+.actions-button {
+    background: white;
+    color: #4F607E;         /* SECONDARY_COLOR */
+    border-radius: 20px;    /* DEFAULT_BORDER_RADIUS */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 40px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.actions-button:hover {
+    background: #f0f5ff;
+}
+
+.add-button {
+    background: #244B94;  /* PRIMARY_BACKGROUND_COLOR */
+    color: #F7FAFF;       /* PRIMARY_COLOR */
+    border-radius: 20px;  /* DEFAULT_BORDER_RADIUS */
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.add-book-button:hover {
+    opacity: 0.9;
+}
+
+.plus-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.down-icon {
+    width: 18px;
+    height: 18px;
+}

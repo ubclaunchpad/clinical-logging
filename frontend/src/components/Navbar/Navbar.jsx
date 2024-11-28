@@ -1,6 +1,6 @@
 "use state";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import {
   HomeIcon,
@@ -11,9 +11,17 @@ import {
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function Navbar() {
-  const [selected, setSelected] = useState("home");
+  const location = useLocation();
   const { logout } = useAuth();
   const navigate = useNavigate();
+
+  // Set initial selected state based on current path
+  const [selected, setSelected] = useState(() => {
+    if (location.pathname === "/logbooks") return "logs";
+    if (location.pathname === "/home") return "home";
+    if (location.pathname === "/history") return "history";
+    return "";
+  });
 
   const handleClickLogout = async () => {
     try {
@@ -24,10 +32,21 @@ export default function Navbar() {
     }
   };
 
+  const handleNavClick = (nav) => {
+    setSelected(nav);
+    if (nav === "logs") {
+      navigate("/logbooks");
+    } else if (nav === "home") {
+      navigate("/home");
+    } else if (nav === "history") {
+      navigate("/history");
+    }
+  };
+
   return (
     <div className="navbar">
       <div className="nav-button-container">
-        <button className="nav-button" onClick={() => setSelected("home")}>
+        <button className="nav-button" onClick={() => handleNavClick("home")}>
           <div
             className={`nav-button-icon-container${
               selected === "home" ? "-selected" : ""
@@ -43,7 +62,7 @@ export default function Navbar() {
             Home
           </p>
         </button>
-        <button className="nav-button" onClick={() => setSelected("logs")}>
+        <button className="nav-button" onClick={() => handleNavClick("logs")}>
           <div
             className={`nav-button-icon-container${
               selected === "logs" ? "-selected" : ""
@@ -59,7 +78,10 @@ export default function Navbar() {
             Logs
           </p>
         </button>
-        <button className="nav-button" onClick={() => setSelected("history")}>
+        <button
+          className="nav-button"
+          onClick={() => handleNavClick("history")}
+        >
           <div
             className={`nav-button-icon-container${
               selected === "history" ? "-selected" : ""

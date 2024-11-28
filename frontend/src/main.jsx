@@ -7,7 +7,7 @@ import Login from "./pages/login/Login.jsx";
 import NotFound from "./pages/not_found/NotFound.jsx";
 import Home from "./pages/Homepage.jsx";
 import Homepage from "./pages/Homepage.jsx";
-import NewLog from "./pages/NewLog.jsx";
+import Logbooks from "./pages/Logbooks.jsx";
 import LogHistory from "./pages/LogHistory.jsx";
 import UploadPhotos from "./pages/UploadPhoto.jsx";
 import ManualEdit from "./pages/ManualEdit.jsx";
@@ -22,8 +22,8 @@ createRoot(document.getElementById("root")).render(
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
           <Route path="/home" element={<Homepage />} />
-          <Route path="/newLog" element={<NewLog />} />
-          <Route path="/logHistory" element={<LogHistory />} />
+          <Route path="/logbooks" element={<Logbooks />} />
+          <Route path="/history" element={<LogHistory />} />
           <Route path="/uploadPhotos" element={<UploadPhotos />} />
           <Route path="/manualEdit" element={<ManualEdit />} />
           <Route path="/logcode" element={<LogCode />} />

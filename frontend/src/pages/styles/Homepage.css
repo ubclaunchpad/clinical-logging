@@ -8,157 +8,6 @@ body, html {
   height: 100vh;
 }
 
-.top-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem 1.5rem;
-  width: 40px;
-  height: 40px;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-  margin-right: 200px;
-  margin-left: 50px;
-  position: relative;
-  z-index: 1;
-}
-
-.nav-logo {
-  width: 70px;
-  height: 70px;
-}
-
-.logo-link {
-  position: absolute;
-  top: 0.5rem;
-  left: 1.5rem;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-right: 1rem;
-  position: absolute;
-  top: 2rem;
-  right: 10%;
-}
-
-/* Style the notification button */
-.notification-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.8rem;
-  border: 1px solid #E5E7EB;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0px 0px 10px #e3e8f2;
-  backdrop-filter: blur(8px);
-  background: white;
-  width: 50px;
-  height: 40px;
-}
-
-/* Style the profile button */
-.profile-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.8rem;
-  border: 1px solid #E5E7EB;
-  border-radius: 1rem;
-  color: black;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0px 0px 10px #e3e8f2;
-  backdrop-filter: blur(8px);
-  background: white;
-  width: 50px;
-  height: 40px;
-}
-
-.notification-btn:hover,
-.profile-btn:hover {
-  background: #E5E7EB;
-}
-
-/* Style the icons */
-.notification-btn svg,
-.profile-btn svg {
-  width: 30px;
-  height: 18px;
-}
-
-/* Style the filter button */
-.filter-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.8rem;
-  border: 1px solid #E5E7EB;
-  border-radius: 1rem;
-  background: white;
-  color: #2F3C50;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0px 0px 10px #e3e8f2;
-  backdrop-filter: blur(8px);
-  height: 40px;
-}
-
-.filter-btn:hover {
-  background: #F3F4F6;
-}
-
-.MuiTextField-root {
-  width: 300px !important;
-  height: 40px !important;
-  background: #F3F4F6;
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px #e3e8f2;
-  backdrop-filter: blur(8px);
-}
-
-.MuiTextField-root .MuiInputBase-root {
-  height: 50px !important;
-  padding: 0 8px !important;
-  background: white;
-}
-
-.MuiTextField-root .MuiInputBase-input {
-  padding: 8px 4px !important;
-  font-size: 13px !important;
-}
-
-.MuiTextField-root .MuiInputAdornment-root {
-  height: 40px !important;
-  margin-right: 4px !important;
-}
-
-.MuiTextField-root .MuiInputAdornment-root .icon {
-  width: 18px !important;
-  height: 18px !important;
-  color: #2F3C50;
-}
-
-.filter-btn .icon,
-.notification-btn .icon,
-.profile-btn .icon,
-.search-input .icon {
-  width: 20px;
-  height: 20px;
-  color: #2F3C50;
-}
-
 .dashboard-container {
   padding: 16px;
   margin-left: 65px;
@@ -176,11 +25,13 @@ body, html {
 .welcome-text {
   font-weight: 300;
   font-size: 25px;
+  color: #1E1E1E;
 }
 
 .user-name {
   font-weight: bold;
   font-size: 25px;
+  color: #1E1E1E;
 }
 
 .content-grid {

@@ -5,20 +5,12 @@ import {
   CLButtonSecondary,
 } from "../components/Buttons/CLButtons";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import LogbookImage from "../assets/images/logo-small.png";
 import LogBooks from "../assets/images/logbooks.png";
 import ShopLogBooks from "../assets/images/ShopLogBooks.png";
-import { TextField, InputAdornment } from "@mui/material";
-import {
-  UserCircleIcon,
-  BellIcon,
-  AdjustmentsHorizontalIcon,
-  MagnifyingGlassIcon,
-  ChevronRightIcon,
-  ClockIcon,
-} from "@heroicons/react/24/outline";
+import TopNav from "../components/TopNav/TopNav";
+import { ChevronRightIcon, ClockIcon } from "@heroicons/react/24/outline";
 import "./styles/Homepage.css";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Homepage() {
   return (
@@ -33,6 +25,7 @@ export default function Homepage() {
 function MainContent() {
   const navigate = useNavigate();
   const [setSelectedLog] = useState(null);
+  const { session } = useAuth();
 
   const handleCreateNewLog = () => {
     navigate("/uploadPhotos");
@@ -43,7 +36,7 @@ function MainContent() {
   };
 
   const handleViewHistory = () => {
-    navigate("/logHistory");
+    navigate("/history");
   };
 
   return (
@@ -51,7 +44,9 @@ function MainContent() {
       <div className="welcome-section">
         <h1>
           <span className="welcome-text">Welcome back, </span>
-          <span className="user-name">Chewy!</span>
+          <span className="user-name">
+            {session?.user?.user_metadata?.first_name || "User"}
+          </span>
         </h1>
       </div>
 
@@ -146,44 +141,6 @@ function MainContent() {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function TopNav() {
-  const [searchQuery, setSearchQuery] = useState("");
-  return (
-    <div>
-      <Link to="/" className="logo-link">
-        <img src={LogbookImage} alt="FlowLeaflets Logo" className="nav-logo" />
-      </Link>
-      <nav className="top-nav">
-        <div className="nav-left">
-          <TextField
-            placeholder="Search logs..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <MagnifyingGlassIcon className="icon search-input" />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <button className="filter-btn">
-            <AdjustmentsHorizontalIcon className="icon" /> Filter
-          </button>
-        </div>
-        <div className="nav-right">
-          <button className="notification-btn">
-            <BellIcon className="icon" />
-          </button>
-          <button className="profile-btn">
-            <UserCircleIcon className="icon" />
-          </button>
-        </div>
-      </nav>
     </div>
   );
 }

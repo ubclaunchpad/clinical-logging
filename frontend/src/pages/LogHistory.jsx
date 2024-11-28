@@ -1,165 +1,271 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
+import TopNav from "../components/TopNav/TopNav";
 import Navbar from "../components/Navbar/Navbar";
-import SearchFilterSort from "../components/LogHistory/SearchFilterSort";
-import LogTable from "../components/LogHistory/LogTable";
-import Pagination from "../components/LogHistory/Pagination";
+import ContentHeader from "../components/ContentHeader/ContentHeader";
 import "./styles/LogHistory.css";
 
-const LogHistory = () => {
-  const initialLogs = [
+export default function LogHistory() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [logs] = useState([
     {
       id: 1,
-      title: "Patient A - Weekly Checkup",
-      dateOfOperation: "2023-09-25",
-      date: "2023-10-01",
-      patientName: "Patient A",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 2,
-      title: "Patient B - Medication Update",
-      dateOfOperation: "2024-08-15",
-      date: "2024-09-20",
-      patientName: "Patient B",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 3,
-      title: "Patient C - Initial Consultation",
-      dateOfOperation: "2024-06-12",
-      date: "2024-06-18",
-      patientName: "Patient C",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 4,
-      title: "Patient D - Follow-Up",
-      dateOfOperation: "2023-12-10",
-      date: "2023-12-15",
-      patientName: "Patient D",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 5,
-      title: "Patient E - Blood Test Results",
-      dateOfOperation: "2023-11-18",
-      date: "2023-11-21",
-      patientName: "Patient E",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 6,
-      title: "Patient F - Surgery Post-Op",
-      dateOfOperation: "2024-01-05",
-      date: "2024-01-10",
-      patientName: "Patient F",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 7,
-      title: "Patient G - Annual Checkup",
-      dateOfOperation: "2024-02-20",
-      date: "2024-02-28",
-      patientName: "Patient G",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 8,
-      title: "Patient H - Consultation",
-      dateOfOperation: "2024-03-10",
-      date: "2024-03-15",
-      patientName: "Patient H",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 9,
-      title: "Patient I - Physical Therapy",
-      dateOfOperation: "2023-05-01",
-      date: "2023-05-05",
-      patientName: "Patient I",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
     {
       id: 10,
-      title: "Patient J - MRI Results",
-      dateOfOperation: "2024-03-25",
-      date: "2024-04-01",
-      patientName: "Patient J",
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
     },
-  ];
+    {
+      id: 11,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 12,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 13,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 14,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 15,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 16,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 17,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 18,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 19,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+    {
+      id: 20,
+      title: "mylogexample",
+      type: "TypeExample",
+      dateCreated: "TypeExample",
+    },
+  ]);
+  const [selectedLogs, setSelectedLogs] = useState(new Set());
 
-  const [logs] = useState(initialLogs);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
-  const [sort, setSort] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const logsPerPage = 3;
+  const logsPerPage = 7; // Number of logs shown per page
+  const totalPages = Math.ceil(logs.length / logsPerPage);
 
-  // New states for Date of Operation and Patient Name filters
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [patientName, setPatientName] = useState("");
+  // Calculate which logs to display based on current page
+  const indexOfLastLog = currentPage * logsPerPage;
+  const indexOfFirstLog = indexOfLastLog - logsPerPage;
+  const currentLogs = logs.slice(indexOfFirstLog, indexOfLastLog);
 
-  // Filter and sort functionality
-  const filteredLogs = logs
-    .filter((log) => {
-      // Title filter
-      const matchesSearch = log.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
-      const matchesPatientFilter = filter === "" || log.patientName === filter;
+  const startRange = (currentPage - 1) * logsPerPage + 1;
+  const endRange = Math.min(currentPage * logsPerPage, logs.length);
 
-      // Date of Operation filter
-      const matchesDateRange =
-        (!startDate || new Date(log.dateOfOperation) >= new Date(startDate)) &&
-        (!endDate || new Date(log.dateOfOperation) <= new Date(endDate));
+  // Pagination handlers
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
-      // Patient Name filter
-      const matchesPatientName =
-        !patientName ||
-        log.patientName.toLowerCase().includes(patientName.toLowerCase());
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
-      return (
-        matchesSearch &&
-        matchesPatientFilter &&
-        matchesDateRange &&
-        matchesPatientName
-      );
-    })
-    .sort((a, b) => {
-      if (sort === "date") return new Date(b.date) - new Date(a.date);
-      if (sort === "alphabetical") return a.title.localeCompare(b.title);
-      return 0;
-    });
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-  // Paginate logs
-  const startIndex = (currentPage - 1) * logsPerPage;
-  const paginatedLogs = filteredLogs.slice(
-    startIndex,
-    startIndex + logsPerPage
-  );
+  // Handle select all checkbox
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      // Select all visible logs
+      const newSelected = new Set(selectedLogs);
+      currentLogs.forEach((log) => newSelected.add(log.id));
+      setSelectedLogs(newSelected);
+    } else {
+      // Deselect all visible logs
+      const newSelected = new Set(selectedLogs);
+      currentLogs.forEach((log) => newSelected.delete(log.id));
+      setSelectedLogs(newSelected);
+    }
+  };
+
+  // Handle individual checkbox
+  const handleSelectLog = (logId) => {
+    const newSelected = new Set(selectedLogs);
+    if (newSelected.has(logId)) {
+      newSelected.delete(logId);
+    } else {
+      newSelected.add(logId);
+    }
+    setSelectedLogs(newSelected);
+  };
 
   return (
-    <div className="log-history-container">
+    <div className="page-container">
+      <TopNav />
       <Navbar />
-      <div className="container">
-        <div>
-          <SearchFilterSort
-            search={search}
-            setSearch={setSearch}
-            filter={filter}
-            setFilter={setFilter}
-            sort={sort}
-            setSort={setSort}
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            patientName={patientName}
-            setPatientName={setPatientName}
-          />
-          <LogTable logs={paginatedLogs} />
-          <Pagination
-            currentPage={currentPage}
-            totalLogs={filteredLogs.length}
-            logsPerPage={logsPerPage}
-            onPageChange={setCurrentPage}
-          />
+      <ContentHeader />
+      <div className="table-container">
+        <table className="logs-table">
+          <thead>
+            <tr>
+              <th className="checkbox-column">
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={currentLogs.every((log) => selectedLogs.has(log.id))}
+                  indeterminate={
+                    currentLogs.some((log) => selectedLogs.has(log.id)) &&
+                    !currentLogs.every((log) => selectedLogs.has(log.id))
+                  }
+                />
+              </th>
+              <th className="log-title-column">
+                LOG TITLE <ChevronUpDownIcon className="sort-icon" />
+              </th>
+              <th className="type-column">
+                TYPE <ChevronUpDownIcon className="sort-icon" />
+              </th>
+              <th className="date-column">
+                DATE CREATED <ChevronUpDownIcon className="sort-icon" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentLogs.map((log) => (
+              <tr
+                key={log.id}
+                className={selectedLogs.has(log.id) ? "selected" : ""}
+              >
+                <td className="checkbox-column">
+                  <input
+                    type="checkbox"
+                    checked={selectedLogs.has(log.id)}
+                    onChange={() => handleSelectLog(log.id)}
+                  />
+                </td>
+                <td className="log-title-column title-column">{log.title}</td>
+                <td className="type-column">{log.type}</td>
+                <td className="date-column">{log.dateCreated}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="table-footer">
+          <div className="showing-text">
+            Showing <span>{startRange}</span>-<span>{endRange}</span> of{" "}
+            {logs.length} logs
+          </div>
+          <div className="pagination">
+            {currentPage > 1 && (
+              <span className="previous" onClick={handlePreviousPage}>
+                Previous
+              </span>
+            )}
+            {[...Array(totalPages)].map((_, index) => (
+              <span
+                key={index + 1}
+                className={
+                  currentPage === index + 1 ? "current-page" : "page-number"
+                }
+                onClick={() => handlePageClick(index + 1)}
+              >
+                {index + 1}
+              </span>
+            ))}
+            {currentPage < totalPages && (
+              <span className="next" onClick={handleNextPage}>
+                Next
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default LogHistory;
+}
