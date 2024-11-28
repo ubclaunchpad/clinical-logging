@@ -1,0 +1,12 @@
+.primary-variant-button {
+  color: #F7FAFF;
+  background-color: #244B94;
+  border-radius: 20px;
+}
+
+.secondary-variant-button {
+  color: #4F607E;
+  background-color: #F7FAFF;
+  border: 1px solid #9AB0E1;
+  border-radius: 20px;
+}

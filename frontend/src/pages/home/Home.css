@@ -1,0 +1,32 @@
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.main-content-buttons {
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cta-paragraph {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #64748b;
+    width: 450px;
+    margin-top: -1rem;
+}

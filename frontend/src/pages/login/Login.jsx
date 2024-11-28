@@ -13,7 +13,7 @@ export default function Login() {
 
   useEffect(() => {
     if (session) {
-      navigate("/dashboard");
+      navigate("/homepage");
     }
   }, [session, navigate]);
 
@@ -23,7 +23,7 @@ export default function Login() {
     try {
       setLoading(true);
       await login(email, password);
-      navigate("/dashboard");
+      navigate("/homepage");
     } catch {
       alert("Failed to login: Email or Password Incorrect");
     }
