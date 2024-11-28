@@ -25,5 +25,3 @@ dist-ssr
 
 #env variables
 .env
-
-src/assets/images/
