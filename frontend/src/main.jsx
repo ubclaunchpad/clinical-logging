@@ -6,11 +6,11 @@ import App from "./App.jsx";
 import Login from "./pages/login/Login.jsx";
 import SignUp from "./pages/sign_up/SignUp.jsx";
 import NotFound from "./pages/not_found/NotFound.jsx";
-import Home from "./pages/Homepage.jsx";
-import NewLog from "./pages/NewLog.jsx";
-import LogHistory from "./pages/LogHistory.jsx";
-import UploadPhotos from "./pages/UploadPhoto.jsx";
-import ManualEdit from "./pages/ManualEdit.jsx";
+import Home from "./pages/home/Home.jsx";
+import NewLog from "./pages/new_log/NewLog.jsx";
+import LogHistory from "./pages/log_history/LogHistory.jsx";
+import UploadPhotos from "./pages/upload_photo/UploadPhoto.jsx";
+import ManualEntry from "./pages/manual_entry/ManualEntry.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -25,7 +25,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/homepage" element={<Home />} />
           <Route path="/logHistory" element={<LogHistory />} />
           <Route path="/uploadPhotos" element={<UploadPhotos />} />
-          <Route path="/manualEdit" element={<ManualEdit />} />
+          <Route path="/manualEntry" element={<ManualEntry />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

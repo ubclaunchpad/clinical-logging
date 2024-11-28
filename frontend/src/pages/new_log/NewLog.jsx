@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { NavContentWrapper } from "../components/NavContentWrapper/NavContentWrapper";
+import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
 import ImageIcon from "@mui/icons-material/Image";
 import ModeIcon from "@mui/icons-material/Mode";
-import { CLButtonPrimary, CLButtonSecondary } from "../components/Buttons/CLButtons";
-import "./styles/NewLog.css";
+import { CLButtonPrimary, CLButtonSecondary } from "../../components/Buttons/CLButtons";
+import "./NewLog.css";
 
 export default function NewLog() {
   return (
     <NavContentWrapper>
-      <CTASection />
+      <MainContent />
     </NavContentWrapper>
   );
 }
 
-function CTASection() {
+function MainContent() {
   const navigate = useNavigate();
 
   const handleUploadPhoto = () => {
