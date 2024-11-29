@@ -1,32 +1,312 @@
-.main-content {
-    flex-grow: 1;
+  .dashboard-container {
+    padding: 16px;
+    margin-left: 65px;
+    max-width: 1400px;
+  }
+  
+  .welcome-section {
+    position: absolute;
+    left: 230px;
+    top: 12%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .welcome-text {
+    font-weight: 300;
+    font-size: 25px;
+    color: #1E1E1E;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    font-size: 25px;
+    color: #1E1E1E;
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    margin-top: 5%;
+    height: auto;
+  }
+  
+  .logbooks-card {
+    background: white;
+    border-radius: 30px;
+    padding: 24px;
+    height: 93%;
+    width: 85%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .get-started-card {
+    background: white;
+    border-radius: 30px;
+    padding: 20px 30px;
+    height: 50%;
+    width: 85%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .get-started-card p {
+    color: #3c4049;
+    font-weight: 400;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  .get-started-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color:#2F3C50;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-header h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    margin-left: 30px;
+    color:#2F3C50;
+  }
+  
+  /* Button stack container */
+  .button-stack {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 55%;
+  }
+
+  .view-more-btn {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #9AB0E1;
+    background: #F7FAFF;
+    color: #4F607E;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+  
+  .progress-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 200px;
-}
-
-.main-content-buttons {
-    font-size: 17px;
+    margin-left: auto;
+    margin-right: auto; 
+    gap: 20px;
+    width: 80%;
+  }
+  
+  .progress-item {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: transparent; /* Default transparent background */
+  }
+  
+  .progress-item:hover {
+    background-color: #E7EDF8;
+  }
+  
+  .progress-info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  
+  .progress-bar {
+    height: 8px;
+    background: #E7EDF8;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: #244B94;
+    border-radius: 4px;
+  }
+  
+  .progress-item:hover .progress-bar {
+    background: #FBFCFE;
+  }
+  
+  .progress-item:hover .progress-info {
+    color: #244B94;
+  }
+  
+  .logbooks-image {
+    width: 100%;
+    max-width: 280px;
+    margin: 30px auto;
+    display: block;
+  }
+  
+  /* Bottom section container */
+  .bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
     margin-top: 30px;
-    gap: 10px;
-}
+    width: 95%;
+    height: calc(500px - 280px - 24px); 
+  }
+  
+  /* Shop Log Books card */
+  .shop-books-card {
+    background: linear-gradient(232.43deg, #6C8BD3 9.4%, #244B94 90.17%);
+    border-radius: 30px;
+    padding: 20px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    height: 87%; 
+    position: relative;
+    overflow: hidden; /* Important for containing the gradient and images */
+    transition: transform 0.2s ease;
+  }
 
-.buttons-container {
+  .shop-books-card h3{
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0px;
+  }
+  
+  .shop-books-card:hover {
+    transform: translateY(-2px);  /* Slight lift effect on hover */
+  }
+  
+  .shop-books-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at bottom,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    pointer-events: none;
+  }
+  
+  .shop-books-card .chevron-icon {
+    width: 20px; /* Reduced from 20px */
+    height: 20px;
+    color: white; /* Adjust color as needed */
+    margin-top: 4px;
+  }
+  
+  .shop-books-image {
+    position: absolute;
+    top: 43%;
+    right: 1px;
+    left: 1px;
+    width: 250px;   /* Adjust size as needed */
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+  }
+  
+  /* Recent Activity card */
+  .recent-activity-card {
+    background: white;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 87%;
+    max-height: 300px;
+    overflow-y: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .recent-activity-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .activity-header .chevron-icon {
+    width: 20px; /* Reduced from 20px */
+    height: 20px;
+    color: black; /* Adjust color as needed */
+    margin-top: -20px;
+  }
+  
+  .activity-header h3 {
+    font-weight: 600;
+    font-size: 20px;
+    color:#2F3C50;
+    margin-top: 0px;
+  }
+  
+  .activity-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.cta-paragraph {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #64748b;
-    width: 450px;
-    margin-top: -1rem;
-}
+    margin-top: -10px;
+  }
+  
+  .activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .activity-info {
+    display: flex;
+    gap: 5px;
+    color: #666;
+    font-size: 12px;
+  }
+  
+  .activity-info h2 {
+    font-weight: 500;
+    font-size: 12px;
+    color: #2F3C50;
+    opacity: 0.8;
+  }
+  
+  .activity-info h3 {
+    font-weight: 700;
+    font-size: 12px;
+    color: #2E4A8F;
+    margin-top: 10px;
+  }
+  
+  .activity-time {
+    margin-left: 20px;
+  }
+  
+  .activity-time h3 {
+    font-weight: 400;
+    font-size: 12px;
+    color: #A1B4DE;
+  }
+  
+  .time-icon {
+    color: #92a4cb;
+    width: 14px;
+    height: 14px;
+  }

@@ -4,13 +4,13 @@ import { ProtectedRoutes } from "./utils/ProtectedRoutes.jsx";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import App from "./App.jsx";
 import Login from "./pages/login/Login.jsx";
-import SignUp from "./pages/sign_up/SignUp.jsx";
 import NotFound from "./pages/not_found/NotFound.jsx";
 import Home from "./pages/home/Home.jsx";
-import NewLog from "./pages/new_log/NewLog.jsx";
+import Logbooks from "./pages/logbooks/Logbooks.jsx";
 import LogHistory from "./pages/log_history/LogHistory.jsx";
 import UploadPhotos from "./pages/upload_photo/UploadPhoto.jsx";
 import ManualEntry from "./pages/manual_entry/ManualEntry.jsx";
+import LogCode from "./pages/log_code/LogCode.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -18,14 +18,14 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route element={<ProtectedRoutes />}>
           <Route index element={<App />} />
-          <Route path="/newLog" element={<NewLog />} />
-          <Route path="/homepage" element={<Home />} />
-          <Route path="/logHistory" element={<LogHistory />} />
+          <Route path="/logbooks" element={<Logbooks />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/history" element={<LogHistory />} />
           <Route path="/uploadPhotos" element={<UploadPhotos />} />
           <Route path="/manualEntry" element={<ManualEntry />} />
+          <Route path="/logCode" element={<LogCode />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
