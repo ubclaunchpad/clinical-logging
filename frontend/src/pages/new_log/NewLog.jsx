@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
 import ImageIcon from "@mui/icons-material/Image";
 import ModeIcon from "@mui/icons-material/Mode";
-import Navbar from "../components/Navbar/Navbar";
-import "./styles/NewLog.css";
+import { CLButtonPrimary, CLButtonSecondary } from "../../components/Buttons/CLButtons";
+import "./NewLog.css";
 
 export default function NewLog() {
   return (
-    <div>
-      <Navbar variant="newLog" />
-      <CTASection />
-    </div>
+    <NavContentWrapper>
+      <MainContent />
+    </NavContentWrapper>
   );
 }
 
-function CTASection() {
+function MainContent() {
   const navigate = useNavigate();
 
   const handleUploadPhoto = () => {
@@ -28,14 +28,14 @@ function CTASection() {
     <div className="cta-section">
       <h2>How would you like to create a new log?</h2>
       <div className="buttons-container">
-        <button onClick={handleUploadPhoto}>
+        <CLButtonPrimary onClick={handleUploadPhoto} width={"330px"}>
           <ImageIcon className="add-icon" />
           Upload Photo
-        </button>
-        <button onClick={handleEnterManually}>
+        </CLButtonPrimary>
+        <CLButtonSecondary onClick={handleEnterManually}  width={"330px"}>
           <ModeIcon className="add-icon" />
           Enter Manually
-        </button>
+        </CLButtonSecondary>
       </div>
     </div>
   );

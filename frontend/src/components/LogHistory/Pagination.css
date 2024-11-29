@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 1em;
-    color: #e0e0e0;
+    color: #1a1a1a;
 }
 
 .pagination span {
@@ -16,8 +16,8 @@
 }
 
 .page-buttons button {
-    background: #1a1a1a;
-    color: #e0e0e0;
+    background: #e0e0e0;
+    color: #1a1a1a;
     padding: 0.4em 0.6em;
     cursor: pointer;
     border-radius: 4px;
