@@ -11,7 +11,11 @@ export default async function getTable(supabase, table, param, value, type) {
         if (error) {
             throw new Error(error.message);
         }
-        return type === "collection" ? data : data[0];
+        if (type === "collection") {
+            return data
+        } else if (type === "resource") {
+            return data[0]
+        }
     } catch (error) {
         return { error: error.message };
     }
