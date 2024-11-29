@@ -6,22 +6,38 @@ const router = express.Router();
 
 router.post("", auth, async (req, res) => {
     const logbook = await createLogbook(req);
-    res.status(201).json({ data: logbook });
+    if (logbook.error) {
+        res.status(500).json({ error: logbook.error });
+    } else {
+        res.status(201).json({ data: logbook });
+    }
 });
 
 router.get("", auth, async (req, res) => {
     const userLogbooks = await getUserLogbooks(req);
-    res.status(200).json({ data: userLogbooks });
+    if (userLogbooks.error) {
+        res.status(500).json({ error: userLogbooks.error });
+    } else {
+        res.status(200).json({ data: userLogbooks });
+    }
 });
 
 router.get("/:logbookID", auth, async (req, res) => {
     const logbook = await getLogbook(req);
-    res.status(200).json({ data: logbook });
+    if (logbook.error) {
+        res.status(500).json({ error: logbook.error });
+    } else {
+        res.status(200).json({ data: logbook });
+    }
 });
 
 router.post("/:logbookID/logs", auth, async (req, res) => {
     const log = await createLog(req);
-    res.status(201).json({ data: log });
+    if (log.error) {
+        res.status(500).json({ error: log.error });
+    } else {
+        res.status(201).json({ data: log });
+    }
 });
 
 router.get("/:logbookID/logs", auth, async (req, res) => {
