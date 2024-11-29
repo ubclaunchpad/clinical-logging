@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 const auth = async (req, res, next) => {
 	try {
 		const token = req.header("Authorization")?.split(" ")[1];
+		console.log(token)
 		const supabaseSecret = process.env.SUPABASE_JWT_SECRET;
 		if (token) {
 			jwt.verify(token, supabaseSecret);
