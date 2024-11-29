@@ -54,19 +54,6 @@
     border-right: 1px solid #e5e7eb;
 }
   
-.page-container {
-    display: flex;
-    height: 100vh;
-}
-  
-.main-content {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-  
 .nav-icon-left {
     margin-right: 3px;
     margin-left: -2px;

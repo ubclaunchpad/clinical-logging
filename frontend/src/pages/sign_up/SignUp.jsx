@@ -16,7 +16,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (session) {
-      navigate("/dashboard");
+      navigate("/homepage");
     }
   }, [session, navigate]);
 
@@ -32,7 +32,7 @@ export default function SignUp() {
     try {
       setLoading(true);
       await register(firstName, lastName, email, password);
-      navigate("/dashboard");
+      navigate("/homepage");
     } catch (error) {
       if (error.code === "weak_password") {
         alert(
