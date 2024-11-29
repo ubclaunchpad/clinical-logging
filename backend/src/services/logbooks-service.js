@@ -36,7 +36,7 @@ export async function createLog(req) {
             case "adult_cardiac_logs":
                 return insertTable(supabase, "adult_cardiac_logs", body) 
             default:
-                throw new Error(`log and logbook type '${type}' are invalid`);
+                throw new Error(`log and logbook type '${body['type']}' are invalid`);
         }
     } catch (error) {
         return { error: error.message };
