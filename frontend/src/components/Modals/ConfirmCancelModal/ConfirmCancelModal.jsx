@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import Box from '@mui/material/Box';
 import { CLButtonSecondary } from "../../Buttons/CLButtons"
+import { ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider'
-import { ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import './ConfirmCancelModal.css'
 
 export const ConfirmCancelModal = () => {
@@ -21,7 +21,7 @@ export const ConfirmCancelModal = () => {
   return (
     <div>
       <CLButtonSecondary className="cancel-x-icon-button" onClick={handleOpen} width={"220px"}>
-       <XMarkIcon className="modal-icon"/>
+       <XMarkIcon className="cancel-x-icon"/>
         <p>Cancel</p>
       </CLButtonSecondary>
       <Modal

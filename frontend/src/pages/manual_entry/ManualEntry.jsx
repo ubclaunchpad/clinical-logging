@@ -29,7 +29,7 @@ const ManualEntry = () => {
         <CasePlanning />
         <h2 className="section-header">4. Learning Points</h2>
         <LearningPoints />
-        <div>
+        <div className="manual-entry-buttons-footer">
           <ConfirmCancelModal />
           <LogSavedSuccessModal />
         </div>

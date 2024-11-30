@@ -15,7 +15,7 @@
   box-shadow: 24;
 }
 
-.close-button {
+.close-modal-button {
   position: absolute;
   top: 40px;
   left: 40px;
@@ -29,14 +29,8 @@
   border-radius: 40px;
 }
 
-.close-button:hover {
+.close-modal-button:hover {
   background-color: rgb(219, 219, 219);
-}
-
-.close-x-icon {
-  height: 34px;
-  width: 34px;
-  color: inherit;
 }
 
 .modal-description {
@@ -54,7 +48,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  gap: 24px;
+  gap: 20px;
 }
 
 .upload-photo-button {
@@ -73,6 +67,12 @@
   align-items: center;
   color: #4F607E;
   gap: 12px;
+}
+
+.close-x-icon {
+  height: 34px;
+  width: 34px;
+  color: inherit;
 }
 
 .modal-icon {

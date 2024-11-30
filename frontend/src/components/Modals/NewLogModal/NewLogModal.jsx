@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import Box from '@mui/material/Box';
 import { CLButtonPrimary, CLButtonSecondary } from "../../Buttons/CLButtons"
-import Modal from '@mui/material/Modal';
-import Divider from '@mui/material/Divider'
 import {
   PhotoIcon,
   PencilSquareIcon,
-  XMarkIcon } from '@heroicons/react/24/outline';
+  XMarkIcon
+} from '@heroicons/react/24/outline';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Divider from '@mui/material/Divider'
 import './NewLogModal.css'
 
 export const NewLogModal = () => {
@@ -35,7 +36,7 @@ export const NewLogModal = () => {
         onClose={handleClose}
       >
         <Box className="modal-content">
-          <button className="close-button" onClick={handleClose}>
+          <button className="close-modal-button" onClick={handleClose}>
             <XMarkIcon className="close-x-icon"/>
           </button>
           <p className="modal-description">
