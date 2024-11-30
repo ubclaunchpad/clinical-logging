@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import { CLButtonPrimary, CLButtonSecondary } from "../../Buttons/CLButtons"
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider'
-import { PhotoIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import {
+  PhotoIcon,
+  PencilSquareIcon,
+  XMarkIcon } from '@heroicons/react/24/outline';
 import './NewLogModal.css'
 
 export const NewLogModal = () => {
@@ -33,18 +35,23 @@ export const NewLogModal = () => {
         onClose={handleClose}
       >
         <Box className="modal-content">
-          <Typography variant="h6" component="h2">
+          <button className="close-button" onClick={handleClose}>
+            <XMarkIcon className="close-x-icon"/>
+          </button>
+          <p className="modal-description">
             How would you like to create a new log?
-          </Typography>
+          </p>
           <Divider />
-          <CLButtonPrimary className="upload-photo-button" onClick={handleUploadPhoto} width={"330px"}>
-            <PhotoIcon className="modal-icon" />
-            <p>Upload Photo</p>
-          </CLButtonPrimary>
-          <CLButtonSecondary className="create-manually-button" onClick={handleCreateManually} width={"330px"}>
-            <PencilSquareIcon className="modal-icon" />
-            <p>Create Manually</p>
-          </CLButtonSecondary>
+          <div className='new-log-modal-buttons-container'>
+            <CLButtonPrimary className="upload-photo-button" onClick={handleUploadPhoto} width={"330px"}>
+              <PhotoIcon className="modal-icon" />
+              <p>Upload Photo</p>
+            </CLButtonPrimary>
+            <CLButtonSecondary className="create-manually-button" onClick={handleCreateManually} width={"330px"}>
+              <PencilSquareIcon className="modal-icon" />
+              <p>Create Manually</p>
+            </CLButtonSecondary>
+          </div>
         </Box>
       </Modal>
     </div>
