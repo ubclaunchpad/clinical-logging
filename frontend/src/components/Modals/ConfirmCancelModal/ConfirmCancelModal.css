@@ -1,0 +1,62 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 380px;
+  width: 640px;
+  background-color: #FBFCFE;
+  border-radius: 20px;
+  box-shadow: 24;
+}
+
+.cancel-x-icon-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #244B94;
+  gap: 12px;
+}
+
+.exclamation-circle-icon {
+  height: 60px;
+  width: 60px;
+  color: #E12F2C;
+}
+
+.modal-description {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.confirm-cancel-modal-divider {
+  width: 60%;
+}
+
+.confirm-cancel-modal-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 24px;
+}
+
+.confirm-cancel-without-saving-button {
+  height: 54px;
+  width: 330px;
+  border-radius: 20px;
+  color: #F7FAFF;
+  background-color: #E12F2C;
+}
+
+.modal-icon {
+  height: 40px;
+  width: 40px;
+}

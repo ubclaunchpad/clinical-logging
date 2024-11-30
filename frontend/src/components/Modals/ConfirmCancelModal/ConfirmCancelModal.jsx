@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import { CLButtonSecondary } from "../../Buttons/CLButtons"
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider'
 import { ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -21,8 +20,8 @@ export const ConfirmCancelModal = () => {
 
   return (
     <div>
-      <CLButtonSecondary onClick={handleOpen}>
-       <XMarkIcon />
+      <CLButtonSecondary className="cancel-x-icon-button" onClick={handleOpen} width={"220px"}>
+       <XMarkIcon className="modal-icon"/>
         <p>Cancel</p>
       </CLButtonSecondary>
       <Modal
@@ -30,15 +29,19 @@ export const ConfirmCancelModal = () => {
         onClose={handleClose}
       >
         <Box className="modal-content">
-          <ExclamationCircleIcon />
-          <Typography variant="h6" component="h2">
+          <ExclamationCircleIcon className="exclamation-circle-icon"/>
+          <p className="modal-description">
             Are you sure you would like to cancel without saving?
-          </Typography>
-          <Divider />
-          <button style={{backgroundColor: "red"}} onClick={handleConfirm}>Confirm</button>
-          <CLButtonSecondary onClick={handleClose}>
-            Cancel
-          </CLButtonSecondary>
+          </p>
+          <Divider className="confirm-cancel-modal-divider"/>
+          <div className="confirm-cancel-modal-buttons-container">
+            <button className="confirm-cancel-without-saving-button" onClick={handleConfirm}>
+              Confirm
+            </button>
+            <CLButtonSecondary onClick={handleClose} width={"330px"}>
+              Cancel
+            </CLButtonSecondary>
+          </div>
         </Box>
       </Modal>
     </div>

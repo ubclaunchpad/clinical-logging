@@ -41,7 +41,7 @@ export const NewLogModal = () => {
           <p className="modal-description">
             How would you like to create a new log?
           </p>
-          <Divider />
+          <Divider className="new-log-modal-divider"/>
           <div className='new-log-modal-buttons-container'>
             <CLButtonPrimary className="upload-photo-button" onClick={handleUploadPhoto} width={"330px"}>
               <PhotoIcon className="modal-icon" />
