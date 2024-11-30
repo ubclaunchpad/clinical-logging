@@ -2,6 +2,11 @@
   margin: 0 220px 0 220px;
 }
 
+.input-title {
+  margin: 4px 0 4px 0;
+  color: #4F607E;
+}
+
 .text-input {
   padding: 1rem;
   border: 1px solid #BAC1D0;
