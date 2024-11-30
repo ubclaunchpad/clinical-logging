@@ -5,7 +5,7 @@ import { CLButtonSecondary } from "../../Buttons/CLButtons"
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider'
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import './ConfirmCancelModal.css'
 
 export const ConfirmCancelModal = () => {
@@ -30,10 +30,10 @@ export const ConfirmCancelModal = () => {
         onClose={handleClose}
       >
         <Box className="modal-content">
+          <ExclamationCircleIcon />
           <Typography variant="h6" component="h2">
-            Congratulations!
+            Are you sure you would like to cancel without saving?
           </Typography>
-          <Typography>Your new log &quot;MyExampleLog&quot; has been saved to log history.</Typography>
           <Divider />
           <button style={{backgroundColor: "red"}} onClick={handleConfirm}>Confirm</button>
           <CLButtonSecondary onClick={handleClose}>

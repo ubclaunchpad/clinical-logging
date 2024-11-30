@@ -5,7 +5,8 @@ import { CLButtonPrimary, CLButtonSecondary } from "../../Buttons/CLButtons"
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Divider from '@mui/material/Divider'
-import { ClockIcon, HomeIcon, BookmarkSquareIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, HomeIcon } from '@heroicons/react/24/outline';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import './LogSavedSuccessModal.css'
 
 export const LogSavedSuccessModal = () => {
@@ -26,7 +27,7 @@ export const LogSavedSuccessModal = () => {
   return (
     <div>
       <CLButtonPrimary onClick={handleOpen} width={"330px"}>
-       <BookmarkSquareIcon />
+       <SaveOutlinedIcon />
         <p>Create New Log</p>
       </CLButtonPrimary>
       <Modal
