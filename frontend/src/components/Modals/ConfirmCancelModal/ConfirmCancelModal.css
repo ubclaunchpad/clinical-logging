@@ -45,7 +45,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  gap: 24px;
+  gap: 20px;
 }
 
 .confirm-cancel-without-saving-button {
@@ -56,7 +56,7 @@
   background-color: #E12F2C;
 }
 
-.modal-icon {
-  height: 40px;
-  width: 40px;
+.cancel-x-icon {
+  height: 34px;
+  width: 34px;
 }

@@ -60,3 +60,11 @@
   background-color: transparent;
   resize: none;
 }
+
+.manual-entry-buttons-footer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin: 60px 0 30px 0;
+}
