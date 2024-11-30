@@ -1,0 +1,29 @@
+.modal-content {
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400;
+  background-color: #FBFCFE;
+  border-radius: 20px;
+  box-shadow: 24;
+}
+
+.upload-photo-button {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  color: #F7FAFF;
+}
+
+.create-manually-button {
+  display: flex;
+  flex-direction: row;
+  color: #4F607E;
+}
+
+.modal-icon {
+  height: 40px;
+  width: 40px;
+}
