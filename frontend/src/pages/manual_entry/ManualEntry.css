@@ -1,0 +1,25 @@
+.manual-entry-container {
+  margin: 0 220px 0 220px;
+}
+
+.text-input {
+  padding: 1rem;
+  border: 1px solid #BAC1D0;
+  border-radius: 16px;
+}
+
+.case-planning-text-area {
+  height: 140px;
+  padding: 1rem;
+  border: 1px solid #BAC1D0;
+  border-radius: 16px;
+  resize: none;
+}
+
+.learning-points-text-area {
+  height: 140px;
+  padding: 1rem;
+  border: 1px solid #BAC1D0;
+  border-radius: 16px;
+  resize: none;
+}

@@ -1,5 +1,6 @@
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
-import { CLButtonPrimary, CLButtonSecondary } from "../../components/Buttons/CLButtons";
+import { NewLogModal } from "../../components/Modals/NewLogModal/NewLogModal";
+import { CLButtonSecondary } from "../../components/Buttons/CLButtons";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
@@ -28,10 +29,6 @@ function MainContent() {
 function Buttons() {
   const navigate = useNavigate();
 
-  const handleCreateNewLog = () => {
-    navigate("/newLog");
-  };
-
   const handleAddLogbook = () => {
     navigate("/uploadPhotos")
   }
@@ -42,9 +39,7 @@ function Buttons() {
 
   return (
     <div className="buttons-container">
-      <CLButtonPrimary onClick={handleCreateNewLog} width={"330px"}>
-        Create New Log
-      </CLButtonPrimary>
+      <NewLogModal />
       <CLButtonSecondary onClick={handleAddLogbook} width={"330px"}>
         Add Logbook
       </CLButtonSecondary>

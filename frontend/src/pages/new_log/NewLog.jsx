@@ -21,7 +21,7 @@ function MainContent() {
   };
 
   const handleEnterManually = () => {
-    navigate("/manualEdit");
+    navigate("/manualEntry");
   };
 
   return (
