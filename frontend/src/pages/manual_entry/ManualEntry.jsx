@@ -29,14 +29,18 @@ const ManualEntry = () => {
         <CasePlanning />
         <h2 className="section-header">4. Learning Points</h2>
         <LearningPoints />
-        <ConfirmCancelModal />
-        <LogSavedSuccessModal />
+        <div>
+          <ConfirmCancelModal />
+          <LogSavedSuccessModal />
+        </div>
       </div>
     </div>
   );
 };
 
 const SurgicalAndPatientInfo = () => {
+  // const medsArray = []
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -45,19 +49,19 @@ const SurgicalAndPatientInfo = () => {
             <Grid size={6}>
               <div>
                 <p className="input-title">Case no.</p>
-                <input className="text-input" placeholder="1234567"/>
+                <input className="manual-entry-input" type="text" placeholder="1234567"/>
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">Type</p>
-                <input className="text-input" placeholder="Adult cardiac"/>
+                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Surgeon</p>
-                <input className="text-input" placeholder="Surgeon name"/>
+                <input className="manual-entry-input" type="text" placeholder="Surgeon name"/>
               </div>
             </Grid>
             <Grid size={12}>
@@ -68,12 +72,18 @@ const SurgicalAndPatientInfo = () => {
                 </LocalizationProvider>
               </div>
             </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title-bold">HPI</p>
+                <textarea className="surgical-patient-info-textarea" placeholder="HPI"/>
+              </div>
+            </Grid>
           </Grid>
         </Grid>
         <Grid size={6}>
           <div>
             <p className="input-title">Patient ID</p>
-            <input className="text-input" placeholder="7654321"/>
+            <input className="manual-entry-input" type="text" placeholder="7654321"/>
           </div>
         </Grid>
       </Grid>
@@ -83,26 +93,158 @@ const SurgicalAndPatientInfo = () => {
 
 const ExaminationsAndInvestigations = () => {
   return (
-    <div>
-      <textarea className="case-planning-text-area"/>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={8}>
+        <Grid size={6}>
+          <Grid container spacing={1}>
+            <Grid size={12}>
+              <p className="input-title-bold">Exam</p>
+            </Grid>
+            <Grid size={8}>
+              <div>
+                <p className="input-title">Weight</p>
+                <input className="manual-entry-input" type="number" placeholder="weight" />
+              </div>
+            </Grid>
+            <Grid size={8}>
+              <div>
+                <p className="input-title">Height</p>
+                <input className="manual-entry-input" type="number" placeholder="Height" />
+              </div>
+            </Grid>
+            <Grid size={4}>
+              <div>
+                <p className="input-title">BMI</p>
+                <input className="manual-entry-input" type="number" placeholder="24.2 kg/m2" />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Veins</p>
+                <input className="manual-entry-input" type="number" placeholder="Veins" />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Allen Test</p>
+                <input className="manual-entry-input" type="number" placeholder="Allen Test" />
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid size={6}>
+          <Grid container spacing={1}>
+            <Grid size={12}>
+              <p className="input-title-bold">Echo</p>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">EF</p>
+                <input className="manual-entry-input" type="number" placeholder="60%" />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">RVFx</p>
+                <input className="manual-entry-input" type="text" placeholder="Amet pulvinar" />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">WMA</p>
+                <input className="manual-entry-input" type="text" placeholder="Lorem ipsum" />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Aorta</p>
+                <input className="manual-entry-input" type="text" placeholder="Morbi nunc enim mauris" />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Valves</p>
+                <input className="manual-entry-input" type="text" placeholder="Porttitor purus" />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">CXR</p>
+                <input className="manual-entry-input" type="text" placeholder="Morbi nunc enim mauris" />
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
 
 const CasePlanning = () => {
   return (
-    <div>
-      <textarea className="case-planning-text-area"/>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={8}>
+        <Grid size={6}>
+          <Grid container spacing={1}>
+            <Grid size={12}>
+              <div>
+                <p className="input-title-bold">Surgical Plan</p>
+                <textarea className="case-planning-text-area" placeholder="Surgical Plan"/>
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid size={6}>
+          <Grid container spacing={1}>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">1° operator</p>
+                <input className="manual-entry-input" type="text" placeholder="7654321"/>
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Issue - OR</p>
+                <input className="manual-entry-input" type="text" placeholder="7654321"/>
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Issue - Post</p>
+                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Flag for F/U</p>
+                <input className="manual-entry-input" type="text" placeholder="7654321"/>
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
 
 const LearningPoints = () => {
   return (
-    <div>
-      <textarea className="learning-points-text-area"/>
-      <textarea className="learning-points-text-area"/>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={8}>
+        <Grid size={6}>
+          <div>
+            <p className="input-title-bold">Post-operative Course</p>
+            <textarea className="learning-points-text-area" placeholder="Post-operative Course"/>
+          </div>
+        </Grid>
+        <Grid size={6}>
+          <div>
+            <p className="input-title-bold">Learning Points, Key Lessons</p>
+            <textarea className="learning-points-text-area" placeholder="Learning Points, Key Lessons"/>
+          </div>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
 

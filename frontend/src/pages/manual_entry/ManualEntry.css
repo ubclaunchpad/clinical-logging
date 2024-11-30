@@ -9,9 +9,17 @@
 .input-title {
   margin: 4px 0 4px 0;
   color: #4F607E;
+  font-size: 16px;
 }
 
-.text-input {
+.input-title-bold {
+  margin: 4px 0 4px 0;
+  color: #4F607E;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.manual-entry-input {
   box-sizing: border-box;
   width: 100%;
   padding: 1rem;
@@ -20,8 +28,21 @@
   background-color: transparent;
 }
 
+.surgical-patient-info-textarea {
+  box-sizing: border-box;
+  height: 80px;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #BAC1D0;
+  border-radius: 16px;
+  background-color: transparent;
+  resize: none;
+}
+
 .case-planning-text-area {
+  box-sizing: border-box;
   height: 140px;
+  width: 100%;
   padding: 1rem;
   border: 1px solid #BAC1D0;
   border-radius: 16px;
@@ -30,7 +51,9 @@
 }
 
 .learning-points-text-area {
+  box-sizing: border-box;
   height: 140px;
+  width: 100%;
   padding: 1rem;
   border: 1px solid #BAC1D0;
   border-radius: 16px;
