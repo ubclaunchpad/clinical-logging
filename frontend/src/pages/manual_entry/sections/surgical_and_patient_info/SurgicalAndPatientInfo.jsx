@@ -2,6 +2,9 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -36,7 +39,7 @@ export const SurgicalAndPatientInfo = () => {
               <div>
                 <p className="input-title">OR Date</p>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker sx={{ borderRadius: "100px" }}/>
+                  <DatePicker className="date-picker" sx={{borderRadius: "100px"}} />
                 </LocalizationProvider>
               </div>
             </Grid>
@@ -48,9 +51,10 @@ export const SurgicalAndPatientInfo = () => {
             </Grid>
             <Grid size={12}>
               <p className="input-title-bold">PMHx</p>
+              <PMHxSection />
             </Grid>
             <Grid size={12}>
-              <PMHxSection />
+              <p className="input-title-bold">Meds (last dose)</p>
             </Grid>
             <Grid size={12}>
               <MedsLastDoseSection />
@@ -74,7 +78,7 @@ export const SurgicalAndPatientInfo = () => {
           <Grid size={6}>
             <div>
               <p className="input-title">Gender</p>
-              <input className="manual-entry-input" type="number" placeholder="Select"/>
+              <GenderSection />
             </div>
           </Grid>
           <Grid size={12}>
@@ -123,9 +127,94 @@ export const SurgicalAndPatientInfo = () => {
   )
 }
 
-const PMHxSection = () => {
+const GenderSection = () => {
+  const MALE = "male"
+  const FEMALE = "female"
+  const OTHER = "other"
+  const [gender, setGender] = useState(MALE)
+
+  const handleChange = (event) => {
+    setGender(event.target.value)
+  }
+
   return (
-    <div></div>
+    <div>
+      <Select
+        value={gender}
+        onChange={handleChange}
+        className="select-gender-dropdown"
+      >
+        <MenuItem value={MALE}>
+          Male
+        </MenuItem>
+        <MenuItem value={FEMALE}>
+          Female
+        </MenuItem>
+        <MenuItem value={OTHER}>
+          Other
+        </MenuItem>
+      </Select>
+    </div>
+  )
+}
+
+const PMHxSection = () => {
+  const HTN = "HTN"
+  const DMII = "DM II"
+  const DLT = "DLP"
+  const CVA = "CVA"
+  const [selected, setSelected] = useState("")
+
+  const handleChange = (event) => {
+    setSelected(event.target.value)
+  }
+
+  return (
+    <div>
+      <RadioGroup
+        value={selected}
+        onChange={handleChange}
+      >
+        <Grid container spacing={1}>
+          <Grid size={6}>
+            <div className="radio-label-container">
+              <Radio
+                value={HTN}
+                sx={{ padding: 0 }}
+              />
+              <p className="input-title">HTM</p>
+            </div>
+          </Grid>
+          <Grid size={6}>
+            <div className="radio-label-container">
+              <Radio
+                value={DMII}
+                sx={{ padding: 0 }}
+              />
+              <p className="input-title">DM II</p>
+            </div>
+          </Grid>
+          <Grid size={6}>
+            <div className="radio-label-container">
+              <Radio
+                value={DLT}
+                sx={{ padding: 0 }}
+              />
+              <p className="input-title">DLP</p>
+            </div>
+          </Grid>
+          <Grid size={6}>
+            <div className="radio-label-container">
+              <Radio
+                value={CVA}
+                sx={{ padding: 0 }}
+              />
+              <p className="input-title">CVA</p>
+            </div>
+          </Grid>
+        </Grid>
+      </RadioGroup>
+    </div>
   )
 }
 
@@ -135,6 +224,7 @@ const MedsLastDoseSection = () => {
   const handleAddMed = () => {
     setMedsLastDoses(prevState => [...prevState, prevState.length])
   }
+
   const handleRemoveMed = () => {
     if (medsLastDoses.length === 1) {
       return

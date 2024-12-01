@@ -1,0 +1,28 @@
+.input-with-units {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem 3rem 1rem 1rem;
+  border: 1px solid #BAC1D0;
+  border-radius: 16px;
+  background-color: transparent;
+}
+
+.input-with-units-container {
+  display: flex;
+}
+
+.input-units {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  margin-left: -40px;
+  background-color: #BAC1D0;
+  border-radius: 0 16px 16px 0px;
+  z-index: -1;
+}
+
+.input-units-text {
+  color: #192B52;
+  margin: 0;
+}

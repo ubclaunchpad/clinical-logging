@@ -1,3 +1,4 @@
+import { CLInputWithUnits } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import "./CasePlanning.css"
@@ -23,10 +24,10 @@ export const CasePlanning = () => {
               </div>
             </Grid>
             <Grid size={5.5}>
-              <input className="manual-entry-input" type="number" placeholder="CPB"/>
+              <CLInputWithUnits units="h" placeholder="CPB"/>
             </Grid>
             <Grid size={5.5}>
-              <input className="manual-entry-input" type="number" placeholder="CPB"/>
+              <CLInputWithUnits units="m" placeholder="CPB"/>
             </Grid>
             <Grid size={1}>
               <div className="operative-notes-input-title-container">
@@ -34,10 +35,10 @@ export const CasePlanning = () => {
               </div>
             </Grid>
             <Grid size={5.5}>
-              <input className="manual-entry-input" type="number" placeholder="XC"/>
+              <CLInputWithUnits units="h" placeholder="XC"/>
             </Grid>
             <Grid size={5.5}>
-              <input className="manual-entry-input" type="number" placeholder="XC"/>
+              <CLInputWithUnits units="m" placeholder="XC"/>
             </Grid>
             <Grid size={1}>
               <div className="operative-notes-input-title-container">
@@ -45,10 +46,10 @@ export const CasePlanning = () => {
               </div>
             </Grid>
             <Grid size={5.5}>
-              <input className="manual-entry-input" type="number" placeholder="CA"/>
+              <CLInputWithUnits units="h" placeholder="CA"/>
             </Grid>
             <Grid size={5.5}>
-              <input className="manual-entry-input" type="number" placeholder="CA"/>
+              <CLInputWithUnits units="m" placeholder="CA"/>
             </Grid>
           </Grid>
         </Grid>
