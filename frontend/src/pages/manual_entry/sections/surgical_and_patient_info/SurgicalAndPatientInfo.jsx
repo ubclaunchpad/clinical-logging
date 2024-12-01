@@ -1,13 +1,10 @@
 import { useState } from "react";
+import { CLDatePickerInput, CLSelectInput } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import "./SurgicalAndPatientInfo.css"
 
@@ -38,9 +35,7 @@ export const SurgicalAndPatientInfo = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title">OR Date</p>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker className="date-picker" sx={{borderRadius: "100px"}} />
-                </LocalizationProvider>
+                <CLDatePickerInput />
               </div>
             </Grid>
             <Grid size={12}>
@@ -139,10 +134,9 @@ const GenderSection = () => {
 
   return (
     <div>
-      <Select
+      <CLSelectInput
         value={gender}
         onChange={handleChange}
-        className="select-gender-dropdown"
       >
         <MenuItem value={MALE}>
           Male
@@ -153,7 +147,7 @@ const GenderSection = () => {
         <MenuItem value={OTHER}>
           Other
         </MenuItem>
-      </Select>
+      </CLSelectInput>
     </div>
   )
 }

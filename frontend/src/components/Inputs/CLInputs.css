@@ -26,3 +26,7 @@
   color: #192B52;
   margin: 0;
 }
+
+.date-picker, .select-dropdown {
+  width: 100%;
+}
