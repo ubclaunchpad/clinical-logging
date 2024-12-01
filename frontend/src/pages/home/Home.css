@@ -1,9 +1,72 @@
+/* Shared Card Styles */
+.logbooks-card,
+.get-started-card,
+.recent-activity-card {
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logbooks-card,
+.get-started-card {
+  width: 85%;
+}
+
+/* Shared Heading Styles */
+.get-started-card h2,
+.card-header h2,
+.activity-header h3,
+.shop-books-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.get-started-card h2,
+.card-header h2,
+.activity-header h3 {
+  color: #2F3C50;
+}
+
+.shop-books-card h3 {
+  color: white;
+}
+
+/* Lift-on-Hover Effect */
+.shop-books-card,
+.recent-activity-card {
+  transition: transform 0.2s ease;
+}
+
+.shop-books-card:hover,
+.recent-activity-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Chevron Icon Styles */
+.chevron-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.shop-books-card .chevron-icon {
+  color: white;
+  margin-top: 4px;
+}
+
+.activity-header .chevron-icon {
+  color: black;
+  margin-top: -20px;
+}
+
+/* Dashboard Container */
 .dashboard-container {
   padding: 16px;
   margin-left: 65px;
   max-width: 1400px;
 }
 
+/* Welcome Section */
 .welcome-section {
   position: absolute;
   left: 230px;
@@ -24,6 +87,7 @@
   color: #1E1E1E;
 }
 
+/* Content Grid */
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -32,22 +96,16 @@
   height: auto;
 }
 
+/* Logbooks Card */
 .logbooks-card {
-  background: white;
-  border-radius: 30px;
   padding: 24px;
   height: 93%;
-  width: 85%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* Get Started Card */
 .get-started-card {
-  background: white;
-  border-radius: 30px;
   padding: 20px 30px;
   height: 50%;
-  width: 85%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .get-started-card p {
@@ -58,26 +116,19 @@
   margin-bottom: 16px;
 }
 
-.get-started-card h2 {
-  font-size: 20px;
-  font-weight: 600;
-  color:#2F3C50;
-}
-
+/* Card Header */
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 30px;
 }
 
 .card-header h2 {
-  font-size: 20px;
   margin-bottom: 8px;
-  margin-left: 30px;
-  color:#2F3C50;
 }
 
-/* Button stack container */
+/* Button Stack */
 .button-stack {
   display: flex;
   flex-direction: column;
@@ -86,6 +137,7 @@
   height: 55%;
 }
 
+/* View More Button */
 .view-more-btn {
   padding: 6px 12px;
   border-radius: 20px;
@@ -98,30 +150,40 @@
   margin-right: 30px;
 }
 
+/* Progress List */
 .progress-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto; 
+  margin: 0 auto;
   gap: 20px;
   width: 80%;
 }
 
+/* Progress Item */
 .progress-item {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  background-color: transparent; /* Default transparent background */
+  background-color: transparent;
 }
 
 .progress-item:hover {
   background-color: #E7EDF8;
 }
 
+.progress-item:hover .progress-bar {
+  background: #FBFCFE;
+}
+
+.progress-item:hover .progress-info {
+  color: #244B94;
+}
+
+/* Progress Info */
 .progress-info {
   display: flex;
   justify-content: space-between;
@@ -129,6 +191,7 @@
   font-size: 15px;
 }
 
+/* Progress Bar */
 .progress-bar {
   height: 8px;
   background: #E7EDF8;
@@ -142,14 +205,7 @@
   border-radius: 4px;
 }
 
-.progress-item:hover .progress-bar {
-  background: #FBFCFE;
-}
-
-.progress-item:hover .progress-info {
-  color: #244B94;
-}
-
+/* Logbooks Image */
 .logbooks-image {
   width: 100%;
   max-width: 280px;
@@ -157,39 +213,28 @@
   display: block;
 }
 
-/* Bottom section container */
+/* Bottom Section */
 .bottom-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 30px;
   width: 95%;
-  height: calc(500px - 280px - 24px); 
+  height: calc(500px - 280px - 24px);
 }
 
-/* Shop Log Books card */
+/* Shop Books Card */
 .shop-books-card {
   background: linear-gradient(232.43deg, #6C8BD3 9.4%, #244B94 90.17%);
   border-radius: 30px;
-  padding: 20px 20px;
+  padding: 20px;
   color: white;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  height: 87%; 
+  height: 83%;
   position: relative;
-  overflow: hidden; /* Important for containing the gradient and images */
-  transition: transform 0.2s ease;
-}
-
-.shop-books-card h3{
-  font-weight: 600;
-  font-size: 20px;
-  margin-top: 0px;
-}
-
-.shop-books-card:hover {
-  transform: translateY(-2px);  /* Slight lift effect on hover */
+  overflow: hidden;
 }
 
 .shop-books-card::after {
@@ -207,66 +252,41 @@
   pointer-events: none;
 }
 
-.shop-books-card .chevron-icon {
-  width: 20px; /* Reduced from 20px */
-  height: 20px;
-  color: white; /* Adjust color as needed */
-  margin-top: 4px;
-}
-
+/* Shop Books Image */
 .shop-books-image {
   position: absolute;
   top: 43%;
-  right: 1px;
   left: 1px;
-  width: 250px;   /* Adjust size as needed */
+  right: 1px;
+  width: 250px;
   height: auto;
   object-fit: contain;
   z-index: 1;
 }
 
-/* Recent Activity card */
+/* Recent Activity Card */
 .recent-activity-card {
-  background: white;
-  border-radius: 30px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  height: 87%;
+  height: 83%;
   max-height: 300px;
   overflow-y: auto;
-  transition: transform 0.2s ease;
 }
 
-.recent-activity-card:hover {
-  transform: translateY(-2px);
-}
-
+/* Activity Header */
 .activity-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.activity-header .chevron-icon {
-  width: 20px; /* Reduced from 20px */
-  height: 20px;
-  color: black; /* Adjust color as needed */
-  margin-top: -20px;
-}
-
-.activity-header h3 {
-  font-weight: 600;
-  font-size: 20px;
-  color:#2F3C50;
-  margin-top: 0px;
-}
-
+/* Activity List */
 .activity-list {
   display: flex;
   flex-direction: column;
   margin-top: -10px;
 }
 
+/* Activity Item */
 .activity-item {
   display: flex;
   justify-content: space-between;
@@ -274,6 +294,7 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
+/* Activity Info */
 .activity-info {
   display: flex;
   gap: 5px;
@@ -295,6 +316,7 @@
   margin-top: 10px;
 }
 
+/* Activity Time */
 .activity-time {
   margin-left: 20px;
 }
@@ -305,6 +327,7 @@
   color: #A1B4DE;
 }
 
+/* Time Icon */
 .time-icon {
   color: #92a4cb;
   width: 14px;
