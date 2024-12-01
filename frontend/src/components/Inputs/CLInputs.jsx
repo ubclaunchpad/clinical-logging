@@ -26,13 +26,13 @@ export const CLInputWithUnits = ({
 
 export const CLSelectInput = ({
   value,
-  handleChange,
+  onChange,
   children,
 }) => {
   return (
     <Select
       value={value}
-      onChange={handleChange}
+      onChange={onChange}
       className="select-dropdown"
       sx={{
         '& .MuiOutlinedInput-notchedOutline': {
