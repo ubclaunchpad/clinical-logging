@@ -13,185 +13,63 @@ export default function LogHistory() {
 }
 
 function MainContent() {
+  /** Generate logs data dynamically */
+  const logs = Array.from({ length: 20 }, (_, index) => ({
+    id: index + 1,
+    title: `Log Title ${index + 1}`,
+    type: `Type ${(index % 5) + 1}`,
+    dateCreated: `2024-11-${(index % 30) + 1}`,
+  }));
+
+  /** State for current page and selected logs */
   const [currentPage, setCurrentPage] = useState(1);
-  const [logs] = useState([
-    {
-      id: 1,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 2,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 3,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 4,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 5,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 6,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 7,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 8,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 9,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 10,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 11,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 12,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 13,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 14,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 15,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 16,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 17,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 18,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 19,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-    {
-      id: 20,
-      title: "mylogexample",
-      type: "TypeExample",
-      dateCreated: "TypeExample",
-    },
-  ]);
+  const [selectedLogs, setSelectedLogs] = useState({});
 
-  const [selectedLogs, setSelectedLogs] = useState(new Set());
-
-  const logsPerPage = 7; // Number of logs shown per page
+  /** Constants for pagination */
+  const logsPerPage = 7;
   const totalPages = Math.ceil(logs.length / logsPerPage);
 
-  // Calculate which logs to display based on current page
+  /** Calculate logs to display on current page */
   const indexOfLastLog = currentPage * logsPerPage;
   const indexOfFirstLog = indexOfLastLog - logsPerPage;
   const currentLogs = logs.slice(indexOfFirstLog, indexOfLastLog);
 
-  const startRange = (currentPage - 1) * logsPerPage + 1;
-  const endRange = Math.min(currentPage * logsPerPage, logs.length);
+  /** Calculate range for display */
+  const startRange = indexOfFirstLog + 1;
+  const endRange = Math.min(indexOfLastLog, logs.length);
 
-  // Pagination handlers
+  /** Handlers for pagination */
   const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
 
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Handle select all checkbox
+  /** Handlers for log selection */
   const handleSelectAll = (event) => {
-    if (event.target.checked) {
-      // Select all visible logs
-      const newSelected = new Set(selectedLogs);
-      currentLogs.forEach((log) => newSelected.add(log.id));
-      setSelectedLogs(newSelected);
-    } else {
-      // Deselect all visible logs
-      const newSelected = new Set(selectedLogs);
-      currentLogs.forEach((log) => newSelected.delete(log.id));
-      setSelectedLogs(newSelected);
-    }
+    const isChecked = event.target.checked;
+    const newSelectedLogs = { ...selectedLogs };
+    currentLogs.forEach((log) => {
+      newSelectedLogs[log.id] = isChecked;
+    });
+    setSelectedLogs(newSelectedLogs);
   };
 
-  // Handle individual checkbox
   const handleSelectLog = (logId) => {
-    const newSelected = new Set(selectedLogs);
-    if (newSelected.has(logId)) {
-      newSelected.delete(logId);
-    } else {
-      newSelected.add(logId);
-    }
-    setSelectedLogs(newSelected);
+    setSelectedLogs((prevSelected) => ({
+      ...prevSelected,
+      [logId]: !prevSelected[logId],
+    }));
   };
+
+  /** Check if all current logs are selected */
+  const allSelected = currentLogs.every((log) => selectedLogs[log.id]);
 
   return (
     <div className="table-container">
@@ -203,7 +81,7 @@ function MainContent() {
               <input
                 type="checkbox"
                 onChange={handleSelectAll}
-                checked={currentLogs.every((log) => selectedLogs.has(log.id))}
+                checked={allSelected}
               />
             </th>
             <th className="log-title-column">
@@ -219,14 +97,11 @@ function MainContent() {
         </thead>
         <tbody>
           {currentLogs.map((log) => (
-            <tr
-              key={log.id}
-              className={selectedLogs.has(log.id) ? "selected" : ""}
-            >
+            <tr key={log.id} className={selectedLogs[log.id] ? "selected" : ""}>
               <td className="checkbox-column">
                 <input
                   type="checkbox"
-                  checked={selectedLogs.has(log.id)}
+                  checked={!!selectedLogs[log.id]}
                   onChange={() => handleSelectLog(log.id)}
                 />
               </td>
@@ -248,7 +123,7 @@ function MainContent() {
               Previous
             </span>
           )}
-          {[...Array(totalPages)].map((_, index) => (
+          {Array.from({ length: totalPages }, (_, index) => (
             <span
               key={index + 1}
               className={
