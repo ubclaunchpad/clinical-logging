@@ -1,10 +1,34 @@
-import { useLocation } from "react-router-dom";
-import { PlusIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  PlusIcon,
+  ChevronDownIcon,
+  ChevronDoubleLeftIcon,
+  ChevronLeftIcon,
+} from "@heroicons/react/24/outline";
 import "./ContentHeader.css";
 
-export default function ContentHeader() {
+export default function ContentHeader({ onPreviewClick }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHistory = location.pathname === "/history";
+  const isUploadPhoto = location.pathname === "/upload-photo";
+
+  if (isUploadPhoto) {
+    return (
+      <div className="upload-photo-header">
+        <button className="back-button" onClick={() => navigate("/home")}>
+          <ChevronLeftIcon className="upload-back-icon" />
+        </button>
+        <div className="title-wrapper">
+          <h2 className="upload-photo-title">Upload Photos</h2>
+        </div>
+        <button className="preview-button" onClick={onPreviewClick}>
+          Preview
+          <ChevronDoubleLeftIcon className="preview-icon" />
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="content-header">
