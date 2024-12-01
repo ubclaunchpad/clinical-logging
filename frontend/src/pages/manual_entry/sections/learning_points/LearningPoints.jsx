@@ -8,13 +8,13 @@ export const LearningPoints = () => {
         <Grid size={6}>
           <div>
             <p className="input-title-bold">Post-operative Course</p>
-            <textarea className="learning-points-text-area" placeholder="Post-operative Course"/>
+            <textarea className="manual-entry-text-area" rows="6" placeholder="Post-operative Course"/>
           </div>
         </Grid>
         <Grid size={6}>
           <div>
             <p className="input-title-bold">Learning Points, Key Lessons</p>
-            <textarea className="learning-points-text-area" placeholder="Learning Points, Key Lessons"/>
+            <textarea className="manual-entry-text-area" rows="6" placeholder="Learning Points, Key Lessons"/>
           </div>
         </Grid>
       </Grid>
