@@ -25,7 +25,7 @@ function MainContent() {
   const { session } = useAuth();
 
   const handleCreateNewLog = () => {
-    navigate("/uploadPhotos");
+    navigate("/upload-photo");
   };
 
   const handleAddLogbook = () => {

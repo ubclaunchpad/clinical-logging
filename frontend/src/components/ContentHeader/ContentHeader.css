@@ -6,7 +6,7 @@
     width: 80%;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 4px; /* Add padding to create space above border */
+    padding-bottom: 4px; 
     border-bottom: 1px solid #9AB0E1;
 }
 
@@ -14,6 +14,10 @@
     font-size: 24px;
     font-weight: 600;
     color: #1E1E1E;
+}
+
+.content-header[data-page="upload-photo"] h2 {
+    border-bottom: 2px solid #2B4B96;
 }
 
 .button-group {
@@ -68,4 +72,71 @@
 .down-icon {
     width: 18px;
     height: 18px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #2B4B96;
+}
+
+.preview-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #333333;
+    font-weight: 400;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+}
+
+.preview-icon {
+    width: 30px;
+    height: 30px;
+    stroke-width: 2;
+    color: #244B94;
+}
+
+.upload-back-icon {
+    width: 30px;
+    height: 30px;
+    stroke-width: 3;
+    color: #2B4B96;
+    transition: transform 0.2s ease;
+}
+
+.upload-back-icon:hover {
+    transform: translateX(-5px);
+}
+
+.title-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.upload-photo-title {
+    color: #1E1E1E;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  width: fit-content; 
+  border-bottom: 2px solid #ECEBED;
+}
+
+.upload-photo-header {
+    position: absolute;
+    left: 230px;
+    top: 18%;
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 4px;
 }
