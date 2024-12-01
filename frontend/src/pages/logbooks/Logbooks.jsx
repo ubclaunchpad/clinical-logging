@@ -1,12 +1,14 @@
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
 import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import { PlusIcon } from "@heroicons/react/24/outline";
+
 import LogRectangle from "../../assets/images/LogRectangle.png";
 import AdultCardiac from "../../assets/images/adult-cardiac-book.png";
 import CongenitalCardiac from "../../assets/images/congenital-cardiac-book.png";
 import Obstetrics from "../../assets/images/obstetrics-book.png";
 import GeneralSurgery from "../../assets/images/general-surgery-book.png";
 import Ophthalmology from "../../assets/images/ophthalmology-book.png";
+
 import "./Logbooks.css";
 
 export default function Logbooks() {
@@ -17,7 +19,32 @@ export default function Logbooks() {
   );
 }
 
+/** Mapping of logbook types to their class names and images */
+const logbookTypeInfo = {
+  "Cardiac Surgery - Adult": {
+    className: "",
+    image: AdultCardiac,
+  },
+  "Cardiac Surgery - Congenital": {
+    className: "congenital",
+    image: CongenitalCardiac,
+  },
+  Ophthalmology: {
+    className: "ophthalmology",
+    image: Ophthalmology,
+  },
+  "Obstetrics/Gynecology": {
+    className: "obstetrics",
+    image: Obstetrics,
+  },
+  "General Surgery": {
+    className: "general-surgery",
+    image: GeneralSurgery,
+  },
+};
+
 function MainContent() {
+  /** Array of logbook data */
   const logbooks = [
     {
       title: "Cardiac Surgery - Nov.",
@@ -57,13 +84,7 @@ function MainContent() {
       <ContentHeader />
       <div className="logbooks-grid">
         {logbooks.map((book, index) => (
-          <LogbookCard
-            key={index}
-            title={book.title}
-            type={book.type}
-            storage={book.storage}
-            created={book.created}
-          />
+          <LogbookCard key={index} {...book} />
         ))}
         <div className="add-logbook-card">
           <PlusIcon className="plus-circle-icon" />
@@ -75,41 +96,21 @@ function MainContent() {
 }
 
 function LogbookCard({ title, type, storage, created }) {
-  const getCardClassName = () => {
-    let className = "logbook-card";
-    if (type === "Cardiac Surgery - Congenital") {
-      className += " congenital";
-    } else if (type === "Ophthalmology") {
-      className += " ophthalmology";
-    } else if (type === "Obstetrics/Gynecology") {
-      className += " obstetrics";
-    } else if (type === "General Surgery") {
-      className += " general-surgery";
-    }
-    return className;
-  };
+  /** Retrieve type information from the mapping */
+  const typeInfo = logbookTypeInfo[type] || {};
 
-  const getBookImage = () => {
-    switch (type) {
-      case "Cardiac Surgery - Adult":
-        return AdultCardiac;
-      case "Cardiac Surgery - Congenital":
-        return CongenitalCardiac;
-      case "Ophthalmology":
-        return Ophthalmology;
-      case "Obstetrics/Gynecology":
-        return Obstetrics;
-      case "General Surgery":
-        return GeneralSurgery;
-      default:
-        return AdultCardiac;
-    }
-  };
+  /** Construct class name */
+  const className = ["logbook-card", typeInfo.className]
+    .filter(Boolean)
+    .join(" ");
+
+  /** Get the corresponding book image */
+  const bookImage = typeInfo.image || AdultCardiac;
 
   return (
-    <div className={getCardClassName()}>
+    <div className={className}>
       <div className="book-cover">
-        <img src={getBookImage()} alt="" className="book-cover-image" />
+        <img src={bookImage} alt={type} className="book-cover-image" />
       </div>
       <div className="details-container">
         <img src={LogRectangle} alt="" className="log-rectangle" />
