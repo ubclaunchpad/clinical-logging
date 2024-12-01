@@ -1,7 +1,10 @@
 .input-with-arrow-button-container {
   display: flex;
-  flex-direction: row;
   gap: 8px;
+}
+
+.input-with-units-flex-container {
+  flex: 1;
 }
 
 .arrows-icon-button {

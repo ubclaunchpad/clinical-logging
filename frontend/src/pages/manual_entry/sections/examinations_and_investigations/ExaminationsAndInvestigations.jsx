@@ -144,7 +144,9 @@ const WeightSection = () => {
 
   return (
     <div className="input-with-arrow-button-container">
-      <CLInputWithUnits units={getUnits()} placeholder={`Weight (${getUnits()})`} />
+      <div className="input-with-units-flex-container">
+        <CLInputWithUnits units={getUnits()} placeholder={`Weight (${getUnits()})`} />
+      </div>
       <button className="arrows-icon-button" onClick={handleUnitChange}>
         <ArrowsUpDownIcon className="arrows-icon"/>
       </button>
@@ -169,19 +171,23 @@ const HeightSection = () => {
     <div className="input-with-arrow-button-container">
       {
         units === METRIC &&
-        <CLInputWithUnits units="cm" placeholder="Height (cm)" />
+        <div className="input-with-units-flex-container">
+          <CLInputWithUnits units="cm" placeholder="Height (cm)" />
+        </div>
       }
       {
         units === IMPERIAL &&
         (
-          <Grid container spacing={1}>
-            <Grid size={6}>
-              <CLInputWithUnits units="ft" placeholder="ft" />
+          <div className="input-with-units-flex-container">
+            <Grid container spacing={1}>
+              <Grid size={6}>
+                <CLInputWithUnits units="ft" placeholder="ft" />
+              </Grid>
+              <Grid size={6}>
+                <CLInputWithUnits units="in" placeholder="in" />
+              </Grid>
             </Grid>
-            <Grid size={6}>
-              <CLInputWithUnits units="in" placeholder="in" />
-            </Grid>
-          </Grid>
+          </div>
         )
       }
       <button className="arrows-icon-button" onClick={handleUnitChange}>
