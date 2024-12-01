@@ -29,9 +29,9 @@ export const LogSavedSuccessModal = () => {
 
   return (
     <div>
-      <CLButtonPrimary className="save-icon-button" onClick={handleOpen} width={"280px"}>
+      <CLButtonPrimary className="save-icon-button" onClick={handleOpen} width={"240px"}>
        <SaveOutlinedIcon className="save-icon" />
-        <p>Create New Log</p>
+        <p>Save to Log History</p>
       </CLButtonPrimary>
       <Modal
         open={open}

@@ -106,7 +106,7 @@ export const SurgicalAndPatientInfo = () => {
           <Grid size={12}>
             <div>
               <p className="input-title">Allergies</p>
-              <textarea className="manual-entry-text-area" rows="3" placeholder="Massa odio vel sed."/>
+              <textarea className="manual-entry-text-area" rows="4" placeholder="Massa odio vel sed."/>
             </div>
           </Grid>
           <Grid size={12}>
