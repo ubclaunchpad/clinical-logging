@@ -47,6 +47,12 @@ export const SurgicalAndPatientInfo = () => {
               </div>
             </Grid>
             <Grid size={12}>
+              <p className="input-title-bold">PMHx</p>
+            </Grid>
+            <Grid size={12}>
+              <PMHxSection />
+            </Grid>
+            <Grid size={12}>
               <MedsLastDoseSection />
             </Grid>
           </Grid>
@@ -117,6 +123,12 @@ export const SurgicalAndPatientInfo = () => {
   )
 }
 
+const PMHxSection = () => {
+  return (
+    <div></div>
+  )
+}
+
 const MedsLastDoseSection = () => {
   const [medsLastDoses, setMedsLastDoses] = useState([0])
   
@@ -136,7 +148,8 @@ const MedsLastDoseSection = () => {
         return (
           <div key={i}>
             {
-              (i > 0 &&
+              i > 0 &&
+              (
                 <div className="meds-last-dose-button-container">
                   <button className="meds-last-dose-button" onClick={handleRemoveMed}>
                     <MinusCircleIcon className="meds-last-dose-icon"/>
@@ -171,7 +184,8 @@ const MedsLastDoseSection = () => {
               </Grid>
             </Grid>
             {
-              (i === medsLastDoses.length - 1 &&
+              i === medsLastDoses.length - 1 &&
+              (
                 <div className="meds-last-dose-button-container">
                   <button className="meds-last-dose-button" onClick={handleAddMed}>
                     <PlusCircleIcon className="meds-last-dose-icon"/>
