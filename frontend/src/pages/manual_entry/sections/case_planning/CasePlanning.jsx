@@ -18,37 +18,37 @@ export const CasePlanning = () => {
             <Grid size={12}>
               <p className="input-title-bold">Operative Notes</p>
             </Grid>
-            <Grid size={1.5}>
+            <Grid size={1}>
               <div className="operative-notes-input-title-container">
                 <p className="input-title">CPB</p>
               </div>
             </Grid>
-            <Grid size={5.25}>
+            <Grid size={5.5}>
               <CLInputWithUnits units="h" placeholder="CPB"/>
             </Grid>
-            <Grid size={5.25}>
+            <Grid size={5.5}>
               <CLInputWithUnits units="m" placeholder="CPB"/>
             </Grid>
-            <Grid size={1.5}>
+            <Grid size={1}>
               <div className="operative-notes-input-title-container">
                 <p className="input-title">XC</p>
               </div>
             </Grid>
-            <Grid size={5.25}>
+            <Grid size={5.5}>
               <CLInputWithUnits units="h" placeholder="XC"/>
             </Grid>
-            <Grid size={5.25}>
+            <Grid size={5.5}>
               <CLInputWithUnits units="m" placeholder="XC"/>
             </Grid>
-            <Grid size={1.5}>
+            <Grid size={1}>
               <div className="operative-notes-input-title-container">
                 <p className="input-title">CA</p>
               </div>
             </Grid>
-            <Grid size={5.25}>
+            <Grid size={5.5}>
               <CLInputWithUnits units="h" placeholder="CA"/>
             </Grid>
-            <Grid size={5.25}>
+            <Grid size={5.5}>
               <CLInputWithUnits units="m" placeholder="CA"/>
             </Grid>
           </Grid>

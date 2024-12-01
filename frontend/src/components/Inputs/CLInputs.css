@@ -1,3 +1,7 @@
+.input-with-units-container {
+  display: flex;
+}
+
 .input-with-units {
   box-sizing: border-box;
   width: 100%;
@@ -5,10 +9,6 @@
   border: 1px solid #BAC1D0;
   border-radius: 16px;
   background-color: transparent;
-}
-
-.input-with-units-container {
-  display: flex;
 }
 
 .input-units {
