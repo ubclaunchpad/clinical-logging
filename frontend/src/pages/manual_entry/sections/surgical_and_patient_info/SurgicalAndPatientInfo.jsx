@@ -1,13 +1,14 @@
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import Radio from "@mui/material/Radio";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
+import "./SurgicalAndPatientInfo.css"
 
 export const SurgicalAndPatientInfo = () => {
-  // const medsLastDoseArray = []
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -46,31 +47,7 @@ export const SurgicalAndPatientInfo = () => {
               </div>
             </Grid>
             <Grid size={12}>
-              <p className="input-title-bold">Meds (last dose)</p>
-            </Grid>
-            <Grid size={6}>
-              <div>
-                <p className="input-title">Name</p>
-                <input className="manual-entry-input" type="text" placeholder="1234567"/>
-              </div>
-            </Grid>
-            <Grid size={6}>
-              <div>
-                <p className="input-title">Dose</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-              </div>
-            </Grid>
-            <Grid size={6}>
-              <div>
-                <p className="input-title">Frequency</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-              </div>
-            </Grid>
-            <Grid size={6}>
-              <div>
-                <p className="input-title">Method of delivery</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-              </div>
+              <MedsLastDoseSection />
             </Grid>
           </Grid>
         </Grid>
@@ -137,5 +114,74 @@ export const SurgicalAndPatientInfo = () => {
         </Grid>
       </Grid>
     </Box>
+  )
+}
+
+const MedsLastDoseSection = () => {
+  const [medsLastDoses, setMedsLastDoses] = useState([0])
+  
+  const handleAddMed = () => {
+    setMedsLastDoses(prevState => [...prevState, prevState.length])
+  }
+  const handleRemoveMed = () => {
+    if (medsLastDoses.length === 1) {
+      return
+    }
+    setMedsLastDoses(prevState => prevState.slice(0, prevState.length - 1))
+  }
+
+  return (
+    <div>
+      {medsLastDoses.map((_, i) => {
+        return (
+          <div key={i}>
+            {
+              (i > 0 &&
+                <div className="meds-last-dose-button-container">
+                  <button className="meds-last-dose-button" onClick={handleRemoveMed}>
+                    <MinusCircleIcon className="meds-last-dose-icon"/>
+                  </button>
+              </div>
+              )
+            }
+            <Grid container spacing={1}>
+              <Grid size={6}>
+                <div>
+                  <p className="input-title">Name</p>
+                  <input className="manual-entry-input" type="text" placeholder="1234567"/>
+                </div>
+              </Grid>
+              <Grid size={6}>
+                <div>
+                  <p className="input-title">Dose</p>
+                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                </div>
+              </Grid>
+              <Grid size={6}>
+                <div>
+                  <p className="input-title">Frequency</p>
+                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                </div>
+              </Grid>
+              <Grid size={6}>
+                <div>
+                  <p className="input-title">Method of delivery</p>
+                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                </div>
+              </Grid>
+            </Grid>
+            {
+              (i === medsLastDoses.length - 1 &&
+                <div className="meds-last-dose-button-container">
+                  <button className="meds-last-dose-button" onClick={handleAddMed}>
+                    <PlusCircleIcon className="meds-last-dose-icon"/>
+                  </button>
+                </div>
+              )
+            }
+          </div>
+        )
+      })}
+    </div>
   )
 }
