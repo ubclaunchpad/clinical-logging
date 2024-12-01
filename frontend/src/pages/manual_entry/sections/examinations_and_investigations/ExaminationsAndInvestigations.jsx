@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CLInputWithUnits } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import Radio from "@mui/material/Radio";
@@ -123,19 +124,23 @@ export const ExaminationsAndInvestigations = () => {
 const WeightSection = () => {
   const METRIC = "metric"
   const IMPERIAL = "imperial"
-  const [units, setUnits] = useState(METRIC)
+  const [unitSystem, setUnitSystem] = useState(METRIC)
   
   const handleUnitChange = () => {
-    if (units === METRIC) {
-      setUnits(IMPERIAL)
+    if (unitSystem === METRIC) {
+      setUnitSystem(IMPERIAL)
     } else {
-      setUnits(METRIC)
+      setUnitSystem(METRIC)
     }
+  }
+
+  const getUnits = () => {
+    return unitSystem === METRIC ? "kg" : "lbs"
   }
 
   return (
     <div className="input-with-arrow-button-container">
-      <input className="manual-entry-input" type="number" placeholder="weight" />
+      <CLInputWithUnits units={getUnits()} placeholder={`Weight (${getUnits()})`} />
       <button className="arrows-icon-button" onClick={handleUnitChange}>
         <ArrowsUpDownIcon className="arrows-icon"/>
       </button>
@@ -160,19 +165,17 @@ const HeightSection = () => {
     <div className="input-with-arrow-button-container">
       {
         units === METRIC &&
-        (
-          <input className="manual-entry-input" type="number" placeholder="Height" />
-        )
+        <CLInputWithUnits units="cm" placeholder="Height (cm)" />
       }
       {
         units === IMPERIAL &&
         (
           <Grid container spacing={1}>
             <Grid size={6}>
-              <input className="manual-entry-input" type="number" placeholder="Height" />
+              <CLInputWithUnits units="ft" placeholder="ft" />
             </Grid>
             <Grid size={6}>
-              <input className="manual-entry-input" type="number" placeholder="Height" />
+              <CLInputWithUnits units="in" placeholder="in" />
             </Grid>
           </Grid>
         )
