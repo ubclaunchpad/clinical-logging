@@ -46,7 +46,7 @@ export const SurgicalAndPatientInfo = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">HPI</p>
-                <textarea className="surgical-patient-info-textarea" placeholder="HPI"/>
+                <textarea className="manual-entry-text-area" rows="3" placeholder="HPI"/>
               </div>
             </Grid>
             <Grid size={12}>
@@ -111,7 +111,7 @@ export const SurgicalAndPatientInfo = () => {
           <Grid size={12}>
             <div>
               <p className="input-title">Allergies</p>
-              <textarea className="surgical-patient-info-textarea" placeholder="Massa odio vel sed."/>
+              <textarea className="manual-entry-text-area" rows="3" placeholder="Massa odio vel sed."/>
             </div>
           </Grid>
           <Grid size={12}>

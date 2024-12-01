@@ -12,7 +12,7 @@ export const CasePlanning = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">Surgical Plan</p>
-                <textarea className="case-planning-text-area" placeholder="Surgical Plan"/>
+                <textarea className="manual-entry-text-area" rows="9" placeholder="Surgical Plan"/>
               </div>
             </Grid>
             <Grid size={12}>
@@ -82,7 +82,7 @@ export const CasePlanning = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">My Role</p>
-                <textarea className="case-planning-text-area" placeholder="My Role"/>
+                <textarea className="manual-entry-text-area" rows="6" placeholder="My Role"/>
               </div>
             </Grid>
           </Grid>
