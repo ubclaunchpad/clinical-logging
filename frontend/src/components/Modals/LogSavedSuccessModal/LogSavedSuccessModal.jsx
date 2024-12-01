@@ -29,7 +29,7 @@ export const LogSavedSuccessModal = () => {
 
   return (
     <div>
-      <CLButtonPrimary className="save-icon-button" onClick={handleOpen} width={"330px"}>
+      <CLButtonPrimary className="save-icon-button" onClick={handleOpen} width={"280px"}>
        <SaveOutlinedIcon className="save-icon" />
         <p>Create New Log</p>
       </CLButtonPrimary>

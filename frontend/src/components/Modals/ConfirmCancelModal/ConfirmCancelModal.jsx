@@ -20,7 +20,7 @@ export const ConfirmCancelModal = () => {
 
   return (
     <div>
-      <CLButtonSecondary className="cancel-x-icon-button" onClick={handleOpen} width={"220px"}>
+      <CLButtonSecondary className="cancel-x-icon-button" onClick={handleOpen} width={"180px"}>
        <XMarkIcon className="cancel-x-icon"/>
         <p>Cancel</p>
       </CLButtonSecondary>

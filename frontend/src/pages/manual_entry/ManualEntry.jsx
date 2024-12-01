@@ -1,7 +1,7 @@
 import { AppBar } from "../../components/AppBar/AppBar";
 import { LogSavedSuccessModal } from "../../components/Modals/LogSavedSuccessModal/LogSavedSuccessModal";
 import { ConfirmCancelModal } from "../../components/Modals/ConfirmCancelModal/ConfirmCancelModal";
-import { SurgicalAndPatientInfo } from "./sections/surgical_and_patient_info/SurgicalAndPatientInto";
+import { SurgicalAndPatientInfo } from "./sections/surgical_and_patient_info/SurgicalAndPatientInfo";
 import { ExaminationsAndInvestigations } from "./sections/examinations_and_investigations/ExaminationsAndInvestigations";
 import { CasePlanning } from "./sections/case_planning/CasePlanning";
 import { LearningPoints } from "./sections/learning_points/LearningPoints";
@@ -14,7 +14,7 @@ import "./ManualEntry.css"
  * https://dev.to/dance2die/react-sticky-event-with-intersection-observer-310h
  */
 const ManualEntry = () => {
-  
+
   return (
     <div>
       <AppBar />

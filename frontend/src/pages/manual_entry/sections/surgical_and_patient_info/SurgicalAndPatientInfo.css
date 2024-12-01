@@ -1,0 +1,18 @@
+.meds-last-dose-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.meds-last-dose-button {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 20px;
+}
+
+.meds-last-dose-icon {
+  height: 34px;
+  width: 34px;
+  color: #244B94;
+}
