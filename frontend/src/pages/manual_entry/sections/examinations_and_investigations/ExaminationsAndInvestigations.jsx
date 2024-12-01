@@ -48,6 +48,10 @@ export const ExaminationsAndInvestigations = () => {
               </div>
             </Grid>
             <Grid size={12}>
+              {/* Spacer */}
+              <div style={{height: "36px"}}></div>
+            </Grid>
+            <Grid size={12}>
               <div>
                 <p className="input-title-bold">Cath</p>
                 <input className="manual-entry-input" type="file"/>
