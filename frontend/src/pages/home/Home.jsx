@@ -36,6 +36,47 @@ function MainContent() {
     navigate("/history");
   };
 
+  const recentActivities = [
+    {
+      id: 1,
+      action: "Added Log",
+      logName: "mylogexample",
+      time: "1d",
+    },
+    {
+      id: 2,
+      action: "Added Log",
+      logName: "mylogexample",
+      time: "1d",
+    },
+    {
+      id: 3,
+      action: "Added Log",
+      logName: "mylogexample",
+      time: "1d",
+    },
+    // Add more items as needed
+  ];
+
+  const progressItems = [
+    {
+      id: 1,
+      name: "Adult Cardiac 2025",
+      progress: 65,
+    },
+    {
+      id: 2,
+      name: "Adult Cardiac 2025",
+      progress: 65,
+    },
+    {
+      id: 3,
+      name: "Adult Cardiac 2025",
+      progress: 65,
+    },
+    // Add more items as needed
+  ];
+
   return (
     <div className="dashboard-container">
       <div className="welcome-section">
@@ -88,14 +129,14 @@ function MainContent() {
                   <ChevronRightIcon className="chevron-icon" />
                 </div>
                 <div className="activity-list">
-                  {[1, 2, 3].map((item, index) => (
-                    <div key={index} className="activity-item">
+                  {recentActivities.map((activity) => (
+                    <div key={activity.id} className="activity-item">
                       <div className="activity-info">
-                        <h2>Added Log:</h2>
-                        <h3 className="log-name">mylogexample</h3>
+                        <h2>{activity.action}:</h2>
+                        <h3 className="log-name">{activity.logName}</h3>
                       </div>
                       <div className="activity-time">
-                        <h3>1d</h3>
+                        <h3>{activity.time}</h3>
                       </div>
                       <ClockIcon className="time-icon" />
                     </div>
@@ -114,20 +155,20 @@ function MainContent() {
           <div className="logbooks-content">
             <img src={LogBooks} alt="Logbooks" className="logbooks-image" />
             <div className="progress-list">
-              {[1, 2, 3].map((item, index) => (
+              {progressItems.map((item) => (
                 <div
-                  key={item}
+                  key={item.id}
                   className="progress-item"
-                  onClick={() => setSelectedLog(index)}
+                  onClick={() => setSelectedLog(item.id)}
                 >
                   <div className="progress-info">
-                    <span>Adult Cardiac 2025</span>
-                    <span>65%</span>
+                    <span>{item.name}</span>
+                    <span>{item.progress}%</span>
                   </div>
                   <div className="progress-bar">
                     <div
                       className="progress-fill"
-                      style={{ width: "65%" }}
+                      style={{ width: `${item.progress}%` }}
                     ></div>
                   </div>
                 </div>
