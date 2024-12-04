@@ -10,6 +10,7 @@ import { ChevronRightIcon, ClockIcon } from "@heroicons/react/24/outline";
 import "./Home.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
+import { NewLogModal } from "../../components/NewLogModal/NewLogModal";
 
 export default function Home() {
   return (
@@ -97,9 +98,7 @@ function MainContent() {
               with just a click of a button!
             </p>
             <div className="button-stack">
-              <CLButtonPrimary onClick={handleCreateNewLog} width={"230px"}>
-                Create New Log
-              </CLButtonPrimary>
+              <NewLogModal />
               <CLButtonSecondary onClick={handleAddLogbook} width={"230px"}>
                 Add Logbook
               </CLButtonSecondary>
