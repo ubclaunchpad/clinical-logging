@@ -1,9 +1,9 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import authRoutes from "./src/routes/authRoutes.js";
-import logRoutes from "./src/routes/logRoutes.js";
-import transcriptionRoutes from "./src/routes/transcriptionRoutes.js";
+import authRoutes from "./src/routes/auth-route.js";
+import logbookRoutes from "./src/routes/logbooks-route.js";
+import transcriptionRoutes from "./src/routes/transcription-route.js";
 import fileUpload from "express-fileupload";
 
 dotenv.config();
@@ -20,7 +20,7 @@ app.use(fileUpload());
 
 //Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/log", logRoutes);
+app.use("/api/logbooks", logbookRoutes);
 app.use("/api/transcriptions", transcriptionRoutes);
 
 app.listen(PORT, () => {
