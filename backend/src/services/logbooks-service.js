@@ -16,7 +16,7 @@ export async function getUserLogbooks(req) {
         const token = req.header("Authorization")?.split(" ")[1];
         const userID = parseUserID(token);
         if (userID.error) {
-            throw new Error(userID.error.message)
+            throw new Error(userID.error)
         }
         const userLogbooks = await getTable(supabase, "logbooks", "user_id", userID, "collection");
         return userLogbooks;
@@ -47,7 +47,7 @@ export async function createLog(req) {
         body["logbook_id"] = logbookID;
         const logbookType = await getLogbookType(logbookID, supabase);
         if (logbookType.error) {
-            throw new Error(logbookType.error.message);
+            throw new Error(logbookType.error);
         }
         if (body["type"] !== logbookType) {
             throw new Error(`log type '${body["type"]}' does not match logbook type '${logbookType}'`);
@@ -69,7 +69,7 @@ export async function getLogbookLogs(req) {
         const { logbookID } = req.params;
         const logbookType = await getLogbookType(logbookID, supabase);
         if (logbookType.error) {
-            throw new Error(logbookType.error.message);
+            throw new Error(logbookType.error);
         }
         const logbookLogs = await getTable(supabase, logbookType, "logbook_id", logbookID, "collection");
         return logbookLogs;
@@ -84,7 +84,7 @@ export async function getLog(req) {
         const { logbookID, logID } = req.params;
         const logbookType = await getLogbookType(logbookID, supabase);
         if (logbookType.error) {
-            throw new Error(logbookType.error.message);
+            throw new Error(logbookType.error);
         }
         const log = await getTable(supabase, logbookType, "id", logID, "resource");
         if (typeof log == "undefined") {
