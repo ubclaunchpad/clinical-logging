@@ -16,15 +16,12 @@ const auth = async (req, res, next) => {
 			})
 			req.supabase = supabase;
 		} else {
-			console.error("No token: Authentication Denied");
 			return res.status(401).json({ message: "No token: Authentication Denied" });
 		}
 		next();
 	} catch (err) {
-		console.error("Invalid token, authentication denied:", err.message);
 		return res.status(400).json({ message: `Invalid token, authentication denied: ${err.message}`});
 	}
 };
 
 export default auth;
-
