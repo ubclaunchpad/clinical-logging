@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
-import UploadArea from "../components/UploadPhoto/UploadArea";
-import PreviewSection from "../components/UploadPhoto/PreviewSection";
+import UploadArea from "../../components/UploadPhoto/UploadArea";
+import PreviewSection from "../../components/UploadPhoto/PreviewSection";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import "./styles/UploadPhoto.css";
+import "./UploadPhoto.css";
 
 export default function UploadPhotos() {
   const [imageFiles, setImageFiles] = useState([]);
