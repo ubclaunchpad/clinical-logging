@@ -54,8 +54,7 @@ export async function createLog(req) {
         }
         switch (body["type"]) {
             case "adult_cardiac_logs":
-                const log = await insertTable(supabase, "adult_cardiac_logs", body);
-                return log;
+                return await insertTable(supabase, "adult_cardiac_logs", body);
             default:
                 throw new Error(`log and logbook type '${body["type"]}' are invalid`);
         }
