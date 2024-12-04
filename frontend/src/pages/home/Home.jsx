@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  CLButtonPrimary,
-  CLButtonSecondary,
-} from "../../components/Buttons/CLButtons";
+import { CLButtonSecondary } from "../../components/Buttons/CLButtons";
 import { useNavigate } from "react-router-dom";
 import LogBooks from "../../assets/images/logbooks.png";
 import ShopLogBooks from "../../assets/images/ShopLogBooks.png";
@@ -24,10 +21,6 @@ function MainContent() {
   const navigate = useNavigate();
   const [setSelectedLog] = useState(null);
   const { session } = useAuth();
-
-  const handleCreateNewLog = () => {
-    navigate("/upload-photo");
-  };
 
   const handleAddLogbook = () => {
     navigate("/newLog");
