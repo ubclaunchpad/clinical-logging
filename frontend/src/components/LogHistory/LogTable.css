@@ -1,0 +1,76 @@
+/* Logs Table */
+.logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logs-table th {
+    background: #333A3F;
+    color: white;
+    text-align: left;
+    padding: 13px 24px;
+    font-weight: 700;
+    font-size: 17px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  
+  .logs-table th:first-child {
+    border-top-left-radius: 20px;
+  }
+  
+  .logs-table th:last-child {
+    border-top-right-radius: 20px;
+  }
+  
+  .logs-table td {
+    color: #1E1E1E;
+    font-size: 15px;
+    padding: 8px 24px;
+  }
+  
+  .logs-table td:not(.checkbox-column) {
+    text-align: left;
+    padding: 16px 24px;
+  }
+  
+  /* Selected Row */
+  .logs-table tr.selected {
+    background-color: #D3E4FF;
+  }
+  
+  /* Hover and Even Rows */
+  .logs-table tr:not(.selected):nth-child(even),
+  .logs-table tr:not(.selected):hover {
+    background-color: #F2F5FF;
+  }
+  
+  /* Column Widths */
+  .checkbox-column {
+    width: 64px;
+  }
+  
+  .log-title-column,
+  .type-column,
+  .date-column {
+    width: calc((100% - 64px) / 3);
+  }
+  
+  /* Title Column */
+  .title-column {
+    color: #64B2F6 !important;
+  }
+  
+  /* Sort Icon */
+  .sort-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-bottom: 3px;
+    stroke-width: 2.5;
+  }
