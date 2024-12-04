@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
 import ContentHeader from "../../components/ContentHeader/ContentHeader";
+import LogTable from "../../components/LogHistory/LogTable";
+import Pagination from "../../components/LogHistory/Pagination";
 import "./LogHistory.css";
 
 export default function LogHistory() {
@@ -74,72 +75,25 @@ function MainContent() {
   return (
     <div className="table-container">
       <ContentHeader />
-      <table className="logs-table">
-        <thead>
-          <tr>
-            <th className="checkbox-column">
-              <input
-                type="checkbox"
-                onChange={handleSelectAll}
-                checked={allSelected}
-              />
-            </th>
-            <th className="log-title-column">
-              LOG TITLE <ChevronUpDownIcon className="sort-icon" />
-            </th>
-            <th className="type-column">
-              TYPE <ChevronUpDownIcon className="sort-icon" />
-            </th>
-            <th className="date-column">
-              DATE CREATED <ChevronUpDownIcon className="sort-icon" />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentLogs.map((log) => (
-            <tr key={log.id} className={selectedLogs[log.id] ? "selected" : ""}>
-              <td className="checkbox-column">
-                <input
-                  type="checkbox"
-                  checked={!!selectedLogs[log.id]}
-                  onChange={() => handleSelectLog(log.id)}
-                />
-              </td>
-              <td className="log-title-column title-column">{log.title}</td>
-              <td className="type-column">{log.type}</td>
-              <td className="date-column">{log.dateCreated}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <LogTable
+        currentLogs={currentLogs}
+        selectedLogs={selectedLogs}
+        handleSelectAll={handleSelectAll}
+        handleSelectLog={handleSelectLog}
+        allSelected={allSelected}
+      />
       <div className="table-footer">
         <div className="showing-text">
           Showing <span>{startRange}</span>-<span>{endRange}</span> of{" "}
           {logs.length} logs
         </div>
-        <div className="pagination">
-          {currentPage > 1 && (
-            <span className="previous" onClick={handlePreviousPage}>
-              Previous
-            </span>
-          )}
-          {Array.from({ length: totalPages }, (_, index) => (
-            <span
-              key={index + 1}
-              className={
-                currentPage === index + 1 ? "current-page" : "page-number"
-              }
-              onClick={() => handlePageClick(index + 1)}
-            >
-              {index + 1}
-            </span>
-          ))}
-          {currentPage < totalPages && (
-            <span className="next" onClick={handleNextPage}>
-              Next
-            </span>
-          )}
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+          handlePageClick={handlePageClick}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,37 @@
+.pagination {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .pagination span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #64B2F6;
+    font-size: 14px;
+    min-width: 13px;
+    height: 20px;
+  }
+  
+  .pagination .current-page {
+    background-color: #244B94;
+    color: white !important;
+    font-weight: 500;
+    border-radius: 50%;
+  }
+  
+  .pagination span.next,
+  .pagination span.previous {
+    min-width: auto;
+    height: auto;
+    color: #244B94;
+    font-weight: 500;
+  }
+  
+  /* Hover state for pagination */
+  .pagination span:hover:not(.current-page):not(.next):not(.previous) {
+    color: #244B94;
+  }
