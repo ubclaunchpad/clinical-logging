@@ -1,0 +1,40 @@
+.progress-item {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: transparent;
+}
+
+.progress-item:hover {
+  background-color: #e7edf8;
+}
+  
+.progress-item:hover .progress-bar {
+  background: #fbfcfe;
+}
+
+.progress-item:hover .progress-info {
+  color: #244b94;
+}
+  
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+  
+.progress-bar {
+  height: 8px;
+  background: #e7edf8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+  
+.progress-fill {
+  height: 100%;
+  background: #244b94;
+  border-radius: 4px;
+}

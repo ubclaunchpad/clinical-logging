@@ -1,0 +1,13 @@
+.dashboard-container {
+  padding: 16px;
+  margin-left: 65px;
+  max-width: 1400px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  margin-top: 5%;
+  height: auto;
+}
