@@ -1,4 +1,4 @@
-import { LogbookTypeInfo } from "./logbookTypeInfo";
+import { LogbookTypeInfo } from "./LogbookTypeInfo";
 import LogRectangle from "../../assets/images/LogRectangle.png";
 import "./LogbookCard.css";
 
