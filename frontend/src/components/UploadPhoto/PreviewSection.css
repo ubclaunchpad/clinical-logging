@@ -1,0 +1,170 @@
+.preview-section {
+    position: fixed;
+    top: 15%;
+    right: 2%;
+    width: 400px;
+    height: 75%;
+    border-radius: 10px;
+    background: #FAF9F9;
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ECEBED;
+  }
+  
+  .preview-title {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #333333;
+    font-weight: 600;
+    background: none;
+  }
+  
+  .preview-section-icon {
+    color: #2B4B96;
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Edit Button */
+  .edit-button {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    border: 1px solid #9AB0E1;
+    border-radius: 15px;
+    background: none;
+    color: #333333;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .edit-button.active {
+    color: #2B4B96;
+  }
+  
+  .edit-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Delete Button */
+  .delete-button {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .delete-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Preview List */
+  .preview-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .preview-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .preview-list::-webkit-scrollbar-track {
+    background: #F3F4F6;
+    border-radius: 3px;
+  }
+  
+  .preview-list::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 3px;
+  }
+  
+  .preview-list::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+  }
+  
+  /* Preview Item */
+  .preview-item {
+    width: 100%;
+    padding: 0.5rem;
+    position: relative;
+  }
+  
+  .preview-image {
+    width: calc(100% - 8px);
+    border-radius: 12px;
+    object-fit: contain;
+    max-height: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Preview Footer */
+  .preview-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .preview-footer .transcribe-button {
+    margin-bottom: -1rem;
+    border-radius: 20px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  /* Transcribe Button */
+  .transcribe-button {
+    background-color: #244B94;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .transcribe-button:hover {
+    background-color: #1e3a7b;
+  }
+  
+  .transcribe-button:active {
+    background-color: #152c5f;
+  }
+  
+  .transcribe-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(43, 75, 150, 0.4);
+  }
