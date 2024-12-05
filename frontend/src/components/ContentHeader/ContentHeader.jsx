@@ -8,7 +8,7 @@ export default function ContentHeader({ header, primaryButtonText, actions }) {
       <h2>{header}</h2>
       <div className="button-group">
         <AddButton text={primaryButtonText} onClick={() => {}} />
-        <ActionsButton actions={actions} onClick={() => {}} />
+        <ActionsButton actions={actions} />
       </div>
     </div>
   );
@@ -23,7 +23,7 @@ function AddButton({ text, onClick = () => {} }) {
   );
 }
 
-function ActionsButton({ actions, onClick = () => {} }) {
+function ActionsButton({ actions }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
