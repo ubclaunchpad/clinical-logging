@@ -1,63 +1,72 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import {
-  PlusIcon,
-  ChevronDownIcon,
-  ChevronDoubleLeftIcon,
-  ChevronLeftIcon,
-} from "@heroicons/react/24/outline";
+import { PlusIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import "./ContentHeader.css";
+import { useState, useRef, useEffect } from "react";
 
-export default function ContentHeader({ onPreviewClick }) {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHistory = location.pathname === "/history";
-  const isUploadPhoto = location.pathname === "/upload-photo";
-
-  if (isUploadPhoto) {
-    return (
-      <div className="upload-photo-header">
-        <button className="back-button" onClick={() => navigate("/home")}>
-          <ChevronLeftIcon className="upload-back-icon" />
-        </button>
-        <div className="title-wrapper">
-          <h2 className="upload-photo-title">Upload Photos</h2>
-        </div>
-        <button className="preview-button" onClick={onPreviewClick}>
-          Preview
-          <ChevronDoubleLeftIcon className="preview-icon" />
-        </button>
-      </div>
-    );
-  }
-
+export default function ContentHeader({ header, primaryButtonText, actions }) {
   return (
     <div className="content-header">
-      <h2>{isHistory ? "Log History" : "Logbooks"}</h2>
+      <h2>{header}</h2>
       <div className="button-group">
-        <AddButton
-          variant={isHistory ? "history" : "logbook"}
-          onClick={() => {}}
-        />
-        <ActionsButton onClick={() => {}} />
+        <AddButton text={primaryButtonText} onClick={() => {}} />
+        <ActionsButton actions={actions} onClick={() => {}} />
       </div>
     </div>
   );
 }
 
-function AddButton({ variant = "logbook", onClick = () => {} }) {
+function AddButton({ text, onClick = () => {} }) {
   return (
     <button onClick={onClick} className="add-button">
-      {variant === "history" ? "Add Logs" : "Add Book"}
+      {text}
       <PlusIcon className="plus-icon" />
     </button>
   );
 }
 
-function ActionsButton({ onClick = () => {} }) {
+function ActionsButton({ actions, onClick = () => {} }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <button onClick={onClick} className="actions-button">
-      <span>Actions</span>
-      <ChevronDownIcon className="down-icon" />
-    </button>
+    <div className="actions-wrapper" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`actions-button ${isOpen ? "actions-button-active" : ""}`}
+      >
+        <span>Actions</span>
+        <ChevronDownIcon
+          className={`down-icon ${isOpen ? "down-icon-active" : ""}`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="actions-dropdown">
+          {actions.map((action, index) => (
+            <button
+              key={index}
+              className="action-item"
+              onClick={() => {
+                action.onClick();
+                setIsOpen(false);
+              }}
+            >
+              {action.icon && <action.icon />}
+              {action.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

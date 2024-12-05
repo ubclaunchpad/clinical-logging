@@ -26,6 +26,10 @@
     align-items: center;
 }
 
+.actions-wrapper {
+    position: relative;
+  }
+  
 .actions-button {
     background: white;
     color: #000000;         /* SECONDARY_COLOR */
@@ -41,8 +45,47 @@
     font-weight: 600;
 }
 
-.actions-button:hover {
-    background: #f0f5ff;
+.actions-button-active {
+    background-color: #333A3F;
+    color: white;
+    border-color: #000000;
+}
+
+.actions-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  min-width: 10rem;
+  z-index: 50;
+  border: 1px solid #E5E7EB;
+}
+
+.action-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+    padding: 0.75rem 2rem;
+    color: #374151;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+    background: none;
+    text-align: left;
+}
+
+.action-item:hover {
+    background-color: #F3F4F6;
+}
+
+.action-item svg {
+  width: 1.25rem;
+    height: 1.25rem;
+    color: #244B94;
 }
 
 .add-button {
@@ -72,71 +115,9 @@
 .down-icon {
     width: 18px;
     height: 18px;
-}
-
-.back-button {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #2B4B96;
-}
-
-.preview-button {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #333333;
-    font-weight: 400;
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-direction: row-reverse;
-}
-
-.preview-icon {
-    width: 30px;
-    height: 30px;
-    stroke-width: 2;
-    color: #244B94;
-}
-
-.upload-back-icon {
-    width: 30px;
-    height: 30px;
-    stroke-width: 3;
-    color: #2B4B96;
     transition: transform 0.2s ease;
 }
 
-.upload-back-icon:hover {
-    transform: translateX(-5px);
-}
-
-.title-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.upload-photo-title {
-    color: #1E1E1E;
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin: 0;
-  padding-bottom: 0.5rem;
-  width: fit-content; 
-  border-bottom: 2px solid #ECEBED;
-}
-
-.upload-photo-header {
-    position: absolute;
-    left: 230px;
-    top: 18%;
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 4px;
+.down-icon-active {
+    transform: rotate(180deg);
 }

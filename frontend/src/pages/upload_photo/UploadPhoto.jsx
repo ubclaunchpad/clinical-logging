@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
-import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import "./UploadPhoto.css";
 import { useNavigate } from "react-router-dom";
 import PreviewSection from "../../components/UploadPhoto/PreviewSection";
 import UploadArea from "../../components/UploadPhoto/UploadArea";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronDoubleLeftIcon,
+} from "@heroicons/react/24/solid";
 
 export default function UploadPhoto() {
   const navigate = useNavigate();
@@ -29,6 +32,7 @@ export default function UploadPhoto() {
 }
 
 function MainContent({ handleTranscribe }) {
+  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
 
@@ -63,7 +67,18 @@ function MainContent({ handleTranscribe }) {
 
   return (
     <div className="upload-container">
-      <ContentHeader onPreviewClick={handlePreviewClick} />
+      <div className="upload-photo-header">
+        <button className="back-button" onClick={() => navigate("/home")}>
+          <ChevronLeftIcon className="upload-back-icon" />
+        </button>
+        <div className="title-wrapper">
+          <h2 className="upload-photo-title">Upload Photos</h2>
+        </div>
+        <button className="preview-button" onClick={handlePreviewClick}>
+          Preview
+          <ChevronDoubleLeftIcon className="preview-icon" />
+        </button>
+      </div>
 
       {showPreview && (
         <PreviewSection
