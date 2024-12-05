@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/AuthContext";
-import WelcomeSection from "../Header/WelcomeSection";
-import GetStartedCard from "./GetStartedCard";
-import BottomSection from "./BottomSection";
-import LogbooksCard from "../RightSection/LogbooksCard";
+import GetStartedCard from "./LeftSection/GetStartedCard";
+import LogbooksCard from "./RightSection/LogbooksCard";
+import ShopBooksCard from "./LeftSection/ShopBooksCard";
+import RecentActivityCard from "./LeftSection/RecentActivityCard";
 import "./MainContent.css";
 
 export default function MainContent() {
   const navigate = useNavigate();
   const [setSelectedLog] = useState(null);
-  const { session } = useAuth();
 
   const handleAddLogbook = () => {
     navigate("/newLog");
@@ -62,26 +60,29 @@ export default function MainContent() {
   ];
 
   return (
-    <div className="dashboard-container">
-      <WelcomeSection
-        firstName={session?.user?.user_metadata?.first_name || "User"}
-      />
-
-      <div className="content-grid">
-        <div>
-          <GetStartedCard
-            handleAddLogbook={handleAddLogbook}
-            handleViewHistory={handleViewHistory}
-          />
-
-          <BottomSection recentActivities={recentActivities} />
-        </div>
-
-        <LogbooksCard
-          progressItems={progressItems}
-          setSelectedLog={setSelectedLog}
+    <div className="content-grid">
+      <div>
+        <GetStartedCard
+          handleAddLogbook={handleAddLogbook}
+          handleViewHistory={handleViewHistory}
         />
+
+        <BottomSection recentActivities={recentActivities} />
       </div>
+
+      <LogbooksCard
+        progressItems={progressItems}
+        setSelectedLog={setSelectedLog}
+      />
+    </div>
+  );
+}
+
+function BottomSection({ recentActivities }) {
+  return (
+    <div className="bottom-section">
+      <ShopBooksCard />
+      <RecentActivityCard recentActivities={recentActivities} />
     </div>
   );
 }

@@ -1,0 +1,25 @@
+.dashboard-container {
+    margin-left: 65px;
+    max-width: 1400px;
+  }
+
+.welcome-section {
+    position: flex;
+    left: 230px;
+    display: flex;
+    align-items: center;
+    margin-top: -40px;
+  }
+  
+  .welcome-text {
+    font-weight: 300;
+    font-size: 25px;
+    color: #1e1e1e;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    font-size: 25px;
+    color: #1e1e1e;
+  }
+  

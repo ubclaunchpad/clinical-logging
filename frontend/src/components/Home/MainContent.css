@@ -1,3 +1,10 @@
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  height: auto;
+}
+
 .bottom-section {
   display: grid;
   grid-template-columns: 1fr 1fr;

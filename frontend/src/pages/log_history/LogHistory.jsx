@@ -3,7 +3,43 @@ import { NavContentWrapper } from "../../components/NavContentWrapper/NavContent
 import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import LogTable from "../../components/LogHistory/LogTable";
 import Pagination from "../../components/LogHistory/Pagination";
+import {
+  PencilSquareIcon,
+  ArrowDownTrayIcon,
+  AdjustmentsHorizontalIcon,
+  EyeIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import "./LogHistory.css";
+
+/** Array of log actions */
+const logActions = [
+  {
+    label: "Configure",
+    icon: PencilSquareIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Download",
+    icon: ArrowDownTrayIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Filter",
+    icon: AdjustmentsHorizontalIcon,
+    onClick: () => {},
+  },
+  {
+    label: "View",
+    icon: EyeIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Delete",
+    icon: TrashIcon,
+    onClick: () => {},
+  },
+];
 
 export default function LogHistory() {
   return (
@@ -74,7 +110,11 @@ function MainContent() {
 
   return (
     <div className="table-container">
-      <ContentHeader />
+      <ContentHeader
+        header="Logbook"
+        primaryButtonText="Add Logs"
+        actions={logActions}
+      />
       <LogTable
         currentLogs={currentLogs}
         selectedLogs={selectedLogs}
