@@ -1,0 +1,435 @@
+/* General Styles */
+.signup-link span {
+    color: black;
+    font-size: 1rem;
+}
+
+form button[type="submit"] {
+    border-radius: 20px;
+    border: 1px solid #BAC1D0;
+    background: #16448f;
+    color: #F2F4F8;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    width: 400px;
+    height: 55px;
+}
+
+form button[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+form button[type="submit"]:focus {
+    outline: none;
+}
+
+form button[type="submit"].ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+}
+
+form {
+    background-color: #F7FAFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+/* Input Styling */
+.sign-in-container input,
+.sign-up-container input,
+.name-group input {
+    background-color: #F7FAFF;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.container {
+    background-color: #F7FAFF;
+    overflow: hidden;
+    margin: 0;
+    width: 1280px;
+    height: 931px;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.7s ease-in-out;
+}
+
+.form-container h1 {
+	font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: black;
+}
+
+.form-container h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #3f51b5;
+}
+
+.sign-in-container,
+.sign-up-container {
+    left: 50%;
+    width: 50%;
+    z-index: 2;
+}
+
+.sign-in-container h2,
+.sign-up-container h2 {
+    font-size: 1rem;
+    color: #244B94;
+    margin-top: 0;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(-100%);
+}
+
+.sign-up-container {
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(-100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.7s;
+}
+
+@keyframes show {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(100%);
+}
+
+.overlay {
+    background: linear-gradient(35deg, #1d57b6 0%, #070e1e 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #F2F4F8;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 40px 0;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+.social-container {
+    margin: 20px 0;
+}
+
+.username-group,
+.password-group,
+.confirm-password-group {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.email-group {
+	display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.confirm-password-group {
+    margin-bottom: 3rem;
+}
+
+.forgot-password {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0 1.5rem;
+    width: 400px;
+}
+
+.forgot-password a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password a:hover {
+    color: #000;
+}
+
+.signup-link {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.signup-link a {
+    font-size: 1rem;
+    color: #5D9EFF;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.overlay-panel img {
+    width: 450px !important; 
+    margin-bottom: 2rem;
+}
+
+.logo-container {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 101;
+}
+
+.logo-container img {
+    width: 250px;
+}
+
+/* TextField Container Styling */
+.form-container .MuiTextField-root {
+    width: 400px !important;
+}
+
+.institution-training-container .MuiTextField-root {
+    width: 100% !important;
+	height: 100% !important;
+}
+
+/* Main TextField Styling */
+.MuiTextField-root .MuiOutlinedInput-root {
+    border-radius: 50px;
+    background-color: #F7FAFF;
+}
+
+.MuiTextField-root .MuiOutlinedInput-input {
+    color: #6B7280;
+    padding: 10px 5px;
+    text-align: left;
+}
+
+.MuiTextField-root .MuiOutlinedInput-input::placeholder {
+    color: #C4C5C6;
+    opacity: 0.8;
+}
+
+.MuiTextField-root .MuiOutlinedInput-notchedOutline {
+    border-radius: 20px;
+    border: 1px solid #BAC1D0;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #BAC1D0;
+    border-width: 1px;
+}
+
+.MuiTextField-root .MuiInputAdornment-root .MuiSvgIcon-root {
+    color: #C4C5C6;
+    font-size: 1.4rem;
+}
+
+/* Name Group Styling */
+.name-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 400px;
+    margin-top: 1rem;
+}
+
+.name-group > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-group input {
+    border-radius: 20px;
+    background-color: #F7FAFF;
+    color: #6B7280;
+    padding: 17px 20px;
+    border: 1px solid #BAC1D0;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.name-group input::placeholder {
+    color: #C4C5C6;
+    opacity: 0.8;
+}
+
+.name-group input:hover {
+    border-color: #000;
+}
+
+/* Label Styling */
+.form-container label {
+    color: #4F607E;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.institution-training-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 400px;
+    margin: 1rem 0 2rem;
+}
+
+.institution-training-container > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.institution-training-container .MuiOutlinedInput-input {
+    color: #6B7280;
+    padding: 7px 20px;
+    text-align: left;
+}
+
+/* Custom Select Styling */
+.institution-training-container .custom-select-container {
+    position: relative;
+	height: 100%;
+}
+
+.custom-select {
+	height: 70%;
+	padding-left: 20px;
+	padding-top: 14px;
+    border-radius: 20px;
+    background-color: #F7FAFF;
+    border: 1px solid #BAC1D0;
+    color: #C4C5C6;
+    cursor: pointer;
+    appearance: none;
+    text-align: left;
+}
+
+.custom-select:hover {
+    border-color: #000;
+}
+
+.custom-select-arrow {
+    position: absolute;
+    left: 85%;
+	top: 57%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.custom-select-options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #BAC1D0;
+    border-radius: 20px;
+    max-height: 200px;
+    width: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.custom-select-options.open {
+    display: block;
+}
+
+.custom-select-option {
+    padding: 12px 20px;
+    cursor: pointer;
+    color: #6B7280;
+}
+
+.custom-select-option:hover {
+    background-color: #F2F4F8;
+}
+
+.custom-select-arrow svg {
+    width: 17px;
+    height: 17px;
+}
+
+.custom-select[data-empty="false"] {
+    color: #6B7280;
+}

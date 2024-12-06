@@ -14,7 +14,7 @@ torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-large", torch_dtype=torch_dtype, trust_remote_code=True).to(device)
 processor = AutoProcessor.from_pretrained("microsoft/Florence-2-large", trust_remote_code=True)
 
-@app.route("/transcribe", methods=["POST"])
+@app.route("/api/transcribe", methods=["POST"])
 def transcribe():
     if "image" not in request.files:
         return jsonify({"error": "No image file provided"}), 400

@@ -1,0 +1,40 @@
+.logbook-progress-item {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: transparent;
+}
+
+.logbook-progress-item:hover {
+  background-color: #e7edf8;
+}
+  
+.logbook-progress-item:hover .logbook-progress-bar {
+  background: #fbfcfe;
+}
+
+.logbook-progress-item:hover .logbook-progress-info {
+  color: #244b94;
+}
+  
+.logbook-progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+  
+.logbook-progress-bar {
+  height: 8px;
+  background: #e7edf8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+  
+.logbook-progress-fill {
+  height: 100%;
+  background: #244b94;
+  border-radius: 4px;
+}
