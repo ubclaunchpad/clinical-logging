@@ -7,7 +7,7 @@ import Logo from "../../assets/images/logo.png";
 import "./LogCode.css";
 
 const LogCode = () => {
-  const [setLogbookCode] = useState("");
+  const [logbookCode, setLogbookCode] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const LogCode = () => {
       return alert("Please accept the terms and conditions");
     }
     try {
+      console.log("Logbook Code:", logbookCode); // exmaple use for now
       navigate("/home");
     } catch {
       alert("Something went wrong. Please try again.");

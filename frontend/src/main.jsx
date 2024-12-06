@@ -11,6 +11,8 @@ import LogHistory from "./pages/log_history/LogHistory.jsx";
 import UploadPhoto from "./pages/upload_photo/UploadPhoto.jsx";
 import ManualEntry from "./pages/manual_entry/ManualEntry.jsx";
 import LogCode from "./pages/log_code/LogCode.jsx";
+import LoadTranscription from "./pages/load_transcription/LoadTranscription.jsx";
+import LoadingScreen from "./pages/loading_screen/LoadingScreen.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -26,6 +28,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/upload-photo" element={<UploadPhoto />} />
           <Route path="/manualEntry" element={<ManualEntry />} />
           <Route path="/logCode" element={<LogCode />} />
+          <Route path="/load-transcription" element={<LoadTranscription />} />
+          <Route path="/loading-screen" element={<LoadingScreen />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

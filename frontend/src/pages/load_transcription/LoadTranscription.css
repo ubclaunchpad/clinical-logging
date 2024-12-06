@@ -1,0 +1,28 @@
+.transcription-container {
+  padding: 20px;
+}
+
+.transcription-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.transcription-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
