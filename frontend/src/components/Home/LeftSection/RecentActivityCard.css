@@ -3,8 +3,7 @@
   border-radius: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 20px;
-  height: 83%;
-  max-height: 300px;
+  min-height: 32%;
   overflow-y: auto;
   transition: transform 0.2s ease;
 }
@@ -36,7 +35,6 @@
 .activity-list {
   display: flex;
   flex-direction: column;
-  margin-top: -10px;
 }
 
 .activity-item {

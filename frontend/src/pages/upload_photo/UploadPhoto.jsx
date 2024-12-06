@@ -65,21 +65,16 @@ function MainContent({ files, setFiles, handleTranscribe }) {
 
   /** Handle files from input or drop */
   const handleFiles = (newFiles) => {
-    console.log("Received files:", newFiles); // Debug log
-
     const filesArray = Array.from(newFiles);
-    console.log("Files array:", filesArray); // Debug log
 
     const filesWithPreview = filesArray.map((file) => {
-      console.log("Processing file:", file); // Debug log
       return {
         file: file, // Store the actual File object
         timestamp: Date.now(),
         preview: URL.createObjectURL(file),
       };
     });
-
-    setFiles(filesWithPreview);
+    setFiles((prev) => [...filesWithPreview, ...prev]); // Add new files to beginning
   };
 
   /** Toggle preview visibility */
