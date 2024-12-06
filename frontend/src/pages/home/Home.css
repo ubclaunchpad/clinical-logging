@@ -1,32 +1,25 @@
-.main-content {
-    flex-grow: 1;
+.dashboard-container {
+    margin-left: 65px;
+    max-width: 1400px;
+  }
+
+.welcome-section {
+    position: flex;
+    left: 230px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    margin-top: 200px;
-}
-
-.main-content-buttons {
-    font-size: 17px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-    gap: 10px;
-}
-
-.buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.cta-paragraph {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #64748b;
-    width: 450px;
-    margin-top: -1rem;
-}
+    margin-top: -40px;
+  }
+  
+  .welcome-text {
+    font-weight: 300;
+    font-size: 25px;
+    color: #1e1e1e;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    font-size: 25px;
+    color: #1e1e1e;
+  }
+  

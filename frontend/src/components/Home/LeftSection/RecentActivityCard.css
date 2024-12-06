@@ -1,0 +1,82 @@
+.recent-activity-card {
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  min-height: 32%;
+  overflow-y: auto;
+  transition: transform 0.2s ease;
+}
+
+.recent-activity-card:hover {
+  transform: translateY(-2px);
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+  color: #2f3c50;
+}
+
+.activity-header .chevron-icon {
+  width: 20px;
+  height: 20px;
+  color: black;
+  margin-top: -20px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.activity-info {
+  display: flex;
+  gap: 5px;
+  color: #666;
+  font-size: 12px;
+}
+
+.activity-info h2 {
+  font-weight: 500;
+  font-size: 12px;
+  color: #2f3c50;
+  opacity: 0.8;
+}
+
+.activity-info h3 {
+  font-weight: 700;
+  font-size: 12px;
+  color: #2e4a8f;
+  margin-top: 10px;
+}
+
+.activity-time {
+  margin-left: 20px;
+}
+
+.activity-time h3 {
+  font-weight: 400;
+  font-size: 12px;
+  color: #a1b4de;
+}
+
+.time-icon {
+  color: #92a4cb;
+  width: 14px;
+  height: 14px;
+}
