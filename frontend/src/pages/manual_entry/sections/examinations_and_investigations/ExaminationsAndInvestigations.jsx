@@ -32,19 +32,19 @@ export const ExaminationsAndInvestigations = () => {
             <Grid size={4}>
               <div>
                 <p className="input-title">BMI</p>
-                <input className="manual-entry-input" type="number" placeholder="24.2 kg/m2" />
+                <input className="manual-entry-input" type="number" min="0" placeholder="24.2 kg/m2" />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Veins</p>
-                <input className="manual-entry-input" type="number" placeholder="Veins" />
+                <input className="manual-entry-input" type="number" min="0" placeholder="Veins" />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Allen Test</p>
-                <input className="manual-entry-input" type="number" placeholder="Allen Test" />
+                <input className="manual-entry-input" type="number" min="0" placeholder="Allen Test" />
               </div>
             </Grid>
             <Grid size={12}>
@@ -67,7 +67,7 @@ export const ExaminationsAndInvestigations = () => {
             <Grid size={6}>
               <div>
                 <p className="input-title">EF</p>
-                <input className="manual-entry-input" type="number" placeholder="60%" />
+                <input className="manual-entry-input" type="number" min="0" placeholder="60%" />
               </div>
             </Grid>
             <Grid size={6}>
