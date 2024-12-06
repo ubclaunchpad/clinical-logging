@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CLButtonSecondary } from "../../components/Buttons/CLButtons";
 import "./LoadingScreen.css";
 
 export default function LoadingScreen() {
