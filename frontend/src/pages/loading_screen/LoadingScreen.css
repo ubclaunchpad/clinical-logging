@@ -6,19 +6,27 @@
     height: 100vh;
     text-align: center;
 }
-  
-.loading-screen h2, h3 {
-    margin: 5px 0;
-    color: #333;
+ 
+.loading-screen h2 {
+    margin: 0px;
+    color: #1E1E1E;
+    font-size: 2rem;
+}
+
+.loading-screen h3 {
+    margin: 0px;
+    color: #1E1E1E;
+    font-size: 1.7rem;
 }
   
 .progress-bar-container {
     width: 60%;
-    height: 20px;
+    height: 25px;
     border-radius: 30px;
     border: 1px solid #244B94;
     background-color: #FFFF;
-    margin: 40px 0;
+    margin-top: 40px;
+    margin-bottom: 80px;
     position: relative;
 }
   
@@ -31,16 +39,25 @@
   
 .progress-text {
     position: absolute;
-    right: -40px;
-    top: -2px;
+    right: -50px;
+    top: 1px;
     color: #000000;
 }
-  
+
+.custom-button {
+    border: 1px solid #BAC1D0; 
+    border-radius: 30px;
+    color: #244B94; 
+    background-color: transparent;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex; 
+    align-items: center; 
+    cursor: pointer;
+}
+
 .cancel-icon {
     margin-right: 8px;
     font-size: 18px;
-}
-  
-.cancel-button:hover {
-    background: #f5f5f5;
 }

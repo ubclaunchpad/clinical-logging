@@ -73,13 +73,13 @@ export default function LoadingScreen() {
         <span className="progress-text">{progress}%</span>
       </div>
 
-      <CLButtonSecondary
+      <button
         onClick={() => navigate("/upload-photo")}
-        width={"250px"}
+        className={"custom-button"}
       >
         <span className="cancel-icon">×</span>
         Cancel Transcription
-      </CLButtonSecondary>
+      </button>
     </div>
   );
 }
