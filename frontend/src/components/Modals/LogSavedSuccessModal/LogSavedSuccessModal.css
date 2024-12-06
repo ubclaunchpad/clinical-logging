@@ -1,0 +1,89 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 380px;
+  width: 640px;
+  background-color: #FBFCFE;
+  border-radius: 20px;
+  box-shadow: 24;
+}
+
+.save-icon-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #F8F8F8;
+  gap: 4px;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #244B94;
+  border-radius: 40px;
+}
+
+.close-modal-button:hover {
+  background-color: rgb(219, 219, 219);
+}
+
+.modal-description {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.log-saved-success-modal-divider {
+  width: 60%;
+}
+
+.log-saved-success-modal-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 20px;
+}
+
+.see-log-history-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #F7FAFF;
+  gap: 12px;
+}
+
+.back-home-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #4F607E;
+  gap: 12px;
+}
+
+.save-icon {
+  height: 34px;
+  width: 34px;
+}
+
+.modal-icon {
+  height: 40px;
+  width: 40px;
+}
