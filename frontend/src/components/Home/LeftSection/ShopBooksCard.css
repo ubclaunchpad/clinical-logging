@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  height: 83%;
+  height: 32%;
   position: relative;
   overflow: hidden;
   transition: transform 0.2s ease;
