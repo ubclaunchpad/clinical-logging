@@ -4,6 +4,8 @@ from PIL import Image
 from transformers import AutoProcessor, AutoModelForCausalLM
 import torch
 
+from transcription import load_keys, parse_florence_output
+
 app = Flask(__name__)
 CORS(app)
 
@@ -16,6 +18,7 @@ processor = AutoProcessor.from_pretrained("microsoft/Florence-2-large", trust_re
 
 @app.route("/api/transcribe", methods=["POST"])
 def transcribe():
+    print("START OF ENDPOINT")
     if "image" not in request.files:
         return jsonify({"error": "No image file provided"}), 400
 
@@ -33,8 +36,9 @@ def transcribe():
             do_sample=False
         )
         generated_text = processor.batch_decode(generated_ids, skip_special_tokens=False)[0]
-
-        return jsonify({"transcription": generated_text})
+        keys = load_keys("keys.json")
+        json_result = parse_florence_output(generated_text, keys)
+        return json_result
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

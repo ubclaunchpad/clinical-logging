@@ -1,0 +1,18 @@
+{
+    "keys": [
+        "Case No.",
+        "Patient ID",
+        "Type",
+        "Surgeon",
+        "OR Date",
+        "Age",
+        "M/F",
+        "Indication for Surgery/Reason for Referral",
+        "HPI",
+        "Meds",
+        "Allergies",
+        "ID",
+        "PMHx",
+        "Social"
+    ]
+}

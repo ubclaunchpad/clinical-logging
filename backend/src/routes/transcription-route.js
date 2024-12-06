@@ -12,11 +12,12 @@ router.post("/", auth, async (req, res) => {
     }
 
     const imageFile = req.files.image;
+    // const keyFile = req.files.keys; // TODO: implement ability to send key file
     const formData = new FormData();
     formData.append("image", imageFile.data, imageFile.name);
 
     const response = await axios.post(
-      "http://localhost:5000/transcribe",
+      "http://127.0.0.1:5000/transcribe", //TODO: change this endpoint after deploying
       formData,
       {
         headers: {
