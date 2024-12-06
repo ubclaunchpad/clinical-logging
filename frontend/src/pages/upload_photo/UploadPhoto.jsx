@@ -9,31 +9,55 @@ import {
   ChevronRightIcon,
   ChevronDoubleLeftIcon,
 } from "@heroicons/react/24/solid";
+import LoadingScreen from "../loading_screen/LoadingScreen";
 
 export default function UploadPhoto() {
   const navigate = useNavigate();
+  const [files, setFiles] = useState([]);
+  const [isLoading] = useState(false);
+  const [progress] = useState(0);
 
   const handleTranscribe = () => {
-    navigate("/load-transcription");
+    if (files.length === 0) {
+      alert("Please upload an image first");
+      return;
+    }
+
+    navigate("/loading-screen", {
+      state: { imageFile: files[0].file },
+    });
   };
 
   return (
     <>
-      <NavContentWrapper>
-        <MainContent handleTranscribe={handleTranscribe} />
-      </NavContentWrapper>
-      <div className="transcribe-button-container">
-        <button className="transcribe-button" onClick={handleTranscribe}>
-          Transcribe
-        </button>
-      </div>
+      {isLoading ? (
+        <LoadingScreen progress={progress} />
+      ) : (
+        <>
+          <NavContentWrapper>
+            <MainContent
+              files={files}
+              setFiles={setFiles}
+              handleTranscribe={handleTranscribe}
+            />
+          </NavContentWrapper>
+          <div className="transcribe-button-container">
+            <button
+              className="transcribe-button"
+              onClick={handleTranscribe}
+              disabled={files.length === 0}
+            >
+              Transcribe
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }
 
-function MainContent({ handleTranscribe }) {
+function MainContent({ files, setFiles, handleTranscribe }) {
   const navigate = useNavigate();
-  const [files, setFiles] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
 
   /** Allowed file types */
@@ -41,12 +65,21 @@ function MainContent({ handleTranscribe }) {
 
   /** Handle files from input or drop */
   const handleFiles = (newFiles) => {
-    const filesWithPreview = newFiles.map((file) => ({
-      ...file,
-      timestamp: Date.now(),
-      preview: URL.createObjectURL(file),
-    }));
-    setFiles((prev) => [...filesWithPreview, ...prev]); // Add new files to beginning
+    console.log("Received files:", newFiles); // Debug log
+
+    const filesArray = Array.from(newFiles);
+    console.log("Files array:", filesArray); // Debug log
+
+    const filesWithPreview = filesArray.map((file) => {
+      console.log("Processing file:", file); // Debug log
+      return {
+        file: file, // Store the actual File object
+        timestamp: Date.now(),
+        preview: URL.createObjectURL(file),
+      };
+    });
+
+    setFiles(filesWithPreview);
   };
 
   /** Toggle preview visibility */

@@ -1,0 +1,46 @@
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+  
+.loading-screen h2, h3 {
+    margin: 5px 0;
+    color: #333;
+}
+  
+.progress-bar-container {
+    width: 60%;
+    height: 20px;
+    border-radius: 30px;
+    border: 1px solid #244B94;
+    background-color: #FFFF;
+    margin: 40px 0;
+    position: relative;
+}
+  
+.progress-bar {
+    height: 100%;
+    background: #244B94;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+  
+.progress-text {
+    position: absolute;
+    right: -40px;
+    top: -2px;
+    color: #000000;
+}
+  
+.cancel-icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+  
+.cancel-button:hover {
+    background: #f5f5f5;
+}
