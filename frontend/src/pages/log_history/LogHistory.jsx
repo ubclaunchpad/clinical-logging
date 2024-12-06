@@ -1,164 +1,140 @@
 import { useState } from "react";
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
-import SearchFilterSort from "../../components/LogHistory/SearchFilterSort";
+import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import LogTable from "../../components/LogHistory/LogTable";
 import Pagination from "../../components/LogHistory/Pagination";
+import {
+  PencilSquareIcon,
+  ArrowDownTrayIcon,
+  AdjustmentsHorizontalIcon,
+  EyeIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import "./LogHistory.css";
 
-const LogHistory = () => {
-  const initialLogs = [
-    {
-      id: 1,
-      title: "Patient A - Weekly Checkup",
-      dateOfOperation: "2023-09-25",
-      date: "2023-10-01",
-      patientName: "Patient A",
-    },
-    {
-      id: 2,
-      title: "Patient B - Medication Update",
-      dateOfOperation: "2024-08-15",
-      date: "2024-09-20",
-      patientName: "Patient B",
-    },
-    {
-      id: 3,
-      title: "Patient C - Initial Consultation",
-      dateOfOperation: "2024-06-12",
-      date: "2024-06-18",
-      patientName: "Patient C",
-    },
-    {
-      id: 4,
-      title: "Patient D - Follow-Up",
-      dateOfOperation: "2023-12-10",
-      date: "2023-12-15",
-      patientName: "Patient D",
-    },
-    {
-      id: 5,
-      title: "Patient E - Blood Test Results",
-      dateOfOperation: "2023-11-18",
-      date: "2023-11-21",
-      patientName: "Patient E",
-    },
-    {
-      id: 6,
-      title: "Patient F - Surgery Post-Op",
-      dateOfOperation: "2024-01-05",
-      date: "2024-01-10",
-      patientName: "Patient F",
-    },
-    {
-      id: 7,
-      title: "Patient G - Annual Checkup",
-      dateOfOperation: "2024-02-20",
-      date: "2024-02-28",
-      patientName: "Patient G",
-    },
-    {
-      id: 8,
-      title: "Patient H - Consultation",
-      dateOfOperation: "2024-03-10",
-      date: "2024-03-15",
-      patientName: "Patient H",
-    },
-    {
-      id: 9,
-      title: "Patient I - Physical Therapy",
-      dateOfOperation: "2023-05-01",
-      date: "2023-05-05",
-      patientName: "Patient I",
-    },
-    {
-      id: 10,
-      title: "Patient J - MRI Results",
-      dateOfOperation: "2024-03-25",
-      date: "2024-04-01",
-      patientName: "Patient J",
-    },
-  ];
+/** Array of log actions */
+const logActions = [
+  {
+    label: "Configure",
+    icon: PencilSquareIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Download",
+    icon: ArrowDownTrayIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Filter",
+    icon: AdjustmentsHorizontalIcon,
+    onClick: () => {},
+  },
+  {
+    label: "View",
+    icon: EyeIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Delete",
+    icon: TrashIcon,
+    onClick: () => {},
+  },
+];
 
-  const [logs] = useState(initialLogs);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
-  const [sort, setSort] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const logsPerPage = 3;
-
-  // New states for Date of Operation and Patient Name filters
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [patientName, setPatientName] = useState("");
-
-  // Filter and sort functionality
-  const filteredLogs = logs
-    .filter((log) => {
-      // Title filter
-      const matchesSearch = log.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
-      const matchesPatientFilter = filter === "" || log.patientName === filter;
-
-      // Date of Operation filter
-      const matchesDateRange =
-        (!startDate || new Date(log.dateOfOperation) >= new Date(startDate)) &&
-        (!endDate || new Date(log.dateOfOperation) <= new Date(endDate));
-
-      // Patient Name filter
-      const matchesPatientName =
-        !patientName ||
-        log.patientName.toLowerCase().includes(patientName.toLowerCase());
-
-      return (
-        matchesSearch &&
-        matchesPatientFilter &&
-        matchesDateRange &&
-        matchesPatientName
-      );
-    })
-    .sort((a, b) => {
-      if (sort === "date") return new Date(b.date) - new Date(a.date);
-      if (sort === "alphabetical") return a.title.localeCompare(b.title);
-      return 0;
-    });
-
-  // Paginate logs
-  const startIndex = (currentPage - 1) * logsPerPage;
-  const paginatedLogs = filteredLogs.slice(
-    startIndex,
-    startIndex + logsPerPage
-  );
-
+export default function LogHistory() {
   return (
     <NavContentWrapper>
-      <div className="log-history-container">
-        <div className="container">
-          <SearchFilterSort
-            search={search}
-            setSearch={setSearch}
-            filter={filter}
-            setFilter={setFilter}
-            sort={sort}
-            setSort={setSort}
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            patientName={patientName}
-            setPatientName={setPatientName}
-          />
-          <LogTable logs={paginatedLogs} />
-          <Pagination
-            currentPage={currentPage}
-            totalLogs={filteredLogs.length}
-            logsPerPage={logsPerPage}
-            onPageChange={setCurrentPage}
-          />
-        </div>
-      </div>
+      <MainContent />
     </NavContentWrapper>
   );
-};
+}
 
-export default LogHistory;
+function MainContent() {
+  /** Generate logs data dynamically */
+  const logs = Array.from({ length: 20 }, (_, index) => ({
+    id: index + 1,
+    title: `Log Title ${index + 1}`,
+    type: `Type ${(index % 5) + 1}`,
+    dateCreated: `2024-11-${(index % 30) + 1}`,
+  }));
+
+  /** State for current page and selected logs */
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedLogs, setSelectedLogs] = useState({});
+
+  /** Constants for pagination */
+  const logsPerPage = 7;
+  const totalPages = Math.ceil(logs.length / logsPerPage);
+
+  /** Calculate logs to display on current page */
+  const indexOfLastLog = currentPage * logsPerPage;
+  const indexOfFirstLog = indexOfLastLog - logsPerPage;
+  const currentLogs = logs.slice(indexOfFirstLog, indexOfLastLog);
+
+  /** Calculate range for display */
+  const startRange = indexOfFirstLog + 1;
+  const endRange = Math.min(indexOfLastLog, logs.length);
+
+  /** Handlers for pagination */
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  /** Handlers for log selection */
+  const handleSelectAll = (event) => {
+    const isChecked = event.target.checked;
+    const newSelectedLogs = { ...selectedLogs };
+    currentLogs.forEach((log) => {
+      newSelectedLogs[log.id] = isChecked;
+    });
+    setSelectedLogs(newSelectedLogs);
+  };
+
+  const handleSelectLog = (logId) => {
+    setSelectedLogs((prevSelected) => ({
+      ...prevSelected,
+      [logId]: !prevSelected[logId],
+    }));
+  };
+
+  /** Check if all current logs are selected */
+  const allSelected = currentLogs.every((log) => selectedLogs[log.id]);
+
+  return (
+    <div className="table-container">
+      <ContentHeader
+        header="Logbook"
+        primaryButtonText="Add Logs"
+        actions={logActions}
+      />
+      <LogTable
+        currentLogs={currentLogs}
+        selectedLogs={selectedLogs}
+        handleSelectAll={handleSelectAll}
+        handleSelectLog={handleSelectLog}
+        allSelected={allSelected}
+      />
+      <div className="table-footer">
+        <div className="showing-text">
+          Showing <span>{startRange}</span>-<span>{endRange}</span> of{" "}
+          {logs.length} logs
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+          handlePageClick={handlePageClick}
+        />
+      </div>
+    </div>
+  );
+}

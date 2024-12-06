@@ -1,0 +1,58 @@
+.shop-books-card {
+  background: linear-gradient(232.43deg, #6c8bd3 9.4%, #244b94 90.17%);
+  border-radius: 30px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 32%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.shop-books-card:hover {
+  transform: translateY(-2px);
+}
+
+.shop-books-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at bottom,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  pointer-events: none;
+}
+
+.shop-books-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+  color: white;
+}
+
+.shop-books-card .chevron-icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+  margin-top: 4px;
+}
+
+.shop-books-image {
+  position: absolute;
+  top: 43%;
+  left: 1px;
+  right: 1px;
+  width: 250px;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+  

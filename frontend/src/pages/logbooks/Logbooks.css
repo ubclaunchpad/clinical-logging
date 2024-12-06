@@ -1,0 +1,14 @@
+/* Container Styles */
+.logbooks-container {
+  padding: 16px;
+  margin-left: 65px;
+  width: 90%;
+}
+
+.logbooks-grid {
+  margin-top: 10%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 100px;
+}

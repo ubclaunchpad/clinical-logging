@@ -1,0 +1,52 @@
+.logbooks-card {
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 85%;
+  padding: 24px;
+  height: 93%;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.card-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #2f3c50;
+}
+
+.view-more-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #9ab0e1;
+  background: #f7faff;
+  color: #4f607e;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.logbooks-image {
+  width: 100%;
+  max-width: 280px;
+  margin: 30px auto;
+  display: block;
+}
+
+.progress-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 20px;
+  width: 80%;
+}
