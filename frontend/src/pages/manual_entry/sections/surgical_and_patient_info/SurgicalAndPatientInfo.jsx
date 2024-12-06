@@ -67,7 +67,7 @@ export const SurgicalAndPatientInfo = () => {
           <Grid size={6}>
             <div>
               <p className="input-title">Age</p>
-              <input className="manual-entry-input" type="number" placeholder="40"/>
+              <input className="manual-entry-input" type="number" min="0" placeholder="40"/>
             </div>
           </Grid>
           <Grid size={6}>

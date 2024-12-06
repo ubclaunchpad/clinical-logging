@@ -13,6 +13,7 @@ export const CLInputWithUnits = ({
       <input
         className="input-with-units"
         type="number"
+        min="0"
         placeholder={placeholder}
       />
       <div className="input-units">
