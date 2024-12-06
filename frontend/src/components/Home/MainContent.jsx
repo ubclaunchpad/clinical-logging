@@ -11,7 +11,7 @@ export default function MainContent() {
   const [setSelectedLog] = useState(null);
 
   const handleAddLogbook = () => {
-    navigate("/newLog");
+    navigate("/home");
   };
 
   const handleViewHistory = () => {

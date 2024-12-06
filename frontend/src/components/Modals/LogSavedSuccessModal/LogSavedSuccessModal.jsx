@@ -20,11 +20,11 @@ export const LogSavedSuccessModal = () => {
   const navigate = useNavigate();
 
   const handleLogHistory = () => {
-    navigate('/logHistory');
+    navigate('/history');
   }
 
   const handleBackHome = () => {
-    navigate('/homepage');
+    navigate('/home');
   }
 
   return (

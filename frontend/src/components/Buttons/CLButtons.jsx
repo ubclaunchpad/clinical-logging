@@ -16,11 +16,10 @@ const DEFAULT_ON_CLICK = () => {}
 export const CLButtonPrimary = ({
   children,
   className,
-  className,
   height = DEFAULT_HEIGHT,
   width = DEFAULT_WIDTH,
   type = DEFAULT_TYPE,
-  onClick = DEFAULT_ON_CLICK
+  onClick = DEFAULT_ON_CLICK,
 }) => {
 
   const updatedClassName = className
@@ -50,11 +49,10 @@ export const CLButtonPrimary = ({
 export const CLButtonSecondary = ({
   children,
   className,
-  className,
   height = DEFAULT_HEIGHT,
   width = DEFAULT_WIDTH,
   type = DEFAULT_TYPE,
-  onClick = DEFAULT_ON_CLICK
+  onClick = DEFAULT_ON_CLICK,
 }) => {
 
   const updatedClassName = className
@@ -62,7 +60,7 @@ export const CLButtonSecondary = ({
   : DEFAULT_SECONDARY_CLASSNAME
   
   return (
-    <button 
+    <button
       className={updatedClassName}
       type={type}
       onClick={onClick}
