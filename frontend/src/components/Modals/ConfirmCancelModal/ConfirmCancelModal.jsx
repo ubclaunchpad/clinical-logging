@@ -15,7 +15,7 @@ export const ConfirmCancelModal = () => {
   const navigate = useNavigate();
 
   const handleConfirm = () => {
-    navigate('/homepage');
+    navigate('/home');
   }
 
   return (
