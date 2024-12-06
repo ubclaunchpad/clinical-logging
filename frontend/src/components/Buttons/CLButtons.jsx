@@ -16,6 +16,7 @@ const DEFAULT_ON_CLICK = () => {}
 export const CLButtonPrimary = ({
   children,
   className,
+  className,
   height = DEFAULT_HEIGHT,
   width = DEFAULT_WIDTH,
   type = DEFAULT_TYPE,
@@ -33,13 +34,13 @@ export const CLButtonPrimary = ({
       onClick={onClick}
       style={{
         height: height,
-        width: width
+        width: width,
       }}
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
 /**
  * SECONDARY variant of the clinical logging button.
@@ -48,6 +49,7 @@ export const CLButtonPrimary = ({
  */
 export const CLButtonSecondary = ({
   children,
+  className,
   className,
   height = DEFAULT_HEIGHT,
   width = DEFAULT_WIDTH,
@@ -66,10 +68,10 @@ export const CLButtonSecondary = ({
       onClick={onClick}
       style={{
         height: height,
-        width: width
+        width: width,
       }}
     >
       {children}
     </button>
-  )
-}
+  );
+};
