@@ -1,7 +1,5 @@
-import { useState } from "react";
 import {
   ChevronDoubleRightIcon,
-  PencilSquareIcon,
 } from "@heroicons/react/24/solid";
 import "./PreviewSection.css";
 
@@ -11,12 +9,6 @@ export default function PreviewSection({
   handlePreviewClick,
   handleTranscribe,
 }) {
-  const [isEditing, setIsEditing] = useState(false);
-
-  /** Toggle edit mode */
-  const handleEdit = () => {
-    setIsEditing((prev) => !prev);
-  };
 
   /** Handle image deletion */
   const handleDeleteImage = (timestampToDelete) => {
@@ -40,13 +32,6 @@ export default function PreviewSection({
           <ChevronDoubleRightIcon className="preview-section-icon" />
           <span>Preview</span>
         </button>
-        <button
-          className={`edit-button ${isEditing ? "active" : ""}`}
-          onClick={handleEdit}
-        >
-          <PencilSquareIcon className="edit-icon" />
-          <span>Edit</span>
-        </button>
       </div>
 
       <div className="preview-list">
@@ -57,14 +42,12 @@ export default function PreviewSection({
               alt={`Preview ${index + 1}`}
               className="preview-image"
             />
-            {isEditing && (
               <button
                 className="delete-button"
                 onClick={() => handleDeleteImage(fileData.timestamp)}
               >
                 ×
               </button>
-            )}
           </div>
         ))}
       </div>
