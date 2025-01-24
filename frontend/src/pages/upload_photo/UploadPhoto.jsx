@@ -56,6 +56,7 @@ export default function UploadPhoto() {
   );
 }
 
+
 function MainContent({ files, setFiles, handleTranscribe }) {
   const navigate = useNavigate();
   const [showPreview, setShowPreview] = useState(false);
