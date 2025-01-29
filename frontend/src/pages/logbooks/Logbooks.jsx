@@ -44,6 +44,7 @@ const logbookActions = [
 ];
 
 export default function Logbooks() {
+  /** Retrieve user's logbooks from API */
   const [logbooks, setLogbooks] = useState([]);
   const { session } = useAuth();
 

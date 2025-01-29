@@ -1,5 +1,7 @@
 import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import "./LogTable.css";
+import formatDate from "../../utils/helpers/formatDate";
+import formatType from "../../utils/helpers/formatType";
 
 export default function LogTable({
   currentLogs,
@@ -41,8 +43,8 @@ export default function LogTable({
               />
             </td>
             <td className="log-title-column title-column">{log.title}</td>
-            <td className="type-column">{log.type}</td>
-            <td className="date-column">{log.dateCreated}</td>
+            <td className="type-column">{formatType(log.type)}</td>
+            <td className="date-column">{formatDate(log.created_at)}</td>
           </tr>
         ))}
       </tbody>
