@@ -6,7 +6,7 @@ export default async function getTable(supabase, table, param, value, type) {
         } else if (param !== null && value !== null) {
             ({ data, error } = await supabase.from(table).select().eq(param, value));
         } else {
-            throw new Error(`${param == null ? "param" : "value"} is empty at getTable`);
+            throw new Error(`${param == null ? "Param" : "Value"} is empty at getTable`);
         }
         if (error) {
             throw new Error(error.message);

@@ -11,14 +11,14 @@ const router = express.Router();
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // remove for production 
-router.get("/token", async (req, res) => {
+router.post("/token", async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email) {
-            throw new Error("email is missing"); 
+            throw new Error("Email is missing"); 
         }
         if (!password) {
-            throw new Error("password is missing"); 
+            throw new Error("Password is missing"); 
         }
         const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
