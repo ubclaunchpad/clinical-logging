@@ -118,7 +118,7 @@ function MainContent() {
   return (
     <div className="table-container">
       <ContentHeader
-        header="Logbook"
+        header="Log History"
         primaryButtonText="Add Logs"
         actions={logActions}
       />
