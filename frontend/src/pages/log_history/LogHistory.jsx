@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
 import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import LogTable from "../../components/LogHistory/LogTable";
@@ -11,6 +11,8 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 import "./LogHistory.css";
+import { useAuth } from "../../contexts/AuthContext";
+import { fetchData } from "../../utils/helpers/fetchData";
 
 /** Array of log actions */
 const logActions = [
@@ -50,13 +52,18 @@ export default function LogHistory() {
 }
 
 function MainContent() {
-  /** Generate logs data dynamically */
-  const logs = Array.from({ length: 20 }, (_, index) => ({
-    id: index + 1,
-    title: `Log Title ${index + 1}`,
-    type: `Type ${(index % 5) + 1}`,
-    dateCreated: `2024-11-${(index % 30) + 1}`,
-  }));
+  /** Retrieve user's logs from API */
+  const [logs, setLogs] = useState([]);
+  const { session } = useAuth();
+
+  async function fetchLogs() {
+    const response = await fetchData(session?.access_token, "logs");
+    setLogs(response)
+  };
+
+  useEffect(() => {
+    fetchLogs();
+  }, []);
 
   /** State for current page and selected logs */
   const [currentPage, setCurrentPage] = useState(1);

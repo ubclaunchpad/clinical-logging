@@ -1,34 +1,12 @@
 import { LogbookTypeInfo } from "./LogbookTypeInfo";
 import LogRectangle from "../../assets/images/LogRectangle.png";
 import "./LogbookCard.css";
+import formatType from "../../utils/helpers/formatType"
+import formatDate from "../../utils/helpers/formatDate";
 
 export default function LogbookCard({ title, type, storage, created }) {
-  /** Converts type to display name. */
-  let formattedType;
-  switch (type) {
-    case "adult_cardiac_logs":
-      formattedType = "Cardiac Surgery - Adult";
-      break;
-    case "congenital_surgery_logs":
-      formattedType = "Cardiac Surgery - Congenital";
-      break;
-    case "general_surgery_logs":
-      formattedType = "General Surgery";
-      break;
-    case "gyn_logs":
-      formattedType = "Obstetrics/Gynecology";
-      break;
-    case "ob_logs":
-      formattedType = "Obstetrics/Gynecology";
-      break;
-    default:
-      formattedType = "Unknown Type";
-      break;
-  }
-
-  /** Formats the date */
-  const createdDate = new Date(created);
-  const formattedDate = createdDate.toLocaleDateString('en-CA');
+  const formattedType = formatType(type);
+  const formattedDate = formatDate(created);
 
   /** Retrieve type information from the mapping */
   const typeInfo = LogbookTypeInfo[formattedType] || {};
