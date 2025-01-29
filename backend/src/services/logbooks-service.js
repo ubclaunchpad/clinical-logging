@@ -31,7 +31,7 @@ export async function getLogbook(req) {
         const { logbookID } = req.params;
         const logbook = await getTable(supabase, "logbooks", "id", logbookID, "resource");
         if (typeof logbook == "undefined") {
-            throw new Error(`logbook ${logbookID} does not exist`);
+            throw new Error(`Logbook ${logbookID} does not exist`);
         }
         return logbook;
     } catch (error) {
@@ -50,13 +50,13 @@ export async function createLog(req) {
             throw new Error(logbookType.error);
         }
         if (body["type"] !== logbookType) {
-            throw new Error(`log type '${body["type"]}' does not match logbook type '${logbookType}'`);
+            throw new Error(`Log type '${body["type"]}' does not match logbook type '${logbookType}'`);
         }
         switch (body["type"]) {
             case "adult_cardiac_logs":
                 return await insertTable(supabase, "adult_cardiac_logs", body);
             default:
-                throw new Error(`log and logbook type '${body["type"]}' are invalid`);
+                throw new Error(`Log and logbook type '${body["type"]}' are invalid`);
         }
     } catch (error) {
         return { error: error.message };
@@ -88,7 +88,7 @@ export async function getLog(req) {
         }
         const log = await getTable(supabase, logbookType, "id", logID, "resource");
         if (typeof log == "undefined") {
-            throw new Error(`log ${logID} does not exist`);
+            throw new Error(`Log ${logID} does not exist`);
         }
         return log;
     } catch (error) {

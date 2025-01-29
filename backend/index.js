@@ -9,7 +9,7 @@ import fileUpload from "express-fileupload";
 dotenv.config();
 
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173"]
 };
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(fileUpload());
 
-//Routes
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/logbooks", logbookRoutes);
 app.use("/api/transcriptions", transcriptionRoutes);
