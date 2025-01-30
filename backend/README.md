@@ -3,7 +3,7 @@
 
 ## Auth
 ### Generate token
-`POST` /api/auth/token 
+`POST` api/auth/token 
 
 Query Params: 
 | Name | Type |
