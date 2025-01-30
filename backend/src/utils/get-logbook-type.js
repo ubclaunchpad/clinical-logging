@@ -2,7 +2,7 @@ export default async function getLogbookType(logbookID, supabase) {
     try {
         const { data, error } = await supabase.from("logbooks").select().eq("id", logbookID);
         if (data.length == 0) {
-            throw new Error(`logbook ${logbookID} does not exist`); 
+            throw new Error(`Logbook ${logbookID} does not exist`); 
         } else if (error) {
             throw new Error(error.message);
         }

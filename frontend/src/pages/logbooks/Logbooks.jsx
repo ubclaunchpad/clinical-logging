@@ -10,41 +10,9 @@ import {
   EyeIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
-
-/** Array of logbook data */
-const logbooks = [
-  {
-    title: "Cardiac Surgery - Nov.",
-    type: "Cardiac Surgery - Adult",
-    storage: "20",
-    created: "10-01-2024",
-  },
-  {
-    title: "Cardiac Cong. - Nov.",
-    type: "Cardiac Surgery - Congenital",
-    storage: "20",
-    created: "10-01-2024",
-  },
-  {
-    title: "Ophthalmology - Nov.",
-    type: "Ophthalmology",
-    storage: "20",
-    created: "10-01-2024",
-  },
-  {
-    title: "OB/GYN - Nov.",
-    type: "Obstetrics/Gynecology",
-    storage: "20",
-    created: "10-01-2024",
-  },
-  {
-    title: "General Surgery - Nov.",
-    type: "General Surgery",
-    storage: "20",
-    created: "10-01-2024",
-  },
-  // Add more logbooks as needed
-];
+import { useState, useEffect } from 'react';
+import { useAuth } from "../../contexts/AuthContext";
+import { fetchData } from "../../utils/helpers/fetchData";
 
 /** Array of logbook actions */
 const logbookActions = [
@@ -76,6 +44,19 @@ const logbookActions = [
 ];
 
 export default function Logbooks() {
+  /** Retrieve user's logbooks from API */
+  const [logbooks, setLogbooks] = useState([]);
+  const { session } = useAuth();
+
+  async function fetchLogbooks() {
+    const response = await fetchData(session?.access_token, "logbooks");
+    setLogbooks(response)
+  }
+
+  useEffect(() => {
+    fetchLogbooks();
+  }, []);
+
   return (
     <NavContentWrapper>
       <div className="logbooks-container">
