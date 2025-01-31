@@ -66,16 +66,26 @@ function MainContent({ files, setFiles, handleTranscribe }) {
   /** Handle files from input or drop */
   const handleFiles = (newFiles) => {
     const filesArray = Array.from(newFiles);
-
-    const filesWithPreview = filesArray.map((file) => {
-      return {
+  
+    setFiles((prevFiles) => {
+      // Check if the new total would exceed the limit
+      const totalFiles = prevFiles.length + filesArray.length;
+  
+      if (totalFiles > 2) {
+        alert("You can only upload up to 2 files.");
+        return prevFiles; // Return the current state without changes
+      }
+  
+      // Process the new files
+      const filesWithPreview = filesArray.map((file) => ({
         file: file, // Store the actual File object
         timestamp: Date.now(),
         preview: URL.createObjectURL(file),
-      };
+      }));
+  
+      return [...prevFiles, ...filesWithPreview]; // Append new files
     });
-    setFiles((prev) => [...filesWithPreview, ...prev]); // Add new files to beginning
-  };
+  };  
 
   /** Toggle preview visibility */
   const handlePreviewClick = () => {
