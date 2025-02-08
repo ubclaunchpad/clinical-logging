@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import "./SurgicalAndPatientInfo.css"
 
-export const SurgicalAndPatientInfo = () => {
+export const SurgicalAndPatientInfo = ({ data, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>

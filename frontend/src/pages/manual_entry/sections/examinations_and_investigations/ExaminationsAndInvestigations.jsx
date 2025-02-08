@@ -8,7 +8,7 @@ import LabsFishbones from "../../../../assets/labs-fishbones.png"
 import Pulses from "../../../../assets/pulses.png"
 import "./ExaminationsAndInvestigations.css"
 
-export const ExaminationsAndInvestigations = () => {
+export const ExaminationsAndInvestigations = ({ data, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>

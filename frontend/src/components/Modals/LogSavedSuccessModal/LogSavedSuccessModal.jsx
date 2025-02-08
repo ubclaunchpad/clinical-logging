@@ -12,7 +12,7 @@ import Divider from '@mui/material/Divider'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import './LogSavedSuccessModal.css'
 
-export const LogSavedSuccessModal = () => {
+export const LogSavedSuccessModal = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -27,9 +27,15 @@ export const LogSavedSuccessModal = () => {
     navigate('/home');
   }
 
+  const handleSaveOnClick = async () => {
+    await onSubmit();
+    // TODO
+    handleOpen();
+  }
+
   return (
     <div>
-      <CLButtonPrimary className="save-icon-button" onClick={handleOpen} width={"240px"}>
+      <CLButtonPrimary className="save-icon-button" onClick={handleSaveOnClick} width={"240px"}>
        <SaveOutlinedIcon className="save-icon" />
         <p>Save to Log History</p>
       </CLButtonPrimary>

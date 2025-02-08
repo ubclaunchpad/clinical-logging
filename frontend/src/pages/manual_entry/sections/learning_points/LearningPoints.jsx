@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 
-export const LearningPoints = () => {
+export const LearningPoints = ({ data, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>

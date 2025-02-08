@@ -1,15 +1,14 @@
 import axios from "axios";
 
-export async function postData(token, route, params = undefined) {
+// TODO
+export async function postData(token, route, params = undefined, data) {
   try {
     const response = await axios.post(`/api/${route}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: params,
-      data: {
-        // TODO
-      }
+      data: data
     });
     return response.data.data;
   } catch (error) {

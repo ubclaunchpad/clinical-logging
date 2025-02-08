@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import "./CasePlanning.css"
 
-export const CasePlanning = () => {
+export const CasePlanning = ({ data, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
