@@ -51,10 +51,11 @@ export const CLSelectInput = ({
   )
 }
 
-export const CLDatePickerInput = () => {
+export const CLDatePickerInput = ({ name, onChange }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
+        name={name}
         className="date-picker"
         sx={{
           '& .MuiInputBase-root': {
@@ -64,6 +65,7 @@ export const CLDatePickerInput = () => {
             borderRadius: "16px",
           },
         }}
+        onChange={onChange}
       />
     </LocalizationProvider>
   )

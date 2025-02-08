@@ -28,8 +28,8 @@ export const LogSavedSuccessModal = ({ onSubmit }) => {
   }
 
   const handleSaveOnClick = async () => {
+    // TODO: add loading indicator?
     await onSubmit();
-    // TODO
     handleOpen();
   }
 

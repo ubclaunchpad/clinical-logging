@@ -17,31 +17,58 @@ export const SurgicalAndPatientInfo = ({ data, onInputChange }) => {
             <Grid size={6}>
               <div>
                 <p className="input-title">Case no.</p>
-                <input className="manual-entry-input" type="text" placeholder="1234567"/>
+                <input
+                  name="case_no"
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="1234567"
+                  onChange={onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">Type</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                <input
+                  name="type"
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Adult cardiac"
+                  onChange={onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Surgeon</p>
-                <input className="manual-entry-input" type="text" placeholder="Surgeon name"/>
+                <input
+                  name="surgeon"
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Surgeon name"
+                  onChange={onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">OR Date</p>
-                <CLDatePickerInput />
+                <CLDatePickerInput
+                  name="or_date"
+                  onChange={onInputChange(e.target.value, e.target.name)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">HPI</p>
-                <textarea className="manual-entry-text-area" rows="3" placeholder="HPI"/>
+                <textarea
+                  nmae="hpi"
+                  className="manual-entry-text-area"
+                  rows="3"
+                  placeholder="HPI"
+                  onChange={onInputChange(e.target.value, e.target.name)}
+                />
               </div>
             </Grid>
             <Grid size={12}>

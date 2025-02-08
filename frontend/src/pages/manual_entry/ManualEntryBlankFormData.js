@@ -8,7 +8,7 @@ export const blankFormData = () => {
         "or_date": "",
         "reason_for_referral": "e",
         "hpi": "",
-        "phmx": "",
+        "phmx": "", // TODO mispelling?
         "gender": "",
         "social_etoh": "",
         "social_smoking": "",
