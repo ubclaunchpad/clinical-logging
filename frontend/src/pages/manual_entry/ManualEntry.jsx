@@ -14,25 +14,47 @@ import "./ManualEntry.css"
  * https://dev.to/dance2die/react-sticky-event-with-intersection-observer-310h
  */
 const ManualEntry = () => {
+  const [formData, setFormData] = useState({
+    // TODO
+  });
+
+  const handleInputChange = (field, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [field]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // TODO
+    } catch (err) {
+      // TODO
+    }
+  }
 
   return (
     <div>
       <AppBar />
-      <div className="manual-entry-container">
-        <Divider />
-        <h2 className="section-header">1. Surgical and Patient Information</h2>
-        <SurgicalAndPatientInfo />
-        <h2 className="section-header">2. Examinations and Investigations</h2>
-        <ExaminationsAndInvestigations />
-        <h2 className="section-header">3. Case Planning</h2>
-        <CasePlanning />
-        <h2 className="section-header">4. Learning Points</h2>
-        <LearningPoints />
-        <div className="manual-entry-buttons-footer">
-          <ConfirmCancelModal />
-          <LogSavedSuccessModal />
+      <form onSubmit={() => {}}>
+        <div className="manual-entry-container">
+          <Divider />
+          <h2 className="section-header">1. Surgical and Patient Information</h2>
+          <SurgicalAndPatientInfo />
+          <h2 className="section-header">2. Examinations and Investigations</h2>
+          <ExaminationsAndInvestigations />
+          <h2 className="section-header">3. Case Planning</h2>
+          <CasePlanning />
+          <h2 className="section-header">4. Learning Points</h2>
+          <LearningPoints />
+          <div className="manual-entry-buttons-footer">
+            <ConfirmCancelModal />
+            <LogSavedSuccessModal />
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
