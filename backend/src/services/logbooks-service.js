@@ -3,7 +3,6 @@ import getLogbookType from "../utils/get-logbook-type.js";
 import getTable from "../utils/get-table.js";
 import insertTable from "../utils/insert-table.js";
 import parseUserID from "../utils/parse-user-id.js";
-import exportCSV from "../utils/export-csv.js";
 
 export async function createLogbook(req) {
     const supabase = req.supabase;
@@ -97,7 +96,7 @@ export async function exportLogbookLogs(req) {
             throw new Error(logbookType.error);
         }
         const logbookLogs = await getTable(supabase, logbookType, "logbook_id", logbookID, "collection");
-        const csvExport = exportCSV(logbookLogs.data);
+        const csvExport = exportCSV(logbookLogs);
         return csvExport;
     } catch (error) {
         return { error: error.message };
