@@ -1,9 +1,10 @@
+import { DataKeys } from "../../data/FormDataNames";
 import { CLInputWithUnits } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import "./CasePlanning.css"
 
-export const CasePlanning = () => {
+export const CasePlanning = ({ onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -12,7 +13,13 @@ export const CasePlanning = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">Surgical Plan</p>
-                <textarea className="manual-entry-text-area" rows="9" placeholder="Surgical Plan"/>
+                <textarea
+                  name={DataKeys.SURGICAL_PLAN}
+                  className="manual-entry-text-area"
+                  rows="9"
+                  placeholder="Surgical Plan"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
@@ -24,10 +31,20 @@ export const CasePlanning = () => {
               </div>
             </Grid>
             <Grid size={5.5}>
-              <CLInputWithUnits units="h" placeholder="CPB"/>
+              <CLInputWithUnits
+                name={DataKeys.OP_NOTES_CPB}
+                units="h"
+                placeholder="CPB"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
             <Grid size={5.5}>
-              <CLInputWithUnits units="m" placeholder="CPB"/>
+              <CLInputWithUnits
+                name={DataKeys.OP_NOTES_CPB}
+                units="m"
+                placeholder="CPB"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
             <Grid size={1}>
               <div className="operative-notes-input-title-container">
@@ -35,10 +52,20 @@ export const CasePlanning = () => {
               </div>
             </Grid>
             <Grid size={5.5}>
-              <CLInputWithUnits units="h" placeholder="XC"/>
+              <CLInputWithUnits
+                name={DataKeys.OP_NOTES_XC}
+                units="h"
+                placeholder="XC"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
             <Grid size={5.5}>
-              <CLInputWithUnits units="m" placeholder="XC"/>
+              <CLInputWithUnits
+                name={DataKeys.OP_NOTES_XC}
+                units="m"
+                placeholder="XC"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
             <Grid size={1}>
               <div className="operative-notes-input-title-container">
@@ -46,10 +73,20 @@ export const CasePlanning = () => {
               </div>
             </Grid>
             <Grid size={5.5}>
-              <CLInputWithUnits units="h" placeholder="CA"/>
+              <CLInputWithUnits
+                name={DataKeys.OP_NOTES_CA}
+                units="h"
+                placeholder="CA"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
             <Grid size={5.5}>
-              <CLInputWithUnits units="m" placeholder="CA"/>
+              <CLInputWithUnits
+                name={DataKeys.OP_NOTES_CA}
+                units="m"
+                placeholder="CA"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
           </Grid>
         </Grid>
@@ -58,31 +95,60 @@ export const CasePlanning = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title">1° operator</p>
-                <input className="manual-entry-input" type="text" placeholder="7654321"/>
+                <input
+                  name={DataKeys.FIRST_OP_FLAG}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="7654321"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">Issue - OR</p>
-                <input className="manual-entry-input" type="text" placeholder="7654321"/>
+                <input
+                  name={DataKeys.OR_FLAG}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="7654321"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">Issue - Post</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                <input
+                  name={DataKeys.ISSUE_FLAG}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Adult cardiac"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)} />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Flag for F/U</p>
-                <input className="manual-entry-input" type="text" placeholder="7654321"/>
+                <input
+                name={DataKeys.FU_FLAG}
+                className="manual-entry-input"
+                type="text"
+                placeholder="7654321"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">My Role</p>
-                <textarea className="manual-entry-text-area" rows="6" placeholder="My Role"/>
+                <textarea
+                  name={DataKeys.MY_ROLE}
+                  className="manual-entry-text-area"
+                  rows="6"
+                  placeholder="My Role"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}  
+                />
               </div>
             </Grid>
           </Grid>

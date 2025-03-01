@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DataKeys } from "../../data/FormDataNames";
 import { CLInputWithUnits } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
@@ -8,7 +9,7 @@ import LabsFishbones from "../../../../assets/labs-fishbones.png"
 import Pulses from "../../../../assets/pulses.png"
 import "./ExaminationsAndInvestigations.css"
 
-export const ExaminationsAndInvestigations = () => {
+export const ExaminationsAndInvestigations = ({ onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -38,7 +39,14 @@ export const ExaminationsAndInvestigations = () => {
             <Grid size={12}>
               <div>
                 <p className="input-title">Veins</p>
-                <input className="manual-entry-input" type="number" min="0" placeholder="Veins" />
+                <input
+                  name={DataKeys.VEINS}
+                  className="manual-entry-input"
+                  type="number"
+                  min="0"
+                  placeholder="Veins"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>

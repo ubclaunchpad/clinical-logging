@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DataKeys } from "../../data/FormDataNames";
 import { CLDatePickerInput, CLSelectInput } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
@@ -8,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import "./SurgicalAndPatientInfo.css"
 
-export const SurgicalAndPatientInfo = () => {
+export const SurgicalAndPatientInfo = ({ onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -17,7 +18,13 @@ export const SurgicalAndPatientInfo = () => {
             <Grid size={6}>
               <div>
                 <p className="input-title">Case no.</p>
-                <input className="manual-entry-input" type="text" placeholder="1234567"/>
+                <input
+                  name={DataKeys.CASE_NO}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="1234567"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
