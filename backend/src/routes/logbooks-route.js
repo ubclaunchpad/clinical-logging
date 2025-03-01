@@ -58,4 +58,15 @@ router.get("/:logbookID/logs/:logID", auth, async (req, res) => {
     }
 });
 
+router.get("/:logbookID/logs/export", async(req, res) => {
+    const csvFile = await getLogbookLogs(req);
+    if (csvFile.error) {
+        res.status(500).json({ error: logbookLogs.error });
+    } else {
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Disposition', 'attachment; filename="logs.csv"');
+        res.status(200).send(csvFile);
+    }
+});
+
 export default router;
