@@ -30,13 +30,25 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
             <Grid size={6}>
               <div>
                 <p className="input-title">Type</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                <input
+                  name={DataKeys.TYPE}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Adult cardiac"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Surgeon</p>
-                <input className="manual-entry-input" type="text" placeholder="Surgeon name"/>
+                <input
+                  name={DataKeys.SURGEON}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Surgeon name"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
@@ -48,7 +60,13 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">HPI</p>
-                <textarea className="manual-entry-text-area" rows="3" placeholder="HPI"/>
+                <textarea
+                  name={DataKeys.HPI}
+                  className="manual-entry-text-area"
+                  rows="3"
+                  placeholder="HPI"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
@@ -68,13 +86,26 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
           <Grid size={12}>
             <div>
               <p className="input-title">Patient ID</p>
-              <input className="manual-entry-input" type="text" placeholder="7654321"/>
+              <input
+                name={DataKeys.PATIENT_ID}
+                className="manual-entry-input"
+                type="text"
+                placeholder="7654321"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={6}>
             <div>
               <p className="input-title">Age</p>
-              <input className="manual-entry-input" type="number" min="0" placeholder="40"/>
+              <input
+                name={DataKeys.AGE}
+                className="manual-entry-input"
+                type="number"
+                min="0"
+                placeholder="40"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={6}>
@@ -86,7 +117,13 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
           <Grid size={12}>
             <div>
               <p className="input-title">Indication for Surgery/Reason for Referral</p>
-              <input className="manual-entry-input" type="text" placeholder="Indication for Surgery/Reason for Referral"/>
+              <input
+                name={DataKeys.REFERRAL_REASON}
+                className="manual-entry-input"
+                type="text"
+                placeholder="Indication for Surgery/Reason for Referral"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={12}>
@@ -95,25 +132,49 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
           <Grid size={12}>
             <div>
               <p className="input-title">EtOH</p>
-              <input className="manual-entry-input" type="text" placeholder="Lorem ipsum"/>
+              <input
+                name={DataKeys.ETOH}
+                className="manual-entry-input"
+                type="text"
+                placeholder="Lorem ipsum"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={12}>
             <div>
               <p className="input-title">Drugs</p>
-              <input className="manual-entry-input" type="text" placeholder="Amet pulvinar"/>
+              <input
+                name={DataKeys.DRUGS}
+                className="manual-entry-input"
+                type="text"
+                placeholder="Amet pulvinar"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={12}>
             <div>
               <p className="input-title">Smoking</p>
-              <input className="manual-entry-input" type="text" placeholder="Neque mauris"/>
+              <input
+                name={DataKeys.SMOKING}
+                className="manual-entry-input"
+                type="text"
+                placeholder="Neque mauris"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={12}>
             <div>
               <p className="input-title">Allergies</p>
-              <textarea className="manual-entry-text-area" rows="4" placeholder="Massa odio vel sed."/>
+              <textarea
+                name={DataKeys.ALLERGIES}
+                className="manual-entry-text-area"
+                rows="4"
+                placeholder="Massa odio vel sed."
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </div>
           </Grid>
           <Grid size={12}>
