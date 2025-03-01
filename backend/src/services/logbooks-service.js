@@ -1,7 +1,9 @@
+import exportCSV from "../utils/export-csv.js";
 import getLogbookType from "../utils/get-logbook-type.js";
 import getTable from "../utils/get-table.js";
 import insertTable from "../utils/insert-table.js";
 import parseUserID from "../utils/parse-user-id.js";
+import exportCSV from "../utils/export-csv.js";
 
 export async function createLogbook(req) {
     const supabase = req.supabase;
@@ -81,6 +83,22 @@ export async function getLogbookLogs(req) {
         }
         const logbookLogs = await getTable(supabase, logbookType, "logbook_id", logbookID, "collection");
         return logbookLogs;
+    } catch (error) {
+        return { error: error.message };
+    }
+}
+
+export async function exportLogbookLogs(req) {
+    try {
+        const supabase = req.supabase;
+        const { logbookID } = req.params;
+        const logbookType = await getLogbookType(logbookID, supabase);
+        if (logbookType.error) {
+            throw new Error(logbookType.error);
+        }
+        const logbookLogs = await getTable(supabase, logbookType, "logbook_id", logbookID, "collection");
+        const csvExport = exportCSV(logbookLogs.data);
+        return csvExport;
     } catch (error) {
         return { error: error.message };
     }
