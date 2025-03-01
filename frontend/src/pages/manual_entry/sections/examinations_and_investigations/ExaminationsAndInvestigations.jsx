@@ -52,7 +52,14 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
             <Grid size={12}>
               <div>
                 <p className="input-title">Allen Test</p>
-                <input className="manual-entry-input" type="number" min="0" placeholder="Allen Test" />
+                <input
+                  name={DataKeys.ALLEN_TEST}
+                  className="manual-entry-input"
+                  type="number"
+                  min="0"
+                  placeholder="Allen Test"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
