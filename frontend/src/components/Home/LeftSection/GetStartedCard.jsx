@@ -1,4 +1,3 @@
-import React from "react";
 import { NewLogModal } from "../../NewLogModal/NewLogModal";
 import { CLButtonSecondary } from "../../Buttons/CLButtons";
 import "./GetStartedCard.css";
