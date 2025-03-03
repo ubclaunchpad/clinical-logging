@@ -1,7 +1,7 @@
 .logbook-progress-item {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
+  width: 95%;
+  padding: 16px 16px 16px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   background-color: transparent;
@@ -9,6 +9,7 @@
 
 .logbook-progress-item:hover {
   background-color: #e7edf8;
+  border: 0.5px solid rgba(101, 107, 111, 0.50);
 }
   
 .logbook-progress-item:hover .logbook-progress-bar {
@@ -23,18 +24,20 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.4px;
 }
   
 .logbook-progress-bar {
-  height: 8px;
+  height: 13px;
   background: #e7edf8;
-  border-radius: 4px;
+  border-radius: 29px;
   overflow: hidden;
 }
   
 .logbook-progress-fill {
   height: 100%;
   background: #244b94;
-  border-radius: 4px;
+  border-radius: 29px;
 }

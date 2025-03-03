@@ -1,52 +1,49 @@
 .logbooks-card {
-  background: white;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  width: 85%;
-  padding: 24px;
-  height: 93%;
+  background: #fbfcfe;
+  border-radius: 20px;
+  border: 0.5px solid #ccc;
+  width: 783px;
+  height: 635px;
+  padding: 24px 68px;
+  box-shadow: 0px 16px 48px 0px rgba(193, 204, 226, 0.25);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 30px;
 }
 
 .card-header h2 {
-  font-size: 20px;
+  color: #3e4043;
+  font-size: 28px;
   font-weight: 600;
-  margin-top: 0;
-  margin-bottom: 8px;
-  color: #2f3c50;
+  line-height: 150%;
+  letter-spacing: -0.56px;
 }
 
 .view-more-btn {
-  padding: 6px 12px;
+  padding: 10px 14px;
   border-radius: 20px;
   border: 1px solid #9ab0e1;
   background: #f7faff;
   color: #4f607e;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  margin-right: 30px;
 }
 
 .logbooks-image {
   width: 100%;
-  max-width: 280px;
+  max-width: 350px;
   margin: 30px auto;
   display: block;
 }
 
 .progress-list {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 20px;
-  width: 80%;
+  align-items: flex-start;
+  gap: 16px;
 }
