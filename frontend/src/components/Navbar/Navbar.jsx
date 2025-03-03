@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import ProfileBar from "./ProfileBar";
 import { HomeIcon, BookOpenIcon, ClockIcon } from "@heroicons/react/24/outline";

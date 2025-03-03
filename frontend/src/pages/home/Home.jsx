@@ -1,4 +1,3 @@
-import React from "react";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { BellIcon } from "@heroicons/react/24/outline";
 import MainContent from "../../components/Home/MainContent";
