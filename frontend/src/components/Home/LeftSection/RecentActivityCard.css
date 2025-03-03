@@ -1,9 +1,9 @@
 .recent-activity-card {
   background: white;
-  border-radius: 30px;
+  border-radius: 20px;
+  border: 0.5px solid #CCC;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 20px;
-  min-height: 32%;
+  padding: 24px;
   overflow-y: auto;
   transition: transform 0.2s ease;
 }
