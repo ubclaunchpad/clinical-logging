@@ -1,49 +1,44 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
-import {
-  HomeIcon,
-  BookOpenIcon,
-  ClockIcon,
-  ArrowLeftStartOnRectangleIcon,
-} from "@heroicons/react/24/outline";
+import ProfileBar from "./ProfileBar";
+import { HomeIcon, BookOpenIcon, ClockIcon } from "@heroicons/react/24/outline";
+import Logo from "../../assets/flow-leaflets-logo.svg";
 import "./Navbar.css";
 
+const navItems = [
+  { to: "/home", label: "Home", Icon: HomeIcon },
+  { to: "/logbooks", label: "Logbooks", Icon: BookOpenIcon },
+  { to: "/history", label: "History", Icon: ClockIcon },
+];
+
 export const Navbar = () => {
-  const { logout } = useAuth();
-
-  const handleSignOut = async () => {
-    try {
-      await logout();
-    } catch {
-      console.log("Failed to logout");
-    }
-  };
-
   return (
-    <nav className="nav-bar">
-      <div className="nav-button-container">
-        <NavLink className="nav-button" to="/home">
-          <div className="nav-button-icon-container">
-            <HomeIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">Home</p>
-        </NavLink>
-        <NavLink className="nav-button" to="/logbooks">
-          <div className="nav-button-icon-container">
-            <BookOpenIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">Logs</p>
-        </NavLink>
-        <NavLink className="nav-button" to="/history">
-          <div className="nav-button-icon-container">
-            <ClockIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">History</p>
-        </NavLink>
+    <aside className="side-nav">
+      <div className="side-nav__header">
+        <div className="side-nav__logo-container">
+          <img src={Logo} alt="FlowLeaflets Logo" className="side-nav__logo" />
+          <p className="side-nav__brand">FlowLeaflets</p>
+        </div>
       </div>
-      <button className="logout-button" onClick={handleSignOut}>
-        <ArrowLeftStartOnRectangleIcon className="nav-icon" />
-      </button>
-    </nav>
+      <nav className="side-nav__menu">
+        {navItems.map(({ to, label, Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) =>
+              `side-nav__menu-item${
+                isActive ? " side-nav__menu-item--active" : ""
+              }`
+            }
+          >
+            <div className="side-nav__menu-item-content">
+              <Icon className="side-nav__menu-icon" />
+              <p className="side-nav__menu-text">{label}</p>
+            </div>
+          </NavLink>
+        ))}
+      </nav>
+      <ProfileBar />
+    </aside>
   );
 };
