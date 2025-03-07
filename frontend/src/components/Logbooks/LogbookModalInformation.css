@@ -1,0 +1,52 @@
+.logbook-modal-information {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 600px;
+    gap: 25px;
+}
+
+.logbook-modal-information h1 {
+    margin: 0px;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.logbook-modal-information h3 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.modal-icon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.type-information {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e1e1e;
+    text-align: left;
+}
+
+.type-font {
+    font-weight: 300;
+    color: #244B94;
+}
+
+.modal-storage-percentage {
+    color: #244B94;
+    font-weight: bold;
+}
+
+.modal-storage-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-storage-count {
+    font-size: 16px;
+    color: #5d9eff;
+    font-weight: 700;
+}

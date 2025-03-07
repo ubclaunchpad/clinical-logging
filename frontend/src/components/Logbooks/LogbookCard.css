@@ -131,4 +131,35 @@
   .created-date strong {
     font-weight: 600;
   }
-  
+
+  .logbook-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FBFCFE;
+    border-radius: 20px;
+    box-shadow: 24;
+
+    min-width: 800px;
+    min-height: 500px;
+  }
+
+  .close-modal-button {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: #244B94;
+    border-radius: 40px;
+  }
