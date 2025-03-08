@@ -7,7 +7,7 @@ export const DataKeys = Object.freeze({
     OR_DATE: "or_date",
     REFERRAL_REASON: "reason_for_referral",
     HPI: "hpi",
-    PMHx: "phmx", // TODO mispelling?
+    PMHx: "pmhx",
     GENDER: "gender",
     ETOH: "social_etoh",
     SMOKING: "social_smoking",

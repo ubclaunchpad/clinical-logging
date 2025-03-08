@@ -65,7 +65,9 @@ export const CLDatePickerInput = () => {
             height: "50px",
             fontSize: "13px",
             borderColor: "#BAC1D0",
-            borderRadius: "16px",
+          },
+          '&.MuiOutlinedInput-input': {
+            padding: "0px",
           },
         }}
       />

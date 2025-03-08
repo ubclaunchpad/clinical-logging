@@ -1,14 +1,12 @@
 import axios from "axios";
 
-// TODO
-export async function postData(token, route, params = undefined, data) {
+export async function postData(token, route, data) {
+  console.log(JSON.stringify(data));
   try {
-    const response = await axios.post(`/api/${route}`, {
+    const response = await axios.post(`/api/${route}`, data, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       },
-      params: params,
-      data: data
     });
     return response.data.data;
   } catch (error) {

@@ -30,18 +30,10 @@ const ManualEntry = () => {
 
   const handleSubmit = async () => {
     try {
-      // TODO
-      console.log(formData);
-
-      const res = postData(session?.access_token, "logbooks", formData);
-      if (res.ok) {
-        console.log("Submitted successfully!");
-      } else {
-        console.log("Error submitting data:", res.statusText);
-      }
+      const res = postData(session?.access_token, "logbooks/306375dc-c6e3-4c5d-b08b-1b53023e5cab/logs", formData); // TODO: fix this
+      console.log("Submitted successfully: " + res); // TODO: fix this
     } catch (err) {
-      // TODO
-      console.log(err);
+      console.log("Error submitting: " + err);
     }
   }
 
