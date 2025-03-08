@@ -2,7 +2,7 @@ import { DataKeys } from "../../data/FormDataNames";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 
-export const LearningPoints = ({ onInputChange }) => {
+export const LearningPoints = ({ getDataValue, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -11,6 +11,7 @@ export const LearningPoints = ({ onInputChange }) => {
             <p className="input-title-bold">Post-operative Course</p>
             <textarea
               name={DataKeys.POST_OP}
+              value={getDataValue(DataKeys.POST_OP)}
               className="manual-entry-text-area"
               rows="6"
               placeholder="Post-operative Course"

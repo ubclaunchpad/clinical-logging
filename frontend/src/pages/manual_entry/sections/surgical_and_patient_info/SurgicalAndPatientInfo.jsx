@@ -7,7 +7,7 @@ import { Checkbox } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import "./SurgicalAndPatientInfo.css"
 
-export const SurgicalAndPatientInfo = ({ onInputChange }) => {
+export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -18,6 +18,7 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
                 <p className="input-title">Case no.*</p>
                 <input
                   name={DataKeys.CASE_NO}
+                  value={getDataValue(DataKeys.CASE_NO)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="1234567"

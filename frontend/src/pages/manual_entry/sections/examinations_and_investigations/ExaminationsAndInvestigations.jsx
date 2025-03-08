@@ -7,7 +7,7 @@ import LabsFishbones from "../../../../assets/labs-fishbones.png"
 import Pulses from "../../../../assets/pulses.png"
 import "./ExaminationsAndInvestigations.css"
 
-export const ExaminationsAndInvestigations = ({ onInputChange }) => {
+export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -39,6 +39,7 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
                 <p className="input-title">Veins</p>
                 <input
                   name={DataKeys.VEINS}
+                  value={getDataValue(DataKeys.VEINS)}
                   className="manual-entry-input"
                   type="number"
                   min="0"
@@ -52,6 +53,7 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
                 <p className="input-title">Allen Test</p>
                 <input
                   name={DataKeys.ALLEN_TEST}
+                  value={getDataValue(DataKeys.ALLEN_TEST)}
                   className="manual-entry-input"
                   type="number"
                   min="0"

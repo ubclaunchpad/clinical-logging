@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import "./CasePlanning.css"
 
-export const CasePlanning = ({ onInputChange }) => {
+export const CasePlanning = ({ getDataValue, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -15,6 +15,7 @@ export const CasePlanning = ({ onInputChange }) => {
                 <p className="input-title-bold">Surgical Plan</p>
                 <textarea
                   name={DataKeys.SURGICAL_PLAN}
+                  value={getDataValue(DataKeys.SURGICAL_PLAN)}
                   className="manual-entry-text-area"
                   rows="9"
                   placeholder="Surgical Plan"
@@ -33,6 +34,7 @@ export const CasePlanning = ({ onInputChange }) => {
             <Grid size={5.5}>
               <CLInputWithUnits
                 name={DataKeys.OP_NOTES_CPB}
+                value={getDataValue(DataKeys.OP_NOTES_CPB)}
                 units="h"
                 placeholder="CPB"
                 onChange={(e) => onInputChange(e.target.name, e.target.value)}

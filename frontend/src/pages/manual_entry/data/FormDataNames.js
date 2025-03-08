@@ -1,5 +1,5 @@
 export const DataKeys = Object.freeze({
-    CASE_NO: "case_no:",
+    CASE_NO: "case_no",
     TYPE: "type",
     PATIENT_ID: "patient_id",
     AGE: "age",
