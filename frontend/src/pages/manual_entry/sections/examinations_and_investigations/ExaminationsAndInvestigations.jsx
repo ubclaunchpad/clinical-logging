@@ -3,8 +3,6 @@ import { DataKeys } from "../../data/FormDataNames";
 import { CLInputWithUnits } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
-import Radio from "@mui/material/Radio";
-import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
 import LabsFishbones from "../../../../assets/labs-fishbones.png"
 import Pulses from "../../../../assets/pulses.png"
 import "./ExaminationsAndInvestigations.css"
@@ -24,16 +22,16 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
                 <WeightSection />
               </div>
             </Grid>
-            <Grid size={8}>
-              <div>
-                <p className="input-title">Height</p>
-                <HeightSection />
-              </div>
-            </Grid>
             <Grid size={4}>
               <div>
                 <p className="input-title">BMI</p>
                 <input className="manual-entry-input" type="number" min="0" placeholder="24.2 kg/m2" />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Height</p>
+                <HeightSection />
               </div>
             </Grid>
             <Grid size={12}>
@@ -115,13 +113,13 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
                 <input className="manual-entry-input" type="text" placeholder="Morbi nunc enim mauris" />
               </div>
             </Grid>
-            <Grid size={8}>
+            <Grid size={10}>
               <div>
                 <p className="input-title">Labs</p>
                 <LabsSection />
               </div>
             </Grid>
-            <Grid size={4}>
+            <Grid size={2}>
               <div>
                 <p className="input-title">Pulses</p>
                 <PulsesSection />
@@ -162,8 +160,8 @@ const WeightSection = () => {
       <div className="input-with-units-flex-container">
         <CLInputWithUnits units={getUnits()} placeholder={`Weight (${getUnits()})`} />
       </div>
-      <button className="arrows-icon-button" onClick={handleUnitChange}>
-        <ArrowsUpDownIcon className="arrows-icon"/>
+      <button className="convert-button" type="button" onClick={handleUnitChange}>
+        convert to {getUnits()}
       </button>
     </div>
   )
@@ -172,26 +170,30 @@ const WeightSection = () => {
 const HeightSection = () => {
   const METRIC = "metric"
   const IMPERIAL = "imperial"
-  const [units, setUnits] = useState(METRIC)
+  const [unitSystem, setUnitSystem] = useState(METRIC)
 
   const handleUnitChange = () => {
-    if (units === METRIC) {
-      setUnits(IMPERIAL)
+    if (unitSystem === METRIC) {
+      setUnitSystem(IMPERIAL)
     } else {
-      setUnits(METRIC)
+      setUnitSystem(METRIC)
     }
+  }
+
+  const getUnits = () => {
+    return unitSystem === METRIC ? "cm" : "ft in"
   }
   
   return (
     <div className="input-with-arrow-button-container">
       {
-        units === METRIC &&
+        unitSystem === METRIC &&
         <div className="input-with-units-flex-container">
           <CLInputWithUnits units="cm" placeholder="Height (cm)" />
         </div>
       }
       {
-        units === IMPERIAL &&
+        unitSystem === IMPERIAL &&
         (
           <div className="input-with-units-flex-container">
             <Grid container spacing={1}>
@@ -205,8 +207,8 @@ const HeightSection = () => {
           </div>
         )
       }
-      <button className="arrows-icon-button" onClick={handleUnitChange}>
-        <ArrowsUpDownIcon className="arrows-icon"/>
+      <button className="convert-button" type="button" onClick={handleUnitChange}>
+        convert to {getUnits()}
       </button>
     </div>
   )
@@ -215,19 +217,18 @@ const HeightSection = () => {
 const LabsSection = () => {
   return (
     <div className="labs-section-container">
-      <img src={LabsFishbones} className="diagram-image"/>
-      <input className="labs-text-input labs-w-input" type="text" placeholder="W" />
-      <input className="labs-text-input labs-hb-input" type="text" placeholder="Hb" />
-      <input className="labs-text-input labs-plt-input" type="text" placeholder="Plt" />
-      <input className="labs-text-input labs-cr-input" type="text" placeholder="Cr" />
-      <div className="radio-label-container first-na-radio-button">
-        <Radio sx={{ padding: 0 }} />
-        <p className="input-title">N/A</p>
-      </div>
-      <div className="radio-label-container second-na-radio-button">
-        <Radio sx={{ padding: 0 }} />
-        <p className="input-title">N/A</p>
-      </div>
+      <img src={LabsFishbones} className="labs-diagram-image"/>
+      <input className="labs-text-input labs-text-input-small labs-w-input" type="text" placeholder="W" />
+      <input className="labs-text-input labs-text-input-small labs-hb-input" type="text" placeholder="Hb" />
+      <input className="labs-text-input labs-text-input-small labs-plt-input" type="text" placeholder="Plt" />
+      <input className="labs-text-input labs-text-input-small labs-hct-input" type="text" placeholder="Hct" />
+      <input className="labs-text-input labs-text-input-small labs-na-input" type="text" placeholder="Na" />
+      <input className="labs-text-input labs-text-input-small labs-cl-input" type="text" placeholder="Cl" />
+      <input className="labs-text-input labs-text-input-large labs-bun-input" type="text" placeholder="BUN" />
+      <input className="labs-text-input labs-text-input-medium labs-glu-input" type="text" placeholder="Glu" />
+      <input className="labs-text-input labs-text-input-large labs-creat-input" type="text" placeholder="Creat" />
+      <input className="labs-text-input labs-text-input-medium labs-co2-input" type="text" placeholder="CO2" />
+      <input className="labs-text-input labs-text-input-small labs-k-input" type="text" placeholder="K" />
     </div>
   )
 }
@@ -235,7 +236,7 @@ const LabsSection = () => {
 const PulsesSection = () => {
   return (
     <div className="pulses-section-container">
-      <img src={Pulses} className="diagram-image"/>
+      <img src={Pulses} className="pulses-diagram-image"/>
       <input className="labs-checkbox-input bottom-left-checkbox-input" type="checkbox" />
       <input className="labs-checkbox-input top-left-checkbox-input" type="checkbox" />
       <input className="labs-checkbox-input top-right-checkbox-input" type="checkbox" />

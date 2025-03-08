@@ -3,8 +3,7 @@ import { DataKeys } from "../../data/FormDataNames";
 import { CLDatePickerInput, CLSelectInput } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
+import { Checkbox } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import "./SurgicalAndPatientInfo.css"
 
@@ -224,57 +223,47 @@ const PMHxSection = () => {
   const DMII = "DM II"
   const DLT = "DLP"
   const CVA = "CVA"
-  const [selected, setSelected] = useState("")
-
-  const handleChange = (event) => {
-    setSelected(event.target.value)
-  }
 
   return (
     <div>
-      <RadioGroup
-        value={selected}
-        onChange={handleChange}
-      >
-        <Grid container spacing={1}>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={HTN}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">HTM</p>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={DMII}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">DM II</p>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={DLT}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">DLP</p>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={CVA}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">CVA</p>
-            </div>
-          </Grid>
+      <Grid container spacing={1}>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+            <Checkbox
+              value={HTN}
+              sx={{ padding: 0 }}
+            />
+            <p className="input-title">HTM</p>
+          </div>
         </Grid>
-      </RadioGroup>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+          <Checkbox
+              value={DMII}
+              sx={{ padding: 0 }}
+            />
+            <p className="input-title">DM II</p>
+          </div>
+        </Grid>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+            <Checkbox
+              value={DLT}
+              sx={{ padding: 0 }}
+            />
+            <p className="input-title">DLP</p>
+          </div>
+        </Grid>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+            <Checkbox
+              value={CVA}
+              sx={{ padding: 0 }}
+            />
+            <p className="input-title">CVA</p>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   )
 }
