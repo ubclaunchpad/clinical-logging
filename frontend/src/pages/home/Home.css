@@ -1,6 +1,7 @@
+
 .dashboard-container {
-    margin-left: 65px;
-    max-width: 1400px;
+    margin: 0 3rem 0 3rem;
+    /* max-width: 1400px; */
   }
 
 .welcome-section {

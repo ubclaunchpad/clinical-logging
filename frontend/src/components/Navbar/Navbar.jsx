@@ -1,49 +1,49 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import Logo from "../../assets/flow-leaflets-logo.svg";
 import {
   HomeIcon,
   BookOpenIcon,
-  ClockIcon,
-  ArrowLeftStartOnRectangleIcon,
+  FolderIcon,
+  UserIcon,
+  ChevronUpIcon
 } from "@heroicons/react/24/outline";
 import "./Navbar.css";
 
 export const Navbar = () => {
-  const { logout } = useAuth();
 
-  const handleSignOut = async () => {
-    try {
-      await logout();
-    } catch {
-      console.log("Failed to logout");
-    }
-  };
+  const { session } = useAuth();
 
   return (
     <nav className="nav-bar">
+      <div className="nav-logo-container">
+        <img src={Logo} className="nav-logo" />
+        <h1 className="nav-name">FlowLeaflets</h1>
+      </div>
       <div className="nav-button-container">
         <NavLink className="nav-button" to="/home">
-          <div className="nav-button-icon-container">
             <HomeIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">Home</p>
+            <p className="nav-button-text">Home</p>
         </NavLink>
         <NavLink className="nav-button" to="/logbooks">
-          <div className="nav-button-icon-container">
             <BookOpenIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">Logs</p>
+            <p className="nav-button-text">Logs</p>
         </NavLink>
         <NavLink className="nav-button" to="/history">
-          <div className="nav-button-icon-container">
-            <ClockIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">History</p>
+            <FolderIcon className="nav-icon" />
+            <p className="nav-button-text">Saved Logs</p>
         </NavLink>
       </div>
-      <button className="logout-button" onClick={handleSignOut}>
-        <ArrowLeftStartOnRectangleIcon className="nav-icon" />
-      </button>
+      <div className="profile-container">
+        <UserIcon className="profile-icon"/>
+        <div className="profile-name-container">
+          <h2 className="profile-name-text">{session?.user?.user_metadata?.first_name}</h2>
+          <p className="profile-title-text">Title</p>
+        </div>
+        <button className="expand-button">
+          <ChevronUpIcon className="expand-icon"/>
+        </button>
+      </div>
     </nav>
   );
 };

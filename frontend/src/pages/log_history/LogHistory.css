@@ -20,3 +20,8 @@
 .table-footer .showing-text span {
   color: #64B2F6;
 }
+
+.loghistory-container {
+  margin-left: 65px;
+  max-width: 1400px;
+}
