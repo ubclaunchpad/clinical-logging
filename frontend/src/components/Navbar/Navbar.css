@@ -63,22 +63,24 @@
 .nav-button-text {
     margin-top: 4px;
     color: #244B94;
+    font-weight: 400;
+}
+
+.nav-button:hover {
+    background-color: #E9F1FC;
 }
 
 .nav-button.active {
     background-color: #244B94;
 }
 
-.nav-button:hover {
-    background-color: #244B94;
-}
-
 .nav-button:hover .nav-button-text, .nav-button:hover .nav-icon{
-    color: #F7FAFF;
+    color: #244B94;
 }
 
 .nav-button.active .nav-button-text, .nav-button.active .nav-icon{
     color: #F7FAFF;
+    font-weight: 600;
 }
 
 .profile-container {
@@ -116,7 +118,6 @@
 
 .expand-button {
     background-color: transparent;
-    border: 1px solid black;
     padding: 5px 5px; 
     cursor: pointer;
     margin-left: 20px; 
