@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid2';
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import MenuItem from "@mui/material/MenuItem";
-import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import "./SurgicalAndPatientInfo.css"
 
 export const SurgicalAndPatientInfo = ({ onInputChange }) => {
@@ -17,7 +16,7 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
           <Grid container spacing={1}>
             <Grid size={6}>
               <div>
-                <p className="input-title">Case no.</p>
+                <p className="input-title">Case no.*</p>
                 <input
                   name={DataKeys.CASE_NO}
                   className="manual-entry-input"
@@ -29,7 +28,7 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
             </Grid>
             <Grid size={6}>
               <div>
-                <p className="input-title">Type</p>
+                <p className="input-title">Type*</p>
                 <input
                   name={DataKeys.TYPE}
                   className="manual-entry-input"
@@ -41,7 +40,7 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
             </Grid>
             <Grid size={12}>
               <div>
-                <p className="input-title">Surgeon</p>
+                <p className="input-title">Surgeon*</p>
                 <input
                   name={DataKeys.SURGEON}
                   className="manual-entry-input"
@@ -53,13 +52,115 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
             </Grid>
             <Grid size={12}>
               <div>
-                <p className="input-title">OR Date</p>
+                <p className="input-title">OR Date*</p>
                 <CLDatePickerInput />
               </div>
             </Grid>
             <Grid size={12}>
+            <p className="input-title-bold">Social</p>
+            </Grid>
+            <Grid size={6}>
               <div>
-                <p className="input-title-bold">HPI</p>
+                <p className="input-title">EtOH</p>
+                <input
+                  name={DataKeys.ETOH}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Lorem ipsum"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Drugs</p>
+                <input
+                  name={DataKeys.DRUGS}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Amet pulvinar"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Smoking</p>
+                <input
+                  name={DataKeys.SMOKING}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Neque mauris"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <p className="input-title-bold">PMHx*</p>
+              <PMHxSection />
+            </Grid>
+            <Grid size={12}>
+              <p className="input-title-bold">Meds (last dose)</p>
+            </Grid>
+            <Grid size={12}>
+              <textarea
+                name={DataKeys.MEDICINE}
+                className="manual-entry-text-area"
+                rows="3"
+                placeholder="Lorem ipsum"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid size={6}>
+          <Grid container spacing={1}>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Patient ID*</p>
+                <input
+                  name={DataKeys.PATIENT_ID}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="7654321"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Age*</p>
+                <input
+                  name={DataKeys.AGE}
+                  className="manual-entry-input"
+                  type="number"
+                  min="0"
+                  placeholder="40"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Gender*</p>
+                <GenderSection />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Indication for Surgery/Reason for Referral*</p>
+                <input
+                  name={DataKeys.REFERRAL_REASON}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Indication for Surgery/Reason for Referral"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title-bold">HPI*</p>
                 <textarea
                   name={DataKeys.HPI}
                   className="manual-entry-text-area"
@@ -70,119 +171,17 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
               </div>
             </Grid>
             <Grid size={12}>
-              <p className="input-title-bold">PMHx</p>
-              <PMHxSection />
+              <div>
+                <p className="input-title-bold">Allergies</p>
+                <input
+                  name={DataKeys.ALLERGIES}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Massa odio vel sed."
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
             </Grid>
-            <Grid size={12}>
-              <p className="input-title-bold">Meds (last dose)</p>
-            </Grid>
-            <Grid size={12}>
-              <MedsLastDoseSection />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid size={6}>
-        <Grid container spacing={1}>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Patient ID</p>
-              <input
-                name={DataKeys.PATIENT_ID}
-                className="manual-entry-input"
-                type="text"
-                placeholder="7654321"
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div>
-              <p className="input-title">Age</p>
-              <input
-                name={DataKeys.AGE}
-                className="manual-entry-input"
-                type="number"
-                min="0"
-                placeholder="40"
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div>
-              <p className="input-title">Gender</p>
-              <GenderSection />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Indication for Surgery/Reason for Referral</p>
-              <input
-                name={DataKeys.REFERRAL_REASON}
-                className="manual-entry-input"
-                type="text"
-                placeholder="Indication for Surgery/Reason for Referral"
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <p className="input-title-bold">Social</p>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">EtOH</p>
-              <input
-                name={DataKeys.ETOH}
-                className="manual-entry-input"
-                type="text"
-                placeholder="Lorem ipsum"
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Drugs</p>
-              <input
-                name={DataKeys.DRUGS}
-                className="manual-entry-input"
-                type="text"
-                placeholder="Amet pulvinar"
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Smoking</p>
-              <input
-                name={DataKeys.SMOKING}
-                className="manual-entry-input"
-                type="text"
-                placeholder="Neque mauris"
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Allergies</p>
-              <textarea
-                name={DataKeys.ALLERGIES}
-                className="manual-entry-text-area"
-                rows="4"
-                placeholder="Massa odio vel sed."
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
-              />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div className="radio-label-container">
-              <Radio sx={{ padding: 0 }} />
-              <p className="input-title">None</p>
-            </div>
-          </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -276,78 +275,6 @@ const PMHxSection = () => {
           </Grid>
         </Grid>
       </RadioGroup>
-    </div>
-  )
-}
-
-const MedsLastDoseSection = () => {
-  const [medsLastDoses, setMedsLastDoses] = useState([0])
-  
-  const handleAddMed = () => {
-    setMedsLastDoses(prevState => [...prevState, prevState.length])
-  }
-
-  const handleRemoveMed = () => {
-    if (medsLastDoses.length === 1) {
-      return
-    }
-    setMedsLastDoses(prevState => prevState.slice(0, prevState.length - 1))
-  }
-
-  return (
-    <div>
-      {medsLastDoses.map((_, i) => {
-        return (
-          <div key={i}>
-            {
-              i > 0 &&
-              (
-                <div className="meds-last-dose-button-container">
-                  <button className="meds-last-dose-button" onClick={handleRemoveMed}>
-                    <MinusCircleIcon className="meds-last-dose-icon"/>
-                  </button>
-              </div>
-              )
-            }
-            <Grid container spacing={1}>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Name</p>
-                  <input className="manual-entry-input" type="text" placeholder="1234567"/>
-                </div>
-              </Grid>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Dose</p>
-                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-                </div>
-              </Grid>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Frequency</p>
-                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-                </div>
-              </Grid>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Method of delivery</p>
-                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-                </div>
-              </Grid>
-            </Grid>
-            {
-              i === medsLastDoses.length - 1 &&
-              (
-                <div className="meds-last-dose-button-container">
-                  <button className="meds-last-dose-button" onClick={handleAddMed}>
-                    <PlusCircleIcon className="meds-last-dose-icon"/>
-                  </button>
-                </div>
-              )
-            }
-          </div>
-        )
-      })}
     </div>
   )
 }

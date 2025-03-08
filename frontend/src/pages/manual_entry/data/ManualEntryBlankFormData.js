@@ -8,7 +8,7 @@ export const blankFormData = () => {
         or_date: null,
         reason_for_referral: null,
         hpi: null,
-        phmx: null, // TODO mispelling?
+        pmhx: null,
         gender: null,
         social_etoh: null,
         social_smoking: null,
@@ -44,7 +44,7 @@ export const blankFormData = () => {
         or_flag: null,
         issue_flag: null,
         fu_flag: null,
-        op_notes_cpb: null,
+        op_notes_cpb: null, // TODO: format time: "XXh XXm"
         op_notes_xc: null,
         op_notes_ca: null,
         my_role: null,

@@ -82,7 +82,7 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
             <Grid size={6}>
               <div>
                 <p className="input-title">EF</p>
-                <input className="manual-entry-input" type="number" min="0" placeholder="60%" />
+                <CLInputWithUnits className="manual-entry-input" units="%" type="number" min="0" placeholder="60" />
               </div>
             </Grid>
             <Grid size={6}>

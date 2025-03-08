@@ -1,5 +1,6 @@
 .manual-entry-container {
   margin: 0 220px 0 220px;
+  text-align: left;
 }
 
 .section-header {
@@ -17,6 +18,7 @@
   color: #4F607E;
   font-weight: 500;
   font-size: 18px;
+  margin-top: 20px;
 }
 
 .manual-entry-input {
