@@ -66,8 +66,8 @@ export const CLDatePickerInput = () => {
             fontSize: "13px",
             borderColor: "#BAC1D0",
           },
-          '&.MuiOutlinedInput-input': {
-            padding: "0px",
+          '&.MuiTextField-root .MuiOutlinedInput-input': {
+            padding: "18px",
           },
         }}
       />

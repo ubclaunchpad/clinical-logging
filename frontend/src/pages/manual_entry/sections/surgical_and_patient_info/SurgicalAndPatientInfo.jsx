@@ -55,8 +55,10 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
                 <CLDatePickerInput />
               </div>
             </Grid>
+            {/* Spacer */}
+            <div className="spacer-sm" />
             <Grid size={12}>
-            <p className="input-title-bold">Social</p>
+              <p className="input-title-bold">Social</p>
             </Grid>
             <Grid size={6}>
               <div>
@@ -95,8 +97,12 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
               </div>
             </Grid>
             <Grid size={12}>
-              <p className="input-title-bold">PMHx*</p>
-              <PMHxSection />
+              {/* Spacer */}
+              <div className="spacer-sm" />
+              <div>
+                <p className="input-title-bold">PMHx*</p>
+                <PMHxSection />
+              </div>
             </Grid>
             <Grid size={12}>
               <p className="input-title-bold">Meds (last dose)</p>
@@ -157,6 +163,8 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
                 />
               </div>
             </Grid>
+            {/* Spacer */}
+            <div className="spacer-sm" />
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">HPI*</p>
@@ -169,6 +177,8 @@ export const SurgicalAndPatientInfo = ({ onInputChange }) => {
                 />
               </div>
             </Grid>
+            {/* Spacer */}
+            <div className="spacer-sm" />
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">Allergies</p>
@@ -231,7 +241,7 @@ const PMHxSection = () => {
           <div className="checkbox-label-container">
             <Checkbox
               value={HTN}
-              sx={{ padding: 0 }}
+              sx={{ padding: 0, color: "#244B94" }}
             />
             <p className="input-title">HTM</p>
           </div>
@@ -240,7 +250,7 @@ const PMHxSection = () => {
           <div className="checkbox-label-container">
           <Checkbox
               value={DMII}
-              sx={{ padding: 0 }}
+              sx={{ padding: 0, color: "#244B94" }}
             />
             <p className="input-title">DM II</p>
           </div>
@@ -249,7 +259,7 @@ const PMHxSection = () => {
           <div className="checkbox-label-container">
             <Checkbox
               value={DLT}
-              sx={{ padding: 0 }}
+              sx={{ padding: 0, color: "#244B94" }}
             />
             <p className="input-title">DLP</p>
           </div>

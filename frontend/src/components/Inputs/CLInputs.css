@@ -6,7 +6,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 1rem 3rem 1rem 1rem;
-  border: 1px solid #BAC1D0;
+  border: 1px solid #D4DDF2;
   border-radius: 16px;
   background-color: transparent;
 }
@@ -17,7 +17,7 @@
   align-items: center;
   width: 40px;
   margin-left: -40px;
-  background-color: #BAC1D0;
+  background-color: #D4DDF2;
   border-radius: 0 16px 16px 0px;
 }
 

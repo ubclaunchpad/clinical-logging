@@ -62,7 +62,7 @@ export const ExaminationsAndInvestigations = ({ onInputChange }) => {
             </Grid>
             <Grid size={12}>
               {/* Spacer */}
-              <div style={{height: "36px"}}></div>
+              <div className="spacer-med" />
             </Grid>
             <Grid size={12}>
               <div>
@@ -158,7 +158,7 @@ const WeightSection = () => {
   return (
     <div className="input-with-arrow-button-container">
       <div className="input-with-units-flex-container">
-        <CLInputWithUnits units={getUnits()} placeholder={`Weight (${getUnits()})`} />
+        <CLInputWithUnits units={getUnits()} placeholder={getUnits()} />
       </div>
       <button className="convert-button" type="button" onClick={handleUnitChange}>
         convert to {getUnits()}
@@ -189,7 +189,7 @@ const HeightSection = () => {
       {
         unitSystem === METRIC &&
         <div className="input-with-units-flex-container">
-          <CLInputWithUnits units="cm" placeholder="Height (cm)" />
+          <CLInputWithUnits units="cm" placeholder="cm" />
         </div>
       }
       {
