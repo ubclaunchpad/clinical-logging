@@ -28,8 +28,13 @@ const ManualEntry = () => {
     }))
   }
 
+  const getDataValue = (field) => {
+    return formData[field];
+  }
+
   const handleSubmit = async () => {
     try {
+      console.log(formData); // TODO: remove
       const res = postData(session?.access_token, "logbooks/306375dc-c6e3-4c5d-b08b-1b53023e5cab/logs", formData); // TODO: fix this
       console.log("Submitted successfully: " + res); // TODO: fix this
     } catch (err) {
@@ -44,13 +49,25 @@ const ManualEntry = () => {
         <div className="manual-entry-container">
           <Divider />
           <h2 className="section-header">1. Surgical and Patient Information</h2>
-          <SurgicalAndPatientInfo onInputChange={handleInputChange} />
+          <SurgicalAndPatientInfo
+            getDataValue={getDataValue}
+            onInputChange={handleInputChange}
+          />
           <h2 className="section-header">2. Examinations and Investigations</h2>
-          <ExaminationsAndInvestigations onInputChange={handleInputChange} />
+          <ExaminationsAndInvestigations
+            getDataValue={getDataValue}
+            onInputChange={handleInputChange}
+          />
           <h2 className="section-header">3. Case Planning</h2>
-          <CasePlanning onInputChange={handleInputChange} />
+          <CasePlanning
+            getDataValue={getDataValue}
+            onInputChange={handleInputChange}
+          />
           <h2 className="section-header">4. Learning Points</h2>
-          <LearningPoints onInputChange={handleInputChange} />
+          <LearningPoints
+            getDataValue={getDataValue}
+            onInputChange={handleInputChange}
+          />
           <div className="manual-entry-buttons-footer">
             <ConfirmCancelModal />
             <LogSavedSuccessModal onSubmit={handleSubmit} />

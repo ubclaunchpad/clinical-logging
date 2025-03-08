@@ -1,6 +1,6 @@
 export const blankFormData = () => {
     return {
-        case_no: null,
+        case_no: 1,
         type: null,
         patient_id: null,
         age: null,
