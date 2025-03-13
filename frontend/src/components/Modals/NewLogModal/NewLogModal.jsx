@@ -4,7 +4,8 @@ import { CLButtonPrimary, CLButtonSecondary } from "../../Buttons/CLButtons"
 import {
   PhotoIcon,
   PencilSquareIcon,
-  XMarkIcon
+  XMarkIcon,
+  FolderIcon
 } from '@heroicons/react/24/outline';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -24,6 +25,10 @@ export const NewLogModal = () => {
 
   const handleCreateManually = () => {
     navigate('/manualEntry');
+  }
+
+  const handleSavedUploads = () => {
+    navigate('/savedUploads');
   }
 
   return (
@@ -52,6 +57,10 @@ export const NewLogModal = () => {
               <PencilSquareIcon className="modal-icon" />
               <p>Create Manually</p>
             </CLButtonSecondary>
+            <CLButtonPrimary className="saved-uploads-button" onClick={handleSavedUploads} width={"330px"}>
+              <FolderIcon className="modal-icon" />
+              <p>Saved Uploads</p>
+            </CLButtonPrimary>
           </div>
         </Box>
       </Modal>
