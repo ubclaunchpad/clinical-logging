@@ -20,7 +20,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                   name={DataKeys.CASE_NO}
                   value={getDataValue(DataKeys.CASE_NO)}
                   className="manual-entry-input"
-                  type="text"
+                  type="number"
                   placeholder="1234567"
                   onChange={(e) => onInputChange(e.target.name, e.target.value)}
                 />
@@ -31,6 +31,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Type*</p>
                 <input
                   name={DataKeys.TYPE}
+                  value={getDataValue(DataKeys.TYPE)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Adult cardiac"
@@ -43,6 +44,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Surgeon*</p>
                 <input
                   name={DataKeys.SURGEON}
+                  value={getDataValue(DataKeys.SURGEON)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Surgeon name"
@@ -66,6 +68,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">EtOH</p>
                 <input
                   name={DataKeys.ETOH}
+                  value={getDataValue(DataKeys.ETOH)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Lorem ipsum"
@@ -78,6 +81,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Drugs</p>
                 <input
                   name={DataKeys.DRUGS}
+                  value={getDataValue(DataKeys.DRUGS)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Amet pulvinar"
@@ -90,6 +94,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Smoking</p>
                 <input
                   name={DataKeys.SMOKING}
+                  value={getDataValue(DataKeys.SMOKING)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Neque mauris"
@@ -111,6 +116,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
             <Grid size={12}>
               <textarea
                 name={DataKeys.MEDICINE}
+                value={getDataValue(DataKeys.MEDICINE)}
                 className="manual-entry-text-area"
                 rows="3"
                 placeholder="Lorem ipsum"
@@ -126,6 +132,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Patient ID*</p>
                 <input
                   name={DataKeys.PATIENT_ID}
+                  value={getDataValue(DataKeys.PATIENT_ID)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="7654321"
@@ -138,6 +145,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Age*</p>
                 <input
                   name={DataKeys.AGE}
+                  value={getDataValue(DataKeys.AGE)}
                   className="manual-entry-input"
                   type="number"
                   min="0"
@@ -157,6 +165,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Indication for Surgery/Reason for Referral*</p>
                 <input
                   name={DataKeys.REFERRAL_REASON}
+                  value={getDataValue(DataKeys.REFERRAL_REASON)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Indication for Surgery/Reason for Referral"
@@ -171,6 +180,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title-bold">HPI*</p>
                 <textarea
                   name={DataKeys.HPI}
+                  value={getDataValue(DataKeys.HPI)}
                   className="manual-entry-text-area"
                   rows="3"
                   placeholder="HPI"
@@ -185,6 +195,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title-bold">Allergies</p>
                 <input
                   name={DataKeys.ALLERGIES}
+                  value={getDataValue(DataKeys.ALLERGIES)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Massa odio vel sed."
@@ -203,7 +214,7 @@ const GenderSection = () => {
   const MALE = "male"
   const FEMALE = "female"
   const OTHER = "other"
-  const [gender, setGender] = useState(MALE)
+  const [gender, setGender] = useState(null)
 
   const handleChange = (event) => {
     setGender(event.target.value)

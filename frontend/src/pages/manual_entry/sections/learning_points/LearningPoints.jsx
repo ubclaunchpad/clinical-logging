@@ -24,6 +24,7 @@ export const LearningPoints = ({ getDataValue, onInputChange }) => {
             <p className="input-title-bold">Learning Points, Key Lessons</p>
             <textarea
               name={DataKeys.LEARNING_POINTS}
+              value={getDataValue(DataKeys.LEARNING_POINTS)}
               className="manual-entry-text-area"
               rows="6"
               placeholder="Learning Points, Key Lessons"

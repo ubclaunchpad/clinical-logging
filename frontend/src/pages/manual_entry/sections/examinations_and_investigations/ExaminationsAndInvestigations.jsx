@@ -55,7 +55,7 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   name={DataKeys.ALLEN_TEST}
                   value={getDataValue(DataKeys.ALLEN_TEST)}
                   className="manual-entry-input"
-                  type="number"
+                  type="text"
                   min="0"
                   placeholder="Allen Test"
                   onChange={(e) => onInputChange(e.target.name, e.target.value)}
@@ -69,7 +69,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">Cath</p>
-                <input className="manual-entry-input" type="file"/>
+                <input
+                  className="manual-entry-input"
+                  type="file"/>
               </div>
             </Grid>
           </Grid>
@@ -82,37 +84,69 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
             <Grid size={6}>
               <div>
                 <p className="input-title">EF</p>
-                <CLInputWithUnits className="manual-entry-input" units="%" type="number" min="0" placeholder="60" />
+                <CLInputWithUnits
+                  name={DataKeys.ECHO_EF}
+                  value={getDataValue(DataKeys.ECHO_EF)}
+                  className="manual-entry-input"
+                  units="%"
+                  type="number"
+                  min="0"
+                  placeholder="60" />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">RVFx</p>
-                <input className="manual-entry-input" type="text" placeholder="Amet pulvinar" />
+                <input
+                  name={DataKeys.ECHO_RVFX}
+                  value={getDataValue(DataKeys.ECHO_RVFX)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Amet pulvinar" />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">WMA</p>
-                <input className="manual-entry-input" type="text" placeholder="Lorem ipsum" />
+                <input
+                  name={DataKeys.INVX_WMA}
+                  value={getDataValue(DataKeys.INVX_WMA)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Lorem ipsum" />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">Aorta</p>
-                <input className="manual-entry-input" type="text" placeholder="Morbi nunc enim mauris" />
+                <input
+                  name={DataKeys.INVX_AORTA}
+                  value={getDataValue(DataKeys.INVX_AORTA)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Morbi nunc enim mauris" />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">Valves</p>
-                <input className="manual-entry-input" type="text" placeholder="Porttitor purus" />
+                <input
+                  name={DataKeys.INVX_VALVES}
+                  value={getDataValue(DataKeys.INVX_VALVES)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Porttitor purus" />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
                 <p className="input-title">CXR</p>
-                <input className="manual-entry-input" type="text" placeholder="Morbi nunc enim mauris" />
+                <input
+                  name={DataKeys.CXR}
+                  value={getDataValue(DataKeys.CXR)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Morbi nunc enim mauris" />
               </div>
             </Grid>
             <Grid size={10}>
@@ -130,7 +164,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
             <Grid size={12}>
               <div>
                 <p className="input-title-bold">CT</p>
-                <input className="manual-entry-input" type="file"/>
+                <input
+                  className="manual-entry-input"
+                  type="file"/>
               </div>
             </Grid>
           </Grid>
