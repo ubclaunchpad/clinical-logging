@@ -2,8 +2,11 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 600px;
+    width: 800px;
     gap: 25px;
+    max-height: 250px;
+    max-width: 600px;
+    padding-top: 10px;
 }
 
 .logbook-modal-information h1 {

@@ -6,12 +6,15 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
 import "./LogbookCard.css";
 import LogbookModalInformation from "./LogbookModalInformation";
+import LogbookModalRecentLogs from "./LogbookModalRecentLogs";
 
-export default function LogbookCard({ title, type, storage, created }) {
+export default function LogbookCard({ title, type, storage, created, id }) {
   const formattedType = formatType(type);
   const formattedDate = formatDate(created);
   const [open, setOpen] = useState(false);
@@ -58,8 +61,15 @@ export default function LogbookCard({ title, type, storage, created }) {
           <button className="close-modal-button" onClick={handleClose}>
             <XMarkIcon className="close-x-icon"/>
           </button>
-          <LogbookModalInformation title={title} type={formattedType} dateCreated={formattedDate} storage={storage}/>
-          <div>Recent Logs</div>
+          <div className="modal-container">
+            <div className="modal-image-container">
+              <ChevronLeftIcon/>
+              <img src={bookImage} alt={formattedType} className="modal-book-cover-image" />
+              <ChevronRightIcon/>
+            </div>
+            <LogbookModalInformation title={title} type={formattedType} dateCreated={formattedDate} storage={storage}/>
+            <LogbookModalRecentLogs logbookID={id}/>
+          </div>
         </Box>
       </Modal>
     </>

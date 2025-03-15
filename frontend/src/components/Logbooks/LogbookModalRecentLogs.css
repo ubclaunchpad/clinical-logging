@@ -1,0 +1,71 @@
+.modal-recent-logs {
+    width: 100%;
+    grid-column: 1 / -1; 
+}
+
+.modal-recent-logs h2 {
+    flex: 1;
+    margin-left: 15px;
+}  
+
+.recent-logs-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.recent-logs-title-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.recent-logs-title-buttons div {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.recent-log-download-button {
+    background-color: #244B94;
+    color: white;
+    display: flex;
+    gap: 8px;
+}
+
+.recent-log-download-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.recent-log-view-more-button {
+    border: 1px solid #244B94;
+}
+
+.recent-logs-table {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.recent-logs-table tbody tr:nth-child(even) {
+    background-color: #F2F5FF;
+}
+  
+.recent-logs-table tbody tr:nth-child(odd) {
+    background-color: #F8FAFF;
+}
+
+.recent-logs-table table {
+    width: 100%;
+    border-collapse: collapse; /* Optional: cleaner border handling */
+    box-shadow:
+      0px 16px 60px 0px #cdd8f040,
+      0px 0px 60px 0px #ffffff80 inset;
+}
+
+.recent-logs-table th,
+.recent-logs-table td {
+    padding: 20px 44px;
+    text-align: left;
+}
