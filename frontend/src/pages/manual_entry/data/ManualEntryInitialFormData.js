@@ -8,7 +8,11 @@ export const initialFormData = () => {
         or_date: null,
         reason_for_referral: "Severe angina, left main coronary artery disease",
         hpi: "Patient presents with chronic angina, worsening over the past 3 months. Non-responsive to medical management.",
-        pmhx: null,
+        // pmhx: null,
+        pmhx_htm: 0, // TODO: add to DB
+        pmhx_dm2: 1, // TODO: add to DB
+        pmhx_dlp: 0, // TODO: add to DB 
+        pmhx_cva: 1, // TODO: add to DB 
         gender: null,
         social_etoh: "Retired, lives with spouse, occasional alcohol use, non-smoker",
         social_smoking: "Never smoked",
@@ -26,20 +30,31 @@ export const initialFormData = () => {
         invx_aorta: "Lorem ipsum",
         invx_valves: "Lorem ipsum",
         cxr: "No acute lung pathology, cardiomegaly present.",
-        exam_pulses_1: null,
-        exam_pulses_2: null,
-        exam_pulses_3: null,
-        exam_pulses_4: null,
-        invx_echo: null,
-        invx_hb: null,
-        invx_w: null,
-        invx_pl: null,
-        invx_cr_1: null,
-        invx_cr_2: null,
-        invx_cr_3: null,
-        invx_cr_4: null,
-        invx_cr_5: null,
-        invx_cr_6: null,
+        exam_pulses_top_left: 1, // TODO: should be numberical / boolean in DB
+        exam_pulses_top_right: 1, // TODO: should be numberical / boolean in DB
+        exam_pulses_bottom_left: 0, // TODO: should be numberical / boolean in DB
+        exam_pulses_bottom_right: 0, // TODO: should be numberical / boolean in DB
+        // invx_echo: null,
+        // invx_hb: null,
+        // invx_w: null,
+        // invx_pl: null,
+        // invx_cr_1: null,
+        // invx_cr_2: null,
+        // invx_cr_3: null,
+        // invx_cr_4: null,
+        // invx_cr_5: null,
+        // invx_cr_6: null,
+        labs_w: 0.1, // TODO: add to DB
+        labs_hb: 0.2, // TODO: add to DB
+        labs_plt: 0.3, // TODO: add to DB
+        labs_hct: 0.4, // TODO: add to DB
+        labs_na: 0.1, // TODO: add to DB
+        labs_cl: 0.2, // TODO: add to DB
+        labs_bun: 0.3, // TODO: add to DB
+        labs_glu: 0.4, // TODO: add to DB
+        labs_creat: 0.5, // TODO: add to DB
+        labs_co2: 0.6, // TODO: add to DB
+        labs_k: 0.7, // TODO: add to DB
         cath_image: null,
         cath_text: null,
         ct_image: null,
