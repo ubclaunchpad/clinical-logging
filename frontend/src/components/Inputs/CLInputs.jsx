@@ -6,6 +6,7 @@ import "./CLInputs.css"
 
 export const CLInputWithUnits = ({
     name,
+    value,
     placeholder,
     units,
     onChange
@@ -14,6 +15,7 @@ export const CLInputWithUnits = ({
     <div className="input-with-units-container">
       <input
         name={name}
+        value={value}
         className="input-with-units"
         type="number"
         min="0"

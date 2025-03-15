@@ -8,7 +8,7 @@ import { CasePlanning } from "./sections/case_planning/CasePlanning";
 import { LearningPoints } from "./sections/learning_points/LearningPoints";
 import { useAuth } from "../../contexts/AuthContext"
 import { postData } from "../../utils/helpers/postData";
-import { blankFormData } from "./data/ManualEntryBlankFormData";
+import { initialFormData } from "./data/ManualEntryInitialFormData";
 import { Divider } from "@mui/material";
 import "./ManualEntry.css"
 
@@ -19,7 +19,7 @@ import "./ManualEntry.css"
  */
 const ManualEntry = () => {
   const { session } = useAuth();
-  const [formData, setFormData] = useState(blankFormData());
+  const [formData, setFormData] = useState(initialFormData());
 
   const handleInputChange = (field, value) => {
     setFormData(prevData => ({

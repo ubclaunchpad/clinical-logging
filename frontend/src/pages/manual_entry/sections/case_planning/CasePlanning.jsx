@@ -34,7 +34,6 @@ export const CasePlanning = ({ getDataValue, onInputChange }) => {
             <Grid size={5.5}>
               <CLInputWithUnits
                 name={DataKeys.OP_NOTES_CPB}
-                value={getDataValue(DataKeys.OP_NOTES_CPB)}
                 units="h"
                 placeholder="CPB"
                 onChange={(e) => onInputChange(e.target.name, e.target.value)}
@@ -99,6 +98,7 @@ export const CasePlanning = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">1° operator</p>
                 <input
                   name={DataKeys.FIRST_OP_FLAG}
+                  value={getDataValue(DataKeys.FIRST_OP_FLAG)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="7654321"
@@ -111,6 +111,7 @@ export const CasePlanning = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Issue - OR</p>
                 <input
                   name={DataKeys.OR_FLAG}
+                  value={getDataValue(DataKeys.OR_FLAG)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="7654321"
@@ -123,6 +124,7 @@ export const CasePlanning = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Issue - Post</p>
                 <input
                   name={DataKeys.ISSUE_FLAG}
+                  value={getDataValue(DataKeys.ISSUE_FLAG)}
                   className="manual-entry-input"
                   type="text"
                   placeholder="Adult cardiac"
@@ -134,6 +136,7 @@ export const CasePlanning = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">Flag for F/U</p>
                 <input
                 name={DataKeys.FU_FLAG}
+                value={getDataValue(DataKeys.FU_FLAG)}
                 className="manual-entry-input"
                 type="text"
                 placeholder="7654321"
@@ -146,6 +149,7 @@ export const CasePlanning = ({ getDataValue, onInputChange }) => {
                 <p className="input-title-bold">My Role</p>
                 <textarea
                   name={DataKeys.MY_ROLE}
+                  value={getDataValue(DataKeys.MY_ROLE)}
                   className="manual-entry-text-area"
                   rows="6"
                   placeholder="My Role"
