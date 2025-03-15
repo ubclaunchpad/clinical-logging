@@ -91,7 +91,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   units="%"
                   type="number"
                   min="0"
-                  placeholder="60" />
+                  placeholder="60"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
@@ -102,7 +104,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   value={getDataValue(DataKeys.ECHO_RVFX)}
                   className="manual-entry-input"
                   type="text"
-                  placeholder="Amet pulvinar" />
+                  placeholder="Amet pulvinar"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
@@ -113,7 +117,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   value={getDataValue(DataKeys.INVX_WMA)}
                   className="manual-entry-input"
                   type="text"
-                  placeholder="Lorem ipsum" />
+                  placeholder="Lorem ipsum"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
@@ -124,7 +130,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   value={getDataValue(DataKeys.INVX_AORTA)}
                   className="manual-entry-input"
                   type="text"
-                  placeholder="Morbi nunc enim mauris" />
+                  placeholder="Morbi nunc enim mauris"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
@@ -135,7 +143,9 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   value={getDataValue(DataKeys.INVX_VALVES)}
                   className="manual-entry-input"
                   type="text"
-                  placeholder="Porttitor purus" />
+                  placeholder="Porttitor purus"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
@@ -146,19 +156,21 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   value={getDataValue(DataKeys.CXR)}
                   className="manual-entry-input"
                   type="text"
-                  placeholder="Morbi nunc enim mauris" />
+                  placeholder="Morbi nunc enim mauris"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={10}>
               <div>
                 <p className="input-title">Labs</p>
-                <LabsSection />
+                <LabsSection getDataValue={getDataValue} onInputChange={onInputChange}/>
               </div>
             </Grid>
             <Grid size={2}>
               <div>
                 <p className="input-title">Pulses</p>
-                <PulsesSection />
+                <PulsesSection getDataValue={getDataValue} onInputChange={onInputChange}/>
               </div>
             </Grid>
             <Grid size={12}>
@@ -252,33 +264,138 @@ const HeightSection = () => {
   )
 }
 
-const LabsSection = () => {
+const LabsSection = ({ getDataValue, onInputChange }) => {
   return (
     <div className="labs-section-container">
       <img src={LabsFishbones} className="labs-diagram-image"/>
-      <input className="labs-text-input labs-text-input-small labs-w-input" type="text" placeholder="W" />
-      <input className="labs-text-input labs-text-input-small labs-hb-input" type="text" placeholder="Hb" />
-      <input className="labs-text-input labs-text-input-small labs-plt-input" type="text" placeholder="Plt" />
-      <input className="labs-text-input labs-text-input-small labs-hct-input" type="text" placeholder="Hct" />
-      <input className="labs-text-input labs-text-input-small labs-na-input" type="text" placeholder="Na" />
-      <input className="labs-text-input labs-text-input-small labs-cl-input" type="text" placeholder="Cl" />
-      <input className="labs-text-input labs-text-input-large labs-bun-input" type="text" placeholder="BUN" />
-      <input className="labs-text-input labs-text-input-medium labs-glu-input" type="text" placeholder="Glu" />
-      <input className="labs-text-input labs-text-input-large labs-creat-input" type="text" placeholder="Creat" />
-      <input className="labs-text-input labs-text-input-medium labs-co2-input" type="text" placeholder="CO2" />
-      <input className="labs-text-input labs-text-input-small labs-k-input" type="text" placeholder="K" />
+      <input
+        name={DataKeys.LABS_W}
+        value={getDataValue(DataKeys.LABS_W)}
+        className="labs-text-input labs-text-input-small labs-w-input"
+        type="text"
+        placeholder="W"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_HB}
+        value={getDataValue(DataKeys.LABS_HB)}
+        className="labs-text-input labs-text-input-small labs-hb-input"
+        type="text"
+        placeholder="Hb"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_PLT}
+        value={getDataValue(DataKeys.LABS_PLT)}
+        className="labs-text-input labs-text-input-small labs-plt-input"
+        type="text"
+        placeholder="Plt"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_HCT}
+        value={getDataValue(DataKeys.LABS_HCT)}
+        className="labs-text-input labs-text-input-small labs-hct-input"
+        type="text"
+        placeholder="Hct"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_NA}
+        value={getDataValue(DataKeys.LABS_NA)}
+        className="labs-text-input labs-text-input-small labs-na-input"
+        type="text"
+        placeholder="Na"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_CL}
+        value={getDataValue(DataKeys.LABS_CL)}
+        className="labs-text-input labs-text-input-small labs-cl-input"
+        type="text"
+        placeholder="Cl"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_BUN}
+        value={getDataValue(DataKeys.LABS_BUN)}
+        className="labs-text-input labs-text-input-large labs-bun-input"
+        type="text"
+        placeholder="BUN"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_GLU}
+        value={getDataValue(DataKeys.LABS_GLU)}
+        className="labs-text-input labs-text-input-medium labs-glu-input"
+        type="text"
+        placeholder="Glu"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_CREAT}
+        value={getDataValue(DataKeys.LABS_CREAT)}
+        className="labs-text-input labs-text-input-large labs-creat-input"
+        type="text"
+        placeholder="Creat"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_CO2}
+        value={getDataValue(DataKeys.LABS_CO2)}
+        className="labs-text-input labs-text-input-medium labs-co2-input"
+        type="text"
+        placeholder="CO2"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
+      <input
+        name={DataKeys.LABS_K}
+        value={getDataValue(DataKeys.LABS_K)}
+        className="labs-text-input labs-text-input-small labs-k-input"
+        type="text"
+        placeholder="K"
+        onChange={(e) => onInputChange(e.target.name, e.target.value)}
+      />
     </div>
   )
 }
 
-const PulsesSection = () => {
+const PulsesSection = ({ getDataValue, onInputChange }) => {
+  const toggleValue = (value) => {
+    return value === 0 ? 1 : 0;
+  }
+
   return (
     <div className="pulses-section-container">
       <img src={Pulses} className="pulses-diagram-image"/>
-      <input className="labs-checkbox-input bottom-left-checkbox-input" type="checkbox" />
-      <input className="labs-checkbox-input top-left-checkbox-input" type="checkbox" />
-      <input className="labs-checkbox-input top-right-checkbox-input" type="checkbox" />
-      <input className="labs-checkbox-input bottom-right-checkbox-input" type="checkbox" />
+      <input
+        name={DataKeys.PULSES_BOTTOM_LEFT}
+        className="labs-checkbox-input bottom-left-checkbox-input"
+        type="checkbox"
+        checked={getDataValue(DataKeys.PULSES_BOTTOM_LEFT) === 1}
+        onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PULSES_BOTTOM_LEFT)))}
+      />
+      <input
+        name={DataKeys.PULSES_TOP_LEFT}
+        className="labs-checkbox-input top-left-checkbox-input"
+        type="checkbox"
+        checked={getDataValue(DataKeys.PULSES_TOP_LEFT) === 1}
+        onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PULSES_TOP_LEFT)))}
+      />
+      <input
+        name={DataKeys.PULSES_TOP_RIGHT}
+        className="labs-checkbox-input top-right-checkbox-input"
+        type="checkbox"
+        checked={getDataValue(DataKeys.PULSES_TOP_RIGHT) === 1}
+        onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PULSES_TOP_RIGHT)))}
+      />
+      <input
+        name={DataKeys.PULSES_BOTTOM_RIGHT}
+        className="labs-checkbox-input bottom-right-checkbox-input"
+        type="checkbox"
+        checked={getDataValue(DataKeys.PULSES_BOTTOM_RIGHT) === 1}
+        onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PULSES_BOTTOM_RIGHT)))}        
+      />
     </div>
   )
 }

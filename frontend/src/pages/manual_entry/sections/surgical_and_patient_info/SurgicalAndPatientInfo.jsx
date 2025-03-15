@@ -107,7 +107,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
               <div className="spacer-sm" />
               <div>
                 <p className="input-title-bold">PMHx*</p>
-                <PMHxSection />
+                <PMHxSection getDataValue={getDataValue} onInputChange={onInputChange} />
               </div>
             </Grid>
             <Grid size={12}>
@@ -240,11 +240,15 @@ const GenderSection = () => {
   )
 }
 
-const PMHxSection = () => {
+const PMHxSection = ({ getDataValue, onInputChange }) => {
   const HTN = "HTN"
   const DMII = "DM II"
   const DLT = "DLP"
   const CVA = "CVA"
+
+  const toggleValue = (value) => {
+    return value === 0 ? 1 : 0;
+  }
 
   return (
     <div>
@@ -252,8 +256,11 @@ const PMHxSection = () => {
         <Grid size={3}>
           <div className="checkbox-label-container">
             <Checkbox
+              name={DataKeys.PMHX_HTM}
               value={HTN}
               sx={{ padding: 0, color: "#244B94" }}
+              checked={getDataValue(DataKeys.PMHX_HTM) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_HTM)))}   
             />
             <p className="input-title">HTM</p>
           </div>
@@ -261,8 +268,11 @@ const PMHxSection = () => {
         <Grid size={3}>
           <div className="checkbox-label-container">
           <Checkbox
+              name={DataKeys.PMHX_DMII}
               value={DMII}
               sx={{ padding: 0, color: "#244B94" }}
+              checked={getDataValue(DataKeys.PMHX_DMII) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_DMII)))}   
             />
             <p className="input-title">DM II</p>
           </div>
@@ -270,8 +280,11 @@ const PMHxSection = () => {
         <Grid size={3}>
           <div className="checkbox-label-container">
             <Checkbox
+              name={DataKeys.PMHX_DLT}
               value={DLT}
               sx={{ padding: 0, color: "#244B94" }}
+              checked={getDataValue(DataKeys.PMHX_DLT) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_DLT)))}   
             />
             <p className="input-title">DLP</p>
           </div>
@@ -279,8 +292,11 @@ const PMHxSection = () => {
         <Grid size={3}>
           <div className="checkbox-label-container">
             <Checkbox
+              name={DataKeys.PMHX_CVA}
               value={CVA}
               sx={{ padding: 0 }}
+              checked={getDataValue(DataKeys.PMHX_CVA) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_CVA)))}   
             />
             <p className="input-title">CVA</p>
           </div>
