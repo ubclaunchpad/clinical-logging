@@ -64,9 +64,9 @@ export const initialFormData = () => {
         or_flag: "Completed",
         issue_flag: "Follow-up scheduled for 1 week",
         fu_flag: "Follow-up readiness confirmed, no complications post-op",
-        op_notes_cpb: null,
-        op_notes_xc: null,
-        op_notes_ca: null,
+        op_notes_cpb: "2h 51m", // TODO: existing data in DB doesn't make sense
+        op_notes_xc: "4h 28m", // TODO: existing data in DB doesn't make sense
+        op_notes_ca: null, // TODO: existing data in DB doesn't make sense
         my_role: "Senior resident assisting in bypass graft placement and surgical closure",
         post_op_course: "Stable in the ICU, extubated 6 hours post-op, no arrhythmias or complications.",
         learning_points: "Close monitoring of hemodynamics during CPB; careful handling of the left internal mammary artery for grafting.",
