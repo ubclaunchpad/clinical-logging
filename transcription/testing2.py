@@ -37,7 +37,7 @@ def florence():
 
     prompt = "<OCR>"
 
-    url = "../assets/transcription-images/kkl1.png"
+    url = "../assets/kkl2.jpg"
     image = Image.open(url).convert("RGB")
 
     inputs = processor(text=prompt, images=image, return_tensors="pt").to(device, torch_dtype)
@@ -75,6 +75,8 @@ def structure_with_llama(raw_text, template):
     # Create a prompt that explains the task and shows the expected format
     template_fields = list(template.keys())
     fields_str = "\n".join([f"- {field}" for field in template_fields])
+
+    print("Fields: " + fields_str)
     
     prompt = f"""Below is a transcribed medical log. Please extract information for each field and format it as JSON. If a field's information is not found, leave it empty.
 
@@ -84,7 +86,7 @@ Fields to extract:
 Transcribed text:
 {raw_text}
 
-Please format the response as a valid JSON object with the fields above. Only include the JSON in your response, no additional text."""
+Please format the response as a valid JSON object with the fields above. Do not make up different fields other than the ones listed in the template. Only include the JSON in your response, no additional text."""
 
     # Call Ollama API
     response = requests.post('http://localhost:11434/api/generate',
@@ -112,6 +114,7 @@ Please format the response as a valid JSON object with the fields above. Only in
                     
             return structured_data
         except json.JSONDecodeError:
+            print(response_text)
             print("Error: Could not parse LLaMA output as JSON")
             return {key: "" for key in template}
     else:
@@ -121,7 +124,7 @@ Please format the response as a valid JSON object with the fields above. Only in
 # testing workflow
 raw_text = florence()
 print("OCR Output:", raw_text)
-template = load_template("AdultCardiac_log")
+template = load_template("Adult_cardiac_log")
 
 # Use LLaMA to structure the text
 structured_data = structure_with_llama(raw_text, template)
