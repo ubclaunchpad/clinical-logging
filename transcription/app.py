@@ -1,42 +1,77 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 from PIL import Image
-from transformers import AutoProcessor, AutoModelForCausalLM
-import torch
+from llama_vision import transcribe_image, load_template
 
 app = Flask(__name__)
-CORS(app) """
+CORS(app)
 
-# load model and processor once during init
-""" device = "cuda:0" if torch.cuda.is_available() else "cpu"
-torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+def get_templates():
+    """Load templates when needed"""
+    return [
+        load_template("Adult_cardiac_log", "logbook_templates.json"),
+        load_template("Adult_cardiac_log_2", "logbook_templates.json")
+    ]
 
-model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-large", torch_dtype=torch_dtype, trust_remote_code=True).to(device)
-processor = AutoProcessor.from_pretrained("microsoft/Florence-2-large", trust_remote_code=True)
+def get_example_responses():
+    """Load example responses when needed"""
+    return [
+        load_template("1", "example_response.json"),
+        load_template("2", "example_response.json")
+    ]
 
 @app.route("/api/transcribe", methods=["POST"])
 def transcribe():
-    if "image" not in request.files:
-        return jsonify({"error": "No image file provided"}), 400
+    if "image1" not in request.files:
+        return jsonify({"error": "First image (image1) is required"}), 400
 
-    image_file = request.files["image"]
+    image_paths = []
+    temp_paths = []
+    
     try:
-        # open and preprocess image
-        image = Image.open(image_file).convert("RGB")
-        prompt = "<OCR>"
-        inputs = processor(text=prompt, images=image, return_tensors="pt").to(device, torch_dtype)
-        generated_ids = model.generate(
-            input_ids=inputs["input_ids"],
-            pixel_values=inputs["pixel_values"],
-            max_new_tokens=1024,
-            num_beams=3,
-            do_sample=False
-        )
-        generated_text = processor.batch_decode(generated_ids, skip_special_tokens=False)[0]
-
-        return jsonify({"transcription": generated_text})
+        # Create temp directory
+        temp_dir = "temp_uploads"
+        os.makedirs(temp_dir, exist_ok=True)
+        
+        # Process first image (required)
+        image1 = request.files["image1"]
+        temp_path1 = os.path.join(temp_dir, "temp_image1.jpg")
+        image = Image.open(image1).convert("RGB")
+        image.save(temp_path1)
+        image_paths.append(temp_path1)
+        temp_paths.append(temp_path1)
+        
+        # Process second image (optional)
+        if "image2" in request.files:
+            image2 = request.files["image2"]
+            temp_path2 = os.path.join(temp_dir, "temp_image2.jpg")
+            image = Image.open(image2).convert("RGB")
+            image.save(temp_path2)
+            image_paths.append(temp_path2)
+            temp_paths.append(temp_path2)
+        
+        # Process with Llama Vision
+        templates = get_templates()
+        example_responses = get_example_responses()
+        structured_data = transcribe_image(templates, example_responses, image_paths)
+        
+        # Clean up temporary files
+        for temp_path in temp_paths:
+            try:
+                os.remove(temp_path)
+            except:
+                pass  # Ignore cleanup errors
+            
+        return jsonify(structured_data)
     except Exception as e:
+        # Clean up temporary files in case of error
+        for temp_path in temp_paths:
+            try:
+                os.remove(temp_path)
+            except:
+                pass
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=8000)
+    app.run(host='0.0.0.0', port=5000)
