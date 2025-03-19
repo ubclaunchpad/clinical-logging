@@ -58,8 +58,12 @@ def extract_json_from_text(text):
     return None
 
 
-def transcribe_image(templates, image_paths=None):
-    # Try to enable GPU
+def transcribe_image(templates, example_responses, image_paths=None):
+    if not image_paths:
+        print("No images to process")
+        return {key: "" for template in templates for key in template}
+    
+    # Try to enable GPU only when we have images to process
     ensure_gpu_ollama()
     
     # Check if CUDA is available
@@ -92,16 +96,23 @@ def transcribe_image(templates, image_paths=None):
     # Create a single Ollama client instance
     client = ollama.Client(host='http://localhost:11434')
     
-    system_prompt = f"""You are a medical transcription assistant specialized in extracting structured information from medical logs. Furthermore, you only speak in JSON, so do not generate any output that isn't JSON. Your task is to:
-1. Carefully read and transcribe text from medical log images
-2. Return data in valid JSON format, do not include any other text or formatting.
-3. Extract specific information for each requested field. 
-4. For fields that are marked via checkmarks or circles, return a "yes" value if the field is checked or there is a circle around the field, and "no" otherwise.
-5. Leave fields empty ("") if information is not found. Do not use "null", "None", or "N/A".
-6. Be precise and accurate in your transcription
-7. Include the entire relevant section for each field, do not summarize or shorten the content
-8. Do not make assumptions or fill in missing information
-9. Maintain patient confidentiality
+    system_prompt = f"""You are a medical transcription assistant specialized in extracting structured information from medical logs. Your task is to carefully read and transcribe text from medical log images, focusing on actual content present in the image.
+
+IMPORTANT: 
+- You must transcribe the ACTUAL content from the image, not copy from examples
+- Never use placeholder or example text
+- If you can't read something clearly, leave it as an empty string
+- Transcribe ALL text present in each field, especially narrative fields like 'my_role', 'learning_points', and 'post_op_course'
+
+Rules:
+1. Return only valid JSON format, no other text
+2. Extract specific information for each requested field
+3. For checkboxes/circles, return "yes" if marked, "no" if not
+4. Leave fields empty ("") if information is not found
+5. Be precise and accurate - transcribe exactly what you see
+6. Include complete text for each field - do not summarize
+7. Do not copy from example templates - use actual image content
+8. Maintain patient confidentiality
 """
     
     # Process each template with each image
@@ -109,23 +120,33 @@ def transcribe_image(templates, image_paths=None):
         if i >= len(abs_paths):
             print(f"Warning: No image available for template {i+1}")
             continue
-        #load example repsonse
-        example_response = load_template(str(i), "example_response.json")
             
         template_fields = list(template.keys())
         fields_str = "\n".join([f"- {field}" for field in template_fields])
         
         print(f"\nProcessing template {i+1} with fields:\n{fields_str}")
 
-        user_prompt = f"""Below is an image of a medical log page. Please transcribe the text and extract information for each field and format it as JSON.
+        # First message: explain the structure
+        structure_message = {
+            'role': 'user',
+            'content': f"""The response should be a JSON object with the following fields:
+{fields_str}
 
-        Fields to extract:
-        {fields_str} 
+Each field should contain the actual text found in the image for that field.
+Pay special attention to narrative fields which may contain longer text."""
+        }
 
-        Here is an example of the format you should follow:
-        {json.dumps(example_response, indent=2)}
-        """
-
+        # Second message: actual transcription request
+        transcription_message = {
+            'role': 'user',
+            'content': """Now, carefully examine the image and transcribe the ACTUAL content for each field.
+Remember:
+1. Transcribe the real content you see, not examples
+2. Include ALL text, especially in narrative fields
+3. Leave fields empty ("") only if no content is found
+4. Do not summarize or shorten any text""",
+            'images': [abs_paths[i]]
+        }
 
         try:
             # Use the client instance directly
@@ -136,17 +157,16 @@ def transcribe_image(templates, image_paths=None):
                         'role': 'system',
                         'content': system_prompt
                     },
-                    {
-                        'role': 'user',
-                        'content': user_prompt,
-                        'images': [abs_paths[i]]
-                    }
+                    structure_message,
+                    transcription_message
                 ],
-                stream=False,  # Disable streaming for faster response
+                stream=False,
                 options={
-                    'num_gpu': 1,  # Explicitly request GPU
-                    'temperature': 0.25,  # Lower temperature for more focused responses
-                    'top_p': 0.9  # Slightly reduce randomness
+                    'num_gpu': 1,
+                    'temperature': 0.1,
+                    'top_p': 0.9,
+                    'num_thread': 8,
+                    'num_predict': 2048
                 }
             )
             
@@ -198,13 +218,14 @@ def load_template(template_name, directory):
         return {"error": "Invalid JSON format in logbook_templates.json"}
 
 
-
-# Example usage with multiple images
-templates = [load_template("Adult_cardiac_log", "logbook_templates.json"), load_template("Adult_cardiac_log_2", "logbook_templates.json")]
-image_paths = [
-    "../assets/kkl3.jpg",
-    "../assets/kkl2.jpg"  # Add more image paths as needed
-]
-# Use LLaMA to structure the text from multiple images
-structured_data = transcribe_image(templates, image_paths)
-print("\nFinal Structured Data:", structured_data)
+if __name__ == "__main__":
+    # Example usage with multiple images
+    templates = [load_template("Adult_cardiac_log", "logbook_templates.json"), load_template("Adult_cardiac_log_2", "logbook_templates.json")]
+    image_paths = [
+        "../assets/kkl3.jpg",
+        "../assets/kkl2.jpg"  # Add more image paths as needed
+    ]
+    example_responses = [load_template("1", "example_response.json"), load_template("2", "example_response.json")]
+    # Use LLaMA to structure the text from multiple images
+    structured_data = transcribe_image(templates, example_responses, image_paths)
+    print("\nFinal Structured Data:", structured_data)
