@@ -81,23 +81,6 @@ def load_template(template_name):
     except json.JSONDecodeError:
         return {"error": "Invalid JSON format in logbook_templates.json"}
 
-# function to detect the best template
-def detect_best_template(raw_text, templates):
-    text_lower = raw_text.lower()
-    best_template = None
-    best_match_count = 0
-    best_template_name = ""
-
-    for template_name, template_fields in templates.items():
-        match_count = sum(1 for field in template_fields if field.lower().replace("_", " ") in text_lower)
-
-        if match_count > best_match_count:
-            best_match_count = match_count
-            best_template = template_fields
-            best_template_name = template_name
-    
-    return best_template_name, best_template
-
 # function to convert text to json
 
 import re
@@ -123,15 +106,6 @@ print("OCR Output:", raw_text)
 template = load_template("AdultCardiac_log")
 print(template)
 
-# testing detect_best_template
-
-with open("logbook_templates.json", "r") as file:
-    templates = json.load(file)
-
-best_template_name, best_template = detect_best_template(raw_text, templates)
-print("Best Template:", best_template_name)
-print("Best Template Fields:", best_template)
-
 # testing structure_transcription
-structured_data = structure_transcription(raw_text, best_template)
+structured_data = structure_transcription(raw_text, template)
 print("Structured Data:", structured_data)
