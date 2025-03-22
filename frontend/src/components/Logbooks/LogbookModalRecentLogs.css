@@ -46,6 +46,7 @@
 .recent-logs-table {
     max-height: 200px;
     overflow-y: scroll;
+    height: 200px;
 }
 
 .recent-logs-table tbody tr:nth-child(even) {
