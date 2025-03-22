@@ -1,31 +1,8 @@
-.homepage {
-  background-color: rgba(247, 249, 253, 1);
-  overflow: hidden;
-  padding-right: 80px;
-}
 
-.homepage__layout {
-  display: flex;
-  gap: 20px;
-}
-
-.homepage__left-column {
-  width: 308px;
-}
-
-.homepage__main-column {
-  width: 1441px;
-  margin-left: 82px;
-}
-
-.homepage__content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: stretch;
-  justify-content: center;
-  padding: 30px 0;
-}
+.dashboard-container {
+    margin: 0 3rem 0 3rem;
+    /* max-width: 1400px; */
+  }
 
 .homepage__cards-container {
   min-height: 833px;

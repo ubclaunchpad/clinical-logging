@@ -46,7 +46,9 @@ const logActions = [
 export default function LogHistory() {
   return (
     <NavContentWrapper>
-      <MainContent />
+      <div className=".loghistory-container">
+        <MainContent />
+      </div>
     </NavContentWrapper>
   );
 }
@@ -118,7 +120,7 @@ function MainContent() {
   return (
     <div className="table-container">
       <ContentHeader
-        header="Log History"
+        header="Saved Logs"
         primaryButtonText="Add Logs"
         actions={logActions}
       />

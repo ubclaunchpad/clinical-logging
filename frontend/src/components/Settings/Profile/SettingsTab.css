@@ -1,53 +1,52 @@
 /* Container for the settings tabs */
 .settings-tabs {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem; 
-    font-weight: 500; 
-    text-align: center;
-    letter-spacing: -1px;
-    line-height: 1;
-    flex-wrap: wrap;
-    padding-top: 32px;
-    padding-bottom: 32px;
-    width: 1300px;
-  }
-  
-  .settings-tab {
-    min-width: 60px;
-    margin: auto 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .settings-tab--profile {
-    width: 650px;
-  }
-  
-  .settings-tab--system {
-    width: 650px;
-    min-height: 50px;
-  }
-  
-  .settings-tab__label {
-    width: 100%;
-  }
-  
-  .settings-tab.active {
-    color: rgba(36, 75, 148, 1);
-  }
-  
-  .settings-tab:not(.active) {
-    color: black;
-  }
-  
-  .settings-tab__indicator {
-    background-color: rgba(36, 75, 148, 1);
-    min-height: 0.5rem; 
-    width: 100%;
-    margin-top: 0.75rem; 
-    border-radius: 10px 10px 0 0;
-  }
-  
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: -1px;
+  line-height: 1;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  width: 1250px;
+}
+
+.settings-tab {
+  min-width: 60px;
+  margin: auto 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-tab--profile {
+  width: 625px;
+}
+
+.settings-tab--system {
+  width: 625px;
+  min-height: 50px;
+}
+
+.settings-tab__label {
+  width: 100%;
+}
+
+.settings-tab.active {
+  color: rgba(36, 75, 148, 1);
+}
+
+.settings-tab:not(.active) {
+  color: black;
+}
+
+.settings-tab__indicator {
+  background-color: rgba(36, 75, 148, 1);
+  min-height: 0.5rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  border-radius: 10px 10px 0 0;
+}

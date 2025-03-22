@@ -1,96 +1,97 @@
-.side-nav {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    height: 95%;
-    background-color: rgba(251, 252, 254, 1);
-    padding: 32px 22px;
-    border-right: 1px solid rgba(233, 233, 233, 1);
-    justify-content: space-between;
-  }
-  
-  .side-nav__header {
-    display: flex;
-    align-items: center;
-  }
-  
-  .side-nav__logo-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 16px;
-  }
-  
-  .side-nav__logo {
-    width: 63px;
-    object-fit: contain;
-    aspect-ratio: 0.79;
-  }
-  
-  .side-nav__brand {
-    font-size: 28px;
-    color: rgba(36, 75, 148, 1);
-    font-weight: 500;
-    line-height: 1.2;
-    white-space: normal;
-  }
-  
-  .side-nav__menu {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 420px;
-  }
-  
-  .side-nav__menu-item {
-    display: flex;
-    flex-direction: column;
-    padding: 8px 24px;
-    border-radius: 10px;
-    transition: background-color 0.2s ease;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .side-nav__menu-item--active {
-    background: #244B94;
-    color: #ffffff;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: none;
-    text-decoration: none;
-  }
-  
-  .side-nav__menu-item--active:hover {
-    color: #ffffff;
-  }
-  
-  .side-nav__menu-item--active .side-nav__menu-icon {
-    filter: brightness(0) invert(1);
-  }
-  
-  .side-nav__menu-item:not(.side-nav__menu-item--active):hover {
-    background-color: rgba(36, 75, 148, 0.1);
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .side-nav__menu-item-content {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  
-  .side-nav__menu-icon {
-    width: 40px;
-    object-fit: contain;
-    aspect-ratio: 1;
-  }
-  
-  .side-nav__menu-text {
-    font-size: 20px;
-    font-weight: 400;
-    margin: 0;
-  }
-  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  width: 250px;
+  background-color: #f7faff;
+  align-items: center;
+  overflow: auto;
+  z-index: 1000;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 0px 0px 10px #e3e8f2;
+}
+
+.nav-button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-logo-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.nav-logo {
+  padding: 0px;
+  height: 50px;
+  width: 50px;
+}
+
+.nav-name {
+  color: #244b94;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.nav-button {
+  display: flex;
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+}
+
+.nav-icon {
+  width: 25px;
+  object-fit: contain;
+  aspect-ratio: 1;
+  color: black;
+}
+
+.nav-button-text {
+  color: #192b52;
+  font-size: 17px;
+  font-weight: 300;
+  margin-left: 20px;
+  letter-spacing: -0.4px;
+}
+
+.nav-button:hover {
+  background-color: #e9f1fc;
+}
+
+.nav-button.active {
+  background-color: #244b94;
+}
+
+.nav-button:hover .nav-button-text,
+.nav-button:hover .nav-icon {
+  color: #244b94;
+}
+
+.nav-button.active .nav-button-text,
+.nav-button.active .nav-icon {
+  color: #f7faff;
+  font-weight: 600;
+}
+
+.profile-container {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-top: 2px solid #e3e8f2;
+}
