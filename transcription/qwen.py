@@ -13,7 +13,12 @@ def process_image(image_path):
 
 # Load the model in half-precision on the available device(s)
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained("Qwen/Qwen2.5-VL-3B-Instruct", device_map="auto")
-processor = AutoProcessor.from_pretrained("Qwen/Qwen2.5-VL-3B-Instruct")
+processor = AutoProcessor.from_pretrained(
+    "Qwen/Qwen2.5-VL-3B-Instruct", 
+    min_pixels=200*400, 
+    max_pixels=350*700,
+    use_fast=True
+)
 
 image_path = process_image("../assets/kkl2.jpg")
 if image_path:
@@ -42,7 +47,7 @@ if image_path:
     ).to(model.device)
 
     # Inference: Generation of the output
-    output_ids = model.generate(**inputs, max_new_tokens=4096)
+    output_ids = model.generate(**inputs, max_new_tokens=2048)
     generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
     output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)
     print(output_text)
