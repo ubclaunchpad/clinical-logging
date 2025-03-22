@@ -1,54 +1,53 @@
 .content-header {
-    position: absolute;
-    left: 230px;
-    top: 18%;
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 4px; 
-    border-bottom: 1px solid #9AB0E1;
+  position: absolute;
+  top: 18%;
+  display: flex;
+  width: 75%;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #9ab0e1;
 }
 
 .content-header h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1E1E1E;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e1e1e;
 }
 
 .content-header[data-page="upload-photo"] h2 {
-    border-bottom: 2px solid #2B4B96;
+  border-bottom: 2px solid #2b4b96;
 }
 
 .button-group {
-    display: flex;
-    gap: 12px;  /* Space between buttons */
-    align-items: center;
+  display: flex;
+  gap: 12px; /* Space between buttons */
+  align-items: center;
 }
 
 .actions-wrapper {
-    position: relative;
-  }
-  
+  position: relative;
+}
+
 .actions-button {
-    background: white;
-    color: #000000;         /* SECONDARY_COLOR */
-    border-radius: 20px;    /* DEFAULT_BORDER_RADIUS */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    height: 40px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
+  background: white;
+  color: #000000; /* SECONDARY_COLOR */
+  border-radius: 20px; /* DEFAULT_BORDER_RADIUS */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .actions-button-active {
-    background-color: #333A3F;
-    color: white;
-    border-color: #000000;
+  background-color: #333a3f;
+  color: white;
+  border-color: #000000;
 }
 
 .actions-dropdown {
@@ -57,67 +56,68 @@
   right: 0;
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   min-width: 10rem;
   z-index: 50;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
 }
 
 .action-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 0.75rem;
-    padding: 0.75rem 2rem;
-    color: #374151;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    border: none;
-    background: none;
-    text-align: left;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.75rem;
+  padding: 0.75rem 2rem;
+  color: #374151;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  background: none;
+  text-align: left;
 }
 
 .action-item:hover {
-    background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .action-item svg {
   width: 1.25rem;
-    height: 1.25rem;
-    color: #244B94;
+  height: 1.25rem;
+  color: #244b94;
 }
 
 .add-button {
-    background: #244B94;  /* PRIMARY_BACKGROUND_COLOR */
-    color: #F7FAFF;       /* PRIMARY_COLOR */
-    border-radius: 20px;  /* DEFAULT_BORDER_RADIUS */
-    width: 120px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
+  background: #244b94; /* PRIMARY_BACKGROUND_COLOR */
+  color: #f7faff; /* PRIMARY_COLOR */
+  border-radius: 20px; /* DEFAULT_BORDER_RADIUS */
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .add-book-button:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .plus-icon {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .down-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.2s ease;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
 }
 
 .down-icon-active {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
