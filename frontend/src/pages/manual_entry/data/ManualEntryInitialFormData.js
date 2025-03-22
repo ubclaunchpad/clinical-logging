@@ -1,7 +1,8 @@
 export const initialFormData = () => {
     return {
+        type: "adult_cardiac_logs",
+        title: "Example Title",
         case_no: 1234567,
-        type: "Adult cardiac",
         patient_id: "P123456789",
         age: 40,
         surgeon: "Dr. John Smith",
@@ -16,7 +17,7 @@ export const initialFormData = () => {
         social_etoh: "Retired, lives with spouse, occasional alcohol use, non-smoker",
         social_smoking: "Never smoked",
         social_drugs: "No history of illicit drug use",
-        allergies: "No known drug allergies", // AHHHH
+        allergies: "No known drug allergies",
         medicine: "Lorem ipsum",
         exam_weight: 72, // value is always in kg (metric)
         exam_height: 160, // value is always in cm (metric)
@@ -35,17 +36,17 @@ export const initialFormData = () => {
         exam_pulses_top_right: 1,
         exam_pulses_bottom_left: 0,
         exam_pulses_bottom_right: 0,
-        invx_w: 0.1,  // AHHHH
-        invx_hb: 0.2,  // AHHHH
-        invx_plt: 0.3,  // AHHHH
-        invx_hct: 0.4,  // AHHHH
-        invx_na: 0.1,  // AHHHH
-        invx_cl: 0.2,  // AHHHH
-        invx_bun: 0.3,  // AHHHH
-        invx_glu: 0.4,  // AHHHH
-        invx_creat: 0.5,  // AHHHH
-        invx_co2: 0.6,  // AHHHH
-        invx_k: 0.7,  // AHHHH
+        invx_w: 0.1,
+        invx_hb: 0.2,
+        invx_plt: 0.3,
+        invx_hct: 0.4,
+        invx_na: 0.1,
+        invx_cl: 0.2,
+        invx_bun: 0.3,
+        invx_glu: 0.4,
+        invx_creat: 0.5,
+        invx_co2: 0.6,
+        invx_k: 0.7,
         cath_image: null,
         cath_text: null,
         ct_image: null,
