@@ -34,9 +34,9 @@ const ManualEntry = () => {
 
   const handleSubmit = async () => {
     try {
-      console.log(formData); // TODO: remove
-      const res = postData(session?.access_token, "logbooks/306375dc-c6e3-4c5d-b08b-1b53023e5cab/logs", formData); // TODO: fix this
-      console.log("Submitted successfully: " + res); // TODO: fix this
+      // TODO: fix this at some point by grabbing logbook id seperately
+      const res = postData(session?.access_token, "logbooks/306375dc-c6e3-4c5d-b08b-1b53023e5cab/logs", formData);
+      console.log("Submitted successfully: " + res);
     } catch (err) {
       console.log("Error submitting: " + err);
     }

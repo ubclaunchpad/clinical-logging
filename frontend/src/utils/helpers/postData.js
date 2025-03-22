@@ -1,9 +1,10 @@
 import axios from "axios";
 
 export async function postData(token, route, data) {
-  console.log(JSON.stringify(data));
+  console.log("token " + token)
+  console.log("data " + JSON.stringify(data));
   try {
-    const response = await axios.post(`/api/${route}`, data, {
+    const response = await axios.post(`api/${route}`, data, {
       headers: {
         Authorization: `Bearer ${token}`
       },
