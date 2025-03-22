@@ -12,36 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState, useEffect } from 'react';
 import { useAuth } from "../../contexts/AuthContext";
-import { fetchData } from "../../utils/helpers/fetchData";
-
-/** Array of logbook actions */
-const logbookActions = [
-  {
-    label: "Configure",
-    icon: PencilSquareIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Download",
-    icon: ArrowDownTrayIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Filter",
-    icon: AdjustmentsHorizontalIcon,
-    onClick: () => {},
-  },
-  {
-    label: "View",
-    icon: EyeIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Delete",
-    icon: TrashIcon,
-    onClick: () => {},
-  },
-];
+import { fetchData, postData } from "../../utils/helpers/fetchData";
 
 export default function Logbooks() {
   /** Retrieve user's logbooks from API */
@@ -52,6 +23,40 @@ export default function Logbooks() {
     const response = await fetchData(session?.access_token, "logbooks");
     setLogbooks(response)
   }
+
+  async function createLogbook() {
+    const response = await postData(session?.access_token, "logbooks", {type: "gyn_logs", title: "testTitle" });
+    // fetchLogbooks()
+  }
+
+  /** Array of logbook actions */
+  const logbookActions = [
+    {
+      label: "Configure",
+      icon: PencilSquareIcon,
+      onClick: createLogbook,
+    },
+    {
+      label: "Download",
+      icon: ArrowDownTrayIcon,
+      onClick: () => {},
+    },
+    {
+      label: "Filter",
+      icon: AdjustmentsHorizontalIcon,
+      onClick: () => {},
+    },
+    {
+      label: "View",
+      icon: EyeIcon,
+      onClick: () => {},
+    },
+    {
+      label: "Delete",
+      icon: TrashIcon,
+      onClick: () => {},
+    },
+  ];
 
   useEffect(() => {
     fetchLogbooks();
