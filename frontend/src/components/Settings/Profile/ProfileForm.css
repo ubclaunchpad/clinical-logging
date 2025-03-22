@@ -1,0 +1,147 @@
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;   
+    padding: 0; 
+    gap: 2rem; 
+}
+  
+.profile-form__row {
+    display: flex;
+    justify-content: flex-start;  
+    gap: 140px;                  
+    width: 100%;
+    margin: 0;                
+    padding: 28px 0 58px 0;     
+    border-bottom: 1px solid #d4ddf2;
+}
+  
+.profile-form__row:last-of-type {
+    border-bottom: none;
+}
+  
+.profile-form__field {
+    display: flex;
+    align-items: center;
+}
+  
+.profile-form__label {
+    display: inline-block;
+    width: 100px;             
+    text-align: left;     
+    color: #4F607E;
+    font-size: 19px;
+    font-weight: 550;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    margin-right: 20px;      
+}
+  
+.profile-form__input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #BAC1D0;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    width: 380px;            
+    height: 50px;
+}
+
+.profile-form__input-container:focus-within {
+    border-color: #244b94;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(36, 75, 148, 0.2);
+}
+  
+.profile-form__input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 17px;
+    color: #4f607e;
+}
+  
+.profile-form__select {
+    appearance: none;
+}
+  
+.profile-form__icon-left {
+    width: 20px;
+    height: 20px;
+    color: #BAC1D0;
+    margin-right: 0.5rem;
+    object-fit: contain;
+}
+  
+.profile-form__icon-right {
+    width: 20px;
+    height: 20px;
+    color: #BAC1D0;
+    margin-left: 0.5rem;
+    object-fit: contain;
+    cursor: pointer;
+}
+  
+.profile-form__arrow-icon {
+    pointer-events: none;
+}
+  
+.profile-form__submit {
+    align-self: flex-end;
+    margin-right: 90px;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+  
+.profile-form__select-button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  color: #4f607e;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 300;
+}
+
+.profile-form__select-button:focus {
+  outline: none;
+}
+
+.profile-form__select-dropdown {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  font-weight: 300;
+  margin-top: 0.5rem; 
+  background: white;
+  border: 1px solid rgba(186, 193, 208, 1);
+  border-radius: 20px;
+  padding: 8px 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  z-index: 20;
+}
+
+.profile-form__select-option {
+  padding: 12px 28px;
+  font-size: 17px;
+  font-weight: 300;
+  cursor: pointer;
+  color: #4f607e;
+}
+
+.profile-form__select-option:hover {
+  background-color: #f3f4f6;
+}
+

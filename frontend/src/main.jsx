@@ -13,6 +13,7 @@ import ManualEntry from "./pages/manual_entry/ManualEntry.jsx";
 import LogCode from "./pages/log_code/LogCode.jsx";
 import LoadTranscription from "./pages/load_transcription/LoadTranscription.jsx";
 import LoadingScreen from "./pages/loading_screen/LoadingScreen.jsx";
+import Settings from "./pages/settings/Settings.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/logCode" element={<LogCode />} />
           <Route path="/load-transcription" element={<LoadTranscription />} />
           <Route path="/loading-screen" element={<LoadingScreen />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
