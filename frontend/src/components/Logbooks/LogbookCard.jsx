@@ -13,13 +13,33 @@ import {
 import "./LogbookCard.css";
 import LogbookModalInformation from "./LogbookModalInformation";
 import LogbookModalRecentLogs from "./LogbookModalRecentLogs";
+import { fetchData } from "../../utils/helpers/fetchData";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function LogbookCard({ title, type, storage, created, id }) {
   const formattedType = formatType(type);
   const formattedDate = formatDate(created);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { session } = useAuth();
+  const [logs, setLogs] = useState([]);
+
+  const handleOpen = async () => {
+    try {
+      await fetchLogs();
+      setOpen(true);
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  async function fetchLogs() {
+    const response = await fetchData(
+      session?.access_token,
+      `logbooks/${id}/logs`
+    );
+    setLogs(response);
+  }
 
   /** Retrieve type information from the mapping */
   const typeInfo = LogbookTypeInfo[formattedType] || {};
@@ -34,7 +54,7 @@ export default function LogbookCard({ title, type, storage, created, id }) {
 
   return (
     <>
-      <div className={className} onClick={handleOpen}>
+      <div className={className} onClick={() => handleOpen(id)}>
         <div className="book-cover">
           <img src={bookImage} alt={formattedType} className="book-cover-image" />
         </div>
@@ -68,7 +88,7 @@ export default function LogbookCard({ title, type, storage, created, id }) {
               <ChevronRightIcon/>
             </div>
             <LogbookModalInformation title={title} type={formattedType} dateCreated={formattedDate} storage={storage}/>
-            <LogbookModalRecentLogs logbookID={id}/>
+            <LogbookModalRecentLogs logs={logs}/>
           </div>
         </Box>
       </Modal>

@@ -1,26 +1,7 @@
 import "./LogbookModalRecentLogs.css";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react";
-import { useAuth } from "../../contexts/AuthContext";
-import { fetchData } from "../../utils/helpers/fetchData";
 
-export default function LogbookModalRecentLogs({ logbookID }) {
-  const { session } = useAuth();
-  const [logs, setLogs] = useState([]);
-
-  async function fetchLogs() {
-    const response = await fetchData(
-      session?.access_token,
-      `logbooks/${logbookID}/logs`
-    );
-    setLogs(response);
-    console.log(response);
-  }
-
-  useEffect(() => {
-    fetchLogs();
-  }, []);
-
+export default function LogbookModalRecentLogs({ logs }) {
   return (
     <div className="modal-recent-logs">
       <div className="recent-logs-header">
