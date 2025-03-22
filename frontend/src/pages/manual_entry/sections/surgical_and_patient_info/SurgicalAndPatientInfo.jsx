@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
 import { Checkbox } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import dayjs from "dayjs";
 import "./SurgicalAndPatientInfo.css"
 
 export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
@@ -57,7 +58,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
                 <p className="input-title">OR Date*</p>
                 <CLDatePickerInput
                   name={DataKeys.OR_DATE}
-                  value={getDataValue(DataKeys.OR_DATE)}
+                  value={getDataValue(DataKeys.OR_DATE) == null ? null : dayjs(getDataValue(DataKeys.OR_DATE))}
                   onChange={onInputChange}
                 />
               </div>
