@@ -13,7 +13,7 @@ export const initialFormData = () => {
         pmhx_dm2: 1, // TODO: add to DB
         pmhx_dlp: 0, // TODO: add to DB 
         pmhx_cva: 1, // TODO: add to DB 
-        gender: null,
+        gender: "Female",
         social_etoh: "Retired, lives with spouse, occasional alcohol use, non-smoker",
         social_smoking: "Never smoked",
         social_drugs: "No history of illicit drug use",
