@@ -14,16 +14,3 @@ export async function fetchData(token, route, params = undefined) {
   }
 }
 
-export async function postData(token, route, params = {}) {
-  try {
-    const response = await axios.post(`/api/${route}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: params,
-    });
-    return response.data.data;
-  } catch (error) {
-    console.error(error.response.statusText);
-  }
-}
