@@ -256,13 +256,13 @@ const PMHxSection = ({ getDataValue, onInputChange }) => {
         <Grid size={3}>
           <div className="checkbox-label-container">
             <Checkbox
-              name={DataKeys.PMHX_HTM}
+              name={DataKeys.PMHX_HTN}
               value={HTN}
               sx={{ padding: 0, color: "#244B94" }}
-              checked={getDataValue(DataKeys.PMHX_HTM) === 1}
-              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_HTM)))}   
+              checked={getDataValue(DataKeys.PMHX_HTN) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_HTN)))}   
             />
-            <p className="input-title">HTM</p>
+            <p className="input-title">HTN</p>
           </div>
         </Grid>
         <Grid size={3}>
