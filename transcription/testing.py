@@ -86,7 +86,7 @@ def load_template(template_name):
 import re
 
 def structure_transcription(raw_text, template_):
-    structured_data = {key: "" for key in template}
+    structured_data = {key: None for key in template}
 
     for key in template.keys():
         pattern = rf"{key.replace('_', ' ')}:\s*(.*)"
