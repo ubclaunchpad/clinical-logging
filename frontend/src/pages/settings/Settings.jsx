@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Settings.css";
 import SettingsTabs from "../../components/Settings/Profile/SettingsTab";
 import { Navbar } from "../../components/Navbar/Navbar";

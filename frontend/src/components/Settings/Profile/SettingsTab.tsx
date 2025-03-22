@@ -1,4 +1,3 @@
-import React from "react";
 import "./SettingsTab.css";
 
 function SettingsTabs({ activeTab, onTabChange }) {

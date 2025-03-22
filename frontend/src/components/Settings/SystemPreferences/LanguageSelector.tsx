@@ -1,33 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import "./LanguageSelector.css";
 
-interface Language {
-  name: string;
-  code: string;
-}
-
-interface LanguageSelectorProps {
-  selectedLanguage?: Language;
-  languages?: Language[];
-  onChange?: (language: Language) => void;
-}
-
-const defaultLanguages: Language[] = [
+const defaultLanguages = [
   { name: "English (Canada)", code: "en-CA" },
   { name: "English (US)", code: "en-US" },
   { name: "French (Canada)", code: "fr-CA" },
   { name: "Spanish", code: "es" },
 ];
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+const LanguageSelector = ({
   selectedLanguage = defaultLanguages[0],
   languages = defaultLanguages,
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelect = (language: Language) => {
+  const handleSelect = (language) => {
     onChange?.(language);
     setIsOpen(false);
   };
