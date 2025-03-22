@@ -231,8 +231,7 @@ const WeightSection = ({ getDataValue, onInputChange }) => {
     const isImperial = getDataValue(isImperialKey);
 
     if (isImperial) {
-      const imperialValue = value / conversionFactor;
-      onInputChange(weightKey, imperialValue);
+      onInputChange(weightKey, value / conversionFactor);
     } else {
       onInputChange(weightKey, value);
     }
@@ -263,7 +262,7 @@ const HeightSection = ({ getDataValue, onInputChange }) => {
   const conversionFactor = 2.54;
   const isImperialKey = DataKeys.IS_HEIGHT_IMPERIAL;
   const heightKey = DataKeys.HEIGHT;
-  const initialDataValue = getDataValue(heightKey);
+  const initialDataValue = getDataValue(heightKey) == null ? 0 : getDataValue(heightKey);
   const [cmValue, setCmValue] = useState(initialDataValue);
   const [feetValue, setFeetValue] = useState(Math.floor((initialDataValue / conversionFactor) / 12));
   const [inchValue, setInchValue] = useState((initialDataValue / conversionFactor) % 12);
@@ -277,11 +276,11 @@ const HeightSection = ({ getDataValue, onInputChange }) => {
   }
 
   const setValue = (type, value) => {
+    value == null ? 0 : value;
+
     if (type === FEET) {
       setFeetValue(value);
-      setCmValue(((value * 12) + inchValue) * conversionFactor)
-
-      console.log(cmValue)
+      setCmValue(((value * 12) + inchValue) * conversionFactor);
     } else if (type === INCH) {
       setInchValue(value);
       setCmValue(((feetValue * 12) + value) * conversionFactor)

@@ -55,7 +55,11 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
             <Grid size={12}>
               <div>
                 <p className="input-title">OR Date*</p>
-                <CLDatePickerInput />
+                <CLDatePickerInput
+                  name={DataKeys.OR_DATE}
+                  value={getDataValue(DataKeys.OR_DATE)}
+                  onChange={onInputChange}
+                />
               </div>
             </Grid>
             {/* Spacer */}
@@ -157,7 +161,7 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
             <Grid size={6}>
               <div>
                 <p className="input-title">Gender*</p>
-                <GenderSection />
+                <GenderSection getDataValue={getDataValue} onInputChange={onInputChange} />
               </div>
             </Grid>
             <Grid size={12}>
@@ -210,21 +214,23 @@ export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
   )
 }
 
-const GenderSection = () => {
-  const MALE = "male"
-  const FEMALE = "female"
-  const OTHER = "other"
-  const [gender, setGender] = useState(null)
+const GenderSection = ({ getDataValue, onInputChange }) => {
+  const MALE = "Male"
+  const FEMALE = "Female"
+  const OTHER = "Other"
+  const initialDataValue = getDataValue(DataKeys.GENDER) == null ? OTHER : getDataValue(DataKeys.GENDER);
+  const [gender, setGender] = useState(initialDataValue)
 
-  const handleChange = (event) => {
-    setGender(event.target.value)
+  const handleChange = (value) => {
+    setGender(value);
+    onInputChange(DataKeys.GENDER, value);
   }
 
   return (
     <div>
       <CLSelectInput
         value={gender}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value)}
       >
         <MenuItem value={MALE}>
           Male
