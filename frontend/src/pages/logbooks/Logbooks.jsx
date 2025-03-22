@@ -12,7 +12,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState, useEffect } from 'react';
 import { useAuth } from "../../contexts/AuthContext";
-import { fetchData, postData } from "../../utils/helpers/fetchData";
+import { fetchData } from "../../utils/helpers/fetchData";
+import { postData } from "../../utils/helpers/postData";
 
 export default function Logbooks() {
   /** Retrieve user's logbooks from API */
@@ -21,20 +22,30 @@ export default function Logbooks() {
 
   async function fetchLogbooks() {
     const response = await fetchData(session?.access_token, "logbooks");
-    setLogbooks(response)
+    setLogbooks(response);
   }
 
   async function createLogbook() {
-    const response = await postData(session?.access_token, "logbooks", {type: "gyn_logs", title: "testTitle" });
-    // fetchLogbooks()
+    await postData(session?.access_token, "logbooks", {type: "gyn_logs", title: "testTitle" });
   }
+
+  const handleAddLogbook = async () => {
+    try {
+      await createLogbook();
+      await fetchLogbooks();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+
 
   /** Array of logbook actions */
   const logbookActions = [
     {
       label: "Configure",
       icon: PencilSquareIcon,
-      onClick: createLogbook,
+      onClick: handleAddLogbook,
     },
     {
       label: "Download",
