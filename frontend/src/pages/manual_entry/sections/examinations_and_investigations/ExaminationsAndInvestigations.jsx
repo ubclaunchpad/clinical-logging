@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { DataKeys } from "../../data/FormDataNames";
 import { CLInputWithUnits } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
@@ -6,6 +5,7 @@ import Grid from '@mui/material/Grid2';
 import LabsFishbones from "../../../../assets/labs-fishbones.png"
 import Pulses from "../../../../assets/pulses.png"
 import "./ExaminationsAndInvestigations.css"
+import { useState } from "react";
 
 export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) => {
   return (
@@ -19,19 +19,27 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
             <Grid size={8}>
               <div>
                 <p className="input-title">Weight</p>
-                <WeightSection />
+                <WeightSection getDataValue={getDataValue} onInputChange={onInputChange} />
               </div>
             </Grid>
             <Grid size={4}>
               <div>
                 <p className="input-title">BMI</p>
-                <input className="manual-entry-input" type="number" min="0" placeholder="24.2 kg/m2" />
+                <input
+                  name={DataKeys.BMI}
+                  value={getDataValue(DataKeys.BMI)}
+                  className="manual-entry-input"
+                  type="number"
+                  min="0"
+                  placeholder="24.2 kg/m2"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
                 <p className="input-title">Height</p>
-                <HeightSection />
+                <HeightSection getDataValue={getDataValue} onInputChange={onInputChange} />
               </div>
             </Grid>
             <Grid size={12}>
@@ -41,7 +49,7 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
                   name={DataKeys.VEINS}
                   value={getDataValue(DataKeys.VEINS)}
                   className="manual-entry-input"
-                  type="number"
+                  type="text"
                   min="0"
                   placeholder="Veins"
                   onChange={(e) => onInputChange(e.target.name, e.target.value)}
@@ -188,77 +196,146 @@ export const ExaminationsAndInvestigations = ({ getDataValue, onInputChange }) =
   )
 }
 
-const WeightSection = () => {
-  const METRIC = "metric"
-  const IMPERIAL = "imperial"
-  const [unitSystem, setUnitSystem] = useState(METRIC)
+const WeightSection = ({ getDataValue, onInputChange }) => {
+  const LBS = "lbs";
+  const KG = "kg";
+  const isImperialKey = DataKeys.IS_WEIGHT_IMPERIAL;
+  const weightKey = DataKeys.WEIGHT;
+  const conversionFactor = 2.205;
   
   const handleUnitChange = () => {
-    if (unitSystem === METRIC) {
-      setUnitSystem(IMPERIAL)
-    } else {
-      setUnitSystem(METRIC)
-    }
+    getDataValue(isImperialKey) ? onInputChange(isImperialKey, false) : onInputChange(isImperialKey, true);
   }
 
   const getUnits = () => {
-    return unitSystem === METRIC ? "kg" : "lbs"
+    return getDataValue(isImperialKey) ? LBS : KG;
+  }
+
+  const getConversionUnits = () => {
+    return getDataValue(isImperialKey) ? KG : LBS;
+  }
+
+  const getValue = () => {
+    const isImperial = getDataValue(isImperialKey);
+    const valueInMetricUnits = getDataValue(weightKey);
+
+    if (valueInMetricUnits == null) return null;
+    if (isImperial) {
+      return valueInMetricUnits * conversionFactor;
+    }
+
+    return valueInMetricUnits;
+  }
+
+  const setValue = (value) => {
+    const isImperial = getDataValue(isImperialKey);
+
+    if (isImperial) {
+      const imperialValue = value / conversionFactor;
+      onInputChange(weightKey, imperialValue);
+    } else {
+      onInputChange(weightKey, value);
+    }
   }
 
   return (
     <div className="input-with-arrow-button-container">
       <div className="input-with-units-flex-container">
-        <CLInputWithUnits units={getUnits()} placeholder={getUnits()} />
+        <CLInputWithUnits
+          name={weightKey}
+          value={getValue()}
+          units={getUnits()}
+          placeholder={getUnits()}
+          onChange={(e) => setValue(e.target.value)}
+        />
       </div>
       <button className="convert-button" type="button" onClick={handleUnitChange}>
-        convert to {getUnits()}
+        convert to {getConversionUnits()}
       </button>
     </div>
   )
 }
 
-const HeightSection = () => {
-  const METRIC = "metric"
-  const IMPERIAL = "imperial"
-  const [unitSystem, setUnitSystem] = useState(METRIC)
+const HeightSection = ({ getDataValue, onInputChange }) => {
+  const CM = "cm";
+  const FEET = "ft";
+  const INCH = "in";
+  const conversionFactor = 2.54;
+  const isImperialKey = DataKeys.IS_HEIGHT_IMPERIAL;
+  const heightKey = DataKeys.HEIGHT;
+  const initialDataValue = getDataValue(heightKey);
+  const [cmValue, setCmValue] = useState(initialDataValue);
+  const [feetValue, setFeetValue] = useState(Math.floor((initialDataValue / conversionFactor) / 12));
+  const [inchValue, setInchValue] = useState((initialDataValue / conversionFactor) % 12);
 
   const handleUnitChange = () => {
-    if (unitSystem === METRIC) {
-      setUnitSystem(IMPERIAL)
-    } else {
-      setUnitSystem(METRIC)
-    }
+    getDataValue(isImperialKey) ? onInputChange(isImperialKey, false) : onInputChange(isImperialKey, true);
   }
 
-  const getUnits = () => {
-    return unitSystem === METRIC ? "cm" : "ft in"
+  const getConversionUnits = () => {
+    return getDataValue(isImperialKey) ? CM : FEET + " " + INCH;
+  }
+
+  const setValue = (type, value) => {
+    if (type === FEET) {
+      setFeetValue(value);
+      setCmValue(((value * 12) + inchValue) * conversionFactor)
+
+      console.log(cmValue)
+    } else if (type === INCH) {
+      setInchValue(value);
+      setCmValue(((feetValue * 12) + value) * conversionFactor)
+    } else { // using cm
+      setCmValue(value);
+      setFeetValue(Math.floor((value / conversionFactor) / 12));
+      setInchValue((value / conversionFactor) % 12);
+    }
+    onInputChange(heightKey, cmValue)
   }
   
   return (
     <div className="input-with-arrow-button-container">
       {
-        unitSystem === METRIC &&
+        !getDataValue(isImperialKey) &&
         <div className="input-with-units-flex-container">
-          <CLInputWithUnits units="cm" placeholder="cm" />
+          <CLInputWithUnits
+            name={CM}
+            value={cmValue}
+            units={CM}
+            placeholder={CM}
+            onChange={(e) => setValue(e.target.name, e.target.value)}
+          />
         </div>
       }
       {
-        unitSystem === IMPERIAL &&
+        getDataValue(isImperialKey) &&
         (
           <div className="input-with-units-flex-container">
             <Grid container spacing={1}>
               <Grid size={6}>
-                <CLInputWithUnits units="ft" placeholder="ft" />
+                <CLInputWithUnits
+                  name={FEET}
+                  value={feetValue}
+                  units={FEET}
+                  placeholder={FEET}
+                  onChange={(e) => setValue(e.target.name, e.target.value)}
+                />
               </Grid>
               <Grid size={6}>
-                <CLInputWithUnits units="in" placeholder="in" />
+                <CLInputWithUnits
+                  name={INCH}
+                  value={inchValue}
+                  units={INCH}
+                  placeholder={INCH}
+                  onChange={(e) => setValue(e.target.name, e.target.value)}
+                />
               </Grid>
             </Grid>
           </div>
         )
       }
       <button className="convert-button" type="button" onClick={handleUnitChange}>
-        convert to {getUnits()}
+        convert to {getConversionUnits()}
       </button>
     </div>
   )
