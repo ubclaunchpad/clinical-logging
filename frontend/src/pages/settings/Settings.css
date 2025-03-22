@@ -1,0 +1,136 @@
+  .main-content {
+    display: flex;
+    align-self: stretch;
+    align-items: stretch;
+    margin: auto 0;
+  }
+
+  .settings__main-column {
+    margin-left: 120px;
+    width: 1300px;
+  }
+  
+  .settings_header {
+    font-size: 2.25rem; 
+    color: rgba(47, 60, 80, 1);
+    font-weight: 600;
+    margin-top: 62px;
+    white-space: nowrap;
+    letter-spacing: -0.72px;
+    line-height: 1;
+  }
+  
+  .header-wrapper {
+    width: 100%;
+  }
+  
+  .header-inner {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.75rem; 
+    border-bottom: 1px solid #9AB0E1;
+  }
+  
+  .header-center {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0%;
+    margin: auto 0;
+  }
+  
+  .header-title {
+    flex: 1 1 0%;
+    min-width: 60px;
+    min-height: 58px;
+    width: 100%;
+    margin: auto 0;
+  }
+  
+  .content {
+    width: 100%;
+    margin-top: 0.25rem; 
+    flex-direction: column;
+  }
+  
+  .system-message {
+    padding: 3.5rem 0; 
+    text-align: center;
+    font-size: 1.25rem;
+    color: #6b7280;
+  }
+  
+  .system-preferences__language {
+    align-self: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 600px;
+  }
+
+  .language-row {
+    display: flex;        
+    justify-content: space-between;
+    height: 150px;
+    margin-top: 20px;
+  }
+
+  .language-row__title {
+    color: #4F607E;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.5px;
+  }
+  
+  .system-preferences__section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 20px;    
+    letter-spacing: -0.5px;  
+    color: #4F607E;
+    border-bottom: 1px solid rgba(212, 221, 242, 1);
+  }
+
+  .notifications-row {
+    display: flex;
+    align-items: flex-start; 
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  .notifications-row__title {
+    color: #4F607E;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.5px;
+  }  
+  
+  .system-preferences__update {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 2.5rem; 
+    width: 100%;
+  }
+
+  .update-button {
+    background-color: rgba(36, 75, 148, 1);
+    font-size: 1.25rem; 
+    color: rgba(251, 252, 254, 1);
+    font-weight: 500;
+    padding: 22px 16px;
+    border-radius: 20px;
+    width: 350px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
