@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { DataKeys } from "../../data/FormDataNames";
 import { CLDatePickerInput, CLSelectInput } from "../../../../components/Inputs/CLInputs";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid2';
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
+import { Checkbox } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
+import dayjs from "dayjs";
 import "./SurgicalAndPatientInfo.css"
 
-export const SurgicalAndPatientInfo = () => {
+export const SurgicalAndPatientInfo = ({ getDataValue, onInputChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={8}>
@@ -16,105 +16,198 @@ export const SurgicalAndPatientInfo = () => {
           <Grid container spacing={1}>
             <Grid size={6}>
               <div>
-                <p className="input-title">Case no.</p>
-                <input className="manual-entry-input" type="text" placeholder="1234567"/>
+                <p className="input-title">Case no.*</p>
+                <input
+                  name={DataKeys.CASE_NO}
+                  value={getDataValue(DataKeys.CASE_NO)}
+                  className="manual-entry-input"
+                  type="number"
+                  placeholder="1234567"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={6}>
               <div>
-                <p className="input-title">Type</p>
-                <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
+                <p className="input-title">Type*</p>
+                <input
+                  name={DataKeys.TYPE}
+                  value={getDataValue(DataKeys.TYPE)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Adult cardiac"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
-                <p className="input-title">Surgeon</p>
-                <input className="manual-entry-input" type="text" placeholder="Surgeon name"/>
+                <p className="input-title">Surgeon*</p>
+                <input
+                  name={DataKeys.SURGEON}
+                  value={getDataValue(DataKeys.SURGEON)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Surgeon name"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
               <div>
-                <p className="input-title">OR Date</p>
-                <CLDatePickerInput />
+                <p className="input-title">OR Date*</p>
+                <CLDatePickerInput
+                  name={DataKeys.OR_DATE}
+                  value={getDataValue(DataKeys.OR_DATE) == null ? null : dayjs(getDataValue(DataKeys.OR_DATE))}
+                  onChange={onInputChange}
+                />
               </div>
             </Grid>
+            {/* Spacer */}
+            <div className="spacer-sm" />
             <Grid size={12}>
+              <p className="input-title-bold">Social</p>
+            </Grid>
+            <Grid size={6}>
               <div>
-                <p className="input-title-bold">HPI</p>
-                <textarea className="manual-entry-text-area" rows="3" placeholder="HPI"/>
+                <p className="input-title">EtOH</p>
+                <input
+                  name={DataKeys.ETOH}
+                  value={getDataValue(DataKeys.ETOH)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Lorem ipsum"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Drugs</p>
+                <input
+                  name={DataKeys.DRUGS}
+                  value={getDataValue(DataKeys.DRUGS)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Amet pulvinar"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Smoking</p>
+                <input
+                  name={DataKeys.SMOKING}
+                  value={getDataValue(DataKeys.SMOKING)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Neque mauris"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
               </div>
             </Grid>
             <Grid size={12}>
-              <p className="input-title-bold">PMHx</p>
-              <PMHxSection />
+              {/* Spacer */}
+              <div className="spacer-sm" />
+              <div>
+                <p className="input-title-bold">PMHx*</p>
+                <PMHxSection getDataValue={getDataValue} onInputChange={onInputChange} />
+              </div>
             </Grid>
             <Grid size={12}>
               <p className="input-title-bold">Meds (last dose)</p>
             </Grid>
             <Grid size={12}>
-              <MedsLastDoseSection />
+              <textarea
+                name={DataKeys.MEDICINE}
+                value={getDataValue(DataKeys.MEDICINE)}
+                className="manual-entry-text-area"
+                rows="3"
+                placeholder="Lorem ipsum"
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+              />
             </Grid>
           </Grid>
         </Grid>
         <Grid size={6}>
-        <Grid container spacing={1}>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Patient ID</p>
-              <input className="manual-entry-input" type="text" placeholder="7654321"/>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div>
-              <p className="input-title">Age</p>
-              <input className="manual-entry-input" type="number" min="0" placeholder="40"/>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div>
-              <p className="input-title">Gender</p>
-              <GenderSection />
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Indication for Surgery/Reason for Referral</p>
-              <input className="manual-entry-input" type="text" placeholder="Indication for Surgery/Reason for Referral"/>
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <p className="input-title-bold">Social</p>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">EtOH</p>
-              <input className="manual-entry-input" type="text" placeholder="Lorem ipsum"/>
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Drugs</p>
-              <input className="manual-entry-input" type="text" placeholder="Amet pulvinar"/>
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Smoking</p>
-              <input className="manual-entry-input" type="text" placeholder="Neque mauris"/>
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div>
-              <p className="input-title">Allergies</p>
-              <textarea className="manual-entry-text-area" rows="4" placeholder="Massa odio vel sed."/>
-            </div>
-          </Grid>
-          <Grid size={12}>
-            <div className="radio-label-container">
-              <Radio sx={{ padding: 0 }} />
-              <p className="input-title">None</p>
-            </div>
-          </Grid>
+          <Grid container spacing={1}>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Patient ID*</p>
+                <input
+                  name={DataKeys.PATIENT_ID}
+                  value={getDataValue(DataKeys.PATIENT_ID)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="7654321"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Age*</p>
+                <input
+                  name={DataKeys.AGE}
+                  value={getDataValue(DataKeys.AGE)}
+                  className="manual-entry-input"
+                  type="number"
+                  min="0"
+                  placeholder="40"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            <Grid size={6}>
+              <div>
+                <p className="input-title">Gender*</p>
+                <GenderSection getDataValue={getDataValue} onInputChange={onInputChange} />
+              </div>
+            </Grid>
+            <Grid size={12}>
+              <div>
+                <p className="input-title">Indication for Surgery/Reason for Referral*</p>
+                <input
+                  name={DataKeys.REFERRAL_REASON}
+                  value={getDataValue(DataKeys.REFERRAL_REASON)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Indication for Surgery/Reason for Referral"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            {/* Spacer */}
+            <div className="spacer-sm" />
+            <Grid size={12}>
+              <div>
+                <p className="input-title-bold">HPI*</p>
+                <textarea
+                  name={DataKeys.HPI}
+                  value={getDataValue(DataKeys.HPI)}
+                  className="manual-entry-text-area"
+                  rows="3"
+                  placeholder="HPI"
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
+            {/* Spacer */}
+            <div className="spacer-sm" />
+            <Grid size={12}>
+              <div>
+                <p className="input-title-bold">Allergies</p>
+                <input
+                  name={DataKeys.ALLERGIES}
+                  value={getDataValue(DataKeys.ALLERGIES)}
+                  className="manual-entry-input"
+                  type="text"
+                  placeholder="Massa odio vel sed."
+                  onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                />
+              </div>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -122,21 +215,23 @@ export const SurgicalAndPatientInfo = () => {
   )
 }
 
-const GenderSection = () => {
-  const MALE = "male"
-  const FEMALE = "female"
-  const OTHER = "other"
-  const [gender, setGender] = useState(MALE)
+const GenderSection = ({ getDataValue, onInputChange }) => {
+  const MALE = "Male"
+  const FEMALE = "Female"
+  const OTHER = "Other"
+  const initialDataValue = getDataValue(DataKeys.GENDER) == null ? OTHER : getDataValue(DataKeys.GENDER);
+  const [gender, setGender] = useState(initialDataValue)
 
-  const handleChange = (event) => {
-    setGender(event.target.value)
+  const handleChange = (value) => {
+    setGender(value);
+    onInputChange(DataKeys.GENDER, value);
   }
 
   return (
     <div>
       <CLSelectInput
         value={gender}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value)}
       >
         <MenuItem value={MALE}>
           Male
@@ -152,134 +247,68 @@ const GenderSection = () => {
   )
 }
 
-const PMHxSection = () => {
+const PMHxSection = ({ getDataValue, onInputChange }) => {
   const HTN = "HTN"
   const DMII = "DM II"
   const DLT = "DLP"
   const CVA = "CVA"
-  const [selected, setSelected] = useState("")
 
-  const handleChange = (event) => {
-    setSelected(event.target.value)
+  const toggleValue = (value) => {
+    return value === 0 ? 1 : 0;
   }
 
   return (
     <div>
-      <RadioGroup
-        value={selected}
-        onChange={handleChange}
-      >
-        <Grid container spacing={1}>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={HTN}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">HTM</p>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={DMII}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">DM II</p>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={DLT}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">DLP</p>
-            </div>
-          </Grid>
-          <Grid size={6}>
-            <div className="radio-label-container">
-              <Radio
-                value={CVA}
-                sx={{ padding: 0 }}
-              />
-              <p className="input-title">CVA</p>
-            </div>
-          </Grid>
-        </Grid>
-      </RadioGroup>
-    </div>
-  )
-}
-
-const MedsLastDoseSection = () => {
-  const [medsLastDoses, setMedsLastDoses] = useState([0])
-  
-  const handleAddMed = () => {
-    setMedsLastDoses(prevState => [...prevState, prevState.length])
-  }
-
-  const handleRemoveMed = () => {
-    if (medsLastDoses.length === 1) {
-      return
-    }
-    setMedsLastDoses(prevState => prevState.slice(0, prevState.length - 1))
-  }
-
-  return (
-    <div>
-      {medsLastDoses.map((_, i) => {
-        return (
-          <div key={i}>
-            {
-              i > 0 &&
-              (
-                <div className="meds-last-dose-button-container">
-                  <button className="meds-last-dose-button" onClick={handleRemoveMed}>
-                    <MinusCircleIcon className="meds-last-dose-icon"/>
-                  </button>
-              </div>
-              )
-            }
-            <Grid container spacing={1}>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Name</p>
-                  <input className="manual-entry-input" type="text" placeholder="1234567"/>
-                </div>
-              </Grid>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Dose</p>
-                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-                </div>
-              </Grid>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Frequency</p>
-                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-                </div>
-              </Grid>
-              <Grid size={6}>
-                <div>
-                  <p className="input-title">Method of delivery</p>
-                  <input className="manual-entry-input" type="text" placeholder="Adult cardiac"/>
-                </div>
-              </Grid>
-            </Grid>
-            {
-              i === medsLastDoses.length - 1 &&
-              (
-                <div className="meds-last-dose-button-container">
-                  <button className="meds-last-dose-button" onClick={handleAddMed}>
-                    <PlusCircleIcon className="meds-last-dose-icon"/>
-                  </button>
-                </div>
-              )
-            }
+      <Grid container spacing={1}>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+            <Checkbox
+              name={DataKeys.PMHX_HTN}
+              value={HTN}
+              sx={{ padding: 0, color: "#244B94" }}
+              checked={getDataValue(DataKeys.PMHX_HTN) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_HTN)))}   
+            />
+            <p className="input-title">HTN</p>
           </div>
-        )
-      })}
+        </Grid>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+          <Checkbox
+              name={DataKeys.PMHX_DMII}
+              value={DMII}
+              sx={{ padding: 0, color: "#244B94" }}
+              checked={getDataValue(DataKeys.PMHX_DMII) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_DMII)))}   
+            />
+            <p className="input-title">DM II</p>
+          </div>
+        </Grid>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+            <Checkbox
+              name={DataKeys.PMHX_DLT}
+              value={DLT}
+              sx={{ padding: 0, color: "#244B94" }}
+              checked={getDataValue(DataKeys.PMHX_DLT) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_DLT)))}   
+            />
+            <p className="input-title">DLP</p>
+          </div>
+        </Grid>
+        <Grid size={3}>
+          <div className="checkbox-label-container">
+            <Checkbox
+              name={DataKeys.PMHX_CVA}
+              value={CVA}
+              sx={{ padding: 0 }}
+              checked={getDataValue(DataKeys.PMHX_CVA) === 1}
+              onChange={(e) => onInputChange(e.target.name, toggleValue(getDataValue(DataKeys.PMHX_CVA)))}   
+            />
+            <p className="input-title">CVA</p>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   )
 }
