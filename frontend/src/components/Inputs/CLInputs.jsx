@@ -5,16 +5,22 @@ import Select from "@mui/material/Select";
 import "./CLInputs.css"
 
 export const CLInputWithUnits = ({
+    name,
+    value,
     placeholder,
-    units
+    units,
+    onChange
 }) => {
   return (
     <div className="input-with-units-container">
       <input
+        name={name}
+        value={value}
         className="input-with-units"
         type="number"
         min="0"
         placeholder={placeholder}
+        onChange={onChange}
       />
       <div className="input-units">
         <p className="input-units-text">
@@ -51,17 +57,26 @@ export const CLSelectInput = ({
   )
 }
 
-export const CLDatePickerInput = () => {
+export const CLDatePickerInput = ({
+  name,
+  value,
+  onChange,
+}) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         className="date-picker"
+        name={name}
+        value={value}
+        onChange={(newValue) => onChange(name, newValue)}
         sx={{
           '& .MuiInputBase-root': {
             height: "50px",
             fontSize: "13px",
             borderColor: "#BAC1D0",
-            borderRadius: "16px",
+          },
+          '&.MuiTextField-root .MuiOutlinedInput-input': {
+            padding: "18px",
           },
         }}
       />
