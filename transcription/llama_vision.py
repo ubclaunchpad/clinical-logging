@@ -215,17 +215,17 @@ def load_template(template_name, directory):
             templates = json.load(file)
         return templates.get(template_name, {})
     except json.JSONDecodeError:
-        return {"error": "Invalid JSON format in logbook_templates.json"}
+        return {"error": "Invalid JSON format in templates/logbook_templates.json"}
 
 
 if __name__ == "__main__":
     # Example usage with multiple images
-    templates = [load_template("Adult_cardiac_log", "logbook_templates.json"), load_template("Adult_cardiac_log_2", "logbook_templates.json")]
+    templates = [load_template("Adult_cardiac_log", "templates/logbook_templates.json"), load_template("Adult_cardiac_log_2", "templates/logbook_templates.json")]
     image_paths = [
         "../assets/kkl3.jpg",
         "../assets/kkl2.jpg"  # Add more image paths as needed
     ]
-    example_responses = [load_template("1", "example_response.json"), load_template("2", "example_response.json")]
+    example_responses = [load_template("1", "templates/example_response.json"), load_template("2", "templates/example_response.json")]
     # Use LLaMA to structure the text from multiple images
     structured_data = transcribe_image(templates, example_responses, image_paths)
     print("\nFinal Structured Data:", structured_data)

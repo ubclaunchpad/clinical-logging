@@ -1,15 +1,10 @@
-Pillow==11.0.0
-requests==2.32.3
-supervision==0.24.0
-torch==2.3.1
+--find-links https://download.pytorch.org/whl/cu121
+torch
 torchvision
+torchaudio
+decord
+Pillow
+optree>=0.13.0
 transformers
 einops
 timm
-flask
-flask-cors
-vllm
-ollama
-accelerate
-autoawq==0.2.6
-requests_mock
