@@ -1,0 +1,5 @@
+img2pdf
+numpy
+imutils
+opencv-python
+scikit-image
