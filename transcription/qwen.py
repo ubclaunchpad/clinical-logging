@@ -51,80 +51,112 @@ def qwen():
         use_fast=True
     )
 
-    # Define regions for image splitting
+    # Define dimensions
     new_width, new_height = 600, 960
-    regions = {
-        "surgical_plan": (0, 0, int(new_width * 0.88), int(new_height * 0.3)),
-        "flags": (int(new_width * 0.88), 0, new_width, int(new_height * 0.33)),
-        "operative_notes": (0, int(new_height * 0.3), new_width, int(new_height * 0.55)),
-        "post_op_notes": (0, int(new_height * 0.55), new_width, int(new_height * 0.75)),
-        "learning_points": (0, int(new_height * 0.75), new_width, int(new_height * 0.95))
+
+    # Define regions for both pages
+    regions_by_page = {
+        "kkl2.jpg": {
+            "surgical_plan": (0, 0, int(new_width * 0.88), int(new_height * 0.3)),
+            "flags": (int(new_width * 0.88), 0, new_width, int(new_height * 0.33)),
+            "operative_notes": (0, int(new_height * 0.3), new_width, int(new_height * 0.55)),
+            "post_op_notes": (0, int(new_height * 0.55), new_width, int(new_height * 0.75)),
+            "learning_points": (0, int(new_height * 0.75), new_width, int(new_height * 0.95))
+        },
+        "kkl3.jpg": {
+            "basics": (0, 0, new_width, int(new_height * 0.171)),
+            "case_details": (0, int(new_height * 0.171), new_width, int(new_height * 0.22)),
+            "hpi": (0, int(new_height * 0.22), int(new_width*0.5), int(new_height * 0.30)),
+            "social": (int(new_width*0.5), int(new_height * 0.22), new_width, int(new_height * 0.30)),
+            "PMHx": (0, int(new_height * 0.30), int(new_width*0.2), int(new_height * 0.45)),
+            "medications": (int(new_width*0.2), int(new_height * 0.30), int(new_width*0.7), int(new_height * 0.45)),
+            "allergies": (int(new_width*0.7), int(new_height * 0.30), new_width, int(new_height * 0.45)),
+            "exam": (0, int(new_height * 0.45), int(new_width*0.385), int(new_height * 0.54)),
+            "veins": (int(new_width*0.385), int(new_height * 0.45), int(new_width*0.55), int(new_height * 0.66)),
+            "allen_test": (int(new_width*0.55), int(new_height * 0.45), int(new_width*0.69), int(new_height * 0.66)),
+            "INVx": (0, int(new_height * 0.54), int(new_width * 0.4), int(new_height * 0.70)),
+            "CXR_CT": (int(new_width * 0.65), int(new_height * 0.612), new_width, int(new_height * 0.762))
+        }
     }
 
-    # Load and resize the original image
-    image_path = process_image("../assets/kkl2.jpg")
-    if not image_path:
-        return None
+    # Process both images
+    all_transcribed_sections = {}
+    image_paths = ["../assets/kkl3.jpg", "../assets/kkl2.jpg"]
 
-    cv_image = cv2.imread(image_path)
-    cv_image = cv2.resize(cv_image, (new_width, new_height))
+    for image_path in image_paths:
+        # Get image filename
+        image_filename = os.path.basename(image_path)
+        regions = regions_by_page.get(image_filename)
+        if not regions:
+            print(f"No regions defined for {image_filename}")
+            continue
 
-    # Store transcribed text for each region
-    transcribed_sections = {}
+        # Process the image
+        abs_image_path = process_image(image_path)
+        if not abs_image_path:
+            continue
 
-    # Process each region
-    for name, (x, y, w, h) in regions.items():
-        # Crop the region
-        cropped = cv_image[y:h, x:w]
-        
-        # Convert CV2 image to PIL Image
-        cropped_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
-        pil_image = Image.fromarray(cropped_rgb)
+        cv_image = cv2.imread(abs_image_path)
+        if cv_image is None:
+            print(f"Error: Could not load image at {abs_image_path}")
+            continue
 
-        # Save temporary image (Qwen requires a file path)
-        temp_path = f"temp_{name}.jpg"
-        pil_image.save(temp_path)
-        
-        # Create conversation for this region
-        conversation = [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "url": temp_path
-                    },
-                    {
-                        "type": "text",
-                        "text": "Transcribe the text in this image accurately."
-                    }
-                ]
-            }
-        ]
+        cv_image = cv2.resize(cv_image, (new_width, new_height))
 
-        inputs = processor.apply_chat_template(
-            conversation,
-            add_generation_prompt=True,
-            tokenize=True,
-            return_dict=True,
-            return_tensors="pt"
-        ).to(model.device)
+        # Process each region
+        for name, (x, y, w, h) in regions.items():
+            # Crop the region
+            cropped = cv_image[y:h, x:w]
+            
+            # Convert CV2 image to PIL Image
+            cropped_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
+            pil_image = Image.fromarray(cropped_rgb)
 
-        # Generate output for this region
-        output_ids = model.generate(**inputs, max_new_tokens=2048)
-        generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
-        output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
+            # Save temporary image
+            temp_path = f"temp_{name}.jpg"
+            pil_image.save(temp_path)
+            
+            # Create conversation for this region
+            conversation = [
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image",
+                            "url": temp_path
+                        },
+                        {
+                            "type": "text",
+                            "text": "Transcribe the text in this image accurately."
+                        }
+                    ]
+                }
+            ]
 
-        print(output_text)
+            inputs = processor.apply_chat_template(
+                conversation,
+                add_generation_prompt=True,
+                tokenize=True,
+                return_dict=True,
+                return_tensors="pt"
+            ).to(model.device)
 
-        # Clean up temporary file
-        os.remove(temp_path)
-        
-        transcribed_sections[name] = output_text
+            # Generate output for this region
+            output_ids = model.generate(**inputs, max_new_tokens=2048)
+            generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
+            output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
+
+            print(f"\nTranscribed {name}:")
+            print(output_text)
+
+            # Clean up temporary file
+            os.remove(temp_path)
+            
+            all_transcribed_sections[name] = output_text
 
     # Combine sections in the correct order with the section separator
-    section_order = ["surgical_plan", "flags", "operative_notes", "post_op_notes", "learning_points"]
-    combined_text = SECTION_SEPARATOR.join(transcribed_sections[section] for section in section_order)
+    section_order = ["basics", "case_details", "hpi", "social", "PMHx", "medications", "allergies", "exam", "veins", "allen_test", "INVx", "CXR/CT", "surgical_plan", "flags", "operative_notes", "post_op_notes", "learning_points"]
+    combined_text = SECTION_SEPARATOR.join(all_transcribed_sections.get(section, "") for section in section_order)
     
     # Convert to JSON using the existing parser
     json_output = process_text_file(combined_text)
