@@ -1,4 +1,4 @@
-import { NewLogModal } from "../../NewLogModal/NewLogModal";
+import { LogbookSelectionModal } from "../../Modals/LogbookSelectionModal/LogbookSelectionModal";
 import { CLButtonSecondary } from "../../Buttons/CLButtons";
 import "./GetStartedCard.css";
 
@@ -17,7 +17,7 @@ export default function GetStartedCard({
           </div>
         </div>
         <div className="get-started-card__actions">
-          <NewLogModal />
+          <LogbookSelectionModal />
           <CLButtonSecondary
             onClick={handleAddLogbook}
             width={"332px"}
