@@ -6,11 +6,12 @@ import { SurgicalAndPatientInfo } from "./sections/surgical_and_patient_info/Sur
 import { ExaminationsAndInvestigations } from "./sections/examinations_and_investigations/ExaminationsAndInvestigations";
 import { CasePlanning } from "./sections/case_planning/CasePlanning";
 import { LearningPoints } from "./sections/learning_points/LearningPoints";
-import { useAuth } from "../../contexts/AuthContext"
+import { useAuth } from "../../contexts/AuthContext";
 import { postData } from "../../utils/helpers/postData";
 import { initialFormData } from "./data/ManualEntryInitialFormData";
 import { Divider } from "@mui/material";
-import "./ManualEntry.css"
+import { useLocation } from "react-router-dom";
+import "./ManualEntry.css";
 
 /**
  * TODO: Add IntersectionObserver scrollable sticky header behaviour
@@ -19,28 +20,37 @@ import "./ManualEntry.css"
  */
 const ManualEntry = () => {
   const { session } = useAuth();
+  const location = useLocation();
   const [formData, setFormData] = useState(initialFormData());
 
   const handleInputChange = (field, value) => {
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [field]: value
-    }))
-  }
+      [field]: value,
+    }));
+  };
 
   const getDataValue = (field) => {
     return formData[field];
-  }
+  };
 
   const handleSubmit = async () => {
     try {
-      // TODO: fix this at some point by grabbing logbook id seperately
-      const res = postData(session?.access_token, "logbooks/306375dc-c6e3-4c5d-b08b-1b53023e5cab/logs", formData);
+      const logbookId = location.state?.logbookId;
+      if (!logbookId) {
+        throw new Error("No logbook ID provided");
+      }
+
+      const res = postData(
+        session?.access_token,
+        `logbooks/${logbookId}/logs`,
+        formData
+      );
       console.log("Submitted successfully: " + res);
     } catch (err) {
       console.log("Error submitting: " + err);
     }
-  }
+  };
 
   return (
     <div>
@@ -48,7 +58,9 @@ const ManualEntry = () => {
       <form>
         <div className="manual-entry-container">
           <Divider />
-          <h2 className="section-header">1. Surgical and Patient Information</h2>
+          <h2 className="section-header">
+            1. Surgical and Patient Information
+          </h2>
           <SurgicalAndPatientInfo
             getDataValue={getDataValue}
             onInputChange={handleInputChange}
