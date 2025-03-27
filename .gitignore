@@ -10,3 +10,4 @@ venv/
 *.pyz
 *.pyw
 node_modules
+venv2/
