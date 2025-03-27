@@ -1,5 +1,6 @@
 .manual-entry-container {
   margin: 0 220px 0 220px;
+  text-align: left;
 }
 
 .section-header {
@@ -38,7 +39,7 @@
   resize: none;
 }
 
-.radio-label-container {
+.checkbox-label-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -51,4 +52,24 @@
   width: 100%;
   justify-content: space-between;
   margin: 60px 0 30px 0;
+}
+
+.spacer-sm {
+  height: 20px;
+}
+
+.spacer-med {
+  height: 36px;
+}
+
+::file-selector-button {
+  border: 1px solid #244B94;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #244B94;
+}
+
+::file-selector-button:hover {
+  cursor: pointer;
 }

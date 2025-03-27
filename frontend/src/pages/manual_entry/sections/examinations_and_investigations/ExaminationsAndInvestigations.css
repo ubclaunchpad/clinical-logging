@@ -7,11 +7,12 @@
   flex: 1;
 }
 
-.arrows-icon-button {
+.convert-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px;
+  padding: 0 16px 0 16px;
+  color: white;
   background-color: #244B94;
   border-radius: 10px;
 }
@@ -20,42 +21,104 @@
   position: relative;
 }
 
-.diagram-image {
+.labs-diagram-image {
+  margin: 10px 0 24px 0;
+  height: 64px;
+}
+
+.pulses-diagram-image {
   margin: 10px 0 24px 0;
   height: 54px;
 }
 
 .labs-text-input {
+  height: 20px;
   width: 30px;
   box-sizing: border-box;
   padding: 1px 4px 0 4px;
   border: 1px solid #BAC1D0;
   border-radius: 8px;
+  font-size: 0.7rem;
+  text-align: center;
   background-color: transparent;
+}
+
+.labs-text-input-small {
+  width: 28px;
+}
+
+.labs-text-input-medium {
+  width: 33px;
+}
+
+.labs-text-input-large {
+  width: 40px;
 }
 
 .labs-w-input {
   position: absolute;
-  top: 34px;
-  left: 16px;
+  top: 32px;
+  left: 0px;
 }
 
 .labs-hb-input {
   position: absolute;
-  top: 0px;
-  left: 40px;
+  top: 16px;
+  left: 52px;
 }
 
 .labs-plt-input {
   position: absolute;
-  top: 34px;
-  left: 66px;
+  top: 32px;
+  left: 104px;
 }
 
-.labs-cr-input {
+.labs-hct-input {
   position: absolute;
-  top: 0px;
-  left: 224px;
+  top: 48px;
+  left: 52px;
+}
+
+.labs-na-input {
+  position: absolute;
+  top: 14px;
+  left: 160px;
+}
+
+.labs-cl-input {
+  position: absolute;
+  top: 14px;
+  left: 202px;
+}
+
+.labs-bun-input {
+  position: absolute;
+  top: 14px;
+  left: 242px;
+}
+
+.labs-glu-input {
+  position: absolute;
+  top: 28px;
+  left: 294px;
+}
+
+.labs-creat-input {
+  position: absolute;
+  top: 46px;
+  left: 242px;
+}
+
+.labs-co2-input {
+  position: absolute;
+  top: 46px;
+  left: 200px;
+}
+
+.labs-k-input {
+  position: absolute;
+  top: 46px;
+  left: 160px;
 }
 
 .labs-checkbox-input {
