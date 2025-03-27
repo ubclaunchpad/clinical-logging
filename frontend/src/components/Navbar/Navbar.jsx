@@ -1,49 +1,42 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
+import Logo from "../../assets/flow-leaflets-logo.svg";
+import ProfileBar from "./ProfileBar";
 import {
   HomeIcon,
   BookOpenIcon,
+  FolderIcon,
   ClockIcon,
-  ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import "./Navbar.css";
 
 export const Navbar = () => {
-  const { logout } = useAuth();
-
-  const handleSignOut = async () => {
-    try {
-      await logout();
-    } catch {
-      console.log("Failed to logout");
-    }
-  };
-
   return (
     <nav className="nav-bar">
+      <div className="nav-logo-container">
+        <img src={Logo} className="nav-logo" />
+        <h1 className="nav-name">FlowLeaflets</h1>
+      </div>
       <div className="nav-button-container">
         <NavLink className="nav-button" to="/home">
-          <div className="nav-button-icon-container">
-            <HomeIcon className="nav-icon" />
-          </div>
+          <HomeIcon className="nav-icon" />
           <p className="nav-button-text">Home</p>
         </NavLink>
         <NavLink className="nav-button" to="/logbooks">
-          <div className="nav-button-icon-container">
-            <BookOpenIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">Logs</p>
+          <BookOpenIcon className="nav-icon" />
+          <p className="nav-button-text">Logbooks</p>
         </NavLink>
         <NavLink className="nav-button" to="/history">
-          <div className="nav-button-icon-container">
-            <ClockIcon className="nav-icon" />
-          </div>
-          <p className="nav-button-text">History</p>
+          <FolderIcon className="nav-icon" />
+          <p className="nav-button-text">All Logs</p>
+        </NavLink>
+        <NavLink className="nav-button" to="/recent-activity">
+          <ClockIcon className="nav-icon" />
+          <p className="nav-button-text">Recent Activity</p>
         </NavLink>
       </div>
-      <button className="logout-button" onClick={handleSignOut}>
-        <ArrowLeftStartOnRectangleIcon className="nav-icon" />
-      </button>
+      <div className="profile-container">
+        <ProfileBar />
+      </div>
     </nav>
   );
 };
