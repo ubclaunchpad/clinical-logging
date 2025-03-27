@@ -9,9 +9,9 @@ import "./NavContentWrapper.css"
 export const NavContentWrapper = ({children}) => {
   return (
     <div>
-      <AppBar />
       <Navbar />
       <div className="child-container">
+        <AppBar />
         {children}
       </div>
     </div>
