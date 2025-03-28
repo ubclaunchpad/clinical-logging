@@ -33,7 +33,6 @@ export default function LoadingScreen() {
           method: "POST",
           body: formData,
         });
-
         clearInterval(progressInterval);
 
         const data = await response.json();
@@ -51,7 +50,7 @@ export default function LoadingScreen() {
 
         // Navigate to results
         navigate("/load-transcription", {
-          state: { transcription: data.transcription },
+          state: { transcription: data },
           replace: true,
         });
       } catch (error) {

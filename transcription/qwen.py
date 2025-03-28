@@ -27,7 +27,7 @@ def map_to_logbook_template(json_output):
     # Map fields by position
     for modified_field, logbook_field in zip(modified_fields, logbook_fields):
         if modified_field in json_output:
-            result[logbook_field] = json_output[modified_field].replace(SECTION_SEPARATOR, "")
+            result[logbook_field] = json_output[modified_field].replace("###SECTION###", "")
     
     return result
 
@@ -40,7 +40,7 @@ def process_image(image_path):
         return None
     return abs_path
 
-def qwen():
+def qwen(image_paths=["../assets/kkl3.jpg", "../assets/kkl2.jpg"]):
     # Load the model in half-precision on the available device(s)
     model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
         "Qwen/Qwen2.5-VL-3B-Instruct",  
@@ -56,14 +56,7 @@ def qwen():
 
     # Define regions for both pages
     regions_by_page = {
-        "kkl2.jpg": {
-            "surgical_plan": (0, 0, int(new_width * 0.88), int(new_height * 0.3)),
-            "flags": (int(new_width * 0.88), 0, new_width, int(new_height * 0.33)),
-            "operative_notes": (0, int(new_height * 0.3), new_width, int(new_height * 0.55)),
-            "post_op_notes": (0, int(new_height * 0.55), new_width, int(new_height * 0.75)),
-            "learning_points": (0, int(new_height * 0.75), new_width, int(new_height * 0.95))
-        },
-        "kkl3.jpg": {
+        0: {  # First image (kkl3.jpg equivalent)
             "basics": (0, 0, new_width, int(new_height * 0.171)),
             "case_details": (0, int(new_height * 0.171), new_width, int(new_height * 0.22)),
             "hpi": (0, int(new_height * 0.22), int(new_width*0.5), int(new_height * 0.30)),
@@ -76,23 +69,30 @@ def qwen():
             "allen_test": (int(new_width*0.55), int(new_height * 0.45), int(new_width*0.69), int(new_height * 0.66)),
             "INVx": (0, int(new_height * 0.54), int(new_width * 0.4), int(new_height * 0.70)),
             "CXR_CT": (int(new_width * 0.65), int(new_height * 0.612), new_width, int(new_height * 0.762))
+        },
+        1: {  # Second image (kkl2.jpg equivalent)
+            "surgical_plan": (0, 0, int(new_width * 0.88), int(new_height * 0.3)),
+            "flags": (int(new_width * 0.88), 0, new_width, int(new_height * 0.33)),
+            "operative_notes": (0, int(new_height * 0.3), new_width, int(new_height * 0.55)),
+            "post_op_notes": (0, int(new_height * 0.55), new_width, int(new_height * 0.75)),
+            "learning_points": (0, int(new_height * 0.75), new_width, int(new_height * 0.95))
         }
     }
 
     # Process both images
     all_transcribed_sections = {}
-    image_paths = ["../assets/kkl3.jpg", "../assets/kkl2.jpg"]
 
-    for image_path in image_paths:
-        # Get image filename
-        image_filename = os.path.basename(image_path)
-        regions = regions_by_page.get(image_filename)
+    for i in range(len(image_paths)):
+        if i > 1:
+            break
+        # Get regions for this image index
+        regions = regions_by_page[i]
         if not regions:
-            print(f"No regions defined for {image_filename}")
+            print(f"No regions defined for image {i}")
             continue
 
         # Process the image
-        abs_image_path = process_image(image_path)
+        abs_image_path = process_image(image_paths[i])
         if not abs_image_path:
             continue
 
