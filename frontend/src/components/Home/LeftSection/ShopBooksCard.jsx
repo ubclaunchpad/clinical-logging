@@ -4,7 +4,11 @@ import "./ShopBooksCard.css";
 
 export default function ShopBooksCard() {
   return (
-    <a href="/shop-logbooks" className="shop-books-link">
+    <a
+      href="https://flowleaflets.my-online.store/browse/catr4T4V_755713.aspx"
+      target="_blank"
+      rel="noreferrer"
+    >
       <div className="shop-books-card">
         <h3>Shop Log Books</h3>
         <ChevronRightIcon className="chevron-icon" />
