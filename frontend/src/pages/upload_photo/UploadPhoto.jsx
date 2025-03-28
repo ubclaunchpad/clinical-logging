@@ -24,7 +24,7 @@ export default function UploadPhoto() {
     }
 
     navigate("/loading-screen", {
-      state: { imageFile: files[0].file },
+      state: { imageFiles: files.map(f => f.file) },
     });
   };
 
