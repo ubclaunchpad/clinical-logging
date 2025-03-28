@@ -2,6 +2,7 @@ import { NavContentWrapper } from "../../components/NavContentWrapper/NavContent
 import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import LogbookCard from "../../components/Logbooks/LogbookCard";
 import AddLogbookCard from "../../components/Logbooks/AddLogbookCard";
+import { AddLogbookModal } from "../../components/Modals/AddLogbookModal/AddLogbookModal";
 import "./Logbooks.css";
 import {
   PencilSquareIcon,
@@ -13,39 +14,26 @@ import {
 import { useState, useEffect } from 'react';
 import { useAuth } from "../../contexts/AuthContext";
 import { fetchData } from "../../utils/helpers/fetchData";
-import { postData } from "../../utils/helpers/postData";
+import { useLocation } from "react-router-dom";
 
 export default function Logbooks() {
   /** Retrieve user's logbooks from API */
   const [logbooks, setLogbooks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const { session } = useAuth();
+  const location = useLocation();
 
   async function fetchLogbooks() {
     const response = await fetchData(session?.access_token, "logbooks");
     setLogbooks(response);
   }
 
-  async function createLogbook() {
-    await postData(session?.access_token, "logbooks", {type: "gyn_logs", title: "testTitle" });
-  }
-
-  const handleAddLogbook = async () => {
-    try {
-      await createLogbook();
-      await fetchLogbooks();
-    } catch (error){
-      console.log(error);
-    }
-  }
-
-
-
   /** Array of logbook actions */
   const logbookActions = [
     {
       label: "Configure",
       icon: PencilSquareIcon,
-      onClick: handleAddLogbook,
+      onClick: () => {},
     },
     {
       label: "Download",
@@ -71,7 +59,14 @@ export default function Logbooks() {
 
   useEffect(() => {
     fetchLogbooks();
-  }, []);
+  }, [showModal]);
+
+  useEffect(() => {
+    if (location.state?.openAddModal) {
+      setShowModal(true);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   return (
     <NavContentWrapper>
@@ -81,6 +76,7 @@ export default function Logbooks() {
           primaryButtonText="Add Book"
           actions={logbookActions}
         />
+        <AddLogbookModal open={showModal} onClose={() => setShowModal(false)} />
         <div className="logbooks-grid">
           {logbooks.map((book, index) => (
             <LogbookCard key={index} {...book} />
