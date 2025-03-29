@@ -12,6 +12,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 // remove for production 
 router.post("/token", async (req, res) => {
+    console.log("HIII!!!!");
     try {
         const { email, password } = req.body;
         if (!email) {

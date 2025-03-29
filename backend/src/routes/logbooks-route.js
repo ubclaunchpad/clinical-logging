@@ -1,6 +1,6 @@
 import express from "express";
 import auth from "../middlewares/auth.js";
-import { createLogbook, getUserLogbooks, getLogbook, createLog, getLogbookLogs, getLog } from "../services/logbooks-service.js";
+import { createLogbook, getUserLogbooks, getLogbook, createLog, getLogbookLogs, getLog, deleteLog } from "../services/logbooks-service.js";
 
 const router = express.Router();
 
@@ -51,6 +51,16 @@ router.get("/:logbookID/logs", auth, async (req, res) => {
 
 router.get("/:logbookID/logs/:logID", auth, async (req, res) => {
     const log = await getLog(req);
+    if (log.error) {
+        res.status(500).json({ error: log.error });
+    } else {
+        res.status(200).json({ data: log });
+    }
+});
+
+router.delete("/:logbookID/logs/:logID", auth, async (req, res) => {
+    console.log("HELLO!!!!");
+    const log = await deleteLog(req);
     if (log.error) {
         res.status(500).json({ error: log.error });
     } else {
