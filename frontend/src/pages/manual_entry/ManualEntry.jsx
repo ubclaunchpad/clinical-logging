@@ -11,6 +11,7 @@ import { postData } from "../../utils/helpers/postData";
 import { initialFormData } from "./data/ManualEntryInitialFormData";
 import { Divider } from "@mui/material";
 import "./ManualEntry.css"
+import { useLocation } from "react-router-dom";
 
 /**
  * TODO: Add IntersectionObserver scrollable sticky header behaviour
@@ -19,7 +20,8 @@ import "./ManualEntry.css"
  */
 const ManualEntry = () => {
   const { session } = useAuth();
-  const [formData, setFormData] = useState(initialFormData());
+  const location = useLocation();
+  const [formData, setFormData] = useState(location.state?.initialData || initialFormData());
 
   const handleInputChange = (field, value) => {
     setFormData(prevData => ({
