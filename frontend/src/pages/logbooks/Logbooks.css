@@ -5,7 +5,7 @@
 }
 
 .logbooks-grid {
-  margin-top: 10%;
+  margin-top: 120px;
   height: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
