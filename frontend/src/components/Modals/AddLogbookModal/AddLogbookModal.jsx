@@ -13,7 +13,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 export const AddLogbookModal = ({ open, onClose }) => {
   const [logbookName, setLogbookName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [logbookType, setlogbookType] = useState({type:"", name:"Select logbook type"});
+  const [logbookType, setlogbookType] = useState({type:"adult_cardiac_logs", name:"Adult Cardiac"});
   const { session } = useAuth();
 
   const options = [
@@ -30,7 +30,7 @@ export const AddLogbookModal = ({ open, onClose }) => {
   };
 
   async function createLogbook() {
-    await postData(session?.access_token, "logbooks", {type: logbookType.name, title: logbookName });
+    await postData(session?.access_token, "logbooks", {type: logbookType.type, title: logbookName });
   }
 
   const handleAddLogbook = async () => {
