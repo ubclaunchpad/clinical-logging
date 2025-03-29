@@ -14,7 +14,7 @@ export const NewLogModal = ({ open, onClose, logbook }) => {
   const navigate = useNavigate();
 
   const handleUploadPhoto = () => {
-    navigate("/uploadPhotos", { state: { logbookId: logbook.id } });
+    navigate("/upload-photo", { state: { logbookId: logbook.id } });
   };
 
   const handleCreateManually = () => {
