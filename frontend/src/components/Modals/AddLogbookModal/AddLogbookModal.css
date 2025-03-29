@@ -13,6 +13,7 @@
     background-color: #FBFCFE;
     border-radius: 20px;
     box-shadow: 24;
+    gap: 12px;
   }
   
   .close-modal-button {
@@ -38,37 +39,7 @@
     font-weight: bold;
     margin: 1rem;
   }
-  
-  .new-log-modal-divider {
-    width: 60%;
-  }
-  
-  .new-log-modal-buttons-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    gap: 20px;
-  }
-  
-  .upload-photo-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: #F7FAFF;
-    gap: 12px;
-  }
-  
-  .create-manually-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: #4F607E;
-    gap: 12px;
-  }
-  
+
   .close-x-icon {
     height: 34px;
     width: 34px;
@@ -78,4 +49,73 @@
   .modal-icon {
     height: 40px;
     width: 40px;
+  }
+
+  .modal-input {
+    width: 330px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-input input{
+    height: 20px;
+    width: 330px;
+    border-radius: 10px;
+    border: 1px solid #BAC1D0;
+    padding: 21px 28px 21px 28px;
+  }
+
+  .add-logbook-button {
+    margin-top: 20px;
+  }
+
+  .logbook-type-button {
+    height: 20px;
+    width: 330px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #BAC1D0;
+    background-color: white;
+    padding: 21px 28px 21px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: normal;
+    position: relative;
+  }
+
+  .logbook-type-dropdown {
+    position: absolute;
+    width: 330px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    min-width: 10rem;
+    z-index: 50;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .logbook-type-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 2.5rem;
+    gap: 0.75rem;
+    padding: 0.75rem 2rem;
+    color: #374151;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+    background: none;
+    text-align: left;
+  }
+  
+  .logbook-type-item:hover {
+    background-color: #f3f4f6;
   }

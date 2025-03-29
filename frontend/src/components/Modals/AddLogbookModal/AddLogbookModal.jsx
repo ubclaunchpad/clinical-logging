@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { CLButtonPrimary } from "../../Buttons/CLButtons";
 import {
-  XMarkIcon
+  XMarkIcon,
+  ChevronDownIcon
 } from "@heroicons/react/24/outline";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -13,8 +14,16 @@ import { useAuth } from "../../../contexts/AuthContext";
 export const AddLogbookModal = ({ open, onClose }) => {
   const navigate = useNavigate();
   const [logbookName, setLogbookName] = useState("");
-  const [logbookType, setLogbookType] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [logbookType, setlogbookType] = useState('Select an option');
   const { session } = useAuth();
+
+  const options = ['adult_cardiac_logs', 'congenital_surgery_logs', 'general_surgery_logs','gyn_logs','ob_logs'];
+
+  const handleSelect = (option) => {
+    setlogbookType(option);
+    setIsOpen(false);
+  };
 
   async function createLogbook() {
     await postData(session?.access_token, "logbooks", {type: logbookType, title: logbookName });
@@ -39,7 +48,7 @@ export const AddLogbookModal = ({ open, onClose }) => {
         <p className="modal-description">
           Add a New Logbook
         </p>
-        <label>Logbook Name*:
+        <label className='modal-input'>Logbook Name*
           <input
             type="text"
             value={logbookName}
@@ -48,23 +57,35 @@ export const AddLogbookModal = ({ open, onClose }) => {
             onChange={(e) => setLogbookName(e.target.value)}
           />
         </label>
-        <label>Logbook Type*:
-          <input
-            type="text"
-            value={logbookType}
-            required
-            placeholder="Enter the code printed on your logbook"
-            onChange={(e) => setLogbookType(e.target.value)}
-          />
-        </label>
-        
-          <CLButtonPrimary
-            className="upload-photo-button"
-            onClick={handleAddLogbook}
-            width={"330px"}
-          >
-            <p>Add Logbook</p>
-          </CLButtonPrimary>
+        <div className="logbook-type-wrapper">
+        <label className='modal-input'>Logbook Type*</label>
+          <button onClick={() => setIsOpen(!isOpen)} className="logbook-type-button">
+            {logbookType} 
+            <ChevronDownIcon
+              className={`down-icon ${isOpen ? "down-icon-active" : ""}`}
+            />
+          </button>
+          {isOpen && (
+            <div className="logbook-type-dropdown">
+              {options.map(option => (
+                <button
+                  key={option}
+                  className="logbook-type-item"
+                  onClick={() => handleSelect(option)}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+        <CLButtonPrimary
+          className="add-logbook-button"
+          onClick={handleAddLogbook}
+          width={"330px"}
+        >
+          <p>Add Logbook</p>
+        </CLButtonPrimary>
       </Box>
     </Modal>
   );
