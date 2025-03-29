@@ -29,7 +29,7 @@ export default function LoadingScreen() {
           setProgress(Math.round(currentProgress));
         }, 300);
 
-        const response = await fetch("http://localhost:5000/api/transcribe", {
+        const response = await fetch("http://localhost:5000/api/transcribe_cached", {
           method: "POST",
           body: formData,
         });
@@ -49,8 +49,8 @@ export default function LoadingScreen() {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         // Navigate to results
-        navigate("/load-transcription", {
-          state: { transcription: data },
+        navigate("/manual_entry", {
+          state: { initialData: data },
           replace: true,
         });
       } catch (error) {
