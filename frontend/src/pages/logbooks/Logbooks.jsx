@@ -75,6 +75,7 @@ export default function Logbooks() {
           header="Logbooks"
           primaryButtonText="Add Book"
           actions={logbookActions}
+          addAction={() => setShowModal(true)}
         />
         <AddLogbookModal open={showModal} onClose={() => setShowModal(false)} />
         <div className="logbooks-grid">
