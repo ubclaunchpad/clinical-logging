@@ -103,3 +103,32 @@ export async function getLog(req) {
         return { error: error.message };
     }
 }
+
+export async function deleteLog(req) {
+    try {
+        const supabase = req.supabase;
+        const { logbookID, logID } = req.params;
+
+        const logbookType = await getLogbookType(logbookID, supabase);
+        if (logbookType.error) {
+            throw new Error(logbookType.error);
+        }
+
+        const log = await getTable(supabase, logbookType, "id", logID, "resource");
+        if (!log) {
+            throw new Error(`Log ${logID} does not exist in logbook ${logbookID}`);
+        }
+
+        const { error } = await supabase
+            .from(logbookType)
+            .delete()
+            .eq("id", logID);
+        if (error) {
+            throw new Error(`Failed to delete log: ${error.message}`);
+        }
+
+        return { success: true, message: `Log ${logID} deleted successfully from ${logbookType}` };
+    } catch (error) {
+        return { error: error.message };
+    }
+}
