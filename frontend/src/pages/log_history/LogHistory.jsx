@@ -13,6 +13,7 @@ import {
 import "./LogHistory.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { fetchData } from "../../utils/helpers/fetchData";
+import supabase from "../../config/supabase";
 
 const convertToCSV = (data) => {
   if (!data || data.length === 0) return '';
@@ -134,20 +135,17 @@ function MainContent() {
 
   const handleDownloadLog = async (selectedLogs) => {
     try {
-      // Get array of selected log IDs
+      
       const selectedLogIds = Object.entries(selectedLogs)
         .filter(([, isSelected]) => isSelected)
         .map(([id]) => id);
 
       if (selectedLogIds.length === 0) return;
 
-      // Get the selected logs data
       const selectedLogData = logs.filter(log => selectedLogIds.includes(log.id));
       
-      // Convert to CSV
       const csvContent = convertToCSV(selectedLogData);
       
-      // Create and download the file
       const blob = new Blob([csvContent], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -159,6 +157,32 @@ function MainContent() {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error downloading logs:', error);
+    }
+  };
+
+  const handleDeleteLog = async (selectedLogs) => {
+    try {
+      const selectedLogIds = Object.entries(selectedLogs)
+        .filter(([, isSelected]) => isSelected)
+        .map(([id]) => id);
+
+      if (selectedLogIds.length === 0) return;
+
+      const selectedLogData = logs.filter(log => selectedLogIds.includes(log.id));
+      
+      for (const log of selectedLogData) {
+        const { error } = await supabase
+          .from(log.type)
+          .delete()
+          .eq('id', log.id);
+          
+        if (error) throw error;
+      }
+
+      // Refresh the logs list
+      fetchLogs();
+    } catch (error) {
+      console.error('Error deleting logs:', error);
     }
   };
 
@@ -187,7 +211,7 @@ const logActions = [
   {
     label: "Delete",
     icon: TrashIcon,
-    onClick: () => {},
+    onClick: () => handleDeleteLog(selectedLogs),
   },
 ];
 
