@@ -81,7 +81,7 @@ export default function Logbooks() {
           {logbooks.map((book, index) => (
             <LogbookCard key={index} {...book} />
           ))}
-          <AddLogbookCard />
+          <AddLogbookCard onClick={() => setShowModal(true)} />
         </div>
       </div>
     </NavContentWrapper>

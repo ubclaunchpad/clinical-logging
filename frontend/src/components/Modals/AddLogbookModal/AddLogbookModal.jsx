@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import { CLButtonPrimary } from "../../Buttons/CLButtons";
 import {
   XMarkIcon,
@@ -12,13 +11,18 @@ import { postData } from "../../../utils/helpers/postData";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export const AddLogbookModal = ({ open, onClose }) => {
-  const navigate = useNavigate();
   const [logbookName, setLogbookName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [logbookType, setlogbookType] = useState('Select an option');
+  const [logbookType, setlogbookType] = useState({type:"", name:"Select logbook type"});
   const { session } = useAuth();
 
-  const options = ['adult_cardiac_logs', 'congenital_surgery_logs', 'general_surgery_logs','gyn_logs','ob_logs'];
+  const options = [
+    {type:"adult_cardiac_logs", name:"Adult Cardiac"},
+    {type:"congenital_surgery_logs", name:"Congenital Surgery"},
+    {type:"general_surgery_logs", name:"General Surgery"},
+    {type:"gyn_logs", name:"Gynecologist"},
+    {type:"ob_logs", name:"Obstetrician"},
+    ];
 
   const handleSelect = (option) => {
     setlogbookType(option);
@@ -26,7 +30,7 @@ export const AddLogbookModal = ({ open, onClose }) => {
   };
 
   async function createLogbook() {
-    await postData(session?.access_token, "logbooks", {type: logbookType, title: logbookName });
+    await postData(session?.access_token, "logbooks", {type: logbookType.name, title: logbookName });
   }
 
   const handleAddLogbook = async () => {
@@ -60,7 +64,7 @@ export const AddLogbookModal = ({ open, onClose }) => {
         <div className="logbook-type-wrapper">
         <label className='modal-input'>Logbook Type*</label>
           <button onClick={() => setIsOpen(!isOpen)} className="logbook-type-button">
-            {logbookType} 
+            {logbookType.name} 
             <ChevronDownIcon
               className={`down-icon ${isOpen ? "down-icon-active" : ""}`}
             />
@@ -69,11 +73,11 @@ export const AddLogbookModal = ({ open, onClose }) => {
             <div className="logbook-type-dropdown">
               {options.map(option => (
                 <button
-                  key={option}
+                  key={option.type}
                   className="logbook-type-item"
                   onClick={() => handleSelect(option)}
                 >
-                  {option}
+                  {option.name}
                 </button>
               ))}
             </div>
