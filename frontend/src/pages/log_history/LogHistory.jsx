@@ -4,9 +4,9 @@ import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import LogTable from "../../components/LogHistory/LogTable";
 import Pagination from "../../components/LogHistory/Pagination";
 import {
-  PencilSquareIcon,
+  // PencilSquareIcon,
   ArrowDownTrayIcon,
-  AdjustmentsHorizontalIcon,
+  // AdjustmentsHorizontalIcon,
   EyeIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
@@ -14,34 +14,51 @@ import "./LogHistory.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { fetchData } from "../../utils/helpers/fetchData";
 
-/** Array of log actions */
-const logActions = [
-  {
-    label: "Configure",
-    icon: PencilSquareIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Download",
-    icon: ArrowDownTrayIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Filter",
-    icon: AdjustmentsHorizontalIcon,
-    onClick: () => {},
-  },
-  {
-    label: "View",
-    icon: EyeIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Delete",
-    icon: TrashIcon,
-    onClick: () => {},
-  },
-];
+const convertToCSV = (data) => {
+  if (!data || data.length === 0) return '';
+  const headers = Object.keys(data[0]);
+  const csvHeader = headers.join(',');
+  const csvRows = data.map(row => 
+    headers.map(header => {
+      let cell = row[header] || '';
+      // Handle cells that contain commas by wrapping in quotes
+      if (cell.toString().includes(',')) {
+        cell = `"${cell}"`;
+      }
+      return cell;
+    }).join(',')
+  );
+  return [csvHeader, ...csvRows].join('\n');
+};
+
+// /** Array of log actions */
+// const logActions = [
+//   // {
+//   //   label: "Configure",
+//   //   icon: PencilSquareIcon,
+//   //   onClick: () => {},
+//   // },
+//   {
+//     label: "Download",
+//     icon: ArrowDownTrayIcon,
+//     onClick: () => {handleDownloadLog},
+//   },
+//   // {
+//   //   label: "Filter",
+//   //   icon: AdjustmentsHorizontalIcon,
+//   //   onClick: () => {},
+//   // },
+//   {
+//     label: "View",
+//     icon: EyeIcon,
+//     onClick: () => {},
+//   },
+//   {
+//     label: "Delete",
+//     icon: TrashIcon,
+//     onClick: () => {},
+//   },
+// ];
 
 export default function LogHistory() {
   return (
@@ -54,6 +71,7 @@ export default function LogHistory() {
 }
 
 function MainContent() {
+  
   /** Retrieve user's logs from API */
   const [logs, setLogs] = useState([]);
   const { session } = useAuth();
@@ -113,6 +131,65 @@ function MainContent() {
       [logId]: !prevSelected[logId],
     }));
   };
+
+  const handleDownloadLog = async (selectedLogs) => {
+    try {
+      // Get array of selected log IDs
+      const selectedLogIds = Object.entries(selectedLogs)
+        .filter(([, isSelected]) => isSelected)
+        .map(([id]) => id);
+
+      if (selectedLogIds.length === 0) return;
+
+      // Get the selected logs data
+      const selectedLogData = logs.filter(log => selectedLogIds.includes(log.id));
+      
+      // Convert to CSV
+      const csvContent = convertToCSV(selectedLogData);
+      
+      // Create and download the file
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `selected_logs_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading logs:', error);
+    }
+  };
+
+  /** Array of log actions */
+const logActions = [
+  // {
+  //   label: "Configure",
+  //   icon: PencilSquareIcon,
+  //   onClick: () => {},
+  // },
+  {
+    label: "Download",
+    icon: ArrowDownTrayIcon,
+    onClick: () => handleDownloadLog(selectedLogs),
+  },
+  // {
+  //   label: "Filter",
+  //   icon: AdjustmentsHorizontalIcon,
+  //   onClick: () => {},
+  // },
+  {
+    label: "View",
+    icon: EyeIcon,
+    onClick: () => {},
+  },
+  {
+    label: "Delete",
+    icon: TrashIcon,
+    onClick: () => {},
+  },
+];
 
   /** Check if all current logs are selected */
   const allSelected = currentLogs.every((log) => selectedLogs[log.id]);
