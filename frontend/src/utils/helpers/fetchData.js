@@ -13,3 +13,4 @@ export async function fetchData(token, route, params = undefined) {
     console.error(error.response.statusText);
   }
 }
+
