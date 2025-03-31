@@ -49,7 +49,7 @@ export default function LoadingScreen() {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         // Navigate to results
-        navigate("/manual_entry", {
+        navigate("/manualEntry", {
           state: { initialData: data },
           replace: true,
         });
