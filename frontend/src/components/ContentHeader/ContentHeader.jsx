@@ -2,12 +2,12 @@ import { PlusIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import "./ContentHeader.css";
 import { useState, useRef, useEffect } from "react";
 
-export default function ContentHeader({ header, primaryButtonText, actions }) {
+export default function ContentHeader({ header, primaryButtonText, actions, addAction }) {
   return (
     <div className="content-header">
       <h2>{header}</h2>
       <div className="button-group">
-        <AddButton text={primaryButtonText} onClick={() => {}} />
+        <AddButton text={primaryButtonText} onClick={addAction} />
         <ActionsButton actions={actions} />
       </div>
     </div>

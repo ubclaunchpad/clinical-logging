@@ -6,8 +6,9 @@ import { SurgicalAndPatientInfo } from "./sections/surgical_and_patient_info/Sur
 import { ExaminationsAndInvestigations } from "./sections/examinations_and_investigations/ExaminationsAndInvestigations";
 import { CasePlanning } from "./sections/case_planning/CasePlanning";
 import { LearningPoints } from "./sections/learning_points/LearningPoints";
-import { useAuth } from "../../contexts/AuthContext"
-import { postData } from "../../utils/helpers/postData";
+import { useAuth } from "../../contexts/AuthContext";
+import { postData} from "../../utils/helpers/postData";
+import { putData } from "../../utils/helpers/putData";
 import { initialFormData } from "./data/ManualEntryInitialFormData";
 import { Divider } from "@mui/material";
 import "./ManualEntry.css"
@@ -22,27 +23,52 @@ const ManualEntry = () => {
   const { session } = useAuth();
   const location = useLocation();
   const [formData, setFormData] = useState(location.state?.initialData || initialFormData());
+  const location = useLocation();
+  const [formData, setFormData] = useState(location.state?.initialData || initialFormData());
 
   const handleInputChange = (field, value) => {
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [field]: value
-    }))
-  }
+      [field]: value,
+    }));
+  };
 
   const getDataValue = (field) => {
     return formData[field];
-  }
+  };
 
   const handleSubmit = async () => {
     try {
-      // TODO: fix this at some point by grabbing logbook id seperately
-      const res = postData(session?.access_token, "logbooks/306375dc-c6e3-4c5d-b08b-1b53023e5cab/logs", formData);
-      console.log("Submitted successfully: " + res);
+      const logbookId = location.state?.logbookId;
+      if (!logbookId) {
+        throw new Error("No logbook ID provided");
+      }
+
+      let res;
+      if (location.state?.isEditing) {
+        // Update existing log
+        const logId = location.state?.logData?.id;
+        if (!logId) {
+          throw new Error("No log ID provided for update");
+        }
+        res = await putData(
+          session?.access_token,
+          `logbooks/${logbookId}/logs/${logId}`,
+          formData
+        );
+        console.log("Updated successfully: ", res);
+      } else {
+        res = await postData(
+          session?.access_token,
+          `logbooks/${logbookId}/logs`,
+          formData
+        );
+        console.log("Created successfully: ", res);
+      }
     } catch (err) {
-      console.log("Error submitting: " + err);
+      console.error("Error submitting: ", err);
     }
-  }
+  };
 
   return (
     <div>
@@ -50,7 +76,9 @@ const ManualEntry = () => {
       <form>
         <div className="manual-entry-container">
           <Divider />
-          <h2 className="section-header">1. Surgical and Patient Information</h2>
+          <h2 className="section-header">
+            1. Surgical and Patient Information
+          </h2>
           <SurgicalAndPatientInfo
             getDataValue={getDataValue}
             onInputChange={handleInputChange}

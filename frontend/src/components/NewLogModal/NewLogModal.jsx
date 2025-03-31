@@ -28,7 +28,7 @@ export const NewLogModal = () => {
 
   return (
     <div>
-      <CLButtonPrimary onClick={handleOpen} width={"230px"} height={"46px"}>
+      <CLButtonPrimary onClick={handleOpen} width={"332px"} height={"54px"}>
         Create New Log
       </CLButtonPrimary>
       <Modal open={open} onClose={handleClose}>
