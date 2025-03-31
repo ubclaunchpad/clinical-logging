@@ -5,10 +5,10 @@ from transformers import AutoProcessor, AutoModelForCausalLM
 import torch
 
 app = Flask(__name__)
-CORS(app)
+CORS(app) """
 
 # load model and processor once during init
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
+""" device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
 model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-large", torch_dtype=torch_dtype, trust_remote_code=True).to(device)
@@ -39,4 +39,4 @@ def transcribe():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5000)
+    app.run(host='0.0.0.0',port=8000)
