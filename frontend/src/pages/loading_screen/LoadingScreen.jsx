@@ -6,10 +6,10 @@ export default function LoadingScreen() {
   const location = useLocation();
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
-  const imageFile = location.state?.imageFile;
-
+  const imageFiles = location.state?.imageFiles || [];
+  const logbookId = location.state?.logbookId || null;
   useEffect(() => {
-    if (!imageFile) {
+    if (imageFiles.length === 0) {
       navigate("/upload-photo");
       return;
     }
@@ -17,7 +17,9 @@ export default function LoadingScreen() {
     const handleTranscription = async () => {
       try {
         const formData = new FormData();
-        formData.append("image", imageFile);
+        imageFiles.forEach((file, index) => {
+          formData.append(`image${index + 1}`, file);
+        });
 
         // Progress simulation
         let currentProgress = 0;
@@ -27,11 +29,10 @@ export default function LoadingScreen() {
           setProgress(Math.round(currentProgress));
         }, 300);
 
-        const response = await fetch("/api/transcribe", {
+        const response = await fetch("http://localhost:5000/api/transcribe_cached", {
           method: "POST",
           body: formData,
         });
-
         clearInterval(progressInterval);
 
         const data = await response.json();
@@ -48,8 +49,8 @@ export default function LoadingScreen() {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         // Navigate to results
-        navigate("/load-transcription", {
-          state: { transcription: data.transcription },
+        navigate("/manualEntry", {
+          state: { initialData: data, logbookId: logbookId },
           replace: true,
         });
       } catch (error) {
@@ -60,7 +61,7 @@ export default function LoadingScreen() {
     };
 
     handleTranscription();
-  }, [imageFile, navigate]);
+  }, [imageFiles, navigate]);
 
   return (
     <div className="loading-screen">

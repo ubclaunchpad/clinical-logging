@@ -11,8 +11,8 @@ import { postData} from "../../utils/helpers/postData";
 import { putData } from "../../utils/helpers/putData";
 import { initialFormData } from "./data/ManualEntryInitialFormData";
 import { Divider } from "@mui/material";
+import "./ManualEntry.css"
 import { useLocation } from "react-router-dom";
-import "./ManualEntry.css";
 
 /**
  * TODO: Add IntersectionObserver scrollable sticky header behaviour
