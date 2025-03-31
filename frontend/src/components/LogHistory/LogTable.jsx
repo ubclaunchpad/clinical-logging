@@ -42,7 +42,7 @@ export default function LogTable({
                 onChange={() => handleSelectLog(log.id)}
               />
             </td>
-            <td className="log-title-column title-column">{log.title}</td>
+            <td className="log-title-column title-column">{log.id}</td>
             <td className="type-column">{formatType(log.type)}</td>
             <td className="date-column">{formatDate(log.created_at)}</td>
           </tr>
