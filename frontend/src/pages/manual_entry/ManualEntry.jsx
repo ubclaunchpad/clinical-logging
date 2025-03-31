@@ -21,7 +21,7 @@ import "./ManualEntry.css";
 const ManualEntry = () => {
   const { session } = useAuth();
   const location = useLocation();
-  const [formData, setFormData] = useState(initialFormData());
+  const [formData, setFormData] = useState(location.state?.initialData || initialFormData());
 
   const handleInputChange = (field, value) => {
     setFormData((prevData) => ({

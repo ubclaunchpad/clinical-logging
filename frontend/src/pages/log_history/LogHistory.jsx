@@ -174,9 +174,12 @@ function MainContent() {
     }
 
     const selectedLog = logs.find(log => log.id === selectedLogIds[0]);
+    console.log(selectedLog);
     if (selectedLog) {
       navigate("/manualEntry", { 
-        state: { 
+        state: {
+          initialData: selectedLog ,
+          logbookId: selectedLog.logbook_id,
           logData: selectedLog,
           isEditing: true 
         } 
