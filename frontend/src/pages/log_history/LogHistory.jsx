@@ -14,6 +14,7 @@ import "./LogHistory.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { fetchData } from "../../utils/helpers/fetchData";
 import supabase from "../../config/supabase";
+import { useNavigate } from "react-router-dom";
 
 const convertToCSV = (data) => {
   if (!data || data.length === 0) return '';
@@ -72,6 +73,7 @@ export default function LogHistory() {
 }
 
 function MainContent() {
+  const navigate = useNavigate();
   
   /** Retrieve user's logs from API */
   const [logs, setLogs] = useState([]);
@@ -186,6 +188,31 @@ function MainContent() {
     }
   };
 
+  const handleViewLog = async (selectedLogs) => {
+    const selectedLogIds = Object.entries(selectedLogs)
+      .filter(([, isSelected]) => isSelected)
+      .map(([id]) => id);
+
+    if (selectedLogIds.length === 0) {
+      alert("Please select a log to view/edit");
+      return;
+    }
+    if (selectedLogIds.length > 1) {
+      alert("Please select only one log to view/edit");
+      return;
+    }
+
+    const selectedLog = logs.find(log => log.id === selectedLogIds[0]);
+    if (selectedLog) {
+      navigate("/manualEntry", { 
+        state: { 
+          logData: selectedLog,
+          isEditing: true 
+        } 
+      });
+    }
+  };
+
   /** Array of log actions */
 const logActions = [
   // {
@@ -206,7 +233,7 @@ const logActions = [
   {
     label: "View",
     icon: EyeIcon,
-    onClick: () => {},
+    onClick: () => handleViewLog(selectedLogs),
   },
   {
     label: "Delete",
