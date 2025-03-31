@@ -35,7 +35,7 @@ export const LogbookSelectionModal = () => {
     }
   }, [openSelection, session?.access_token]);
 
-  const formatLogbookType = (type, created) => {
+  const formatLogbookType = (type, title) => {
     if (!type) return "Untitled Logbook";
 
     const formattedType = type
@@ -44,11 +44,7 @@ export const LogbookSelectionModal = () => {
       .join(" ")
       .replace("Logs", "");
 
-    const month = new Date(created).toLocaleString("default", {
-      month: "short",
-    });
-
-    return `${formattedType} - ${month}.`;
+    return `${formattedType} - ${title}`;
   };
 
   return (
@@ -88,7 +84,7 @@ export const LogbookSelectionModal = () => {
                 {selectedLogbook
                   ? formatLogbookType(
                       selectedLogbook.type,
-                      selectedLogbook.created
+                      selectedLogbook.title
                     )
                   : "Select"}
                 <span className="logbook-selector__icon">
@@ -106,7 +102,7 @@ export const LogbookSelectionModal = () => {
                         setDropdownOpen(false);
                       }}
                     >
-                      {formatLogbookType(logbook.type, logbook.created)}
+                      {formatLogbookType(logbook.type, logbook.title)}
                     </div>
                   ))}
                 </div>
