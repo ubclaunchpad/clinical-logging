@@ -3,7 +3,7 @@ from flask_cors import CORS
 import os
 from PIL import Image
 from qwen import qwen
-
+from time import sleep
 app = Flask(__name__)
 CORS(app)
 
@@ -60,7 +60,53 @@ def transcribe():
 
 @app.route("/api/transcribe_cached", methods=["POST"])
 def transcribe_cached():
+    sleep(10)
     return jsonify({
+        "type": "adult_cardiac_logs",
+        "title": "Title",
+        "case_no": 3425,
+        "patient_id": "547382874",
+        "age": 75,
+        "surgeon": "Dr. John Smith",
+        "or_date": "07/10/2024",
+        "reason_for_referral": "CABG",
+        "hpi": "Heavy squeezing sensation in chest radiation to left arm for 2 weeks",
+        "pmhx_htn": 1,
+        "pmhx_dm2": 1,
+        "pmhx_dlp": 0,
+        "pmhx_cva": 0,
+        "gender": "Male",
+        "social_etoh": "v",
+        "social_smoking": "v",
+        "social_drugs": "X",
+        "allergies": "N/A",
+        "medicine": "Melformin: 500mg blue daily Lisinopous 100g daily",
+        "exam_weight": 85,
+        "exam_height": 178,
+        "exam_bmi": 26.8,
+        "exam_veins": "No varicosities noted; saphenos veins appear suitable for harvesting",
+        "exam_allen_test": "t;both radial 8 ulnar arteris are latent",
+        "echo_ef": 45,
+        "echo_rvfx": None,
+        "invx_wma": "hypokineses of anterior 2 lateral wall",
+        "invx_aorta": "normal",
+        "invx_valves": "normal",
+        "cxr": "enlarged heart",
+        "exam_pulses_top_left": 1,
+        "exam_pulses_top_right": 1,
+        "exam_pulses_bottom_left": 1,
+        "exam_pulses_bottom_right": 1,
+        "invx_w": None,
+        "invx_hb": None,
+        "invx_plt": None,
+        "invx_hct": None,
+        "invx_na": None,
+        "invx_cl": None,
+        "invx_bun": None,
+        "invx_glu": None,
+        "invx_creat": None,
+        "invx_co2": None,
+        "invx_k": None,
     "surgical_plan": f"Perform quadruple Coronary artery bypass graft with Saphenous Vein grafts and the left internal mammary artery to the left anterior descending 2 hours post-op. Sizable condition Scheduled for post-op day 3 to check graft function. ###SECTION### I operator Base OR Post Flag for F/U ###SECTION###",       
     "first_operator_flag": f"",
     "or_flag": f"OR",
