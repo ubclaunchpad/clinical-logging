@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { CLButtonPrimary } from "../../Buttons/CLButtons";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  XMarkIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "@heroicons/react/24/outline";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Divider from "@mui/material/Divider";
 import { NewLogModal } from "../NewLogModal/NewLogModal";
+import { AddLogbookModal } from "../AddLogbookModal/AddLogbookModal";
 import { useAuth } from "../../../contexts/AuthContext";
 import "./LogbookSelectionModal.css";
 
@@ -14,6 +19,8 @@ export const LogbookSelectionModal = () => {
   const [openSelection, setOpenSelection] = useState(false);
   const [selectedLogbook, setSelectedLogbook] = useState(null);
   const [showNewLogModal, setShowNewLogModal] = useState(false);
+  const [showAddLogbookModal, setShowAddLogbookModal] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (openSelection && session?.access_token) {
@@ -28,22 +35,20 @@ export const LogbookSelectionModal = () => {
     }
   }, [openSelection, session?.access_token]);
 
-  const formatLogbookType = (type) => {
+  const formatLogbookType = (type, created) => {
     if (!type) return "Untitled Logbook";
-    return type
+
+    const formattedType = type
       .split("_")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ")
       .replace("Logs", "");
-  };
 
-  const formatDate = (dateString) => {
-    if (!dateString) return "Unknown date";
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
+    const month = new Date(created).toLocaleString("default", {
       month: "short",
-      day: "numeric",
     });
+
+    return `${formattedType} - ${month}.`;
   };
 
   return (
@@ -60,41 +65,87 @@ export const LogbookSelectionModal = () => {
           >
             <XMarkIcon className="close-x-icon" />
           </button>
-          <p className="modal-description">
-            Select a logbook to create a new log
+          <h2 className="modal-title">Logbook Selection</h2>
+          <Divider className="logbook-title-divider" />
+          <p className="modal-logbook-description">
+            Please select a logbook from your current collection:
           </p>
-          <Divider className="logbook-modal-divider" />
-          <div className="logbook-list">
-            {logbooks.length === 0 ? (
-              <div className="empty-state">No logbooks found</div>
-            ) : (
-              logbooks.map((logbook) => (
-                <button
-                  key={logbook.id}
-                  className="logbook-item"
-                  onClick={() => {
-                    setSelectedLogbook(logbook);
+
+          {logbooks.length > 0 ? (
+            <div className="logbook-selector">
+              <div
+                className={`logbook-selector__button ${
+                  selectedLogbook ? "selected" : ""
+                }`}
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setDropdownOpen(!dropdownOpen);
+                  }
+                }}
+              >
+                {selectedLogbook
+                  ? formatLogbookType(
+                      selectedLogbook.type,
+                      selectedLogbook.created
+                    )
+                  : "Select"}
+                <span className="logbook-selector__icon">
+                  {dropdownOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                </span>
+              </div>
+              {dropdownOpen && (
+                <div className="logbook-selector__dropdown">
+                  {logbooks.map((logbook) => (
+                    <div
+                      key={logbook.id}
+                      className="logbook-selector__option"
+                      onClick={() => {
+                        setSelectedLogbook(logbook);
+                        setDropdownOpen(false);
+                      }}
+                    >
+                      {formatLogbookType(logbook.type, logbook.created)}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="no-logbooks">
+              <p>No logbooks found.</p>
+              <CLButtonPrimary
+                onClick={() => {
+                  setOpenSelection(false);
+                  setShowAddLogbookModal(true);
+                }}
+                width={"230px"}
+                height={"45px"}
+                className="add-logbook-btn"
+              >
+                Add Logbook
+              </CLButtonPrimary>
+            </div>
+          )}
+
+          {logbooks.length > 0 && (
+            <div className="modal-actions">
+              <CLButtonPrimary
+                onClick={() => {
+                  if (selectedLogbook) {
                     setOpenSelection(false);
                     setShowNewLogModal(true);
-                  }}
-                >
-                  <div className="logbook-info">
-                    <h3 className="logbook-name">
-                      {formatLogbookType(logbook.type)}
-                    </h3>
-                    <div className="logbook-details">
-                      <span className="logbook-date">
-                        Created: {formatDate(logbook.created)}
-                      </span>
-                      <span className="logbook-capacity">
-                        {logbook.storage || 0} / {100} logs
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              ))
-            )}
-          </div>
+                  }
+                }}
+                disabled={!selectedLogbook}
+                width={"230px"}
+                height={"45px"}
+              >
+                Continue
+              </CLButtonPrimary>
+            </div>
+          )}
         </Box>
       </Modal>
 
@@ -106,6 +157,13 @@ export const LogbookSelectionModal = () => {
             setSelectedLogbook(null);
           }}
           logbook={selectedLogbook}
+        />
+      )}
+
+      {showAddLogbookModal && (
+        <AddLogbookModal
+          open={showAddLogbookModal}
+          onClose={() => setShowAddLogbookModal(false)}
         />
       )}
     </div>
