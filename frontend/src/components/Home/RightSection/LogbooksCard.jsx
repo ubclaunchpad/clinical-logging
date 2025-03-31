@@ -17,7 +17,7 @@ export default function LogbooksCard({ progressItems, setSelectedLog }) {
       <div className="logbooks-content">
         <img src={LogBooks} alt="Logbooks" className="logbooks-image" />
         <div className="progress-list">
-          {progressItems.map((item) => (
+          {progressItems.slice(0, 3).map((item) => (
             <ProgressItem
               key={item.id}
               item={item}
