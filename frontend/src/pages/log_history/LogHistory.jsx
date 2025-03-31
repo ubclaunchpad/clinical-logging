@@ -33,35 +33,6 @@ const convertToCSV = (data) => {
   return [csvHeader, ...csvRows].join('\n');
 };
 
-// /** Array of log actions */
-// const logActions = [
-//   // {
-//   //   label: "Configure",
-//   //   icon: PencilSquareIcon,
-//   //   onClick: () => {},
-//   // },
-//   {
-//     label: "Download",
-//     icon: ArrowDownTrayIcon,
-//     onClick: () => {handleDownloadLog},
-//   },
-//   // {
-//   //   label: "Filter",
-//   //   icon: AdjustmentsHorizontalIcon,
-//   //   onClick: () => {},
-//   // },
-//   {
-//     label: "View",
-//     icon: EyeIcon,
-//     onClick: () => {},
-//   },
-//   {
-//     label: "Delete",
-//     icon: TrashIcon,
-//     onClick: () => {},
-//   },
-// ];
-
 export default function LogHistory() {
   return (
     <NavContentWrapper>
