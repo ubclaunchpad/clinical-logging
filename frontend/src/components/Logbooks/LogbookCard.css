@@ -1,188 +1,226 @@
 /* Base Card Styles */
 .logbook-card {
-    border-radius: 30px;
-    max-width: 300px;
-    padding: 20px;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.2s;
-    background: #ebf2fd;
-    backdrop-filter: blur(20px);
-    box-shadow:
-      0px 16px 60px 0px #cdd8f040,
-      0px 0px 60px 0px #ffffff80 inset;
-    height: 300px;
-  }
-  
-  .logbook-card:hover .book-cover {
-    transform: translateY(-10px);
-  }
-  
-  /* Logbook Card Variants */
-  .logbook-card.congenital {
-    background: #fbf4ff;
-  }
-  
-  .logbook-card.ophthalmology {
-    background: #ebfbfe;
-  }
-  
-  .logbook-card.obstetrics {
-    background: #f0edf3;
-  }
-  
-  .logbook-card.general-surgery {
-    background: #e8fdff;
-  }
-  
-  /* Book Cover Styles */
-  .book-cover {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.2s;
-  }
-  
-  .book-cover-image {
-    width: 60%;
-    margin-top: 10%;
-    margin-left: 20%;
-    object-fit: cover;
-    clip-path: inset(0 0 30% 0);
-  }
-  
-  .book-cover-image.obstetrics {
-    width: 30%;
-    margin-top: 90%;
-  }
-  
-  .log-rectangle {
-    width: 170%;
-    height: 240%;
-    padding: 13px;
-    object-fit: cover;
-    position: absolute;
-    bottom: 0;
-    right: -57%;
-  }
-  
-  /* Details Container */
-  .details-container {
-    position: relative;
-    height: 140px;
-  }
-  
-  .book-details {
-    position: relative;
-    padding: 10px;
-    bottom: 100%;
-    z-index: 2;
-    align-items: flex-start;
-  }
-  
-  /* Text Styles */
-  .book-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #1e1e1e;
-    margin-bottom: 12px;
-    text-align: left;
-  }
-  
-  .type-label,
-  .storage-info {
-    font-size: 14px;
-    font-weight: 500;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .type-label {
-    color: #333333;
-  }
-  
-  .storage-info {
-    margin: 8px 0;
-  }
-  
-  .type-value,
-  .storage-count {
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  .type-value {
-    color: #244b94;
-  }
-  
-  .storage-count {
-    color: #5d9eff;
-  }
-  
-  .created-date {
-    font-size: 10px;
-    color: #656b6f;
-    margin-top: 8px;
-    text-align: left;
-  }
-  
-  .created-date strong {
-    font-weight: 600;
-  }
+  border-radius: 30px;
+  max-width: 300px;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+  background: #ebf2fd;
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 16px 60px 0px #cdd8f040, 0px 0px 60px 0px #ffffff80 inset;
+  height: 300px;
+}
 
-  .logbook-modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #FBFCFE;
-    border-radius: 20px;
-    box-shadow: 24;
+.logbook-card:hover .book-cover {
+  transform: translateY(-10px);
+}
 
-    min-width: 800px;
-    min-height: 500px;
-  }
+/* Logbook Card Variants */
+.logbook-card.congenital {
+  background: #fbf4ff;
+}
 
-  .close-modal-button {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    height: 40px;
-    width: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    color: #244B94;
-    border-radius: 40px;
-  }
+.logbook-card.ophthalmology {
+  background: #ebfbfe;
+}
 
-  .modal-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 75px;
-  }
+.logbook-card.obstetrics {
+  background: #f0edf3;
+}
 
-  .modal-image-container {
-    display: flex;
-    flex-direction: row;
-    width: 400px;
-    align-items: center;
-  }
+.logbook-card.general-surgery {
+  background: #e8fdff;
+}
 
-  .modal-image-container svg {
-    width: 3rem;
-    height: 3rem;
-    padding: 0px;
-  }
+/* Book Cover Styles */
+.book-cover {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
 
-  .modal-book-cover-image {
-    height: 260px;
-  }
+.book-cover-image {
+  width: 60%;
+  margin-top: 10%;
+  margin-left: 20%;
+  object-fit: cover;
+  clip-path: inset(0 0 30% 0);
+}
+
+.book-cover-image.obstetrics {
+  width: 30%;
+  margin-top: 90%;
+}
+
+.log-rectangle {
+  width: 175%;
+  height: 240%;
+  padding: 13px;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  right: -57%;
+}
+
+/* Details Container */
+.details-container {
+  position: relative;
+  height: 140px;
+}
+
+.book-details {
+  position: relative;
+  padding: 10px;
+  bottom: 105px;
+  z-index: 2;
+  align-items: flex-start;
+}
+
+/* Text Styles */
+.book-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e1e1e;
+  text-align: left;
+  letter-spacing: -0.48px;
+}
+
+.type-label,
+.storage-info {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.type-label {
+  color: #333;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -0.32px;
+}
+
+.storage-info {
+  margin: 8px 0;
+}
+
+.type-value,
+.storage-count {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.type-value {
+  color: #244b94;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+}
+
+.storage-count {
+  color: #5d9eff;
+}
+
+.created-date {
+  font-size: 12px;
+  color: #656b6f;
+  text-align: left;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 10px;
+  letter-spacing: -0.24px;
+}
+
+.logbook-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fbfcfe;
+  border-radius: 20px;
+  box-shadow: 24;
+
+  min-width: 800px;
+  min-height: 500px;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #244b94;
+  border-radius: 40px;
+}
+
+.modal-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 75px;
+}
+
+.modal-image-container {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  align-items: center;
+}
+
+.modal-image-container svg {
+  width: 3rem;
+  height: 3rem;
+  padding: 0px;
+}
+
+.modal-book-cover-image {
+  height: 260px;
+}
+
+.progress-bar-c {
+  background: #f7f9fd;
+  border-radius: 5px;
+  width: 200px;
+  height: 6px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  background: linear-gradient(88deg, #5d9eff 2.13%, #121038 118.35%);
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.progress-info {
+  font-size: 12px;
+  color: #656b6f;
+}
+
+.logs-used {
+  color: #64b2f6;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: -0.28px;
+}
+
+.total-logs {
+  color: #656b6f;
+  font-size: 12px;
+  letter-spacing: -0.28px;
+}

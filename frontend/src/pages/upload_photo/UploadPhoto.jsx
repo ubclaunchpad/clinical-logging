@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavContentWrapper } from "../../components/NavContentWrapper/NavContentWrapper";
 import "./UploadPhoto.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PreviewSection from "../../components/UploadPhoto/PreviewSection";
 import UploadArea from "../../components/UploadPhoto/UploadArea";
 import {
@@ -13,6 +13,7 @@ import LoadingScreen from "../loading_screen/LoadingScreen";
 
 export default function UploadPhoto() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [files, setFiles] = useState([]);
   const [isLoading] = useState(false);
   const [progress] = useState(0);
@@ -23,8 +24,17 @@ export default function UploadPhoto() {
       return;
     }
 
+    const logbookId = location.state?.logbookId;
+    if (!logbookId) {
+      alert("No logbook selected");
+      return;
+    }
+
     navigate("/loading-screen", {
-      state: { imageFile: files[0].file },
+      state: {
+        imageFile: files[0].file,
+        logbookId: logbookId,
+      },
     });
   };
 
@@ -66,26 +76,26 @@ function MainContent({ files, setFiles, handleTranscribe }) {
   /** Handle files from input or drop */
   const handleFiles = (newFiles) => {
     const filesArray = Array.from(newFiles);
-  
+
     setFiles((prevFiles) => {
       // Check if the new total would exceed the limit
       const totalFiles = prevFiles.length + filesArray.length;
-  
+
       if (totalFiles > 2) {
         alert("You can only upload up to 2 files.");
         return prevFiles; // Return the current state without changes
       }
-  
+
       // Process the new files
       const filesWithPreview = filesArray.map((file) => ({
         file: file, // Store the actual File object
         timestamp: Date.now(),
         preview: URL.createObjectURL(file),
       }));
-  
+
       return [...prevFiles, ...filesWithPreview]; // Append new files
     });
-  };  
+  };
 
   /** Toggle preview visibility */
   const handlePreviewClick = () => {
