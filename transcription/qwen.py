@@ -2,7 +2,7 @@ import torch
 import os
 import cv2
 from PIL import Image
-from transformers import Qwen2_5_VLForConditionalGeneration, AutoTokenizer, AutoProcessor
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoProcessor
 from utils.text_to_json import convert_text_to_json, process_text_file
 import json
 
@@ -42,13 +42,14 @@ def process_image(image_path):
 
 def qwen(image_paths=["../assets/kkl3.jpg", "../assets/kkl2.jpg"]):
     # Load the model in half-precision on the available device(s)
-    model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-        "Qwen/Qwen2.5-VL-3B-Instruct",  
-        device_map="auto"
+    model = AutoModelForCausalLM.from_pretrained(
+        "Qwen/Qwen2.5-VL-3B-Instruct",
+        device_map="auto",
+        trust_remote_code=True  # Required for Qwen models
     )
     processor = AutoProcessor.from_pretrained(
-        "Qwen/Qwen2.5-VL-3B-Instruct", 
-        use_fast=True
+        "Qwen/Qwen2.5-VL-3B-Instruct",
+        trust_remote_code=True  # Required for Qwen models
     )
 
     # Define dimensions

@@ -31,7 +31,7 @@ export default function UploadPhoto() {
     }
 
     navigate("/loading-screen", {
-      state: { imageFiles: files.map(f => f.file) },
+      state: { imageFiles: files.map(f => f.file), logbookId: logbookId },
     });
   };
 
