@@ -1,3 +1,4 @@
+import requests
 def trocr():
     from transformers import TrOCRProcessor, VisionEncoderDecoderModel
     from PIL import Image
@@ -47,9 +48,10 @@ def florence():
     )
     generated_text = processor.batch_decode(generated_ids, skip_special_tokens=False)[0]
 
-    parsed_answer = processor.post_process_generation(generated_text, task="<OCR>", image_size=(image.width, image.height))
+    # parsed_answer = processor.post_process_generation(generated_text, task="<OCR>", image_size=(image.width, image.height))
 
-    print(parsed_answer)
+    return generated_text
+    #print(generated_text)
 
     # bounding_box_annotator = sv.BoundingBoxAnnotator(color_lookup=sv.ColorLookup.INDEX)
     # label_annotator = sv.LabelAnnotator(color_lookup=sv.ColorLookup.INDEX)
@@ -60,3 +62,76 @@ def florence():
     # sv.plot_image(annotated)
 
 florence()
+
+# function to load json templates
+
+import json
+import os
+
+def load_template(template_name):
+    file_path = "logbook_templates.json" 
+
+    if not os.path.exists(file_path):
+        return {"error": f"Template file {file_path} not found."}
+
+    try:
+        with open(file_path, "r") as file:
+            templates = json.load(file)
+        return templates.get(template_name, {})
+    except json.JSONDecodeError:
+        return {"error": "Invalid JSON format in logbook_templates.json"}
+
+# function to detect the best template
+def detect_best_template(raw_text, templates):
+    text_lower = raw_text.lower()
+    best_template = None
+    best_match_count = 0
+    best_template_name = ""
+
+    for template_name, template_fields in templates.items():
+        match_count = sum(1 for field in template_fields if field.lower().replace("_", " ") in text_lower)
+
+        if match_count > best_match_count:
+            best_match_count = match_count
+            best_template = template_fields
+            best_template_name = template_name
+    
+    return best_template_name, best_template
+
+# function to convert text to json
+
+import re
+
+def structure_transcription(raw_text, template_):
+    structured_data = {key: "" for key in template}
+
+    for key in template.keys():
+        pattern = rf"{key.replace('_', ' ')}:\s*(.*)"
+        match = re.search(pattern, raw_text, re.IGNORECASE)
+        if match:
+            structured_data[key] = match.group(1).strip()
+
+    return structured_data
+
+# testing workflow
+
+# printing ocr output
+raw_text = florence()
+print("OCR Output:", raw_text)
+
+# testing load_template
+template = load_template("AdultCardiac_log")
+print(template)
+
+# testing detect_best_template
+
+with open("logbook_templates.json", "r") as file:
+    templates = json.load(file)
+
+best_template_name, best_template = detect_best_template(raw_text, templates)
+print("Best Template:", best_template_name)
+print("Best Template Fields:", best_template)
+
+# testing structure_transcription
+structured_data = structure_transcription(raw_text, best_template)
+print("Structured Data:", structured_data)
