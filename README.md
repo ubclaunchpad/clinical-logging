@@ -78,6 +78,6 @@ Our app will have the following components:
 ## Transcription - Python
 1. `cd transcription` to change directory to transcription folder
 2. `pip install -r "requirements.txt"` to install required packages
-3. `python testing.py` or `python3 testing.py` to run the script
+3. `python app.py` or `python3 app.py` to run the transcription server
 
 NOTE: These packages are in the `requirements.txt` file, but if you get an error telling you to install einops or timm, use `pip install einops timm` to install einops and timm seperately.
