@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export async function postData(token, route, data = {}) {
+
+export async function putData(token, route, data = {}) {
     try {
-      const response = await axios.post(`/api/${route}`,
+      const response = await axios.put(`/api/${route}`,
         data, 
         {
         headers: {
@@ -15,5 +16,3 @@ export async function postData(token, route, data = {}) {
       throw error;
     }
 }
-
-

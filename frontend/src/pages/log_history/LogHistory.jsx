@@ -225,7 +225,7 @@ const logActions = [
         header="Saved Logs"
         primaryButtonText="Add Logs"
         actions={logActions}
-        addAction={()=>{}}
+        addAction={()=>{navigate("/home")}}
       />
       <LogTable
         currentLogs={currentLogs}
