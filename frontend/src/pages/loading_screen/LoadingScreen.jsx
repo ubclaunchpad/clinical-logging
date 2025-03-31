@@ -7,7 +7,7 @@ export default function LoadingScreen() {
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const imageFiles = location.state?.imageFiles || [];
-
+  const logbookId = location.state?.logbookId || null;
   useEffect(() => {
     if (imageFiles.length === 0) {
       navigate("/upload-photo");
@@ -50,7 +50,7 @@ export default function LoadingScreen() {
 
         // Navigate to results
         navigate("/manualEntry", {
-          state: { initialData: data },
+          state: { initialData: data, logbookId: logbookId },
           replace: true,
         });
       } catch (error) {
