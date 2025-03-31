@@ -222,6 +222,7 @@ const logActions = [
         header="Saved Logs"
         primaryButtonText="Add Logs"
         actions={logActions}
+        addAction={()=>{}}
       />
       <LogTable
         currentLogs={currentLogs}
