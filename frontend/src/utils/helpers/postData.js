@@ -12,5 +12,8 @@ export async function postData(token, route, data = {}) {
       return response.data.data;
     } catch (error) {
       console.error(error.response.statusText);
+      throw error;
     }
-  }
+}
+
+

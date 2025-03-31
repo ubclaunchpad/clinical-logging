@@ -120,3 +120,42 @@ export async function getLog(req) {
         return { error: error.message };
     }
 }
+
+export async function updateLog(req) {
+    try {
+        const supabase = req.supabase;
+        const { logbookID, logID } = req.params;
+        let body = req.body;
+        
+        body["logbook_id"] = logbookID;
+        
+        const logbookType = await getLogbookType(logbookID, supabase);
+        if (logbookType.error) {
+            throw new Error(logbookType.error);
+        }
+        if (body["type"] !== logbookType) {
+            throw new Error(`Log type '${body["type"]}' does not match logbook type '${logbookType}'`);
+        }
+
+        const existingLog = await getTable(supabase, logbookType, "id", logID, "resource");
+        if (typeof existingLog == "undefined") {
+            throw new Error(`Log ${logID} does not exist`);
+        }
+        if (existingLog.logbook_id !== logbookID) {
+            throw new Error(`Log ${logID} does not belong to logbook ${logbookID}`);
+        }
+
+        const { data, error } = await supabase
+            .from(logbookType)
+            .update(body)
+            .eq('id', logID)
+            .eq('logbook_id', logbookID)
+            .select()
+            .single();
+
+        if (error) throw error;
+        return data;
+    } catch (error) {
+        return { error: error.message };
+    }
+}

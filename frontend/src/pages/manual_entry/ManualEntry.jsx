@@ -7,7 +7,8 @@ import { ExaminationsAndInvestigations } from "./sections/examinations_and_inves
 import { CasePlanning } from "./sections/case_planning/CasePlanning";
 import { LearningPoints } from "./sections/learning_points/LearningPoints";
 import { useAuth } from "../../contexts/AuthContext";
-import { postData } from "../../utils/helpers/postData";
+import { postData} from "../../utils/helpers/postData";
+import { putData } from "../../utils/helpers/putData";
 import { initialFormData } from "./data/ManualEntryInitialFormData";
 import { Divider } from "@mui/material";
 import { useLocation } from "react-router-dom";
@@ -41,14 +42,29 @@ const ManualEntry = () => {
         throw new Error("No logbook ID provided");
       }
 
-      const res = postData(
-        session?.access_token,
-        `logbooks/${logbookId}/logs`,
-        formData
-      );
-      console.log("Submitted successfully: " + res);
+      let res;
+      if (location.state?.isEditing) {
+        // Update existing log
+        const logId = location.state?.logData?.id;
+        if (!logId) {
+          throw new Error("No log ID provided for update");
+        }
+        res = await putData(
+          session?.access_token,
+          `logbooks/${logbookId}/logs/${logId}`,
+          formData
+        );
+        console.log("Updated successfully: ", res);
+      } else {
+        res = await postData(
+          session?.access_token,
+          `logbooks/${logbookId}/logs`,
+          formData
+        );
+        console.log("Created successfully: ", res);
+      }
     } catch (err) {
-      console.log("Error submitting: " + err);
+      console.error("Error submitting: ", err);
     }
   };
 
