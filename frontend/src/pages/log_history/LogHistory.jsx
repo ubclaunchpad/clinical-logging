@@ -4,44 +4,34 @@ import ContentHeader from "../../components/ContentHeader/ContentHeader";
 import LogTable from "../../components/LogHistory/LogTable";
 import Pagination from "../../components/LogHistory/Pagination";
 import {
-  PencilSquareIcon,
+  // PencilSquareIcon,
   ArrowDownTrayIcon,
-  AdjustmentsHorizontalIcon,
+  // AdjustmentsHorizontalIcon,
   EyeIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
 import "./LogHistory.css";
 import { useAuth } from "../../contexts/AuthContext";
 import { fetchData } from "../../utils/helpers/fetchData";
+import supabase from "../../config/supabase";
+import { useNavigate } from "react-router-dom";
 
-/** Array of log actions */
-const logActions = [
-  {
-    label: "Configure",
-    icon: PencilSquareIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Download",
-    icon: ArrowDownTrayIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Filter",
-    icon: AdjustmentsHorizontalIcon,
-    onClick: () => {},
-  },
-  {
-    label: "View",
-    icon: EyeIcon,
-    onClick: () => {},
-  },
-  {
-    label: "Delete",
-    icon: TrashIcon,
-    onClick: () => {},
-  },
-];
+const convertToCSV = (data) => {
+  if (!data || data.length === 0) return '';
+  const headers = Object.keys(data[0]);
+  const csvHeader = headers.join(',');
+  const csvRows = data.map(row => 
+    headers.map(header => {
+      let cell = row[header] || '';
+      // Handle cells that contain commas by wrapping in quotes
+      if (cell.toString().includes(',')) {
+        cell = `"${cell}"`;
+      }
+      return cell;
+    }).join(',')
+  );
+  return [csvHeader, ...csvRows].join('\n');
+};
 
 export default function LogHistory() {
   return (
@@ -54,6 +44,8 @@ export default function LogHistory() {
 }
 
 function MainContent() {
+  const navigate = useNavigate();
+  
   /** Retrieve user's logs from API */
   const [logs, setLogs] = useState([]);
   const { session } = useAuth();
@@ -113,6 +105,113 @@ function MainContent() {
       [logId]: !prevSelected[logId],
     }));
   };
+
+  const handleDownloadLog = async (selectedLogs) => {
+    try {
+      
+      const selectedLogIds = Object.entries(selectedLogs)
+        .filter(([, isSelected]) => isSelected)
+        .map(([id]) => id);
+
+      if (selectedLogIds.length === 0) return;
+
+      const selectedLogData = logs.filter(log => selectedLogIds.includes(log.id));
+      
+      const csvContent = convertToCSV(selectedLogData);
+      
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `selected_logs_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading logs:', error);
+    }
+  };
+
+  const handleDeleteLog = async (selectedLogs) => {
+    try {
+      const selectedLogIds = Object.entries(selectedLogs)
+        .filter(([, isSelected]) => isSelected)
+        .map(([id]) => id);
+
+      if (selectedLogIds.length === 0) return;
+
+      const selectedLogData = logs.filter(log => selectedLogIds.includes(log.id));
+      
+      for (const log of selectedLogData) {
+        const { error } = await supabase
+          .from(log.type)
+          .delete()
+          .eq('id', log.id);
+          
+        if (error) throw error;
+      }
+
+      // Refresh the logs list
+      fetchLogs();
+    } catch (error) {
+      console.error('Error deleting logs:', error);
+    }
+  };
+
+  const handleViewLog = async (selectedLogs) => {
+    const selectedLogIds = Object.entries(selectedLogs)
+      .filter(([, isSelected]) => isSelected)
+      .map(([id]) => id);
+
+    if (selectedLogIds.length === 0) {
+      alert("Please select a log to view/edit");
+      return;
+    }
+    if (selectedLogIds.length > 1) {
+      alert("Please select only one log to view/edit");
+      return;
+    }
+
+    const selectedLog = logs.find(log => log.id === selectedLogIds[0]);
+    if (selectedLog) {
+      navigate("/manualEntry", { 
+        state: { 
+          logData: selectedLog,
+          isEditing: true 
+        } 
+      });
+    }
+  };
+
+  /** Array of log actions */
+const logActions = [
+  // {
+  //   label: "Configure",
+  //   icon: PencilSquareIcon,
+  //   onClick: () => {},
+  // },
+  {
+    label: "Download",
+    icon: ArrowDownTrayIcon,
+    onClick: () => handleDownloadLog(selectedLogs),
+  },
+  // {
+  //   label: "Filter",
+  //   icon: AdjustmentsHorizontalIcon,
+  //   onClick: () => {},
+  // },
+  {
+    label: "View",
+    icon: EyeIcon,
+    onClick: () => handleViewLog(selectedLogs),
+  },
+  {
+    label: "Delete",
+    icon: TrashIcon,
+    onClick: () => handleDeleteLog(selectedLogs),
+  },
+];
 
   /** Check if all current logs are selected */
   const allSelected = currentLogs.every((log) => selectedLogs[log.id]);
