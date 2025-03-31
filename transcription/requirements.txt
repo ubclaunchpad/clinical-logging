@@ -8,3 +8,7 @@ optree>=0.13.0
 transformers
 einops
 timm
+flask
+flask-cors
+opencv-python
+matplotlib
