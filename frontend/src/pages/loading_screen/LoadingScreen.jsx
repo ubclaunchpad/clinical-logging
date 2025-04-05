@@ -29,7 +29,7 @@ export default function LoadingScreen() {
           setProgress(Math.round(currentProgress));
         }, 300);
 
-        const response = await fetch("http://localhost:5000/api/transcribe_cached", {
+        const response = await fetch("http://localhost:5000/api/transcribe", {
           method: "POST",
           body: formData,
         });

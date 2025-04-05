@@ -2,7 +2,7 @@ import torch
 import os
 import cv2
 from PIL import Image
-from transformers import AutoModelForCausalLM, AutoTokenizer, AutoProcessor
+from transformers import AutoProcessor, AutoModelForImageTextToText, AutoTokenizer
 from utils.text_to_json import convert_text_to_json, process_text_file
 import json
 
@@ -41,131 +41,163 @@ def process_image(image_path):
     return abs_path
 
 def qwen(image_paths=["../assets/kkl3.jpg", "../assets/kkl2.jpg"]):
-    # Load the model in half-precision on the available device(s)
-    model = AutoModelForCausalLM.from_pretrained(
-        "Qwen/Qwen2.5-VL-3B-Instruct",
-        device_map="auto",
-        trust_remote_code=True  # Required for Qwen models
-    )
-    processor = AutoProcessor.from_pretrained(
-        "Qwen/Qwen2.5-VL-3B-Instruct",
-        trust_remote_code=True  # Required for Qwen models
-    )
+    try:
+        # Load the model and processor with explicit trust_remote_code
+        model_name = "Qwen/Qwen2.5-VL-3B-Instruct"
+        
+        # Initialize tokenizer first
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_name,
+            trust_remote_code=True
+        )
+        
+        # Initialize model with proper configuration for vision-language tasks
+        model = AutoModelForImageTextToText.from_pretrained(
+            model_name,
+            device_map="auto",
+            trust_remote_code=True,
+            torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32
+        )
+        
+        # Initialize processor
+        processor = AutoProcessor.from_pretrained(
+            model_name,
+            trust_remote_code=True
+        )
 
-    # Define dimensions
-    new_width, new_height = 600, 960
+        # Define dimensions
+        new_width, new_height = 600, 960
 
-    # Define regions for both pages
-    regions_by_page = {
-        0: {  # First image (kkl3.jpg equivalent)
-            "basics": (0, 0, new_width, int(new_height * 0.171)),
-            "case_details": (0, int(new_height * 0.171), new_width, int(new_height * 0.22)),
-            "hpi": (0, int(new_height * 0.22), int(new_width*0.5), int(new_height * 0.30)),
-            "social": (int(new_width*0.5), int(new_height * 0.22), new_width, int(new_height * 0.30)),
-            "PMHx": (0, int(new_height * 0.30), int(new_width*0.2), int(new_height * 0.45)),
-            "medications": (int(new_width*0.2), int(new_height * 0.30), int(new_width*0.7), int(new_height * 0.45)),
-            "allergies": (int(new_width*0.7), int(new_height * 0.30), new_width, int(new_height * 0.45)),
-            "exam": (0, int(new_height * 0.45), int(new_width*0.385), int(new_height * 0.54)),
-            "veins": (int(new_width*0.385), int(new_height * 0.45), int(new_width*0.55), int(new_height * 0.66)),
-            "allen_test": (int(new_width*0.55), int(new_height * 0.45), int(new_width*0.69), int(new_height * 0.66)),
-            "INVx": (0, int(new_height * 0.54), int(new_width * 0.4), int(new_height * 0.70)),
-            "CXR_CT": (int(new_width * 0.65), int(new_height * 0.612), new_width, int(new_height * 0.762))
-        },
-        1: {  # Second image (kkl2.jpg equivalent)
-            "surgical_plan": (0, 0, int(new_width * 0.88), int(new_height * 0.3)),
-            "flags": (int(new_width * 0.88), 0, new_width, int(new_height * 0.33)),
-            "operative_notes": (0, int(new_height * 0.3), new_width, int(new_height * 0.55)),
-            "post_op_notes": (0, int(new_height * 0.55), new_width, int(new_height * 0.75)),
-            "learning_points": (0, int(new_height * 0.75), new_width, int(new_height * 0.95))
+        # Define regions for both pages
+        regions_by_page = {
+            0: {  # First image (kkl3.jpg equivalent)
+                "basics": (0, 0, new_width, int(new_height * 0.171)),
+                "case_details": (0, int(new_height * 0.171), new_width, int(new_height * 0.22)),
+                "hpi": (0, int(new_height * 0.22), int(new_width*0.5), int(new_height * 0.30)),
+                "social": (int(new_width*0.5), int(new_height * 0.22), new_width, int(new_height * 0.30)),
+                "PMHx": (0, int(new_height * 0.30), int(new_width*0.2), int(new_height * 0.45)),
+                "medications": (int(new_width*0.2), int(new_height * 0.30), int(new_width*0.7), int(new_height * 0.45)),
+                "allergies": (int(new_width*0.7), int(new_height * 0.30), new_width, int(new_height * 0.45)),
+                "exam": (0, int(new_height * 0.45), int(new_width*0.385), int(new_height * 0.54)),
+                "veins": (int(new_width*0.385), int(new_height * 0.45), int(new_width*0.55), int(new_height * 0.66)),
+                "allen_test": (int(new_width*0.55), int(new_height * 0.45), int(new_width*0.69), int(new_height * 0.66)),
+                "INVx": (0, int(new_height * 0.54), int(new_width * 0.4), int(new_height * 0.70)),
+                "CXR_CT": (int(new_width * 0.65), int(new_height * 0.612), new_width, int(new_height * 0.762))
+            },
+            1: {  # Second image (kkl2.jpg equivalent)
+                "surgical_plan": (0, 0, int(new_width * 0.88), int(new_height * 0.3)),
+                "flags": (int(new_width * 0.88), 0, new_width, int(new_height * 0.33)),
+                "operative_notes": (0, int(new_height * 0.3), new_width, int(new_height * 0.55)),
+                "post_op_notes": (0, int(new_height * 0.55), new_width, int(new_height * 0.75)),
+                "learning_points": (0, int(new_height * 0.75), new_width, int(new_height * 0.95))
+            }
         }
-    }
 
-    # Process both images
-    all_transcribed_sections = {}
+        # Process both images
+        all_transcribed_sections = {}
 
-    for i in range(len(image_paths)):
-        if i > 1:
-            break
-        # Get regions for this image index
-        regions = regions_by_page[i]
-        if not regions:
-            print(f"No regions defined for image {i}")
-            continue
+        for i in range(len(image_paths)):
+            if i > 1:
+                break
+            # Get regions for this image index
+            regions = regions_by_page[i]
+            if not regions:
+                print(f"No regions defined for image {i}")
+                continue
 
-        # Process the image
-        abs_image_path = process_image(image_paths[i])
-        if not abs_image_path:
-            continue
+            # Process the image
+            abs_image_path = process_image(image_paths[i])
+            if not abs_image_path:
+                continue
 
-        cv_image = cv2.imread(abs_image_path)
-        if cv_image is None:
-            print(f"Error: Could not load image at {abs_image_path}")
-            continue
+            cv_image = cv2.imread(abs_image_path)
+            if cv_image is None:
+                print(f"Error: Could not load image at {abs_image_path}")
+                continue
 
-        cv_image = cv2.resize(cv_image, (new_width, new_height))
+            cv_image = cv2.resize(cv_image, (new_width, new_height))
 
-        # Process each region
-        for name, (x, y, w, h) in regions.items():
-            # Crop the region
-            cropped = cv_image[y:h, x:w]
-            
-            # Convert CV2 image to PIL Image
-            cropped_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
-            pil_image = Image.fromarray(cropped_rgb)
+            # Process each region
+            for name, (x, y, w, h) in regions.items():
+                # Crop the region
+                cropped = cv_image[y:h, x:w]
+                
+                # Convert CV2 image to PIL Image
+                cropped_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
+                pil_image = Image.fromarray(cropped_rgb)
 
-            # Save temporary image
-            temp_path = f"temp_{name}.jpg"
-            pil_image.save(temp_path)
-            
-            # Create conversation for this region
-            conversation = [
-                {
-                    "role": "user",
-                    "content": [
+                # Save temporary image
+                temp_path = f"temp_{name}.jpg"
+                pil_image.save(temp_path)
+                
+                try:
+                    # Create conversation for this region
+                    conversation = [
                         {
-                            "type": "image",
-                            "url": temp_path
-                        },
-                        {
-                            "type": "text",
-                            "text": "Transcribe the text in this image accurately."
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "image",
+                                    "url": temp_path
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Transcribe the text in this image accurately."
+                                }
+                            ]
                         }
                     ]
-                }
-            ]
 
-            inputs = processor.apply_chat_template(
-                conversation,
-                add_generation_prompt=True,
-                tokenize=True,
-                return_dict=True,
-                return_tensors="pt"
-            ).to(model.device)
+                    inputs = processor.apply_chat_template(
+                        conversation,
+                        add_generation_prompt=True,
+                        tokenize=True,
+                        return_dict=True,
+                        return_tensors="pt"
+                    ).to(model.device)
 
-            # Generate output for this region
-            output_ids = model.generate(**inputs, max_new_tokens=2048)
-            generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
-            output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
+                    # Generate output for this region
+                    with torch.inference_mode():
+                        output_ids = model.generate(
+                            **inputs,
+                            max_new_tokens=2048,
+                            do_sample=False,
+                            temperature=0.1,
+                            top_p=0.95,
+                            repetition_penalty=1.1
+                        )
+                    
+                    generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
+                    output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
 
-            print(f"\nTranscribed {name}:")
-            print(output_text)
+                    print(f"\nTranscribed {name}:")
+                    print(output_text)
 
-            # Clean up temporary file
-            os.remove(temp_path)
-            
-            all_transcribed_sections[name] = output_text
+                    all_transcribed_sections[name] = output_text
+                except Exception as e:
+                    print(f"Error processing region {name}: {e}")
+                    all_transcribed_sections[name] = ""
+                finally:
+                    # Clean up temporary file
+                    try:
+                        os.remove(temp_path)
+                    except:
+                        pass
 
-    # Combine sections in the correct order with the section separator
-    section_order = ["basics", "case_details", "hpi", "social", "PMHx", "medications", "allergies", "exam", "veins", "allen_test", "INVx", "CXR/CT", "surgical_plan", "flags", "operative_notes", "post_op_notes", "learning_points"]
-    combined_text = SECTION_SEPARATOR.join(all_transcribed_sections.get(section, "") for section in section_order)
-    
-    # Convert to JSON using the existing parser
-    json_output = process_text_file(combined_text)
-    
-    # Map to logbook template format
-    final_output = map_to_logbook_template(json_output)
-    
-    return final_output
+        # Combine sections in the correct order with the section separator
+        section_order = ["basics", "case_details", "hpi", "social", "PMHx", "medications", "allergies", "exam", "veins", "allen_test", "INVx", "CXR/CT", "surgical_plan", "flags", "operative_notes", "post_op_notes", "learning_points"]
+        combined_text = SECTION_SEPARATOR.join(all_transcribed_sections.get(section, "") for section in section_order)
+        
+        # Convert to JSON using the existing parser
+        json_output = process_text_file(combined_text)
+        
+        # Map to logbook template format
+        final_output = map_to_logbook_template(json_output)
+        
+        return final_output
+    except Exception as e:
+        print(f"Error in qwen function: {e}")
+        raise
 
 if __name__ == "__main__":
     # Run transcription and get JSON output
