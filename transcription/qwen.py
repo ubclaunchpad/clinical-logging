@@ -17,15 +17,24 @@ def map_to_logbook_template(json_output):
     with open("templates/modified_templates.json", 'r') as f:
         modified_templates = json.load(f)
     
-    # Get the field names in order
-    modified_fields = list(modified_templates["adult_cardiac_log_2"].keys())
-    logbook_fields = list(logbook_templates["Adult_cardiac_log_2"].keys())
+    # Initialize result dictionary with all fields from both templates set to None
+    result = {}
+    result.update({key: None for key in logbook_templates["Adult_cardiac_log"].keys()})
+    result.update({key: None for key in logbook_templates["Adult_cardiac_log_2"].keys()})
     
-    # Create result dictionary with all fields initialized to None
-    result = {key: None for key in logbook_fields}
+    # Map fields for adult_cardiac_log
+    modified_fields_1 = list(modified_templates["Adult_cardiac_log"].keys())
+    logbook_fields_1 = list(logbook_templates["Adult_cardiac_log"].keys())
     
-    # Map fields by position
-    for modified_field, logbook_field in zip(modified_fields, logbook_fields):
+    for modified_field, logbook_field in zip(modified_fields_1, logbook_fields_1):
+        if modified_field in json_output:
+            result[logbook_field] = json_output[modified_field].replace("###SECTION###", "")
+    
+    # Map fields for adult_cardiac_log_2
+    modified_fields_2 = list(modified_templates["adult_cardiac_log_2"].keys())
+    logbook_fields_2 = list(logbook_templates["Adult_cardiac_log_2"].keys())
+    
+    for modified_field, logbook_field in zip(modified_fields_2, logbook_fields_2):
         if modified_field in json_output:
             result[logbook_field] = json_output[modified_field].replace("###SECTION###", "")
     
@@ -42,6 +51,21 @@ def process_image(image_path):
 
 def qwen(image_paths=["../assets/kkl3.jpg", "../assets/kkl2.jpg"]):
     try:
+        # Load templates first
+        with open("templates/modified_templates.json", 'r') as f:
+            modified_templates = json.load(f)
+        
+        # Get all field names from both templates
+        field_names = []
+        field_names.extend(list(modified_templates["Adult_cardiac_log"].keys()))
+        field_names.extend(list(modified_templates["adult_cardiac_log_2"].keys()))
+        
+        if not field_names:
+            raise ValueError("No field names found in templates")
+            
+        # Ensure field names are unique
+        field_names = list(dict.fromkeys(field_names))
+        
         # Load the model and processor with explicit trust_remote_code
         model_name = "Qwen/Qwen2.5-VL-3B-Instruct"
         
@@ -188,9 +212,9 @@ def qwen(image_paths=["../assets/kkl3.jpg", "../assets/kkl2.jpg"]):
         section_order = ["basics", "case_details", "hpi", "social", "PMHx", "medications", "allergies", "exam", "veins", "allen_test", "INVx", "CXR/CT", "surgical_plan", "flags", "operative_notes", "post_op_notes", "learning_points"]
         combined_text = SECTION_SEPARATOR.join(all_transcribed_sections.get(section, "") for section in section_order)
         
-        # Convert to JSON using the existing parser
-        json_output = process_text_file(combined_text)
-        
+        # Convert to JSON using the text processor with field names
+        json_output = process_text_file(combined_text, field_names)
+        json_output['type'] = 'adult_cardiac_logs'
         # Map to logbook template format
         final_output = map_to_logbook_template(json_output)
         

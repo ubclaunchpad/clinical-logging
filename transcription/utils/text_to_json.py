@@ -1,152 +1,145 @@
 import json
-import re
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Section separator that won't appear in normal text
-SECTION_SEPARATOR = "\n\n###SECTION###\n\n"
+def load_llm():
+    """Load the small LLM model and tokenizer for text processing"""
+    model_name = "meta-llama/Llama-3.2-3B-Instruct"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+        device_map="auto"
+    )
+    return model, tokenizer
 
-def extract_time_values(text):
-    """Extract time values from strings like 'CPB 2 h 45 m' as verbatim strings"""
-    time_dict = {}
-    patterns = {
-        'CPB': r'CPB\s*([^XC\n]+?)(?=\s*XC|\s*$)',
-        'XC': r'XC\s*([^CA\n]+?)(?=\s*CA|\s*$)',
-        'CA': r'CA\s*([^M\n]+?)(?=\s*My Role|\s*$)'
-    }
+def convert_text_to_json(text, field_names):
+    """Convert text to JSON using a small LLM
     
-    for key, pattern in patterns.items():
-        match = re.search(pattern, text)
-        if match:
-            # Clean and normalize whitespace
-            value = match.group(1).strip()
-            value = ' '.join(value.split())
-            time_dict[key] = value
-        else:
-            time_dict[key] = ""
+    Args:
+        text (str): The medical text to convert
+        field_names (list): List of field names to extract from the text
     
-    return time_dict
-
-def extract_section(text, section_marker, end_markers):
-    """Extract text between section_marker and any of the end_markers or section separator"""
-    if section_marker not in text:
-        return ""
-    
-    start_idx = text.find(section_marker) + len(section_marker)
-    
-    # Find positions of all end markers
-    end_indices = [text.find(marker, start_idx) for marker in end_markers if marker in text[start_idx:]]
-    end_indices = [idx for idx in end_indices if idx != -1]
-    
-    # Find section separator position
-    separator_pos = text.find(SECTION_SEPARATOR, start_idx)
-    if separator_pos != -1:
-        end_indices.append(separator_pos)
-    
-    if not end_indices:
-        extracted_text = text[start_idx:].strip()
-    else:
-        extracted_text = text[start_idx:min(end_indices)].strip()
-    
-    # Remove any section separators from the extracted text
-    extracted_text = extracted_text.replace(SECTION_SEPARATOR, "")
-    
-    # Clean and normalize whitespace
-    return ' '.join(extracted_text.split())
-
-def extract_flag_value(text, current_flag, next_flags):
-    """Extract value for a flag, stopping at the next flag or section separator"""
-    if current_flag not in text:
-        return ""
+    Returns:
+        dict: Dictionary with extracted values for each field
         
-    start_idx = text.find(current_flag) + len(current_flag)
+    Raises:
+        ValueError: If field_names is None or empty
+    """
+    # Validate inputs
+    if not field_names:
+        raise ValueError("field_names cannot be None or empty")
+    if not isinstance(field_names, (list, tuple)):
+        raise ValueError("field_names must be a list or tuple")
+    if not text:
+        print("Warning: Input text is empty")
+        return {key: "" for key in field_names}
     
-    # Find the position of all next flags
-    next_positions = []
-    for flag in next_flags:
-        pos = text.find(flag, start_idx)
-        if pos != -1:
-            next_positions.append(pos)
+    try:
+        # Initialize result dictionary with empty strings
+        result = {key: "" for key in field_names}
+        
+        # Load model and tokenizer
+        model, tokenizer = load_llm()
+        
+        # Prepare the prompt with examples and specific instructions
+        prompt = f"""Extract information from the medical text below and format it as JSON. Follow these rules:
+
+1. Use exactly these field names: {json.dumps(field_names, indent=2)}
+2. Keep extracted information concise and relevant to each field
+3. For time values (CPB, XC, CA), maintain the exact format (e.g., "2 h 45 m")
+4. Leave fields empty ("") if no relevant information is found
+5. Do not include information from one field in another field
+6. Remove any field identifiers (like "ID:", "Age:") from the values
+7. For medical history fields (PMHx), only include relevant conditions
+8. For measurements, maintain the units as provided
+
+The medical text is:
+{text}
+
+Return only valid JSON with the exact field names shown above. The response should start with '{' and end with '}'."""
+        
+        # Generate response
+        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+        with torch.inference_mode():
+            outputs = model.generate(
+                **inputs,
+                max_new_tokens=2048,
+                temperature=0.1,
+                do_sample=False,
+                top_p=0.95,
+                repetition_penalty=1.1
+            )
+        response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        
+        # Log the full response for debugging
+        print("\n=== LLM Response Start ===")
+        print(response)
+        print("=== LLM Response End ===\n")
+        
+        # Extract JSON from response
+        try:
+            # Find JSON-like structure in the response
+            json_start = response.find('{')
+            json_end = response.rfind('}') + 1
             
-    # Find section separator position
-    separator_pos = text.find(SECTION_SEPARATOR, start_idx)
-    if separator_pos != -1:
-        next_positions.append(separator_pos)
+            if json_start != -1 and json_end != -1:
+                json_str = response[json_start:json_end]
+                
+                # Log the extracted JSON string
+                print("\n=== Extracted JSON String Start ===")
+                print(json_str)
+                print("=== Extracted JSON String End ===\n")
+                
+                extracted_json = json.loads(json_str)
+                
+                # Ensure all required fields are present
+                for key in field_names:
+                    if key not in extracted_json:
+                        print(f"Warning: Missing field '{key}' in LLM response")
+                        extracted_json[key] = ""
+                    elif extracted_json[key] is None:
+                        extracted_json[key] = ""
+                
+                return extracted_json
+            else:
+                print("\nError: No JSON structure found in LLM response. Looking for text between '{' and '}'")
+                print(f"Found JSON start position: {json_start}")
+                print(f"Found JSON end position: {json_end}")
+                return result
+        except json.JSONDecodeError as e:
+            print(f"\nError parsing LLM output as JSON: {e}")
+            print("Invalid JSON string:", json_str)
+            return result
+    except Exception as e:
+        print(f"\nError in convert_text_to_json: {e}")
+        print("Full error:", str(e))
+        return result
+
+def process_text_file(input_text, field_names):
+    """Process text file and convert to JSON format
     
-    # If we found any next position, take the earliest one
-    if next_positions:
-        end_idx = min(next_positions)
-        extracted_text = text[start_idx:end_idx].strip()
-    else:
-        extracted_text = text[start_idx:].strip()
-    
-    # Remove any section separators from the extracted text
-    extracted_text = extracted_text.replace(SECTION_SEPARATOR, "")
-    
-    # If the next flag comes immediately after, return empty string
-    if not extracted_text:
-        return ""
+    Args:
+        input_text (str): The text to process
+        field_names (list): List of field names to extract
         
-    return ' '.join(extracted_text.split())
-
-#a list of modified templates to match with the headings in the logbook
-#we map this to the logbook_templates for the fields that are to be passed to the database
-def convert_text_to_json(text, template_path="templates/modified_templates.json"):
-    # Load template
-    with open(template_path, 'r') as f:
-        templates = json.load(f)
-    template = templates.get("adult_cardiac_log_2", {})
-    
-    # Clean up input text if it's a string representation of a list
-    if text.startswith("['") and text.endswith("']"):
-        text = text[2:-2]
-    
-    # Replace escaped newlines with spaces
-    text = text.replace('\\n', ' ')
-    # Replace actual newlines with spaces
-    text = text.replace('\n', ' ')
-    # Normalize multiple spaces to single space
-    text = ' '.join(text.split())
-    
-    # Initialize result dictionary with empty strings
-    result = {key: "" for key in template.keys()}
-    
-    # Extract times
-    time_values = extract_time_values(text)
-    result.update(time_values)
-    
-    # Define the sequence of flags for boundary detection
-    flags_sequence = ['1 Operator', 'OR', 'Post', 'Flag for F/U', 'OPERATIVE NOTES']
-    
-    # Extract sections
-    section_markers = {
-        'Surgical Plan': ('Surgical Plan', ['OPERATIVE NOTES']),  # Will also stop at double space
-        'Post-operative Course': ('Post-operative Course', ['Learning Points']),
-        'Learning Points, Key Lessons': ('Learning Points', ['END']),
-        'My Role': ('My Role', ['Post-operative Course'])
-    }
-    
-    for field, (marker, end_markers) in section_markers.items():
-        if field in template:
-            result[field] = extract_section(text, marker, end_markers)
-    
-    # Extract flag values
-    for i, flag in enumerate(flags_sequence[:-1]):  # Exclude last item as it's just a boundary
-        if flag in template:
-            next_flags = flags_sequence[i+1:]
-            result[flag] = extract_flag_value(text, flag, next_flags)
-    
-    return result
-
-def process_text_file(input_text):
-    # Convert the text to JSON
-    json_output = convert_text_to_json(input_text)
-    
-    # Print formatted JSON
-    print(json.dumps(json_output, indent=2))
-    return json_output
+    Returns:
+        dict: Dictionary with extracted values for each field
+    """
+    try:
+        json_output = convert_text_to_json(input_text, field_names)
+        print(json.dumps(json_output, indent=2))
+        return json_output
+    except ValueError as e:
+        print(f"Error: {e}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error in process_text_file: {e}")
+        return None
 
 if __name__ == "__main__":
     # Read from sample_text file
     with open("sample_text.txt", "r") as f:
         example_text = f.read()
     
-    json_output = process_text_file(example_text) 
+    json_output = process_text_file(example_text, ["CPB", "XC", "CA"]) 
