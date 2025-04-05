@@ -28,7 +28,13 @@ def map_to_logbook_template(json_output):
     
     for modified_field, logbook_field in zip(modified_fields_1, logbook_fields_1):
         if modified_field in json_output:
-            result[logbook_field] = json_output[modified_field].replace("###SECTION###", "")
+            value = json_output[modified_field]
+            # Handle string values
+            if isinstance(value, str):
+                result[logbook_field] = value.replace("###SECTION###", "")
+            # Handle numeric values
+            else:
+                result[logbook_field] = value
     
     # Map fields for adult_cardiac_log_2
     modified_fields_2 = list(modified_templates["adult_cardiac_log_2"].keys())
@@ -36,7 +42,13 @@ def map_to_logbook_template(json_output):
     
     for modified_field, logbook_field in zip(modified_fields_2, logbook_fields_2):
         if modified_field in json_output:
-            result[logbook_field] = json_output[modified_field].replace("###SECTION###", "")
+            value = json_output[modified_field]
+            # Handle string values
+            if isinstance(value, str):
+                result[logbook_field] = value.replace("###SECTION###", "")
+            # Handle numeric values
+            else:
+                result[logbook_field] = value
     
     return result
 
